@@ -156,6 +156,7 @@ Bundle 'bufexplorer.zip'
 "Bundle 'SQLUtilities'
 Bundle 'matchit.zip'
 Bundle 'xmledit'
+Bundle 'DrawIt'
 
 " original repos on github
 "Bundle 'tpope/vim-fugitive'
