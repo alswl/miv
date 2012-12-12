@@ -157,6 +157,7 @@ Bundle 'bufexplorer.zip'
 Bundle 'matchit.zip'
 Bundle 'xmledit'
 Bundle 'DrawIt'
+Bundle 'chrisbra/NrrwRgn'
 
 " original repos on github
 "Bundle 'tpope/vim-fugitive'
