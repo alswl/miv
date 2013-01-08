@@ -158,6 +158,8 @@ Bundle 'matchit.zip'
 Bundle 'xmledit'
 Bundle 'DrawIt'
 Bundle 'chrisbra/NrrwRgn'
+" status bar
+Bundle 'Lokaltog/vim-powerline'
 
 " original repos on github
 "Bundle 'tpope/vim-fugitive'
