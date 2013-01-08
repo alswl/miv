@@ -237,7 +237,9 @@ syntax enable "Enable syntax hl
 "gfn=consolas:h10
 "set gui options
 if has("gui_running")
-	set guifont=Monospace\ 11
+	" set guifont=Monospace\ 11
+	set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+	let Powerline_symbols = 'fancy'
 
 	" Set syntax color
 	colorscheme molokai
