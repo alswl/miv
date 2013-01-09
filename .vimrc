@@ -126,37 +126,54 @@ Bundle 'gg/python.vim'
 Bundle 'The-NERD-tree'
 Bundle 'AutoClose--Alves'
 Bundle 'auto_mkdir'
+" required by XXX
 Bundle 'cecutil'
 Bundle 'fcitx.vim'
+" encode detect
 Bundle 'FencView.vim'
-Bundle 'FuzzyFinder'
+" Bundle 'FuzzyFinder'
 Bundle 'jsbeautify'
+" required by XXX
 Bundle 'L9'
+" mark in different color
 Bundle 'Mark'
+" joke
 Bundle 'matrix.vim'
+" most recent used
 Bundle 'mru.vim'
+" auto comment
 Bundle 'The-NERD-Commenter'
 Bundle 'restart.vim'
+"Tlist
 Bundle 'taglist.vim'
 "Bundle 'templates.vim'
 "Bundle 'vimim.vim'
+" zen coding for html
 Bundle 'ZenCoding.vim'
 Bundle 'css_color.vim'
 "Bundle 'hallettj/jslint.vim'
-Bundle 'vcscommand.vim'
+" code source
+"Bundle 'vcscommand.vim'
+" quick snip input
 Bundle 'snipMate'
+" task list search
 Bundle 'TaskList.vim'
 "Bundle 'pep8'
 "Bundle 'git://github.com/kevinw/pyflakes-vim.git'
-Bundle 'sontek/rope-vim'
+"Rope, a python refactoring library
+"Bundle 'sontek/rope-vim'
 Bundle 'project.tar.gz'
 "Bundle 'minibufexplorerpp'
 Bundle 'bufexplorer.zip'
 "Bundle 'Align.vim'
 "Bundle 'SQLUtilities'
+" extened % for html ...
 Bundle 'matchit.zip'
+" % jump, </> pair, >> for complete
 Bundle 'xmledit'
+" ascii drawing, \di, \ds
 Bundle 'DrawIt'
+" NR, NW
 Bundle 'chrisbra/NrrwRgn'
 
 " original repos on github
@@ -434,6 +451,11 @@ if has("gui_running")
 	nmap <M-8> 8gt
 	imap <M-9> <Esc>9gt
 	nmap <M-9> 9gt
+endif
+
+if has("gui_running")
+	imap <silent> <S-Insert> <MiddleMouse>
+	cmap <silent> <S-Insert> <MiddleMouse>
 endif
 
 " 用空格键来开关折叠
