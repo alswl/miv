@@ -175,6 +175,8 @@ Bundle 'xmledit'
 Bundle 'DrawIt'
 " NR, NW
 Bundle 'chrisbra/NrrwRgn'
+" status bar
+Bundle 'Lokaltog/vim-powerline'
 
 " original repos on github
 "Bundle 'tpope/vim-fugitive'
@@ -252,7 +254,9 @@ syntax enable "Enable syntax hl
 "gfn=consolas:h10
 "set gui options
 if has("gui_running")
-	set guifont=Monospace\ 11
+	" set guifont=Monospace\ 11
+	set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+	let Powerline_symbols = 'fancy'
 
 	" Set syntax color
 	colorscheme molokai
@@ -427,10 +431,10 @@ map <F3>    zR
 map <F4>    zM
 
 " 标签设置
-map <F11>    gT
-map <F12>    gt
-imap <F11>    <Esc>gT
-imap <F12>    <Esc>gt
+map <F7> gT
+map <F8> gt
+imap <F7> <Esc>gT
+imap <F8> <Esc>gt
 
 if has("gui_running")
 	imap <M-1> <Esc>1gt
