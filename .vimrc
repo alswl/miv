@@ -60,6 +60,9 @@ endif
 " 设定状态栏多显示信息
 set laststatus=2
 
+set noscrollbind
+set nocursorbind
+
 if exists('+autochdir')
 	" 文件路径设置为当前路径
 	set autochdir
@@ -368,7 +371,6 @@ set numberwidth=2 "行号栏的宽度
 "endfunction
 
 "autocmd CursorMoved * call MarkPoint()
-
 
 """""""""""""""""""""""""""""""""""""""
 " Text Formatting/Layout
