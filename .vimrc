@@ -98,7 +98,10 @@ Bundle 'less'
 Bundle 'tpope/vim-markdown'
 Bundle 'wikipedia.vim'
 Bundle 'derekwyatt/vim-scala'
-Bundle 'alswl/play2vim'
+" play1
+" Bundle 'alswl/play2vim'
+" play2
+Bundle 'gre/play2vim'
 Bundle 'tpope/vim-haml'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'vim-ruby/vim-ruby'
@@ -180,6 +183,7 @@ Bundle 'DrawIt'
 Bundle 'chrisbra/NrrwRgn'
 " status bar
 Bundle 'Lokaltog/vim-powerline'
+" Bundle 'scala/scala-dist'
 
 " original repos on github
 "Bundle 'tpope/vim-fugitive'
@@ -438,6 +442,10 @@ map <F7> gT
 map <F8> gt
 imap <F7> <Esc>gT
 imap <F8> <Esc>gt
+map <C-h> gT
+map <c-l> gt
+imap <C-h> <Esc>gT
+imap <C-l> <Esc>gt
 
 if has("gui_running")
 	imap <M-1> <Esc>1gt
