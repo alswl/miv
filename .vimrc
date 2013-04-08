@@ -322,6 +322,7 @@ set showmatch " show matching bracets
 """""""""""""""""""""""""""""""""""""""
 
 au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile *.scala set filetype=scala
 
 au FileType python setlocal expandtab colorcolumn=79 textwidth=79 " fo+=Mm
 "Map F9 to Run Python Script
