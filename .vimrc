@@ -329,6 +329,7 @@ au FileType java setlocal colorcolumn=108
 au FileType ruby setlocal expandtab shiftwidth=2 colorcolumn=79
 au FileType eruby setlocal expandtab shiftwidth=2
 au FileType rst setlocal colorcolumn=79
+au FileType htmldjango setlocal expandtab shiftwidth=2 foldmethod=indent
 
 """""""""""""""""""""""""""""""""""""""
 "Visual mode related
