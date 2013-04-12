@@ -60,6 +60,9 @@ endif
 " 设定状态栏多显示信息
 set laststatus=2
 
+set noscrollbind
+set nocursorbind
+
 if exists('+autochdir')
 	" 文件路径设置为当前路径
 	set autochdir
@@ -95,7 +98,10 @@ Bundle 'less'
 Bundle 'tpope/vim-markdown'
 Bundle 'wikipedia.vim'
 Bundle 'derekwyatt/vim-scala'
-Bundle 'alswl/play2vim'
+" play1
+" Bundle 'alswl/play2vim'
+" play2
+Bundle 'gre/play2vim'
 Bundle 'tpope/vim-haml'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'vim-ruby/vim-ruby'
@@ -177,6 +183,7 @@ Bundle 'DrawIt'
 Bundle 'chrisbra/NrrwRgn'
 " status bar
 Bundle 'Lokaltog/vim-powerline'
+" Bundle 'scala/scala-dist'
 
 " original repos on github
 "Bundle 'tpope/vim-fugitive'
@@ -315,6 +322,7 @@ set showmatch " show matching bracets
 """""""""""""""""""""""""""""""""""""""
 
 au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile *.scala set filetype=scala
 
 au FileType python setlocal expandtab colorcolumn=79 textwidth=79 " fo+=Mm
 "Map F9 to Run Python Script
@@ -368,7 +376,6 @@ set numberwidth=2 "行号栏的宽度
 "endfunction
 
 "autocmd CursorMoved * call MarkPoint()
-
 
 """""""""""""""""""""""""""""""""""""""
 " Text Formatting/Layout
@@ -436,6 +443,10 @@ map <F7> gT
 map <F8> gt
 imap <F7> <Esc>gT
 imap <F8> <Esc>gt
+map <C-h> gT
+map <c-l> gt
+imap <C-h> <Esc>gT
+imap <C-l> <Esc>gt
 
 if has("gui_running")
 	imap <M-1> <Esc>1gt
