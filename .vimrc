@@ -168,7 +168,7 @@ Bundle 'snipMate'
 "Bundle 'git://github.com/kevinw/pyflakes-vim.git'
 "Rope, a python refactoring library
 "Bundle 'sontek/rope-vim'
-Bundle 'project.tar.gz'
+"Bundle 'project.tar.gz'
 "Bundle 'minibufexplorerpp'
 Bundle 'bufexplorer.zip'
 "Bundle 'Align.vim'
@@ -427,7 +427,7 @@ let g:fencview_autodetect = 0
 let g:JSLintHighlightErrorLine = 0
 
 " Project
-map <silent> <leader>p :Project<CR>
+"map <silent> <leader>p :Project<CR>
 
 
 """""""""""""""""""""""""""""""""""""""
