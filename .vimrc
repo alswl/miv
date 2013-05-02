@@ -163,7 +163,7 @@ Bundle 'css_color.vim'
 " quick snip input
 Bundle 'snipMate'
 " task list search
-Bundle 'TaskList.vim'
+"Bundle 'TaskList.vim'
 "Bundle 'pep8'
 "Bundle 'git://github.com/kevinw/pyflakes-vim.git'
 "Rope, a python refactoring library
@@ -414,8 +414,8 @@ let g:restart_sessionoptions = "restart_session"
 "vmap <silent> <leader>hr <Plug>MarkRegex
 
 " fuzzyfinder
-map <silent> <leader>sf :FufFile<CR>
-map <silent> <leader>sb :FufBuffer<CR>
+"map <silent> <leader>sf :FufFile<CR>
+"map <silent> <leader>sb :FufBuffer<CR>
 
 " jslint.vim
 " let g:JSLintHighlightErrorLine = 0 " disabled
@@ -503,8 +503,12 @@ inoremap <C-k> <Esc><Right>C
 inoremap <C-d> <Esc><Right>s
 inoremap <M-d> <C-o>de
 
-let g:pep8_map='<leader>8' " PEP8 Check
+"let g:pep8_map='<leader>8' " PEP8 Check
 map <leader>f :NERDTreeToggle<CR>
+
+noremap <silent> <leader>b :BufExplorer<CR>
+noremap <silent> <leader>s :BufExplorerHorizontalSplit<CR>
+noremap <silent> <leader>h :BufExplorerHorizontalSplit<CR>
 
 """""""""""""""""""""""""""""""""""""""
 " 自定义命令
