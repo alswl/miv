@@ -444,9 +444,9 @@ map <F8> gt
 imap <F7> <Esc>gT
 imap <F8> <Esc>gt
 map <C-,> gT
-map <c-l> gt
+map <c-,> gt
 imap <C-.> <Esc>gT
-imap <C-l> <Esc>gt
+imap <C-.> <Esc>gt
 
 if has("gui_running")
 	imap <M-1> <Esc>1gt
