@@ -433,10 +433,11 @@ let g:JSLintHighlightErrorLine = 0
 """""""""""""""""""""""""""""""""""""""
 " Map
 """""""""""""""""""""""""""""""""""""""
-map <F2>    :Tlist<cr>
+map <F1> :NERDTreeToggle<cr>
+"map <F2> :Tlist<cr>
 "代码折叠快捷方式
-map <F3>    zR
-map <F4>    zM
+map <F3> zR
+map <F4> zM
 
 " 标签设置
 map <F7> gT
