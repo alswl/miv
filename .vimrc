@@ -124,9 +124,11 @@ Bundle 'altercation/vim-colors-solarized'
 " Indent
 "Bundle 'indent/html.vim'
 Bundle 'IndentAnything'
-Bundle 'Javascript-Indentation'
+" Bundle 'Javascript-Indentation'
+Bundle "pangloss/vim-javascript"
 Bundle 'mako.vim--Torborg'
 Bundle 'gg/python.vim'
+Bundle 'lepture/vim-jinja'
 
 " Plugin
 Bundle 'The-NERD-tree'
