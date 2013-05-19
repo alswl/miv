@@ -513,6 +513,9 @@ noremap <silent> <leader>b :BufExplorer<CR>
 noremap <silent> <leader>s :BufExplorerHorizontalSplit<CR>
 noremap <silent> <leader>h :BufExplorerHorizontalSplit<CR>
 
+imap <C-\> <Esc>:split<CR>
+nmap <C-\> :split<CR>
+
 """""""""""""""""""""""""""""""""""""""
 " 自定义命令
 """""""""""""""""""""""""""""""""""""""
