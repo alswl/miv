@@ -431,6 +431,8 @@ let g:JSLintHighlightErrorLine = 0
 " Project
 "map <silent> <leader>p :Project<CR>
 
+" NERDTree
+let NERDTreeIgnore = ['\.pyc$', '\.class$', '\.git$']
 
 """""""""""""""""""""""""""""""""""""""
 " Map
