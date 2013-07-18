@@ -186,6 +186,7 @@ Bundle 'chrisbra/NrrwRgn'
 " status bar
 Bundle 'Lokaltog/vim-powerline'
 " Bundle 'scala/scala-dist'
+Bundle 'terryma/vim-multiple-cursors'
 
 " original repos on github
 "Bundle 'tpope/vim-fugitive'
@@ -517,7 +518,8 @@ noremap <silent> <leader>h :BufExplorerHorizontalSplit<CR>
 
 imap <C-\> <Esc>:split<CR>
 nmap <C-\> :split<CR>
-
+inoremap <silent> <leader>p "*p<CR>
+noremap <silent> <leader>p "*p<CR>
 """""""""""""""""""""""""""""""""""""""
 " 自定义命令
 """""""""""""""""""""""""""""""""""""""
