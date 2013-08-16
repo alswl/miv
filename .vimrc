@@ -516,8 +516,8 @@ noremap <silent> <leader>b :BufExplorer<CR>
 noremap <silent> <leader>s :BufExplorerHorizontalSplit<CR>
 noremap <silent> <leader>h :BufExplorerHorizontalSplit<CR>
 
-imap <C-\> <Esc>:split<CR>
-nmap <C-\> :split<CR>
+imap <C-\> <Esc>:split<CR>:set nocursorbind noscrollbind<CR>
+nmap <C-\> :split<CR>:set nocursorbind noscrollbind<CR>
 inoremap <silent> <leader>p "*p<CR>
 noremap <silent> <leader>p "*p<CR>
 """""""""""""""""""""""""""""""""""""""
