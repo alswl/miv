@@ -6,6 +6,8 @@ miv = vim configuration
 
 fork from [alswl/dotfiles@Github][]
 
+GitCafe mirror [GitCafe mirror][]
+
 ## Usage ##
 
 ``` bash
@@ -15,5 +17,4 @@ vim +BundleInstall +qa
 ```
 
 [alswl/dotfiles@Github]: https://github.com/alswl/dotfiles
-
-[GitCafe Mirror]: https://gitcafe.com/alswl/miv
+[GitCafe mirror]: https://gitcafe.com/alswl/miv
