@@ -184,7 +184,7 @@ Bundle 'DrawIt'
 " NR, NW
 Bundle 'chrisbra/NrrwRgn'
 " status bar
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'Lokaltog/powerline'
 " Bundle 'scala/scala-dist'
 Bundle 'terryma/vim-multiple-cursors'
 
