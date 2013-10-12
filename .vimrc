@@ -111,8 +111,6 @@ Bundle 'nginx.vim'
 " Color
 
 Bundle 'desert256.vim'
-Bundle 'Impact'
-Bundle 'matrix.vim'
 Bundle 'vividchalk.vim'
 Bundle 'ego.vim'
 Bundle 'tomasr/molokai'
@@ -255,6 +253,7 @@ set equalalways "分割窗口时保持相等的宽/高
 set guitablabel=%N.%t " 设定标签上显示序号
 
 set foldmethod=syntax
+set foldcolumn=0
 
 """""""""""""""""""""""""""""""""""""""
 "Colors and Fonts
@@ -511,6 +510,9 @@ inoremap <M-d> <C-o>de
 
 "let g:pep8_map='<leader>8' " PEP8 Check
 map <leader>f :NERDTreeToggle<CR>
+
+" diff
+map <leader>d /[=<>]\{7\}<CR>
 
 noremap <silent> <leader>b :BufExplorer<CR>
 noremap <silent> <leader>s :BufExplorerVerticalSplit<CR>
