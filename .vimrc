@@ -54,8 +54,10 @@ if has("gui_running")
 	set guioptions -=T
 	set guioptions -=L
 	set guioptions -=r
+	set macmeta
 	"set showtabline=0
 endif
+
 
 " 设定状态栏多显示信息
 set laststatus=2
@@ -134,7 +136,6 @@ Bundle 'AutoClose--Alves'
 Bundle 'auto_mkdir'
 " required by XXX
 Bundle 'cecutil'
-Bundle 'fcitx.vim'
 " encode detect
 Bundle 'FencView.vim'
 " Bundle 'FuzzyFinder'
@@ -264,7 +265,13 @@ syntax enable "Enable syntax hl
 "set gui options
 if has("gui_running")
 	" set guifont=Monospace\ 11
-	set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+	" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h16
+	" set guifont=Anonymous\ Pro\ for\ Powerline:h20
+	" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h20
+	" set guifont=Source\ Code\ Pro\ for\ Powerline:h20
+	" set guifont=Ubuntu\ Mono\ derivative\ Powerline:h20
+	" set guifont=Ubuntu\ Mono\ derivative\ Powerline:h20
+	set guifont=Menlo:h18
 	let Powerline_symbols = 'fancy'
 
 	" Set syntax color
@@ -454,24 +461,24 @@ imap <C-.> <Esc>gT
 imap <C-.> <Esc>gt
 
 if has("gui_running")
-	imap <M-1> <Esc>1gt
-	nmap <M-1> 1gt
-	imap <M-2> <Esc>2gt
-	nmap <M-2> 2gt
-	imap <M-3> <Esc>3gt
-	nmap <M-3> 3gt
-	imap <M-4> <Esc>4gt
-	nmap <M-4> 4gt
-	imap <M-5> <Esc>5gt
-	nmap <M-5> 5gt
-	imap <M-6> <Esc>6gt
-	nmap <M-6> 6gt
-	imap <M-7> <Esc>7gt
-	nmap <M-7> 7gt
-	imap <M-8> <Esc>8gt
-	nmap <M-8> 8gt
-	imap <M-9> <Esc>9gt
-	nmap <M-9> 9gt
+	imap <D-1> <Esc>1gt
+	nmap <D-1> 1gt
+	imap <D-2> <Esc>2gt
+	nmap <D-2> 2gt
+	imap <D-3> <Esc>3gt
+	nmap <D-3> 3gt
+	imap <D-4> <Esc>4gt
+	nmap <D-4> 4gt
+	imap <D-5> <Esc>5gt
+	nmap <D-5> 5gt
+	imap <D-6> <Esc>6gt
+	nmap <D-6> 6gt
+	imap <D-7> <Esc>7gt
+	nmap <D-7> 7gt
+	imap <D-8> <Esc>8gt
+	nmap <D-8> 8gt
+	imap <D-9> <Esc>9gt
+	nmap <D-9> 9gt
 endif
 
 if has("gui_running")
