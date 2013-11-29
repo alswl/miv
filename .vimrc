@@ -36,11 +36,7 @@ filetype indent on
 set autoread
 
 " 编辑vimrc之后，重新加载
-if MySys() == "windows"
-	autocmd! bufwritepost _vimrc source ~/_vimrc
-else
-	autocmd! bufwritepost .vimrc source ~/.vimrc
-endif
+autocmd! bufwritepost .vimrc source ~/.vimrc
 
 " 禁用Vi的兼容模式
 set nocompatible
@@ -71,8 +67,13 @@ if exists('+autochdir')
 endif
 
 "auto save zz info
-au BufWinLeave *.* silent mkview
-au BufWinEnter *.* silent loadview
+autocmd! BufWinLeave *.* silent mkview
+autocmd! BufWinEnter *.* silent loadview
+
+set noimdisable
+autocmd! InsertLeave * set imdisable|set iminsert=0
+autocmd! InsertEnter * set noimdisable|set iminsert=0
+"autocmd! FocusGained * set imdisable|set iminsert=0
 
 """""""""""""""""""""""""""""""""""""""
 "Vundle
@@ -525,14 +526,15 @@ noremap <silent> <leader>b :BufExplorer<CR>
 noremap <silent> <leader>s :BufExplorerVerticalSplit<CR>
 noremap <silent> <leader>h :BufExplorerHorizontalSplit<CR>
 
-imap <C-\> <Esc>:split<CR>:set nocursorbind noscrollbind<CR>
-nmap <C-\> :split<CR>:set nocursorbind noscrollbind<CR>
+imap <C-\> <Esc>:split<CR>:set nocursorbind noscrollbind<CR>:diffoff<CR>
+nmap <C-\> :split<CR>:set nocursorbind noscrollbind<CR>:diffoff<CR>
 
 nmap <silent> <leader>t :tabe %<CR>
-nmap <silent> <leader>\ :split<CR>:set nocursorbind noscrollbind<CR><C-]>
+nmap <silent> <leader>\ :split<CR>:set nocursorbind noscrollbind<CR>:diffoff<CR><C-]>
 
 inoremap <silent> <leader>p "*p<CR>
 noremap <silent> <leader>p "*p<CR>
+
 """""""""""""""""""""""""""""""""""""""
 " 自定义命令
 """""""""""""""""""""""""""""""""""""""
