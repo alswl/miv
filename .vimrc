@@ -67,8 +67,10 @@ if exists('+autochdir')
 endif
 
 "auto save zz info
-autocmd! BufWinLeave *.* silent mkview
-autocmd! BufWinEnter *.* silent loadview
+if ! has("gui_running")
+	autocmd! BufWinLeave *.* silent mkview
+	autocmd! BufWinEnter *.* silent loadview
+endif
 
 set noimdisable
 autocmd! InsertLeave * set imdisable|set iminsert=0
@@ -184,7 +186,7 @@ Bundle 'DrawIt'
 " NR, NW
 Bundle 'chrisbra/NrrwRgn'
 " status bar
-Bundle 'Lokaltog/vim-powerline'
+" Bundle 'Lokaltog/vim-powerline'
 " Bundle 'scala/scala-dist'
 Bundle 'terryma/vim-multiple-cursors'
 
@@ -193,6 +195,7 @@ Bundle 'terryma/vim-multiple-cursors'
 "Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Bundle 'tpope/vim-rails.git'
+Bundle 'kien/ctrlp.vim'
 
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
@@ -265,15 +268,15 @@ syntax enable "Enable syntax hl
 "gfn=consolas:h10
 "set gui options
 if has("gui_running")
-	" set guifont=Monospace\ 11
+	" set "uifont=Monospace\ 11
 	" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h16
 	" set guifont=Anonymous\ Pro\ for\ Powerline:h20
-	" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h20
+	 set guifont=Droid\ Sans\ Mono\ for\ Powerline:h20
 	" set guifont=Source\ Code\ Pro\ for\ Powerline:h20
 	" set guifont=Ubuntu\ Mono\ derivative\ Powerline:h20
 	" set guifont=Ubuntu\ Mono\ derivative\ Powerline:h20
-	set guifont=Menlo:h18
-	let Powerline_symbols = 'fancy'
+	"set guifont=Menlo:h18
+	"let Powerline_symbols = 'fancy'
 
 	" Set syntax color
 	colorscheme molokai
@@ -441,6 +444,13 @@ let g:JSLintHighlightErrorLine = 0
 
 " NERDTree
 let NERDTreeIgnore = ['\.pyc$', '\.class$', '\.git$']
+
+" powerline
+if has("gui_running")
+	python from powerline.vim import setup as powerline_setup
+	python powerline_setup()
+	python del powerline_setup
+endif
 
 """""""""""""""""""""""""""""""""""""""
 " Map
