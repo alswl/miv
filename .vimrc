@@ -50,6 +50,7 @@ if has("gui_running")
 	set guioptions -=T
 	set guioptions -=L
 	set guioptions -=r
+	set guioptions +=a
 	set macmeta
 	"set showtabline=0
 endif
