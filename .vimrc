@@ -52,6 +52,7 @@ if has("gui_running")
 	set guioptions -=r
 	set guioptions +=a
 	set macmeta
+	set transparency=10
 	"set showtabline=0
 endif
 
@@ -113,6 +114,7 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'django.vim'
 Bundle 'nginx.vim'
+Bundle 'saltstack/salt-vim'
 
 " Color
 
@@ -337,6 +339,8 @@ set showmatch " show matching bracets
 
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.scala set filetype=scala
+au BufRead,BufNewFile *.sls set filetype=sls
+au BufRead,BufNewFile *.js set expandtab shiftwidth=2
 
 au FileType python setlocal expandtab colorcolumn=79 textwidth=79 " fo+=Mm
 "Map F9 to Run Python Script
