@@ -171,7 +171,7 @@ Bundle 'css_color.vim'
 Bundle 'snipMate'
 " task list search
 "Bundle 'TaskList.vim'
-"Bundle 'pep8'
+Bundle 'pep8'
 "Bundle 'git://github.com/kevinw/pyflakes-vim.git'
 "Rope, a python refactoring library
 "Bundle 'sontek/rope-vim'
@@ -199,6 +199,7 @@ Bundle 'terryma/vim-multiple-cursors'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Bundle 'tpope/vim-rails.git'
 Bundle 'kien/ctrlp.vim'
+" for vim-pyref
 
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
@@ -381,11 +382,10 @@ map <left> :bp<cr>
 """""""""""""""""""""""""""""""""""""""
 "Visual Cues
 """""""""""""""""""""""""""""""""""""""
-if exists(':relativenumber')
-	set number " 显示行号
-else
+if !exists(':relativenumber')
 	set relativenumber " 显示相对行号
 endif
+set number " 显示行号
 set numberwidth=2 "行号栏的宽度
 " set foldclose=all
 
@@ -505,6 +505,8 @@ endif
 " 用空格键来开关折叠
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
+map Q :q<CR>
+
 " 用 * / # 匹配选中
 vnoremap  *  y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 vnoremap  #  y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
@@ -549,6 +551,12 @@ nmap <silent> <leader>\ :split<CR>:set nocursorbind noscrollbind<CR>:diffoff<CR>
 
 inoremap <silent> <leader>p "*p<CR>
 noremap <silent> <leader>p "*p<CR>
+
+inoremap <silent> <leader>q :q<CR>
+noremap <silent> <leader>q :q<CR>
+
+inoremap <silent> <leader>w :w<CR>
+noremap <silent> <leader>w :w<CR>
 
 """""""""""""""""""""""""""""""""""""""
 " 自定义命令
