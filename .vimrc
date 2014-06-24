@@ -52,7 +52,7 @@ if has("gui_running")
 	set guioptions -=r
 	set guioptions +=a
 	set macmeta
-	set transparency=10
+	"set transparency=10
 	"set showtabline=0
 endif
 
@@ -506,6 +506,8 @@ endif
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 map Q :q<CR>
+
+vnoremap <leader> v :NRV<CR>
 
 " 用 * / # 匹配选中
 vnoremap  *  y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
