@@ -68,6 +68,8 @@ if exists('+autochdir')
 	set autochdir
 endif
 
+autocmd BufEnter * silent! lcd %:p:h
+
 "auto save zz info
 if ! has("gui_running")
 	autocmd! BufWinLeave *.* silent mkview
@@ -115,6 +117,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'django.vim'
 Bundle 'nginx.vim'
 Bundle 'saltstack/salt-vim'
+Bundle 'fatih/vim-go'
 
 " Color
 
@@ -342,8 +345,9 @@ au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.scala set filetype=scala
 au BufRead,BufNewFile *.sls set filetype=sls
 au BufRead,BufNewFile *.js set expandtab shiftwidth=2
+au BufRead,BufNewFile *.go set filetype=go
 
-au FileType python setlocal expandtab colorcolumn=79 textwidth=79 " fo+=Mm
+au FileType python setlocal expandtab colorcolumn=79 textwidth=0 " fo+=Mm
 "Map F9 to Run Python Script
 au FileType python map <F9> :!python %
 au FileType asciidoc setlocal colorcolumn=79
@@ -357,6 +361,7 @@ au FileType ruby setlocal expandtab shiftwidth=2 colorcolumn=79
 au FileType eruby setlocal expandtab shiftwidth=2
 au FileType rst setlocal colorcolumn=79
 au FileType htmldjango setlocal expandtab shiftwidth=2 foldmethod=indent
+au FileType markdown setlocal expandtab shiftwidth=2 foldmethod=indent
 
 """""""""""""""""""""""""""""""""""""""
 "Visual mode related
@@ -452,9 +457,9 @@ let NERDTreeIgnore = ['\.pyc$', '\.class$', '\.git$']
 
 " powerline
 if has("gui_running")
-	python from powerline.vim import setup as powerline_setup
-	python powerline_setup()
-	python del powerline_setup
+	"python from powerline.vim import setup as powerline_setup
+	"python powerline_setup()
+	"python del powerline_setup
 endif
 
 """""""""""""""""""""""""""""""""""""""
@@ -471,10 +476,10 @@ map <F7> gT
 map <F8> gt
 imap <F7> <Esc>gT
 imap <F8> <Esc>gt
-map <C-,> gT
-map <c-,> gt
-imap <C-.> <Esc>gT
-imap <C-.> <Esc>gt
+noremap <C-Tab> :tabnext<CR>
+noremap <C-S-Tab> :tabprev<CR>
+inoremap <C-Tab> <Esc>:tabnext<CR>
+inoremap <C-S-Tab> <Esc>:tabprev<CR>
 
 if has("gui_running")
 	imap <D-1> <Esc>1gt
@@ -539,7 +544,7 @@ inoremap <M-d> <C-o>de
 map <leader>f :NERDTreeToggle<CR>
 
 " diff
-map <leader>d /[=<>]\{7\}<CR>
+map <leader>d /^[=<>]\{7\}<CR>
 
 noremap <silent> <leader>b :BufExplorer<CR>
 noremap <silent> <leader>s :BufExplorerVerticalSplit<CR>

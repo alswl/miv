@@ -132,15 +132,6 @@ set showmatch " show matching bracets
 """""""""""""""""""""""""""""""""""""""
 "Moving around, tabs and buffers
 """""""""""""""""""""""""""""""""""""""
-" Smart way to move btw. windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-" Use the arrows to something usefull
-map <right> :bn<cr>
-map <left> :bp<cr>
 
 """""""""""""""""""""""""""""""""""""""
 "Visual Cues
