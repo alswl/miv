@@ -171,8 +171,8 @@ map <F7> gT
 map <F8> gt
 imap <F7> <Esc>gT
 imap <F8> <Esc>gt
-nnoremap <C-l> gT
-nnoremap <C-h> gt
+nnoremap <C-h> gT
+nnoremap <C-l> gt
 
 map Q :q<CR>
 

@@ -453,7 +453,16 @@ let g:JSLintHighlightErrorLine = 0
 "map <silent> <leader>p :Project<CR>
 
 " NERDTree
-let NERDTreeIgnore = ['\.pyc$', '\.class$', '\.git$']
+let NERDTreeIgnore = ['\.pyc$', '\.class$', '\.git$', 'target']
+let g:NERDTreeChDirMode = 2
+
+" ctrlp
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = {
+	\ 'dir':  '\v[\/](\.(git|hg|svn)$)|target',
+	\ 'file': '\v\.(exe|so|dll|class|jar)$',
+	\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+	\ }
 
 " powerline
 if has("gui_running")
