@@ -41,7 +41,6 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 " 禁用Vi的兼容模式
 set nocompatible
 
-" Set windows postion and size
 if has("gui_running")
 	"winpos 0 0
 	"set lines=43
@@ -50,7 +49,8 @@ if has("gui_running")
 	set guioptions -=T
 	set guioptions -=L
 	set guioptions -=r
-	set guioptions +=a
+	" auto select
+	" set guioptions +=a
 	set macmeta
 	"set transparency=10
 	"set showtabline=0

@@ -171,32 +171,8 @@ map <F7> gT
 map <F8> gt
 imap <F7> <Esc>gT
 imap <F8> <Esc>gt
-map <C-,> gT
-map <c-,> gt
-imap <C-.> <Esc>gT
-imap <C-.> <Esc>gt
-
-imap <D-1> <Esc>1gt
-nmap <D-1> 1gt
-imap <D-2> <Esc>2gt
-nmap <D-2> 2gt
-imap <D-3> <Esc>3gt
-nmap <D-3> 3gt
-imap <D-4> <Esc>4gt
-nmap <D-4> 4gt
-imap <D-5> <Esc>5gt
-nmap <D-5> 5gt
-imap <D-6> <Esc>6gt
-nmap <D-6> 6gt
-imap <D-7> <Esc>7gt
-nmap <D-7> 7gt
-imap <D-8> <Esc>8gt
-nmap <D-8> 8gt
-imap <D-9> <Esc>9gt
-nmap <D-9> 9gt
-
-imap <silent> <S-Insert> <MiddleMouse>
-cmap <silent> <S-Insert> <MiddleMouse>
+nnoremap <C-l> gT
+nnoremap <C-h> gt
 
 map Q :q<CR>
 
@@ -230,7 +206,7 @@ inoremap <M-d> <C-o>de
 map <leader>f :NERDTreeToggle<CR>
 
 " diff
-map <leader>d /[=<>]\{7\}<CR>
+map <leader>d /^[=<>]\{7\}<CR>
 
 noremap <silent> <leader>b :BufExplorer<CR>
 noremap <silent> <leader>s :BufExplorerVerticalSplit<CR>
