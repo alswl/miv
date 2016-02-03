@@ -43,8 +43,6 @@ set nocompatible
 
 if has("gui_running")
 	"winpos 0 0
-	"set lines=43
-	"set columns=85
 	set guioptions -=m
 	set guioptions -=T
 	set guioptions -=L
@@ -54,6 +52,8 @@ if has("gui_running")
 	set macmeta
 	"set transparency=10
 	"set showtabline=0
+	"set lines=45
+	"set columns=85
 endif
 
 
@@ -76,9 +76,9 @@ if ! has("gui_running")
 	autocmd! BufWinEnter *.* silent loadview
 endif
 
-set noimdisable
-autocmd! InsertLeave * set imdisable|set iminsert=0
-autocmd! InsertEnter * set noimdisable|set iminsert=0
+"set noimdisable
+"autocmd! InsertLeave * set imdisable|set iminsert=0
+"autocmd! InsertEnter * set noimdisable|set iminsert=0
 "autocmd! FocusGained * set imdisable|set iminsert=0
 
 """""""""""""""""""""""""""""""""""""""
@@ -96,7 +96,7 @@ Bundle 'gmarik/vundle'
 " Syntax
 Bundle 'asciidoc.vim'
 Bundle 'confluencewiki.vim'
-Bundle 'alswl/html5.vim'
+Bundle 'othree/html5.vim'
 Bundle 'JavaScript-syntax'
 "Bundle 'mako.vim'
 Bundle 'moin.vim'
@@ -118,6 +118,8 @@ Bundle 'django.vim'
 Bundle 'nginx.vim'
 Bundle 'saltstack/salt-vim'
 Bundle 'fatih/vim-go'
+Bundle 'haproxy'
+Bundle 'mustache/vim-mustache-handlebars'
 
 " Color
 
@@ -278,7 +280,8 @@ if has("gui_running")
 	" set "uifont=Monospace\ 11
 	" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h16
 	" set guifont=Anonymous\ Pro\ for\ Powerline:h20
-	 set guifont=Droid\ Sans\ Mono\ for\ Powerline:h20
+	" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h20
+	set guifont=Droid\ Sans\ Mono\ for\ Powerline:h13
 	" set guifont=Source\ Code\ Pro\ for\ Powerline:h20
 	" set guifont=Ubuntu\ Mono\ derivative\ Powerline:h20
 	" set guifont=Ubuntu\ Mono\ derivative\ Powerline:h20
@@ -346,6 +349,7 @@ au BufRead,BufNewFile *.scala set filetype=scala
 au BufRead,BufNewFile *.sls set filetype=sls
 au BufRead,BufNewFile *.js set expandtab shiftwidth=2
 au BufRead,BufNewFile *.go set filetype=go
+au BufRead,BufNewFile *.wiki.dev.* set filetype=confluencewiki
 
 au FileType python setlocal expandtab colorcolumn=79 textwidth=0 " fo+=Mm
 "Map F9 to Run Python Script
@@ -356,12 +360,13 @@ au FileType mako setlocal colorcolumn=79 cc=0 fdm=indent
 "au FileType html setlocal shiftwidth=2 tabstop=2
 au FileType haskell setlocal expandtab
 au FileType lua setlocal expandtab
-au FileType java setlocal colorcolumn=108
+au FileType java setlocal expandtab colorcolumn=108
 au FileType ruby setlocal expandtab shiftwidth=2 colorcolumn=79
 au FileType eruby setlocal expandtab shiftwidth=2
 au FileType rst setlocal colorcolumn=79
 au FileType htmldjango setlocal expandtab shiftwidth=2 foldmethod=indent
 au FileType markdown setlocal expandtab shiftwidth=2 foldmethod=indent
+au FileType yaml setlocal expandtab shiftwidth=2 foldmethod=indent
 
 """""""""""""""""""""""""""""""""""""""
 "Visual mode related
@@ -534,10 +539,17 @@ let g:html_indent_inctags = "p,li,dt,dd"
 " Move
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
-"inoremap <C-p> <Up>
-"inoremap <C-n> <Down>
+" inoremap <C-p> <Up>
+" inoremap <C-n> <Down>
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
+cmap <C-a> <Home>
+cmap <C-e> <End>
+cmap <C-p> <Up>
+cmap <C-n> <Down>
+cmap <C-b> <Left>
+cmap <C-f> <Right>
+
 inoremap <M-b> <C-o>b
 inoremap <M-f> <C-o>w
 " Rubout word / line and enter insert mode
@@ -555,7 +567,7 @@ map <leader>f :NERDTreeToggle<CR>
 " diff
 map <leader>d /^[=<>]\{7\}<CR>
 
-noremap <silent> <leader>b :BufExplorer<CR>
+" noremap <silent> <leader>b :BufExplorer<CR>
 noremap <silent> <leader>s :BufExplorerVerticalSplit<CR>
 noremap <silent> <leader>h :BufExplorerHorizontalSplit<CR>
 
