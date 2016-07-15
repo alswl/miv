@@ -120,6 +120,7 @@ Bundle 'saltstack/salt-vim'
 Bundle 'fatih/vim-go'
 Bundle 'haproxy'
 Bundle 'mustache/vim-mustache-handlebars'
+Bundle 'chase/vim-ansible-yaml'
 
 " Color
 
@@ -488,6 +489,8 @@ map <F4> zM
 " 标签设置
 map <F7> gT
 map <F8> gt
+map <C-h> gT
+map <C-l> gt
 imap <F7> <Esc>gT
 imap <F8> <Esc>gt
 noremap <C-Tab> :tabnext<CR>
