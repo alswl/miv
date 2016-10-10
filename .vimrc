@@ -121,6 +121,7 @@ Bundle 'fatih/vim-go'
 Bundle 'haproxy'
 Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'chase/vim-ansible-yaml'
+Bundle 'leafgarland/typescript-vim'
 
 " Color
 
@@ -351,12 +352,13 @@ au BufRead,BufNewFile *.sls set filetype=sls
 au BufRead,BufNewFile *.js set expandtab shiftwidth=2
 au BufRead,BufNewFile *.go set filetype=go
 au BufRead,BufNewFile *.wiki.dev.* set filetype=confluencewiki
+au BufRead,BufNewFile *.ts set filetype=typescript
 
 au FileType python setlocal expandtab colorcolumn=79 textwidth=0 " fo+=Mm
 "Map F9 to Run Python Script
 au FileType python map <F9> :!python %
 au FileType asciidoc setlocal colorcolumn=79
-au FileType markdown setlocal colorcolumn=79
+au FileType markdown setlocal colorcolumn=79 expandtab shiftwidth=4
 au FileType mako setlocal colorcolumn=79 cc=0 fdm=indent
 "au FileType html setlocal shiftwidth=2 tabstop=2
 au FileType haskell setlocal expandtab
@@ -366,7 +368,6 @@ au FileType ruby setlocal expandtab shiftwidth=2 colorcolumn=79
 au FileType eruby setlocal expandtab shiftwidth=2
 au FileType rst setlocal colorcolumn=79
 au FileType htmldjango setlocal expandtab shiftwidth=2 foldmethod=indent
-au FileType markdown setlocal expandtab shiftwidth=2 foldmethod=indent
 au FileType yaml setlocal expandtab shiftwidth=2 foldmethod=indent
 
 """""""""""""""""""""""""""""""""""""""
