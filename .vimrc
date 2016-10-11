@@ -155,7 +155,7 @@ Bundle 'FencView.vim'
 Bundle 'jsbeautify'
 " required by XXX
 Bundle 'L9'
-" mark in different color
+" mark in different color, leader + m
 Bundle 'Mark'
 " joke
 Bundle 'matrix.vim'
@@ -205,7 +205,7 @@ Bundle 'terryma/vim-multiple-cursors'
 "Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Bundle 'tpope/vim-rails.git'
-Bundle 'kien/ctrlp.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
 " for vim-pyref
 
 " non github repos
@@ -482,7 +482,7 @@ endif
 " Map
 """""""""""""""""""""""""""""""""""""""
 map <F1> :NERDTreeToggle<cr>
-"map <F2> :Tlist<cr>
+map <F2> :Tlist<cr>
 "代码折叠快捷方式
 map <F3> zR
 map <F4> zM
