@@ -84,132 +84,133 @@ endif
 """""""""""""""""""""""""""""""""""""""
 "Vundle
 """""""""""""""""""""""""""""""""""""""
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
 
 " My Bundles here:
 
 " vim-scripts repos
 
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
+
 
 " Syntax
-Bundle 'asciidoc.vim'
-Bundle 'confluencewiki.vim'
-Bundle 'othree/html5.vim'
-Bundle 'JavaScript-syntax'
-"Bundle 'mako.vim'
-Bundle 'moin.vim'
-Bundle 'python.vim--Vasiliev'
-Bundle 'xml.vim'
-Bundle 'less'
-"Bundle 'hallison/vim-markdown'
-Bundle 'tpope/vim-markdown'
-Bundle 'wikipedia.vim'
-Bundle 'derekwyatt/vim-scala'
+Plugin 'asciidoc.vim'
+Plugin 'confluencewiki.vim'
+Plugin 'othree/html5.vim'
+Plugin 'JavaScript-syntax'
+"Plugin 'mako.vim'
+Plugin 'moin.vim'
+Plugin 'python.vim--Vasiliev'
+Plugin 'xml.vim'
+Plugin 'less'
+"Plugin 'hallison/vim-markdown'
+Plugin 'tpope/vim-markdown'
+Plugin 'wikipedia.vim'
+Plugin 'derekwyatt/vim-scala'
 " play1
-" Bundle 'alswl/play2vim'
+" Plugin 'alswl/play2vim'
 " play2
-Bundle 'gre/play2vim'
-Bundle 'tpope/vim-haml'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'django.vim'
-Bundle 'nginx.vim'
-Bundle 'saltstack/salt-vim'
-Bundle 'fatih/vim-go'
-Bundle 'haproxy'
-Bundle 'mustache/vim-mustache-handlebars'
-Bundle 'chase/vim-ansible-yaml'
-Bundle 'leafgarland/typescript-vim'
+Plugin 'gre/play2vim'
+Plugin 'tpope/vim-haml'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'django.vim'
+Plugin 'nginx.vim'
+Plugin 'saltstack/salt-vim'
+Plugin 'fatih/vim-go'
+Plugin 'haproxy'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'leafgarland/typescript-vim'
 
 " Color
 
-Bundle 'desert256.vim'
-Bundle 'vividchalk.vim'
-Bundle 'ego.vim'
-Bundle 'tomasr/molokai'
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'desert256.vim'
+Plugin 'vividchalk.vim'
+Plugin 'ego.vim'
+Plugin 'tomasr/molokai'
+Plugin 'altercation/vim-colors-solarized'
 
 " Ftplugin
-"Bundle 'python_fold'
+"Plugin 'python_fold'
 
 " Indent
-"Bundle 'indent/html.vim'
-Bundle 'IndentAnything'
-" Bundle 'Javascript-Indentation'
-Bundle "pangloss/vim-javascript"
-Bundle 'mako.vim--Torborg'
-Bundle 'gg/python.vim'
-Bundle 'lepture/vim-jinja'
+"Plugin 'indent/html.vim'
+Plugin 'IndentAnything'
+" Plugin 'Javascript-Indentation'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mako.vim--Torborg'
+Plugin 'gg/python.vim'
+Plugin 'lepture/vim-jinja'
 
 " Plugin
-Bundle 'The-NERD-tree'
-Bundle 'AutoClose--Alves'
-Bundle 'auto_mkdir'
+Plugin 'The-NERD-tree'
+Plugin 'AutoClose--Alves'
+Plugin 'auto_mkdir'
 " required by XXX
-Bundle 'cecutil'
+Plugin 'cecutil'
 " encode detect
-Bundle 'FencView.vim'
-" Bundle 'FuzzyFinder'
-Bundle 'jsbeautify'
+Plugin 'FencView.vim'
+" Plugin 'FuzzyFinder'
+Plugin 'jsbeautify'
 " required by XXX
-Bundle 'L9'
+Plugin 'L9'
 " mark in different color, leader + m
-Bundle 'Mark'
+Plugin 'Mark'
 " joke
-Bundle 'matrix.vim'
+Plugin 'matrix.vim'
 " most recent used
-Bundle 'mru.vim'
+Plugin 'mru.vim'
 " auto comment
-Bundle 'The-NERD-Commenter'
-Bundle 'restart.vim'
+Plugin 'The-NERD-Commenter'
+Plugin 'restart.vim'
 "Tlist
-Bundle 'taglist.vim'
-"Bundle 'templates.vim'
-"Bundle 'vimim.vim'
-" zen coding for html
-Bundle 'ZenCoding.vim'
-Bundle 'css_color.vim'
-"Bundle 'hallettj/jslint.vim'
+Plugin 'taglist.vim'
+"Plugin 'templates.vim'
+"Plugin 'vimim.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'css_color.vim'
+"Plugin 'hallettj/jslint.vim'
 " code source
-"Bundle 'vcscommand.vim'
+"Plugin 'vcscommand.vim'
 " quick snip input
-Bundle 'snipMate'
+Plugin 'snipMate'
 " task list search
-"Bundle 'TaskList.vim'
-Bundle 'pep8'
-"Bundle 'git://github.com/kevinw/pyflakes-vim.git'
+"Plugin 'TaskList.vim'
+Plugin 'pep8'
+"Plugin 'git://github.com/kevinw/pyflakes-vim.git'
 "Rope, a python refactoring library
-"Bundle 'sontek/rope-vim'
-"Bundle 'project.tar.gz'
-"Bundle 'minibufexplorerpp'
-Bundle 'bufexplorer.zip'
-"Bundle 'Align.vim'
-"Bundle 'SQLUtilities'
+"Plugin 'sontek/rope-vim'
+"Plugin 'project.tar.gz'
+"Plugin 'minibufexplorerpp'
+Plugin 'bufexplorer.zip'
+"Plugin 'Align.vim'
+"Plugin 'SQLUtilities'
 " extened % for html ...
-Bundle 'matchit.zip'
+Plugin 'matchit.zip'
 " % jump, </> pair, >> for complete
-Bundle 'xmledit'
+Plugin 'xmledit'
 " ascii drawing, \di, \ds
-Bundle 'DrawIt'
+Plugin 'DrawIt'
 " NR, NW
-Bundle 'chrisbra/NrrwRgn'
+Plugin 'chrisbra/NrrwRgn'
 " status bar
-" Bundle 'Lokaltog/vim-powerline'
-" Bundle 'scala/scala-dist'
-Bundle 'terryma/vim-multiple-cursors'
+" Plugin 'Lokaltog/vim-powerline'
+" Plugin 'scala/scala-dist'
+Plugin 'terryma/vim-multiple-cursors'
 
 " original repos on github
-"Bundle 'tpope/vim-fugitive'
-"Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-"Bundle 'tpope/vim-rails.git'
-Bundle 'ctrlpvim/ctrlp.vim'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'Lokaltog/vim-easymotion'
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Plugin 'tpope/vim-rails.git'
+Plugin 'ctrlpvim/ctrlp.vim'
 " for vim-pyref
 
 " non github repos
-"Bundle 'git://git.wincent.com/command-t.git'
+"Plugin 'git://git.wincent.com/command-t.git'
+call vundle#end()
 
 
 """""""""""""""""""""""""""""""""""""""
