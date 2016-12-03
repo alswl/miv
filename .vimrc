@@ -284,7 +284,9 @@ if has("gui_running")
 	" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h16
 	" set guifont=Anonymous\ Pro\ for\ Powerline:h20
 	" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h20
-	set guifont=Droid\ Sans\ Mono\ for\ Powerline:h13
+	set macligatures
+	" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h13
+	set guifont=Fira\ Code:h13
 	" set guifont=Source\ Code\ Pro\ for\ Powerline:h20
 	" set guifont=Ubuntu\ Mono\ derivative\ Powerline:h20
 	" set guifont=Ubuntu\ Mono\ derivative\ Powerline:h20
