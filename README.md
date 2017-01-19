@@ -11,7 +11,7 @@ forked from [alswl/.oOo.@Github][]
 ``` bash
 git clone --recursive https://github.com/alswl/miv.git
 ln -s /miv/path/.* $HOME
-vim +BundleInstall +qa
+vim +VundleInstall +qa
 ```
 
 
