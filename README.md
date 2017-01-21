@@ -10,7 +10,8 @@ forked from [alswl/.oOo.@Github][]
 
 ``` bash
 git clone --recursive https://github.com/alswl/miv.git
-ln -s /miv/path/.* $HOME
+ln -s /miv/path/.vim $HOME
+ln -s /miv/path/.vimrc $HOME
 vim +VundleInstall +qa
 ```
 
