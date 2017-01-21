@@ -271,6 +271,13 @@ set guitablabel=%N.%t " 设定标签上显示序号
 
 set foldmethod=syntax
 set foldcolumn=0
+set foldlevel=0
+set diffopt=vertical,iwhite
+
+set laststatus=2
+set statusline=\ \%F\ %m%r%h%w\ \ %y\ [%{&ff}]\ [%{&fileencoding}]\ [tw:%{&tw}]\ [%p%%]\ [%l/%L]\ [%c]
+
+set ttyfast
 
 """""""""""""""""""""""""""""""""""""""
 "Colors and Fonts
