@@ -54,6 +54,11 @@ if has("gui_running")
 	"set showtabline=0
 	"set lines=45
 	"set columns=85
+
+	set noimdisable
+	"autocmd! InsertLeave * set imdisable|set iminsert=0
+	"autocmd! InsertEnter * set noimdisable|set iminsert=0
+	"autocmd! FocusGained * set imdisable|set iminsert=0
 endif
 
 
@@ -75,11 +80,6 @@ if ! has("gui_running")
 	autocmd! BufWinLeave *.* silent mkview
 	autocmd! BufWinEnter *.* silent loadview
 endif
-
-"set noimdisable
-"autocmd! InsertLeave * set imdisable|set iminsert=0
-"autocmd! InsertEnter * set noimdisable|set iminsert=0
-"autocmd! FocusGained * set imdisable|set iminsert=0
 
 """""""""""""""""""""""""""""""""""""""
 "Vundle
@@ -272,6 +272,7 @@ set guitablabel=%N.%t " 设定标签上显示序号
 set foldmethod=syntax
 set foldcolumn=0
 set foldlevel=0
+set nofoldenable
 set diffopt=vertical,iwhite
 
 set laststatus=2
