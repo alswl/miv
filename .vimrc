@@ -564,6 +564,9 @@ vnoremap  #  y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 " html缩进
 let g:html_indent_inctags = "p,li,dt,dd"
 
+nnoremap <S-Tab> <<
+inoremap <S-Tab> <C-d>
+
 " 模拟 Emacs 键绑定
 " Move
 inoremap <C-a> <Home>
@@ -614,6 +617,9 @@ noremap <silent> <leader>q :q<CR>
 
 inoremap <silent> <leader>w :w<CR>
 noremap <silent> <leader>w :w<CR>
+
+
+noremap <C-M> :silent exec "!/usr/local/bin/macdown %"<CR>
 
 """""""""""""""""""""""""""""""""""""""
 " 自定义命令
