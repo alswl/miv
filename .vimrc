@@ -145,7 +145,7 @@ Plugin 'gg/python.vim'
 Plugin 'lepture/vim-jinja'
 
 " Plugin
-Plugin 'The-NERD-tree'
+Plugin 'scrooloose/nerdtree'
 Plugin 'AutoClose--Alves'
 Plugin 'auto_mkdir'
 " required by XXX
@@ -206,6 +206,11 @@ Plugin 'terryma/vim-multiple-cursors'
 "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Plugin 'tpope/vim-rails.git'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'Rename'
+Plugin '907th/vim-auto-save'
+Plugin 'nelstrom/vim-markdown-folding'
+
+
 " for vim-pyref
 
 " non github repos
@@ -276,7 +281,8 @@ set nofoldenable
 set diffopt=vertical,iwhite
 
 set laststatus=2
-set statusline=\ \%F\ %m%r%h%w\ \ %y\ [%{&ff}]\ [%{&fileencoding}]\ [tw:%{&tw}]\ [%p%%]\ [%l/%L]\ [%c]
+" set statusline=\ \%F\ %m%r%h%w\ \ %y\ [%{&ff}]\ [%{&fileencoding}]\ [tw:%{&tw}]\ [%p%%]\ [%l/%L]\ [%c]
+set statusline=\ \%F\ \ \ \ \ %m%r%h%w\ \ %y\ [%{&ff}]\ [%{&fileencoding}]\ [%p%%]\ [%l/%L]\ [%c]
 
 set ttyfast
 
@@ -475,7 +481,9 @@ let NERDTreeIgnore = ['\.pyc$', '\.class$', '\.git$', 'target']
 let g:NERDTreeChDirMode = 2
 
 " ctrlp
-let g:ctrlp_working_path_mode = 'ra'
+"let g:ctrlp_working_path_mode = 'c'
+let g:ctrlp_working_path_mode = 'ca'
+let g:ctrlp_root_markers = ['.ctrlp', 'md', 'pom.xml', 'README.md']
 let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/](\.(git|hg|svn)$)|target',
 	\ 'file': '\v\.(exe|so|dll|class|jar)$',
@@ -488,6 +496,12 @@ if has("gui_running")
 	"python powerline_setup()
 	"python del powerline_setup
 endif
+
+" autosaving
+
+" let g:auto_save = 1  " enable AutoSave on Vim startup
+" let g:auto_save_silent = 1  " do not display the auto-save notification
+
 
 """""""""""""""""""""""""""""""""""""""
 " Map
