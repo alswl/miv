@@ -104,8 +104,8 @@ Plugin 'moin.vim'
 Plugin 'python.vim--Vasiliev'
 Plugin 'xml.vim'
 Plugin 'less'
-"Plugin 'hallison/vim-markdown'
-Plugin 'tpope/vim-markdown'
+" Plugin 'hallison/vim-markdown'
+" Plugin 'tpope/vim-markdown'
 Plugin 'wikipedia.vim'
 Plugin 'derekwyatt/vim-scala'
 " play1
@@ -208,7 +208,9 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Rename'
 Plugin '907th/vim-auto-save'
-Plugin 'nelstrom/vim-markdown-folding'
+" Plugin 'nelstrom/vim-markdown-folding'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 
 " for vim-pyref
@@ -375,7 +377,28 @@ au FileType python setlocal expandtab colorcolumn=79 textwidth=0 " fo+=Mm
 "Map F9 to Run Python Script
 au FileType python map <F9> :!python %
 au FileType asciidoc setlocal colorcolumn=79
-au FileType markdown setlocal colorcolumn=79 expandtab shiftwidth=4
+function! MarkdownLevel()
+    if getline(v:lnum) =~ '^# .*$'
+        return ">1"
+    endif
+    if getline(v:lnum) =~ '^## .*$'
+        return ">2"
+    endif
+    if getline(v:lnum) =~ '^### .*$'
+        return ">3"
+    endif
+    if getline(v:lnum) =~ '^#### .*$'
+        return ">4"
+    endif
+    if getline(v:lnum) =~ '^##### .*$'
+        return ">5"
+    endif
+    if getline(v:lnum) =~ '^###### .*$'
+        return ">6"
+    endif
+    return "=" 
+endfunction
+au FileType markdown setlocal colorcolumn=79 expandtab shiftwidth=4 nowrap foldexpr=MarkdownLevel() foldmethod=expr 
 au FileType mako setlocal colorcolumn=79 cc=0 fdm=indent
 "au FileType html setlocal shiftwidth=2 tabstop=2
 au FileType haskell setlocal expandtab
@@ -486,7 +509,7 @@ let g:ctrlp_working_path_mode = 'ca'
 let g:ctrlp_root_markers = ['.ctrlp', 'md', 'pom.xml', 'README.md']
 let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/](\.(git|hg|svn)$)|target',
-	\ 'file': '\v\.(exe|so|dll|class|jar)$',
+	\ 'file': '\v\.(exe|so|dll|class|jar|png|jpeg|jpg)$',
 	\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
 	\ }
 
@@ -565,7 +588,7 @@ vnoremap  #  y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 let g:html_indent_inctags = "p,li,dt,dd"
 
 nnoremap <S-Tab> <<
-inoremap <S-Tab> <C-d>
+inoremap <S-Tab> <C-D>
 
 " 模拟 Emacs 键绑定
 " Move
@@ -618,8 +641,9 @@ noremap <silent> <leader>q :q<CR>
 inoremap <silent> <leader>w :w<CR>
 noremap <silent> <leader>w :w<CR>
 
-
-noremap <C-M> :silent exec "!/usr/local/bin/macdown %"<CR>
+noremap <leader>M :silent exec "!/usr/local/bin/macdown %"<CR>
+noremap <leader>p :!image-from-clipboard-to-png 
+" noremap <C-M> :!/usr/local/bin/macdown %<CR>
 
 """""""""""""""""""""""""""""""""""""""
 " 自定义命令
