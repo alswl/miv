@@ -315,7 +315,7 @@ else
 	colorscheme desert256
 endif
 
-set ambiwidth=double " 设定某些标点符号为宽字符
+"set ambiwidth=double " 设定某些标点符号为宽字符
 
 " 设定行首tab为灰色
 highlight LeaderTab guifg=#666666
