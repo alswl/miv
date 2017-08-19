@@ -508,8 +508,8 @@ let g:NERDTreeChDirMode = 2
 let g:ctrlp_working_path_mode = 'ca'
 let g:ctrlp_root_markers = ['.ctrlp', 'md', 'pom.xml', 'README.md']
 let g:ctrlp_custom_ignore = {
-	\ 'dir':  '\v[\/](\.(git|hg|svn)$)|target',
-	\ 'file': '\v\.(exe|so|dll|class|jar|png|jpeg|jpg)$',
+	\ 'dir':  '\v[\/](\.(git|hg|svn)$)|target|node_modules',
+	\ 'file': '\v\.(exe|so|dll|class|jar|png|jpeg|jpg|numbers)$',
 	\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
 	\ }
 
