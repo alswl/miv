@@ -166,8 +166,9 @@ Plugin 'mru.vim'
 Plugin 'The-NERD-Commenter'
 Plugin 'restart.vim'
 "Tlist
-Plugin 'taglist.vim'
+"Plugin 'taglist.vim'
 "Plugin 'templates.vim'
+Plugin 'majutsushi/tagbar'
 "Plugin 'vimim.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'css_color.vim'
@@ -377,28 +378,7 @@ au FileType python setlocal expandtab colorcolumn=79 textwidth=0 " fo+=Mm
 "Map F9 to Run Python Script
 au FileType python map <F9> :!python %
 au FileType asciidoc setlocal colorcolumn=79
-function! MarkdownLevel()
-    if getline(v:lnum) =~ '^# .*$'
-        return ">1"
-    endif
-    if getline(v:lnum) =~ '^## .*$'
-        return ">2"
-    endif
-    if getline(v:lnum) =~ '^### .*$'
-        return ">3"
-    endif
-    if getline(v:lnum) =~ '^#### .*$'
-        return ">4"
-    endif
-    if getline(v:lnum) =~ '^##### .*$'
-        return ">5"
-    endif
-    if getline(v:lnum) =~ '^###### .*$'
-        return ">6"
-    endif
-    return "=" 
-endfunction
-au FileType markdown setlocal colorcolumn=79 expandtab shiftwidth=4 nowrap foldexpr=MarkdownLevel() foldmethod=expr 
+au FileType markdown setlocal colorcolumn=79 expandtab shiftwidth=4 nowrap
 au FileType mako setlocal colorcolumn=79 cc=0 fdm=indent
 "au FileType html setlocal shiftwidth=2 tabstop=2
 au FileType haskell setlocal expandtab
@@ -522,15 +502,102 @@ endif
 
 " autosaving
 
-" let g:auto_save = 1  " enable AutoSave on Vim startup
-" let g:auto_save_silent = 1  " do not display the auto-save notification
+let g:auto_save = 1  " enable AutoSave on Vim startup
+let g:auto_save_silent = 1  " do not display the auto-save notification
+
+let g:auto_save_presave_hook = 'call AbortIfNotFileType()'
+
+function! AbortIfNotFileType()
+  if &filetype != 'markdown'
+    let g:auto_save_abort = 1
+  endif
+endfunction
+
+" Add support for markdown files in tagbar.
+"let g:tagbar_type_markdown = {
+    "\ 'ctagstype': 'markdown',
+    "\ 'ctagsbin' : '/path/to/markdown2ctags.py',
+    "\ 'ctagsargs' : '-f - --sort=yes',
+    "\ 'kinds' : [
+        "\ 's:sections',
+        "\ 'i:images'
+    "\ ],
+    "\ 'sro' : '|',
+    "\ 'kind2scope' : {
+        "\ 's' : 'section',
+    "\ },
+    "\ 'sort': 0,
+"\ }
+
+let g:tagbar_type_markdown = {
+    \ 'ctagstype' : 'markdown',
+    \ 'kinds' : [
+        \ 'h:Heading_L1',
+        \ 'i:Heading_L2',
+        \ 'k:Heading_L3'
+    \ ]
+\ }
+let g:tagbar_type_ansible = {
+	\ 'ctagstype' : 'ansible',
+	\ 'kinds' : [
+		\ 't:tasks'
+	\ ],
+	\ 'sort' : 0
+\ }
+let g:tagbar_type_css = {
+\ 'ctagstype' : 'Css',
+    \ 'kinds'     : [
+        \ 'c:classes',
+        \ 's:selectors',
+        \ 'i:identities'
+    \ ]
+\ }
+let g:tagbar_type_go = {
+    \ 'ctagstype': 'go',
+    \ 'kinds' : [
+        \'p:package',
+        \'f:function',
+        \'v:variables',
+        \'t:type',
+        \'c:const'
+    \]
+\}
+let g:tagbar_type_groovy = {
+    \ 'ctagstype' : 'groovy',
+    \ 'kinds'     : [
+        \ 'p:package:1',
+        \ 'c:classes',
+        \ 'i:interfaces',
+        \ 't:traits',
+        \ 'e:enums',
+        \ 'm:methods',
+        \ 'f:fields:1'
+    \ ]
+\ }
+let g:tagbar_type_scala = {
+    \ 'ctagstype' : 'scala',
+    \ 'sro'       : '.',
+    \ 'kinds'     : [
+      \ 'p:packages',
+      \ 'T:types:1',
+      \ 't:traits',
+      \ 'o:objects',
+      \ 'O:case objects',
+      \ 'c:classes',
+      \ 'C:case classes',
+      \ 'm:methods',
+      \ 'V:values:1',
+      \ 'v:variables:1'
+    \ ]
+\ }
 
 
 """""""""""""""""""""""""""""""""""""""
 " Map
 """""""""""""""""""""""""""""""""""""""
 map <F1> :NERDTreeToggle<cr>
-map <F2> :Tlist<cr>
+"map <F2> :Tlist<cr>
+map <F2> :TagbarToggle<cr>
 "代码折叠快捷方式
 map <F3> zR
 map <F4> zM
@@ -641,9 +708,11 @@ noremap <silent> <leader>q :q<CR>
 inoremap <silent> <leader>w :w<CR>
 noremap <silent> <leader>w :w<CR>
 
-noremap <leader>M :silent exec "!/usr/local/bin/macdown %"<CR>
+" noremap <leader>M :silent exec "!killall MacDown; /usr/local/bin/macdown %"<CR>
+noremap <leader>M :silent exec "!/usr/local/bin/pandoc % -s -S --toc -c ~/local/etc/Blank.css -t html -o %.generated.html; open %.generated.html"<CR>
 noremap <leader>p :!image-from-clipboard-to-png 
 " noremap <C-M> :!/usr/local/bin/macdown %<CR>
+
 
 """""""""""""""""""""""""""""""""""""""
 " 自定义命令
