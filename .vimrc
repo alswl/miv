@@ -529,13 +529,15 @@ endfunction
     "\ 'sort': 0,
 "\ }
 
+" https://github.com/majutsushi/tagbar/wiki
 let g:tagbar_type_markdown = {
     \ 'ctagstype' : 'markdown',
     \ 'kinds' : [
         \ 'h:Heading_L1',
         \ 'i:Heading_L2',
         \ 'k:Heading_L3'
-    \ ]
+    \ ],
+    \ 'sort': 0
 \ }
 let g:tagbar_type_ansible = {
 	\ 'ctagstype' : 'ansible',
