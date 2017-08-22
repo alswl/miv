@@ -530,14 +530,28 @@ endfunction
 "\ }
 
 " https://github.com/majutsushi/tagbar/wiki
+"let g:tagbar_type_markdown = {
+    "\ 'ctagstype' : 'markdown',
+    "\ 'kinds' : [
+        "\ 'h:Heading_L1',
+        "\ 'i:Heading_L2',
+        "\ 'k:Heading_L3'
+    "\ ],
+    "\ 'sort': 0
+"\ }
 let g:tagbar_type_markdown = {
-    \ 'ctagstype' : 'markdown',
+    \ 'ctagstype': 'markdown',
+    \ 'ctagsbin' : '~/local/bin/markdown2ctags.py',
+    \ 'ctagsargs' : '-f - --sort=yes',
     \ 'kinds' : [
-        \ 'h:Heading_L1',
-        \ 'i:Heading_L2',
-        \ 'k:Heading_L3'
+        \ 's:sections',
+        \ 'i:images'
     \ ],
-    \ 'sort': 0
+    \ 'sro' : '|',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
 \ }
 let g:tagbar_type_ansible = {
 	\ 'ctagstype' : 'ansible',
