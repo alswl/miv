@@ -481,7 +481,7 @@ let g:JSLintHighlightErrorLine = 0
 "map <silent> <leader>p :Project<CR>
 
 " NERDTree
-let g:NERDTreeIgnore = ['\.pyc$', '\.class$', '\.git$', 'target']
+let g:NERDTreeIgnore = ['\.pyc$', '\.class$', '\.git$', '^target$', '\.generated\.html$']
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeShowBookmarks=1
 
@@ -491,7 +491,7 @@ let g:ctrlp_working_path_mode = 'ca'
 let g:ctrlp_root_markers = ['.ctrlp', 'md', 'pom.xml', 'README.md']
 let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/](\.(git|hg|svn)$)|target|node_modules',
-	\ 'file': '\v\.(exe|so|dll|class|jar|png|jpeg|jpg|numbers)$',
+	\ 'file': '\v\.(exe|so|dll|class|jar|png|jpeg|jpg|numbers|generated.html)$',
 	\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
 	\ }
 
@@ -727,7 +727,7 @@ inoremap <silent> <leader>w :w<CR>
 noremap <silent> <leader>w :w<CR>
 
 " noremap <leader>M :silent exec "!killall MacDown; /usr/local/bin/macdown %"<CR>
-noremap <leader>M :silent exec "!/usr/local/bin/pandoc % -s -S --toc -c ~/local/etc/Blank.css -t html -o %.generated.html; open %.generated.html"<CR>
+noremap <leader>M :silent exec "!/usr/local/bin/pandoc % -s -S --toc --toc-depth=4 -c ~/local/etc/Blank.css -t html -o %.generated.html; open %.generated.html"<CR>
 noremap <leader>p :!image-from-clipboard-to-png 
 " noremap <C-M> :!/usr/local/bin/macdown %<CR>
 
