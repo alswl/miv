@@ -297,6 +297,7 @@ syntax enable "Enable syntax hl
 "gfn=consolas:h10
 "set gui options
 if has("gui_running")
+	" set linespace=10
 	" set "uifont=Monospace\ 11
 	" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h16
 	" set guifont=Anonymous\ Pro\ for\ Powerline:h20
@@ -480,8 +481,9 @@ let g:JSLintHighlightErrorLine = 0
 "map <silent> <leader>p :Project<CR>
 
 " NERDTree
-let NERDTreeIgnore = ['\.pyc$', '\.class$', '\.git$', 'target']
+let g:NERDTreeIgnore = ['\.pyc$', '\.class$', '\.git$', 'target']
 let g:NERDTreeChDirMode = 2
+let g:NERDTreeShowBookmarks=1
 
 " ctrlp
 "let g:ctrlp_working_path_mode = 'c'
