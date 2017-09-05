@@ -171,7 +171,7 @@ Plugin 'restart.vim'
 Plugin 'majutsushi/tagbar'
 "Plugin 'vimim.vim'
 Plugin 'mattn/emmet-vim'
-Plugin 'css_color.vim'
+"Plugin 'css_color.vim'
 "Plugin 'hallettj/jslint.vim'
 " code source
 "Plugin 'vcscommand.vim'
@@ -212,6 +212,7 @@ Plugin '907th/vim-auto-save'
 " Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'dhruvasagar/vim-table-mode'
 
 
 " for vim-pyref
@@ -310,6 +311,10 @@ if has("gui_running")
 	" set guifont=Ubuntu\ Mono\ derivative\ Powerline:h20
 	"set guifont=Menlo:h18
 	"let Powerline_symbols = 'fancy'
+	set printfont=Fira\ Code:h12
+	set printencoding=utf-8
+	set printmbcharset=ISO10646
+	set printmbfont=r:PingFang\ SC\ Light,c:yes
 
 	" Set syntax color
 	colorscheme molokai
@@ -360,8 +365,6 @@ set smarttab
 set ai "Auto indent
 set si "Smart indet
 set wrap "Wrap lines
-
-set showmatch " show matching bracets
 
 """""""""""""""""""""""""""""""""""""""
 "FileType setting
@@ -481,7 +484,7 @@ let g:JSLintHighlightErrorLine = 0
 "map <silent> <leader>p :Project<CR>
 
 " NERDTree
-let g:NERDTreeIgnore = ['\.pyc$', '\.class$', '\.git$', '^target$', '\.generated\.html$']
+let g:NERDTreeIgnore = ['\.pyc$', '\.class$', '\.git$', '^target$', '\.generated\.html$', '\.md\.assets$']
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeShowBookmarks=1
 
@@ -754,3 +757,4 @@ if !exists(":DiffOrig")
     command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
           \ | wincmd p | diffthis
 endif
+
