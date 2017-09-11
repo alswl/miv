@@ -742,7 +742,7 @@ noremap <silent> <leader>w :w<CR>
 
 " noremap <leader>M :silent exec "!killall MacDown; /usr/local/bin/macdown %"<CR>
 noremap <leader>M :silent exec "!/usr/local/bin/pandoc % -s -S --toc --toc-depth=4 -c ~/local/etc/Blank.css -t html -o %.generated.html; open %.generated.html"<CR>
-noremap <leader>p :!image-from-clipboard-to-png-vim % 
+noremap <leader>p :!/Users/alswl/local/bin/image-from-clipboard-to-png-vim % 
 " noremap <C-M> :!/usr/local/bin/macdown %<CR>
 
 
