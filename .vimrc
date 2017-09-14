@@ -56,8 +56,8 @@ if has("gui_running")
 	"set columns=85
 
 	set noimdisable
-	"autocmd! InsertLeave * set imdisable|set iminsert=0
 	"autocmd! InsertEnter * set noimdisable|set iminsert=0
+	"autocmd! InsertLeave * set imdisable|set iminsert=0
 	"autocmd! FocusGained * set imdisable|set iminsert=0
 endif
 
@@ -84,7 +84,7 @@ endif
 """""""""""""""""""""""""""""""""""""""
 "Vundle
 """""""""""""""""""""""""""""""""""""""
-set rtp+=~/.vim/bundle/Vundle.vim/
+set runtimepath+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
 " My Bundles here:
@@ -213,6 +213,7 @@ Plugin '907th/vim-auto-save'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'dhruvasagar/vim-table-mode'
+"Plugin 'lilydjwg/fcitx.vim'
 
 
 " for vim-pyref
@@ -332,7 +333,7 @@ highlight LeaderTab guifg=#666666
 """""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git anyway...
 set nobackup
-set nowb
+set nowritebackup
 "set noswapfile
 set backupext=.bak
 
@@ -362,8 +363,8 @@ set shiftwidth=4
 set tabstop=4
 set smarttab
 
-set ai "Auto indent
-set si "Smart indet
+set autoindent "Auto indent
+set smartindent "Smart indet
 set wrap "Wrap lines
 
 """""""""""""""""""""""""""""""""""""""
@@ -436,7 +437,7 @@ set numberwidth=2 "行号栏的宽度
 """""""""""""""""""""""""""""""""""""""
 
 set formatoptions+=mB
-set lbr "智能换行
+set linebreak "智能换行
 "set tw=500 "自动换行 超过n列
 
 """""""""""""""""""""""""""""""""""""""
