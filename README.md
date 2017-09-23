@@ -21,7 +21,12 @@ vim +VundleInstall +qa
 *   F1
 *   F2
 *   `<leader> m` Mark color
+*   `<leader> n` Mark remove color
+*   `<leader> r` Mark reguar
 *   `g ctrl-]` open ctags list
 *   `ctags -R --python-kinds -i` skip Python import statement
+*   `:DrawIt`
+*   `<leader> tm` Table Mode
 
 [alswl/.oOo.@Github]: https://github.com/alswl/.oOo.
+
