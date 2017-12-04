@@ -55,7 +55,10 @@ if has("gui_running")
 	"set lines=45
 	"set columns=85
 
-	set noimdisable
+	" insert mode to IME
+	"set noimdisable
+	"set iminsert=2
+
 	"autocmd! InsertEnter * set noimdisable|set iminsert=0
 	"autocmd! InsertLeave * set imdisable|set iminsert=0
 	"autocmd! FocusGained * set imdisable|set iminsert=0
@@ -213,7 +216,9 @@ Plugin '907th/vim-auto-save'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'dhruvasagar/vim-table-mode'
-"Plugin 'lilydjwg/fcitx.vim'
+" Plugin 'lilydjwg/fcitx.vim'
+Plugin 'CodeFalling/fcitx-vim-osx'
+
 
 
 " for vim-pyref
@@ -742,7 +747,7 @@ inoremap <silent> <leader>w :w<CR>
 noremap <silent> <leader>w :w<CR>
 
 " noremap <leader>M :silent exec "!killall MacDown; /usr/local/bin/macdown %"<CR>
-noremap <leader>M :silent exec "!/usr/local/bin/pandoc % -s -S --toc --toc-depth=4 -c ~/local/etc/Blank.css -t html -o %.generated.html; open %.generated.html"<CR>
+noremap <leader>M :silent exec "!/usr/local/bin/pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css -t html -o %.generated.html; open %.generated.html"<CR>
 noremap <leader>p :!/Users/alswl/local/bin/image-from-clipboard-to-png-vim % 
 " noremap <C-M> :!/usr/local/bin/macdown %<CR>
 
