@@ -383,6 +383,8 @@ au BufRead,BufNewFile *.js set expandtab shiftwidth=2
 au BufRead,BufNewFile *.go set filetype=go
 au BufRead,BufNewFile *.wiki.dev.* set filetype=confluencewiki
 au BufRead,BufNewFile *.ts set filetype=typescript
+au BufRead,BufNewFile *.wxml set filetype=xml
+au BufRead,BufNewFile *.wxss set filetype=css
 
 au FileType python setlocal expandtab colorcolumn=79 textwidth=0 " fo+=Mm
 "Map F9 to Run Python Script
@@ -634,15 +636,21 @@ let g:tagbar_type_scala = {
 " Map
 """""""""""""""""""""""""""""""""""""""
 map <F1> :NERDTreeToggle<cr>
+imap <F1> <Esc>:NERDTreeToggle<cr>
 "map <F2> :Tlist<cr>
 map <F2> :TagbarToggle<cr>
+imap <F2> <Esc>:TagbarToggle<cr>
 "代码折叠快捷方式
 map <F3> zR
+imap <F3><Esc> zR
 map <F4> zM
+imap <F4> <Esc>zM
 
 " 标签设置
 map <F7> gT
+imap <F7> <Esc>gT
 map <F8> gt
+imap <F8> <Esc>gt
 map <C-h> gT
 map <C-l> gt
 imap <F7> <Esc>gT
