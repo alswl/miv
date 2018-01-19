@@ -726,7 +726,7 @@ inoremap <C-w> <Esc>dbcl
 " delete
 inoremap <C-u> <Esc>d0cl
 inoremap <C-k> <Esc><Right>C
-inoremap <C-d> <Esc><Right>s
+inoremap <C-d> <Del>
 inoremap <M-d> <C-o>de
 
 "let g:pep8_map='<leader>8' " PEP8 Check
