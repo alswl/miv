@@ -7,7 +7,10 @@ function! MySys()
 	if has("win32")
 		return "windows"
 	else
-		return "linux"
+		if has("mac")
+			return "mac"
+		else
+			return "linux"
 	endif
 endfunction
 
@@ -23,7 +26,9 @@ endfunction
 "vnoremap <C-C> "+y
 
 " CTRL-V and SHIFT-Insert are Paste
-"map <C-V>		"+p
+if MySys() == "linux"
+	imap <C-V>		"+p
+endif
 
 """""""""""""""""""""""""""""""""""""""
 "Gerneral
@@ -49,7 +54,7 @@ if has("gui_running")
 	set guioptions -=r
 	" auto select
 	" set guioptions +=a
-	set macmeta
+	" set macmeta
 	"set transparency=10
 	"set showtabline=0
 	"set lines=45
@@ -309,15 +314,22 @@ if has("gui_running")
 	" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h16
 	" set guifont=Anonymous\ Pro\ for\ Powerline:h20
 	" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h20
-	set macligatures
+	" set macligatures
 	" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h13
-	set guifont=Fira\ Code:h16
+	if MySys() == "mac"
+		set guifont=Fira\ Code:h16
+		set printfont=Fira\ Code:h12
+	else
+		if MySys() == "linux"
+			set guifont=Fira\ Code\ 16
+			set printfont=Fira\ Code\ 12
+		endif
+	endif
 	" set guifont=Source\ Code\ Pro\ for\ Powerline:h20
 	" set guifont=Ubuntu\ Mono\ derivative\ Powerline:h20
 	" set guifont=Ubuntu\ Mono\ derivative\ Powerline:h20
 	"set guifont=Menlo:h18
 	"let Powerline_symbols = 'fancy'
-	set printfont=Fira\ Code:h12
 	set printencoding=utf-8
 	set printmbcharset=ISO10646
 	set printmbfont=r:PingFang\ SC\ Light,c:yes
@@ -755,7 +767,7 @@ inoremap <silent> <leader>w :w<CR>
 noremap <silent> <leader>w :w<CR>
 
 " noremap <leader>M :silent exec "!killall MacDown; /usr/local/bin/macdown %"<CR>
-noremap <leader>M :silent exec "!/usr/local/bin/pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css -t html -o %.generated.html; open %.generated.html"<CR>
+noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css -t html -o %.generated.html; xdg-open %.generated.html"<CR>
 noremap <leader>P :!/Users/alswl/local/bin/image-from-clipboard-to-png-vim % 
 noremap <leader>N :!/usr/local/bin/macdown %<CR> 
 
