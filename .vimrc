@@ -131,6 +131,8 @@ Plugin 'haproxy'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'aklt/plantuml-syntax'
+
 
 " Color
 
@@ -398,19 +400,19 @@ au BufRead,BufNewFile *.ts set filetype=typescript
 au BufRead,BufNewFile *.wxml set filetype=xml
 au BufRead,BufNewFile *.wxss set filetype=css
 
-au FileType python setlocal expandtab colorcolumn=79 textwidth=0 " fo+=Mm
+au FileType python setlocal expandtab colorcolumn=80 textwidth=0 " fo+=Mm
 "Map F9 to Run Python Script
 au FileType python map <F9> :!python %
-au FileType asciidoc setlocal colorcolumn=79
-au FileType markdown setlocal colorcolumn=79 expandtab shiftwidth=4 nowrap
-au FileType mako setlocal colorcolumn=79 cc=0 fdm=indent
+au FileType asciidoc setlocal colorcolumn=100
+au FileType markdown setlocal colorcolumn=100 expandtab shiftwidth=4 nowrap textwidth=100
+au FileType mako setlocal colorcolumn=100 cc=0 fdm=indent
 "au FileType html setlocal shiftwidth=2 tabstop=2
 au FileType haskell setlocal expandtab
 au FileType lua setlocal expandtab
-au FileType java setlocal expandtab colorcolumn=108
-au FileType ruby setlocal expandtab shiftwidth=2 colorcolumn=79
+au FileType java setlocal expandtab colorcolumn=100
+au FileType ruby setlocal expandtab shiftwidth=2 colorcolumn=100
 au FileType eruby setlocal expandtab shiftwidth=2
-au FileType rst setlocal colorcolumn=79
+au FileType rst setlocal colorcolumn=100
 au FileType htmldjango setlocal expandtab shiftwidth=2 foldmethod=indent
 au FileType yaml setlocal expandtab shiftwidth=2 foldmethod=indent
 
@@ -738,7 +740,7 @@ inoremap <C-w> <Esc>dbcl
 " delete
 inoremap <C-u> <Esc>d0cl
 inoremap <C-k> <Esc><Right>C
-inoremap <C-d> <Esc><Right>s
+inoremap <C-d> <Del>
 inoremap <M-d> <C-o>de
 
 "let g:pep8_map='<leader>8' " PEP8 Check
