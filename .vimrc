@@ -27,7 +27,10 @@ endfunction
 
 " CTRL-V and SHIFT-Insert are Paste
 if MySys() == "linux"
-	imap <C-V>		"+p
+	vmap <C-c> "+yi
+	vmap <C-x> "+c
+	vmap <C-v> c<ESC>"+p
+	imap <C-v> <ESC>"+pa
 endif
 
 """""""""""""""""""""""""""""""""""""""
@@ -770,7 +773,7 @@ noremap <silent> <leader>w :w<CR>
 
 " noremap <leader>M :silent exec "!killall MacDown; /usr/local/bin/macdown %"<CR>
 noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css -t html -o %.generated.html; xdg-open %.generated.html"<CR>
-noremap <leader>P :!/Users/alswl/local/bin/image-from-clipboard-to-png-vim % 
+noremap <leader>P :!$HOME/local/bin/image-from-clipboard-to-png-vim % 
 noremap <leader>N :!/usr/local/bin/macdown %<CR> 
 
 
