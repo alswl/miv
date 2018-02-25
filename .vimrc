@@ -772,7 +772,13 @@ inoremap <silent> <leader>w :w<CR>
 noremap <silent> <leader>w :w<CR>
 
 " noremap <leader>M :silent exec "!killall MacDown; /usr/local/bin/macdown %"<CR>
-noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css -t html -o %.generated.html; xdg-open %.generated.html"<CR>
+if MySys() == "mac"
+	noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css -t html -o %.generated.html; open %.generated.html"<CR>
+else
+	if MySys() == "linux"
+		noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css -t html -o %.generated.html; gnome-open %.generated.html"<CR>
+	endif
+endif
 noremap <leader>P :!$HOME/local/bin/image-from-clipboard-to-png-vim % 
 noremap <leader>N :!/usr/local/bin/macdown %<CR> 
 
