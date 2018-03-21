@@ -395,6 +395,7 @@ set wrap "Wrap lines
 
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.scala set filetype=scala
+au BufRead,BufNewFile *.sc set filetype=scala
 au BufRead,BufNewFile *.sls set filetype=sls
 au BufRead,BufNewFile *.js set expandtab shiftwidth=2
 au BufRead,BufNewFile *.go set filetype=go
