@@ -127,7 +127,7 @@ Plugin 'tpope/vim-haml'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'django.vim'
-Plugin 'nginx.vim'
+" Plugin 'nginx.vim'
 Plugin 'saltstack/salt-vim'
 Plugin 'fatih/vim-go'
 Plugin 'haproxy'
@@ -135,6 +135,8 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'aklt/plantuml-syntax'
+" Plugin 'spacewander/openresty-vim'
+Plugin 'hexchain/vim-openresty'
 
 
 " Color
@@ -213,7 +215,6 @@ Plugin 'chrisbra/NrrwRgn'
 " Plugin 'Lokaltog/vim-powerline'
 " Plugin 'scala/scala-dist'
 Plugin 'terryma/vim-multiple-cursors'
-
 " original repos on github
 "Plugin 'tpope/vim-fugitive'
 "Plugin 'Lokaltog/vim-easymotion'
@@ -228,6 +229,8 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'dhruvasagar/vim-table-mode'
 " Plugin 'lilydjwg/fcitx.vim'
 Plugin 'CodeFalling/fcitx-vim-osx'
+Plugin 'junegunn/vim-easy-align'
+
 
 
 
@@ -412,6 +415,7 @@ au FileType mako setlocal colorcolumn=100 cc=0 fdm=indent
 "au FileType html setlocal shiftwidth=2 tabstop=2
 au FileType haskell setlocal expandtab
 au FileType lua setlocal expandtab
+au FileType nginx setlocal expandtab
 au FileType java setlocal expandtab colorcolumn=100
 au FileType ruby setlocal expandtab shiftwidth=2 colorcolumn=100
 au FileType eruby setlocal expandtab shiftwidth=2
@@ -776,11 +780,17 @@ if MySys() == "mac"
 	noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css -t html -o %.generated.html; open %.generated.html"<CR>
 else
 	if MySys() == "linux"
-		noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css -t html -o %.generated.html; gnome-open %.generated.html"<CR>
+		noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css -t html -o %.generated.html; xdg-open %.generated.html"<CR>
 	endif
 endif
 noremap <leader>P :!$HOME/local/bin/image-from-clipboard-to-png-vim % 
 noremap <leader>N :!/usr/local/bin/macdown %<CR> 
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 
 """""""""""""""""""""""""""""""""""""""

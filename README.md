@@ -25,8 +25,11 @@ vim +VundleInstall +qa
 *   `<leader> r` Mark reguar
 *   `g ctrl-]` open ctags list
 *   `ctags -R --python-kinds -i` skip Python import statement
-*   `:DrawIt`
+*   `:DrawIt` DrawIt mode
 *   `<leader> tm` Table Mode
+*   `<leader>nr` selected visual region edit
+*   `:NR` selected region edit
+*   `:NW` current window region edit
 
 [alswl/.oOo.@Github]: https://github.com/alswl/.oOo.
 
