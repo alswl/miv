@@ -226,6 +226,8 @@ Plugin '907th/vim-auto-save'
 " Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'rhysd/vim-gfm-syntax'
 Plugin 'dhruvasagar/vim-table-mode'
 " Plugin 'lilydjwg/fcitx.vim'
 Plugin 'CodeFalling/fcitx-vim-osx'
@@ -396,7 +398,8 @@ set wrap "Wrap lines
 "FileType setting
 """""""""""""""""""""""""""""""""""""""
 
-au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile *.md set filetype=markdown.pandoc
+au BufRead,BufNewFile *.pmd set filetype=markdown.pandoc
 au BufRead,BufNewFile *.scala set filetype=scala
 au BufRead,BufNewFile *.sc set filetype=scala
 au BufRead,BufNewFile *.sls set filetype=sls
@@ -412,6 +415,8 @@ au FileType python setlocal expandtab colorcolumn=80 textwidth=0 " fo+=Mm
 au FileType python map <F9> :!python %
 au FileType asciidoc setlocal colorcolumn=100
 au FileType markdown setlocal colorcolumn=100 expandtab shiftwidth=4 nowrap textwidth=100
+au FileType markdown.pandoc setlocal colorcolumn=100 expandtab shiftwidth=4 nowrap textwidth=100
+au FileType markdown.gfm setlocal expandtab shiftwidth=4 nowrap textwidth=0 wrap
 au FileType mako setlocal colorcolumn=100 cc=0 fdm=indent
 "au FileType html setlocal shiftwidth=2 tabstop=2
 au FileType haskell setlocal expandtab
@@ -554,7 +559,7 @@ let g:auto_save_silent = 1  " do not display the auto-save notification
 let g:auto_save_presave_hook = 'call AbortIfNotFileType()'
 
 function! AbortIfNotFileType()
-  if &filetype != 'markdown'
+  if &filetype != 'markdown' && &filetype != 'markdown.gfm' && &filetype != 'markdown.pandoc'
     let g:auto_save_abort = 1
   endif
 endfunction
