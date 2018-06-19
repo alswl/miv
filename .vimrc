@@ -161,7 +161,7 @@ Plugin 'lepture/vim-jinja'
 
 " Plugin
 Plugin 'scrooloose/nerdtree'
-Plugin 'AutoClose--Alves'
+"Plugin 'AutoClose--Alves'
 Plugin 'auto_mkdir'
 " required by XXX
 Plugin 'cecutil'
@@ -537,7 +537,7 @@ endfunc
 "let g:ctrlp_working_path_mode = 'c'
 "let g:ctrlp_working_path_mode = 'ca'
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_root_markers = ['.ctrlp', 'pom.xml', 'README.md']
+let g:ctrlp_root_markers = ['.ctrlp', 'pom.xml', 'README.md', 'build.sbt']
 let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/](\.(git|hg|svn)$)|target|node_modules',
 	\ 'file': '\v\.(exe|so|dll|class|jar|png|jpeg|jpg|numbers|generated.html|graphml)$',
