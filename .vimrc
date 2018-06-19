@@ -232,8 +232,7 @@ Plugin 'dhruvasagar/vim-table-mode'
 " Plugin 'lilydjwg/fcitx.vim'
 Plugin 'CodeFalling/fcitx-vim-osx'
 Plugin 'junegunn/vim-easy-align'
-
-
+"Plugin 'wannesm/wmgraphviz.vim'
 
 
 " for vim-pyref
@@ -409,6 +408,7 @@ au BufRead,BufNewFile *.wiki.dev.* set filetype=confluencewiki
 au BufRead,BufNewFile *.ts set filetype=typescript
 au BufRead,BufNewFile *.wxml set filetype=xml
 au BufRead,BufNewFile *.wxss set filetype=css
+au BufRead,BufNewFile *.gv set filetype=dot
 
 au FileType python setlocal expandtab colorcolumn=80 textwidth=0 " fo+=Mm
 "Map F9 to Run Python Script
