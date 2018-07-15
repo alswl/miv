@@ -137,6 +137,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'aklt/plantuml-syntax'
 " Plugin 'spacewander/openresty-vim'
 Plugin 'hexchain/vim-openresty'
+Plugin 'applescript.vim'
 
 
 " Color
@@ -178,7 +179,7 @@ Plugin 'matrix.vim'
 " most recent used
 Plugin 'mru.vim'
 " auto comment
-Plugin 'The-NERD-Commenter'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'restart.vim'
 "Tlist
 "Plugin 'taglist.vim'
@@ -398,6 +399,7 @@ set wrap "Wrap lines
 """""""""""""""""""""""""""""""""""""""
 
 au BufRead,BufNewFile *.md set filetype=markdown.pandoc
+au BufRead,BufNewFile /private/tmp/edit-server-*workreportModify*.txt set filetype=markdown.pandoc
 au BufRead,BufNewFile *.pmd set filetype=markdown.pandoc
 au BufRead,BufNewFile *.scala set filetype=scala
 au BufRead,BufNewFile *.sc set filetype=scala
@@ -510,7 +512,7 @@ let g:restart_sessionoptions = "restart_session"
 " let g:JSLintHighlightErrorLine = 0 " disabled
 
 " Fencview
-let g:fencview_autodetect = 0
+let g:fencview_autodetect = 1
 
 " JSLint
 let g:JSLintHighlightErrorLine = 0
