@@ -167,7 +167,7 @@ Plugin 'auto_mkdir'
 " required by XXX
 Plugin 'cecutil'
 " encode detect
-Plugin 'FencView.vim'
+Plugin 'mbbill/fencview'
 " Plugin 'FuzzyFinder'
 Plugin 'jsbeautify'
 " required by XXX
@@ -512,7 +512,7 @@ let g:restart_sessionoptions = "restart_session"
 " let g:JSLintHighlightErrorLine = 0 " disabled
 
 " Fencview
-let g:fencview_autodetect = 1
+" let g:fencview_autodetect = 1
 
 " JSLint
 let g:JSLintHighlightErrorLine = 0
