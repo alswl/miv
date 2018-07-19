@@ -18,8 +18,8 @@ vim +VundleInstall +qa
 
 ## Tips
 
-*   F1
-*   F2
+*   F1: NerdTree
+*   F2: Table of Content
 *   `<leader> m` Mark color
 *   `<leader> n` Mark remove color
 *   `<leader> r` Mark reguar
@@ -30,6 +30,9 @@ vim +VundleInstall +qa
 *   `<leader>nr` selected visual region edit
 *   `:NR` selected region edit
 *   `:NW` current window region edit
+*   `vipga=` align a paragraph with `=`
+*   `gaip=` align a paragraph with `=`
+*   `vipga➡️=` align a paragraph with `=`, right margin
 
 [alswl/.oOo.@Github]: https://github.com/alswl/.oOo.
 

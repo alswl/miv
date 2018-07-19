@@ -785,7 +785,7 @@ noremap <silent> <leader>w :w<CR>
 
 " noremap <leader>M :silent exec "!killall MacDown; /usr/local/bin/macdown %"<CR>
 if MySys() == "mac"
-	noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css -t html -o %.generated.html; open %.generated.html"<CR>
+	noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css -F mermaid-filter -t html -o %.generated.html; open %.generated.html"<CR>
 else
 	if MySys() == "linux"
 		noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css -t html -o %.generated.html; xdg-open %.generated.html"<CR>
