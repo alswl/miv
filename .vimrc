@@ -399,8 +399,8 @@ set wrap "Wrap lines
 """""""""""""""""""""""""""""""""""""""
 
 au BufRead,BufNewFile *.md set filetype=markdown.pandoc
-au BufRead,BufNewFile /private/tmp/edit-server-*workreportModify*.txt set filetype=markdown.pandoc
-au BufRead,BufNewFile /private/tmp/edit-server-github.com_*issues**.txt set filetype=markdown.pandoc
+au BufRead,BufNewFile */tmp/edit-server-github.com_*issues**.txt set filetype=markdown.pandoc
+au BufRead,BufNewFile */tmp/edit-server-*workreportModify*.txt set filetype=markdown.pandoc
 au BufRead,BufNewFile *.pmd set filetype=markdown.pandoc
 au BufRead,BufNewFile *.scala set filetype=scala
 au BufRead,BufNewFile *.sc set filetype=scala
