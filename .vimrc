@@ -399,8 +399,8 @@ set wrap "Wrap lines
 """""""""""""""""""""""""""""""""""""""
 
 au BufRead,BufNewFile *.md set filetype=markdown.pandoc
-au BufRead,BufNewFile */tmp/edit-server-github.com_*issues**.txt set filetype=markdown.pandoc
-au BufRead,BufNewFile */tmp/edit-server-*workreportModify*.txt set filetype=markdown.pandoc
+au BufRead,BufNewFile */tmp/edit-server-github.com_*issues**.txt set filetype=markdown.gfm
+au BufRead,BufNewFile */tmp/edit-server-*workreportModify*.txt set filetype=markdown.gfm
 au BufRead,BufNewFile *.pmd set filetype=markdown.pandoc
 au BufRead,BufNewFile *.scala set filetype=scala
 au BufRead,BufNewFile *.sc set filetype=scala
@@ -419,13 +419,14 @@ au FileType python map <F9> :!python %
 au FileType asciidoc setlocal colorcolumn=100
 au FileType markdown setlocal colorcolumn=100 expandtab shiftwidth=4 nowrap textwidth=100
 au FileType markdown.pandoc setlocal colorcolumn=100 expandtab shiftwidth=4 nowrap textwidth=100
+au FileType markdown.github setlocal expandtab shiftwidth=4 nowrap textwidth=0 wrap
 au FileType markdown.gfm setlocal expandtab shiftwidth=4 nowrap textwidth=0 wrap
 au FileType mako setlocal colorcolumn=100 cc=0 fdm=indent
 "au FileType html setlocal shiftwidth=2 tabstop=2
 au FileType haskell setlocal expandtab
 au FileType lua setlocal expandtab
 au FileType nginx setlocal expandtab
-au FileType java setlocal expandtab colorcolumn=100
+au FileType java setlocal expandtab colorcolumn=120
 au FileType ruby setlocal expandtab shiftwidth=2 colorcolumn=100
 au FileType eruby setlocal expandtab shiftwidth=2
 au FileType rst setlocal colorcolumn=100
@@ -540,7 +541,7 @@ endfunc
 "let g:ctrlp_working_path_mode = 'c'
 "let g:ctrlp_working_path_mode = 'ca'
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_root_markers = ['.ctrlp', 'pom.xml', 'README.md', 'build.sbt']
+let g:ctrlp_root_markers = ['.ctrlp', 'README.md', 'build.sbt']
 let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/](\.(git|hg|svn)$)|target|node_modules',
 	\ 'file': '\v\.(exe|so|dll|class|jar|png|jpeg|jpg|numbers|generated.html|graphml)$',
@@ -661,6 +662,7 @@ let g:tagbar_type_scala = {
     \ ]
 \ }
 
+let g:pandoc#syntax#conceal#use = 0
 
 """""""""""""""""""""""""""""""""""""""
 " Map
