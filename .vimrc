@@ -234,6 +234,7 @@ Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'CodeFalling/fcitx-vim-osx'
 Plugin 'junegunn/vim-easy-align'
 "Plugin 'wannesm/wmgraphviz.vim'
+Plugin 'hotoo/pangu.vim'
 
 
 " for vim-pyref
