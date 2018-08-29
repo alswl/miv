@@ -1,7 +1,5 @@
-"source $VIMRUNTIME/vimrc_example.vim
-
 """""""""""""""""""""""""""""""""""""""
-"平台判断
+"Utils
 """""""""""""""""""""""""""""""""""""""
 function! MySys()
 	if has("win32")
@@ -13,11 +11,6 @@ function! MySys()
 			return "linux"
 	endif
 endfunction
-
-"""""""""""""""""""""""""""""""""""""""
-"模仿MS快捷键
-"""""""""""""""""""""""""""""""""""""""
-"source $VIMRUNTIME/mswin.vim
 
 " CTRL-X and SHIFT-Del are Cut
 "vnoremap <C-X> "+x
@@ -32,6 +25,7 @@ if MySys() == "linux"
 	vmap <C-v> c<ESC>"+p
 	imap <C-v> <ESC>"+pa
 endif
+
 
 """""""""""""""""""""""""""""""""""""""
 "Gerneral
@@ -73,9 +67,6 @@ if has("gui_running")
 endif
 
 
-" 设定状态栏多显示信息
-set laststatus=2
-
 set noscrollbind
 set nocursorbind
 
@@ -91,6 +82,9 @@ if ! has("gui_running")
 	autocmd! BufWinLeave *.* silent mkview
 	autocmd! BufWinEnter *.* silent loadview
 endif
+
+set viminfo+=!
+
 
 """""""""""""""""""""""""""""""""""""""
 "Vundle
@@ -172,8 +166,10 @@ Plugin 'mbbill/fencview'
 Plugin 'jsbeautify'
 " required by XXX
 Plugin 'L9'
+" required for vim-mark
+Plugin 'inkarkat/vim-ingo-library'
 " mark in different color, leader + m
-Plugin 'Mark'
+Plugin 'inkarkat/vim-mark'
 " joke
 Plugin 'matrix.vim'
 " most recent used
@@ -356,9 +352,11 @@ endif
 " 设定行首tab为灰色
 highlight LeaderTab guifg=#666666
 
+
 """""""""""""""""""""""""""""""""""""""
 "Files, backups and undo
 """""""""""""""""""""""""""""""""""""""
+
 " Turn backup off, since most stuff is in SVN, git anyway...
 set nobackup
 set nowritebackup
@@ -379,6 +377,7 @@ if exists('+undodir')
 	endif
 	set undofile
 endif
+
 
 """""""""""""""""""""""""""""""""""""""
 "Text, tab and indent related
@@ -417,20 +416,20 @@ au BufRead,BufNewFile *.gv set filetype=dot
 au FileType python setlocal expandtab colorcolumn=80 textwidth=0 " fo+=Mm
 "Map F9 to Run Python Script
 au FileType python map <F9> :!python %
-au FileType asciidoc setlocal colorcolumn=100
-au FileType markdown setlocal colorcolumn=100 expandtab shiftwidth=4 nowrap textwidth=100
-au FileType markdown.pandoc setlocal colorcolumn=100 expandtab shiftwidth=4 nowrap textwidth=100
-au FileType markdown.github setlocal expandtab shiftwidth=4 nowrap textwidth=0 wrap
-au FileType markdown.gfm setlocal expandtab shiftwidth=4 nowrap textwidth=0 wrap
-au FileType mako setlocal colorcolumn=100 cc=0 fdm=indent
+au FileType asciidoc setlocal colorcolumn=120
+au FileType markdown setlocal colorcolumn=120 expandtab shiftwidth=4 nowrap
+au FileType markdown.pandoc setlocal colorcolumn=120 expandtab shiftwidth=4 nowrap
+au FileType markdown.github setlocal colorcolumn=120 expandtab shiftwidth=4 nowrap
+au FileType markdown.gfm setlocal expandtab shiftwidth=4 nowrap textwidth=0 nowrap
+au FileType mako setlocal colorcolumn=120 cc=0 fdm=indent
 "au FileType html setlocal shiftwidth=2 tabstop=2
 au FileType haskell setlocal expandtab
 au FileType lua setlocal expandtab
 au FileType nginx setlocal expandtab
 au FileType java setlocal expandtab colorcolumn=120
-au FileType ruby setlocal expandtab shiftwidth=2 colorcolumn=100
+au FileType ruby setlocal expandtab shiftwidth=2 colorcolumn=120
 au FileType eruby setlocal expandtab shiftwidth=2
-au FileType rst setlocal colorcolumn=100
+au FileType rst setlocal colorcolumn=120
 au FileType htmldjango setlocal expandtab shiftwidth=2 foldmethod=indent
 au FileType yaml setlocal expandtab shiftwidth=2 foldmethod=indent
 
@@ -455,9 +454,11 @@ map <C-l> <C-W>l
 map <right> :bn<cr>
 map <left> :bp<cr>
 
+
 """""""""""""""""""""""""""""""""""""""
 "Visual Cues
 """""""""""""""""""""""""""""""""""""""
+
 if !exists(':relativenumber')
 	set relativenumber " 显示相对行号
 endif
@@ -471,6 +472,7 @@ set numberwidth=2 "行号栏的宽度
 
 "autocmd CursorMoved * call MarkPoint()
 
+
 """""""""""""""""""""""""""""""""""""""
 " Text Formatting/Layout
 """""""""""""""""""""""""""""""""""""""
@@ -478,6 +480,7 @@ set numberwidth=2 "行号栏的宽度
 set formatoptions+=mB
 set linebreak "智能换行
 "set tw=500 "自动换行 超过n列
+
 
 """""""""""""""""""""""""""""""""""""""
 " Plugin
@@ -665,6 +668,17 @@ let g:tagbar_type_scala = {
 
 let g:pandoc#syntax#conceal#use = 0
 
+let g:mwAutoLoadMarks = 1
+runtime plugin/mark.vim
+silent 4Mark /TODO/
+silent 4Mark /FIXME/
+silent 4Mark /XXX/
+silent 4Mark @djc
+silent 4Mark @3D
+silent 4Mark @alswl
+silent 4Mark @jingchao.djc
+silent 4Mark @jingchao
+
 """""""""""""""""""""""""""""""""""""""
 " Map
 """""""""""""""""""""""""""""""""""""""
@@ -806,12 +820,13 @@ nmap ga <Plug>(EasyAlign)
 
 
 """""""""""""""""""""""""""""""""""""""
-" 自定义命令
+" User Defined function
 """""""""""""""""""""""""""""""""""""""
-" 删除结尾空格定义
+
+" trim right of line 
 command! -nargs=0 TrimR :%s/\s\+$//g
 
-" 对比原始文件，显示更改处
+" diff Original file
 if !exists(":DiffOrig")
     command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
           \ | wincmd p | diffthis
