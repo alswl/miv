@@ -673,11 +673,11 @@ runtime plugin/mark.vim
 silent 4Mark /TODO/
 silent 4Mark /FIXME/
 silent 4Mark /XXX/
-silent 4Mark @djc
-silent 4Mark @3D
-silent 4Mark @alswl
-silent 4Mark @jingchao.djc
-silent 4Mark @jingchao
+silent 4Mark /@djc/
+silent 4Mark /@3D/
+silent 4Mark /@alswl/
+silent 4Mark /@jingchao.djc/
+silent 4Mark /@jingchao/
 
 """""""""""""""""""""""""""""""""""""""
 " Map
