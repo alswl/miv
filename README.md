@@ -28,7 +28,8 @@ vim +VundleInstall +qa
 *   `:DrawIt` DrawIt mode
 *   `<leader> tm` Table Mode
 *   `<leader>nr` selected visual region edit
-*   `:NR` selected region edit
+*   `:NR` selected line edit
+*   `:NRV` selected region edit
 *   `:NW` current window region edit
 *   `vipga=` align a paragraph with `=`
 *   `gaip=` align a paragraph with `=`
