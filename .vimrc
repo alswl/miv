@@ -413,7 +413,7 @@ au BufRead,BufNewFile *.wxml set filetype=xml
 au BufRead,BufNewFile *.wxss set filetype=css
 au BufRead,BufNewFile *.gv set filetype=dot
 
-au FileType python setlocal expandtab colorcolumn=80 textwidth=0 " fo+=Mm
+au FileType python setlocal expandtab colorcolumn=80 textwidth=0 diffopt=vertical " fo+=Mm
 "Map F9 to Run Python Script
 au FileType python map <F9> :!python %
 au FileType asciidoc setlocal colorcolumn=120
