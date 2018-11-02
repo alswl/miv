@@ -34,6 +34,7 @@ vim +VundleInstall +qa
 *   `vipga=` align a paragraph with `=`
 *   `gaip=` align a paragraph with `=`
 *   `vipga➡️=` align a paragraph with `=`, right margin
+*   into view mode, `ga:` align block with `:`, right margin
 
 [alswl/.oOo.@Github]: https://github.com/alswl/.oOo.
 

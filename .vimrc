@@ -412,6 +412,7 @@ au BufRead,BufNewFile *.ts set filetype=typescript
 au BufRead,BufNewFile *.wxml set filetype=xml
 au BufRead,BufNewFile *.wxss set filetype=css
 au BufRead,BufNewFile *.gv set filetype=dot
+au BufRead,BufNewFile *.puml set filetype=plantuml
 
 au FileType python setlocal expandtab colorcolumn=80 textwidth=0 diffopt=vertical " fo+=Mm
 "Map F9 to Run Python Script
@@ -545,10 +546,10 @@ endfunc
 "let g:ctrlp_working_path_mode = 'c'
 "let g:ctrlp_working_path_mode = 'ca'
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_root_markers = ['.ctrlp', 'README.md', 'build.sbt']
+let g:ctrlp_root_markers = ['.ctrlp', 'README.md', 'build.sbt', '.git']
 let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/](\.(git|hg|svn)$)|target|node_modules',
-	\ 'file': '\v\.(exe|so|dll|class|jar|png|jpeg|jpg|numbers|generated.html|graphml)$',
+	\ 'file': '\v\.(exe|so|dll|class|jar|png|jpeg|jpg|numbers|generated.html|graphml|svg)$',
 	\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
 	\ }
 
@@ -567,7 +568,7 @@ let g:auto_save_silent = 1  " do not display the auto-save notification
 let g:auto_save_presave_hook = 'call AbortIfNotFileType()'
 
 function! AbortIfNotFileType()
-  if &filetype != 'markdown' && &filetype != 'markdown.gfm' && &filetype != 'markdown.pandoc'
+  if &filetype != 'markdown' && &filetype != 'markdown.gfm' && &filetype != 'markdown.pandoc'&& &filetype != 'plantuml'
     let g:auto_save_abort = 1
   endif
 endfunction
