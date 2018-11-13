@@ -141,6 +141,7 @@ Plugin 'vividchalk.vim'
 Plugin 'ego.vim'
 Plugin 'tomasr/molokai'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'morhetz/gruvbox'
 
 " Ftplugin
 "Plugin 'python_fold'
@@ -342,10 +343,14 @@ if has("gui_running")
 	set printmbfont=r:PingFang\ SC\ Light,c:yes
 
 	" Set syntax color
-	colorscheme molokai
+	"colorscheme molokai
+	colorscheme gruvbox
 else
-	colorscheme desert256
+	colorscheme gruvbox
+	"colorscheme desert256
 endif
+
+set background=dark
 
 "set ambiwidth=double " 设定某些标点符号为宽字符
 
