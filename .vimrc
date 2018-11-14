@@ -135,7 +135,6 @@ Plugin 'applescript.vim'
 
 
 " Color
-
 Plugin 'desert256.vim'
 Plugin 'vividchalk.vim'
 Plugin 'ego.vim'
@@ -232,6 +231,8 @@ Plugin 'CodeFalling/fcitx-vim-osx'
 Plugin 'junegunn/vim-easy-align'
 "Plugin 'wannesm/wmgraphviz.vim'
 Plugin 'hotoo/pangu.vim'
+Plugin 'vim-jp/autofmt'
+
 
 
 " for vim-pyref
@@ -423,10 +424,14 @@ au FileType python setlocal expandtab colorcolumn=80 textwidth=0 diffopt=vertica
 "Map F9 to Run Python Script
 au FileType python map <F9> :!python %
 au FileType asciidoc setlocal colorcolumn=120
-au FileType markdown setlocal colorcolumn=120 expandtab shiftwidth=4 nowrap
-au FileType markdown.pandoc setlocal colorcolumn=120 expandtab shiftwidth=4 nowrap
-au FileType markdown.github setlocal colorcolumn=120 expandtab shiftwidth=4 nowrap
-au FileType markdown.gfm setlocal expandtab shiftwidth=4 nowrap textwidth=0 nowrap
+au FileType markdown setlocal colorcolumn=120 expandtab shiftwidth=4 nowrap tw=120
+			\ formatexpr=autofmt#japanese#formatexpr()
+au FileType markdown.pandoc setlocal colorcolumn=120 expandtab shiftwidth=4 nowrap tw=120
+			\ formatexpr=autofmt#japanese#formatexpr()
+au FileType markdown.github setlocal colorcolumn=120 expandtab shiftwidth=4 nowrap tw=120
+			\ formatexpr=autofmt#japanese#formatexpr()
+au FileType markdown.gfm setlocal expandtab shiftwidth=4 nowrap textwidth=0 nowrap tw=120
+			\ formatexpr=autofmt#japanese#formatexpr()
 au FileType mako setlocal colorcolumn=120 cc=0 fdm=indent
 "au FileType html setlocal shiftwidth=2 tabstop=2
 au FileType haskell setlocal expandtab
@@ -684,6 +689,20 @@ silent 4Mark /@3D/
 silent 4Mark /@alswl/
 silent 4Mark /@jingchao.djc/
 silent 4Mark /@jingchao/
+
+" autofmt
+"let g:autofmt_allow_over_tw = 0
+
+let s:unicode = autofmt#unicode#import()
+let s:orig_prop_line_break = s:unicode.prop_line_break
+function! s:unicode.prop_line_break(char)
+    if a:char == "\u201c" || a:char == "\u2018"
+        return "OP"   " Open quotations
+    elseif a:char == "\u201d" || a:char == "\u2019"
+        return "CL"   " Close quotations
+    endif
+    return call(s:orig_prop_line_break, [a:char], self)
+endfunction
 
 """""""""""""""""""""""""""""""""""""""
 " Map
