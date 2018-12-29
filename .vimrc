@@ -424,13 +424,17 @@ au FileType python setlocal expandtab colorcolumn=80 textwidth=0 diffopt=vertica
 "Map F9 to Run Python Script
 au FileType python map <F9> :!python %
 au FileType asciidoc setlocal colorcolumn=120
-au FileType markdown setlocal colorcolumn=120 expandtab shiftwidth=4 nowrap tw=120
+au FileType markdown setlocal colorcolumn=120 expandtab shiftwidth=4 nowrap
+			\ nowrap textwidth=120
 			\ formatexpr=autofmt#japanese#formatexpr()
-au FileType markdown.pandoc setlocal colorcolumn=120 expandtab shiftwidth=4 nowrap tw=120
+au FileType markdown.pandoc setlocal colorcolumn=120 expandtab shiftwidth=4
+			\ nowrap textwidth=120
 			\ formatexpr=autofmt#japanese#formatexpr()
-au FileType markdown.github setlocal colorcolumn=120 expandtab shiftwidth=4 nowrap tw=120
+au FileType markdown.github setlocal colorcolumn=120 expandtab shiftwidth=4
+			\ nowrap textwidth=120
 			\ formatexpr=autofmt#japanese#formatexpr()
-au FileType markdown.gfm setlocal expandtab shiftwidth=4 nowrap textwidth=0 nowrap tw=120
+au FileType markdown.gfm setlocal colorcolumn=120 expandtab shiftwidth=4
+			\ nowrap textwidth=120
 			\ formatexpr=autofmt#japanese#formatexpr()
 au FileType mako setlocal colorcolumn=120 cc=0 fdm=indent
 "au FileType html setlocal shiftwidth=2 tabstop=2
@@ -538,7 +542,7 @@ let g:JSLintHighlightErrorLine = 0
 "map <silent> <leader>p :Project<CR>
 
 " NERDTree
-let g:NERDTreeIgnore = ['\.pyc$', '\.class$', '\.git$', '^target$', '\.generated\.html$', '\.md\.assets$']
+let g:NERDTreeIgnore = ['\.pyc$', '\.class$', '\.git$', '^target$', '\.slide\.html$', '\.generated\.html$', '\.md\.assets$']
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeShowBookmarks=1
 
@@ -559,7 +563,7 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_root_markers = ['.ctrlp', 'README.md', 'build.sbt', '.git']
 let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/](\.(git|hg|svn)$)|target|node_modules',
-	\ 'file': '\v\.(exe|so|dll|class|jar|png|jpeg|jpg|numbers|generated.html|graphml|svg)$',
+	\ 'file': '\v\.(exe|so|dll|class|jar|png|jpeg|jpg|numbers|slide.html|generated.html|graphml|svg)$',
 	\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
 	\ }
 
@@ -828,10 +832,12 @@ noremap <silent> <leader>w :w<CR>
 
 " noremap <leader>M :silent exec "!killall MacDown; /usr/local/bin/macdown %"<CR>
 if MySys() == "mac"
-	noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css -t html -o %.generated.html; open %.generated.html"<CR>
+	noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax=https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML -t html -o %.generated.html; open %.generated.html"<CR>
+	noremap <leader>U :silent exec "!plantuml -tpng %; open %:r.png"<CR>
 else
 	if MySys() == "linux"
 		noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css -t html -o %.generated.html; xdg-open %.generated.html"<CR>
+		noremap <leader>U :silent exec "!plantuml -tpng %; open %:r.png"<CR>
 	endif
 endif
 noremap <leader>P :!$HOME/local/bin/image-from-clipboard-to-png-vim % 
