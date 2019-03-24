@@ -1,6 +1,7 @@
 """""""""""""""""""""""""""""""""""""""
 "Utils
 """""""""""""""""""""""""""""""""""""""
+
 function! MySys()
 	if has("win32")
 		return "windows"
@@ -30,6 +31,7 @@ endif
 """""""""""""""""""""""""""""""""""""""
 "Gerneral
 """""""""""""""""""""""""""""""""""""""
+
 " Enable filetype plugin
 filetype plugin on
 filetype indent on
@@ -89,6 +91,7 @@ set viminfo+=!
 """""""""""""""""""""""""""""""""""""""
 "Vundle
 """""""""""""""""""""""""""""""""""""""
+
 set runtimepath+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
@@ -132,6 +135,8 @@ Plugin 'aklt/plantuml-syntax'
 " Plugin 'spacewander/openresty-vim'
 Plugin 'hexchain/vim-openresty'
 Plugin 'applescript.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 
 " Color
@@ -149,7 +154,6 @@ Plugin 'morhetz/gruvbox'
 "Plugin 'indent/html.vim'
 Plugin 'IndentAnything'
 " Plugin 'Javascript-Indentation'
-Plugin 'pangloss/vim-javascript'
 Plugin 'mako.vim--Torborg'
 Plugin 'gg/python.vim'
 Plugin 'lepture/vim-jinja'
@@ -305,7 +309,6 @@ set nofoldenable
 set diffopt=vertical,iwhite
 
 set laststatus=2
-" set statusline=\ \%F\ %m%r%h%w\ \ %y\ [%{&ff}]\ [%{&fileencoding}]\ [tw:%{&tw}]\ [%p%%]\ [%l/%L]\ [%c]
 set statusline=\ \%F\ \ \ \ \ %m%r%h%w\ \ %y\ [%{&ff}]\ [%{&fileencoding}]\ [%p%%]\ [%l/%L]\ [%c]
 
 set ttyfast
@@ -313,6 +316,7 @@ set ttyfast
 """""""""""""""""""""""""""""""""""""""
 "Colors and Fonts
 """""""""""""""""""""""""""""""""""""""
+
 syntax enable "Enable syntax hl
 
 "gfn=consolas:h10
@@ -344,8 +348,8 @@ if has("gui_running")
 	set printmbfont=r:PingFang\ SC\ Light,c:yes
 
 	" Set syntax color
-	"colorscheme molokai
-	colorscheme gruvbox
+	colorscheme molokai
+	" colorscheme gruvbox
 else
 	colorscheme gruvbox
 	"colorscheme desert256
@@ -447,6 +451,7 @@ au FileType eruby setlocal expandtab shiftwidth=2
 au FileType rst setlocal colorcolumn=120
 au FileType htmldjango setlocal expandtab shiftwidth=2 foldmethod=indent
 au FileType yaml setlocal expandtab shiftwidth=2 foldmethod=indent
+au FileType plantuml setlocal expandtab
 
 """""""""""""""""""""""""""""""""""""""
 "Visual mode related
@@ -542,7 +547,7 @@ let g:JSLintHighlightErrorLine = 0
 "map <silent> <leader>p :Project<CR>
 
 " NERDTree
-let g:NERDTreeIgnore = ['\.pyc$', '\.class$', '\.git$', '^target$', '\.slide\.html$', '\.generated\.html$', '\.md\.assets$']
+let g:NERDTreeIgnore = ['\.pyc$', '\.class$', '\.jpeg$', '\.jpg$', '\.png$', '\.git$', '^target$', '\.slide\.html$', '\.generated\.html$', '\.md\.assets$']
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeShowBookmarks=1
 
@@ -830,16 +835,17 @@ noremap <silent> <leader>q :q<CR>
 inoremap <silent> <leader>w :w<CR>
 noremap <silent> <leader>w :w<CR>
 
-" noremap <leader>M :silent exec "!killall MacDown; /usr/local/bin/macdown %"<CR>
+" noremap <leader>M :silent exec "!killall MacDown && /usr/local/bin/macdown %"<CR>
+" pip install pandoc-plantuml
 if MySys() == "mac"
-	noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax=https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML -t html -o %.generated.html; open %.generated.html"<CR>
-	noremap <leader>U :silent exec "!plantuml -tpng %; open %:r.png"<CR>
+	noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax='https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --filter=pandoc-plantuml -t html -o %.generated.html && open %.generated.html"<CR>
 else
 	if MySys() == "linux"
-		noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css -t html -o %.generated.html; xdg-open %.generated.html"<CR>
-		noremap <leader>U :silent exec "!plantuml -tpng %; open %:r.png"<CR>
+		noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --filter=pandoc-plantuml -t html -o %.generated.html && xdg-open %.generated.html"<CR>
 	endif
 endif
+noremap <leader>U :silent exec "!plantuml -tpng % && open %:r.png"<CR>
+"noremap <leader>U :silent exec "!plantuml -tsvg % && open %:r.svg"<CR>
 noremap <leader>P :!$HOME/local/bin/image-from-clipboard-to-png-vim % 
 noremap <leader>N :!/usr/local/bin/macdown %<CR> 
 
