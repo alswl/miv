@@ -713,6 +713,10 @@ function! s:unicode.prop_line_break(char)
     return call(s:orig_prop_line_break, [a:char], self)
 endfunction
 
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
+
+
 """""""""""""""""""""""""""""""""""""""
 " Map
 """""""""""""""""""""""""""""""""""""""
