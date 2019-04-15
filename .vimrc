@@ -431,15 +431,19 @@ au FileType asciidoc setlocal colorcolumn=120
 au FileType markdown setlocal colorcolumn=120 expandtab shiftwidth=4 nowrap
 			\ nowrap textwidth=120
 			\ formatexpr=autofmt#japanese#formatexpr()
+			\ noshowmatch
 au FileType markdown.pandoc setlocal colorcolumn=120 expandtab shiftwidth=4
 			\ nowrap textwidth=120
 			\ formatexpr=autofmt#japanese#formatexpr()
+			\ noshowmatch
 au FileType markdown.github setlocal colorcolumn=120 expandtab shiftwidth=4
 			\ nowrap textwidth=120
 			\ formatexpr=autofmt#japanese#formatexpr()
+			\ noshowmatch
 au FileType markdown.gfm setlocal colorcolumn=120 expandtab shiftwidth=4
 			\ nowrap textwidth=120
 			\ formatexpr=autofmt#japanese#formatexpr()
+			\ noshowmatch
 au FileType mako setlocal colorcolumn=120 cc=0 fdm=indent
 "au FileType html setlocal shiftwidth=2 tabstop=2
 au FileType haskell setlocal expandtab
@@ -715,6 +719,10 @@ endfunction
 
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
+
+" matchparen
+let g:matchparen_timeout = 2
+let g:matchparen_insert_timeout = 2
 
 
 """""""""""""""""""""""""""""""""""""""
