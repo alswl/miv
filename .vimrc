@@ -191,8 +191,6 @@ Plugin 'mattn/emmet-vim'
 "Plugin 'hallettj/jslint.vim'
 " code source
 "Plugin 'vcscommand.vim'
-" quick snip input
-Plugin 'snipMate'
 " task list search
 "Plugin 'TaskList.vim'
 Plugin 'pep8'
@@ -236,6 +234,8 @@ Plugin 'junegunn/vim-easy-align'
 "Plugin 'wannesm/wmgraphviz.vim'
 Plugin 'hotoo/pangu.vim'
 Plugin 'vim-jp/autofmt'
+Plugin 'sirver/ultisnips'
+Plugin 'honza/vim-snippets'
 
 
 
@@ -847,6 +847,9 @@ noremap <silent> <leader>q :q<CR>
 inoremap <silent> <leader>w :w<CR>
 noremap <silent> <leader>w :w<CR>
 
+nnoremap <S-Tab> <<
+inoremap <S-Tab> <C-d>
+
 " noremap <leader>M :silent exec "!killall MacDown && /usr/local/bin/macdown %"<CR>
 " pip install pandoc-plantuml
 if MySys() == "mac"
@@ -866,6 +869,14 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 
 """""""""""""""""""""""""""""""""""""""
