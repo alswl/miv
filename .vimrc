@@ -136,8 +136,8 @@ Plugin 'aklt/plantuml-syntax'
 Plugin 'hexchain/vim-openresty'
 Plugin 'applescript.vim'
 "Plugin 'pangloss/vim-javascript'
-Plugin 'othree/yajs.vim'
-Plugin 'mxw/vim-jsx'
+"Plugin 'othree/yajs.vim'
+"Plugin 'mxw/vim-jsx'
 
 
 " Color
@@ -237,6 +237,7 @@ Plugin 'hotoo/pangu.vim'
 Plugin 'vim-jp/autofmt'
 Plugin 'sirver/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'jiangmiao/auto-pairs'
 
 
 
@@ -753,6 +754,7 @@ noremap <C-Tab> :tabnext<CR>
 noremap <C-S-Tab> :tabprev<CR>
 inoremap <C-Tab> <Esc>:tabnext<CR>
 inoremap <C-S-Tab> <Esc>:tabprev<CR>
+map <S-k> <Nop>
 
 if has("gui_running")
 	imap <D-1> <Esc>1gt
