@@ -238,7 +238,7 @@ Plugin 'vim-jp/autofmt'
 Plugin 'sirver/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'jiangmiao/auto-pairs'
-
+Plugin 'lervag/vimtex'
 
 
 " for vim-pyref
@@ -881,6 +881,12 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+" latex
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
 
 """""""""""""""""""""""""""""""""""""""
 " User Defined function
