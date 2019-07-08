@@ -237,8 +237,8 @@ Plugin 'hotoo/pangu.vim'
 Plugin 'vim-jp/autofmt'
 Plugin 'sirver/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'lervag/vimtex'
+"Plugin 'jiangmiao/auto-pairs'
+
 
 
 " for vim-pyref
@@ -425,6 +425,7 @@ au BufRead,BufNewFile *.wxml set filetype=xml
 au BufRead,BufNewFile *.wxss set filetype=css
 au BufRead,BufNewFile *.gv set filetype=dot
 au BufRead,BufNewFile *.puml set filetype=plantuml
+au BufRead,BufNewFile *.cc set filetype=cpp
 
 au FileType python setlocal expandtab colorcolumn=80 textwidth=0 diffopt=vertical " fo+=Mm
 "Map F9 to Run Python Script
@@ -696,14 +697,14 @@ let g:pandoc#syntax#conceal#use = 0
 
 let g:mwAutoLoadMarks = 1
 runtime plugin/mark.vim
-silent 4Mark /TODO/
-silent 4Mark /FIXME/
-silent 4Mark /XXX/
-silent 4Mark /@djc/
-silent 4Mark /@3D/
-silent 4Mark /@alswl/
-silent 4Mark /@jingchao.djc/
-silent 4Mark /@jingchao/
+"silent 4Mark TODO
+"silent 4Mark FIXME
+"silent 4Mark XXX
+"silent 4Mark @djc
+"silent 4Mark @3D
+"silent 4Mark @alswl
+"silent 4Mark @jingchao.djc
+"silent 4Mark @jingchao
 
 " autofmt
 "let g:autofmt_allow_over_tw = 0
