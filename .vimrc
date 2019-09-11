@@ -410,7 +410,7 @@ set wrap "Wrap lines
 "FileType setting
 """""""""""""""""""""""""""""""""""""""
 
-au BufRead,BufNewFile *.md set filetype=markdown.pandoc
+au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile */tmp/edit-server-*.txt set filetype=markdown.gfm
 au BufRead,BufNewFile *.pmd set filetype=markdown.pandoc
 au BufRead,BufNewFile *.scala set filetype=scala
@@ -458,6 +458,7 @@ au FileType rst setlocal colorcolumn=120
 au FileType htmldjango setlocal expandtab shiftwidth=2 foldmethod=indent
 au FileType yaml setlocal expandtab shiftwidth=2 foldmethod=indent
 au FileType plantuml setlocal expandtab
+au FileType sh setlocal expandtab shiftwidth=2
 
 """""""""""""""""""""""""""""""""""""""
 "Visual mode related
@@ -721,6 +722,8 @@ endfunction
 
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_new_list_item_indent = 4
+let g:vim_markdown_math = 1
 
 " matchparen
 let g:matchparen_timeout = 2
@@ -856,15 +859,16 @@ inoremap <S-Tab> <C-d>
 " noremap <leader>M :silent exec "!killall MacDown && /usr/local/bin/macdown %"<CR>
 " pip install pandoc-plantuml
 if MySys() == "mac"
-	noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax='https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --filter=pandoc-plantuml -t html -o %.generated.html && open %.generated.html"<CR>
+	noremap <leader>m :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax='https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --filter=pandoc-plantuml -t html -o %.generated.html && open %.generated.html"<CR>
 else
 	if MySys() == "linux"
-		noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --filter=pandoc-plantuml -t html -o %.generated.html && xdg-open %.generated.html"<CR>
+		noremap <leader>m :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --filter=pandoc-plantuml -t html -o %.generated.html && xdg-open %.generated.html"<CR>
 	endif
 endif
-noremap <leader>U :silent exec "!plantuml -tpng % && open %:r.png"<CR>
-"noremap <leader>U :silent exec "!plantuml -tsvg % && open %:r.svg"<CR>
-noremap <leader>P :!$HOME/local/bin/image-from-clipboard-to-png-vim % 
+noremap <leader>u :silent exec "!plantuml -tpng % && open %:r.png"<CR>
+noremap <leader>U :silent exec "!plantuml -tsvg % && open ."<CR>
+noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-copy-markdown % 
+noremap <leader>P :!$HOME/local/bin/image-from-path-to-assets-copy-markdown % 
 noremap <leader>N :!/usr/local/bin/macdown %<CR> 
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
