@@ -89,164 +89,159 @@ set viminfo+=!
 
 
 """""""""""""""""""""""""""""""""""""""
-"Vundle
+" Plugin Management
 """""""""""""""""""""""""""""""""""""""
 
-set runtimepath+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
+call plug#begin()
 
 " My Bundles here:
 
-" vim-scripts repos
-
-Plugin 'VundleVim/Vundle.vim'
-
 
 " Syntax
-Plugin 'asciidoc.vim'
-Plugin 'confluencewiki.vim'
-Plugin 'othree/html5.vim'
-"Plugin 'JavaScript-syntax'
-"Plugin 'mako.vim'
-Plugin 'moin.vim'
-Plugin 'python.vim--Vasiliev'
-Plugin 'xml.vim'
-Plugin 'less'
-" Plugin 'hallison/vim-markdown'
-" Plugin 'tpope/vim-markdown'
-Plugin 'wikipedia.vim'
-Plugin 'derekwyatt/vim-scala'
+Plug 'vim-scripts/asciidoc.vim'
+Plug 'vim-scripts/confluencewiki.vim'
+Plug 'othree/html5.vim'
+"Plug 'vim-scripts/JavaScript-syntax'
+"Plug 'vim-scripts/mako.vim'
+Plug 'vim-scripts/moin.vim'
+Plug 'vim-scripts/python.vim--Vasiliev'
+Plug 'vim-scripts/xml.vim'
+Plug 'vim-scripts/less'
+" Plug 'hallison/vim-markdown'
+" Plug 'tpope/vim-markdown'
+Plug 'vim-scripts/wikipedia.vim'
+Plug 'derekwyatt/vim-scala'
 " play1
-" Plugin 'alswl/play2vim'
+" Plug 'alswl/play2vim'
 " play2
-Plugin 'gre/play2vim'
-Plugin 'tpope/vim-haml'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'django.vim'
-" Plugin 'nginx.vim'
-Plugin 'saltstack/salt-vim'
-Plugin 'fatih/vim-go'
-Plugin 'haproxy'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'chase/vim-ansible-yaml'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'aklt/plantuml-syntax'
-" Plugin 'spacewander/openresty-vim'
-Plugin 'hexchain/vim-openresty'
-Plugin 'applescript.vim'
-"Plugin 'pangloss/vim-javascript'
-"Plugin 'othree/yajs.vim'
-"Plugin 'mxw/vim-jsx'
+Plug 'gre/play2vim'
+Plug 'tpope/vim-haml'
+Plug 'kchmck/vim-coffee-script'
+Plug 'vim-ruby/vim-ruby'
+Plug 'vim-scripts/django.vim'
+" Plug 'vim-scripts/nginx.vim'
+Plug 'saltstack/salt-vim'
+Plug 'fatih/vim-go'
+Plug 'vim-scripts/haproxy'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'chase/vim-ansible-yaml'
+Plug 'leafgarland/typescript-vim'
+Plug 'aklt/plantuml-syntax'
+" Plug 'spacewander/openresty-vim'
+Plug 'hexchain/vim-openresty'
+Plug 'vim-scripts/applescript.vim'
+"Plug 'pangloss/vim-javascript'
+"Plug 'othree/yajs.vim'
+"Plug 'mxw/vim-jsx'
 
 
 " Color
-Plugin 'desert256.vim'
-Plugin 'vividchalk.vim'
-Plugin 'ego.vim'
-Plugin 'tomasr/molokai'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'morhetz/gruvbox'
+Plug 'vim-scripts/desert256.vim'
+Plug 'vim-scripts/vividchalk.vim'
+Plug 'vim-scripts/ego.vim'
+"Plug 'tomasr/molokai'
+Plug 'crusoexia/vim-monokai'
+Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
 
 " Ftplugin
-"Plugin 'python_fold'
+"Plug 'vim-scripts/python_fold'
 
 " Indent
-"Plugin 'indent/html.vim'
-Plugin 'IndentAnything'
-" Plugin 'Javascript-Indentation'
-Plugin 'mako.vim--Torborg'
-Plugin 'gg/python.vim'
-Plugin 'lepture/vim-jinja'
+"Plug 'indent/html.vim'
+Plug 'vim-scripts/IndentAnything'
+" Plug 'vim-scripts/Javascript-Indentation'
+Plug 'vim-scripts/mako.vim--Torborg'
+Plug 'gg/python.vim'
+Plug 'lepture/vim-jinja'
 
-" Plugin
-Plugin 'scrooloose/nerdtree'
-"Plugin 'AutoClose--Alves'
-Plugin 'auto_mkdir'
+" Plug
+Plug 'scrooloose/nerdtree'
+"Plug 'AutoClose--Alves'
+Plug 'vim-scripts/auto_mkdir'
 " required by XXX
-Plugin 'cecutil'
+Plug 'vim-scripts/cecutil'
 " encode detect
-Plugin 'mbbill/fencview'
-" Plugin 'FuzzyFinder'
-Plugin 'jsbeautify'
+Plug 'mbbill/fencview'
+" Plug 'vim-scripts/FuzzyFinder'
+Plug 'vim-scripts/jsbeautify'
 " required by XXX
-Plugin 'L9'
+Plug 'vim-scripts/L9'
 " required for vim-mark
-Plugin 'inkarkat/vim-ingo-library'
+Plug 'inkarkat/vim-ingo-library'
 " mark in different color, leader + m
-Plugin 'inkarkat/vim-mark'
+Plug 'inkarkat/vim-mark'
 " joke
-Plugin 'matrix.vim'
+Plug 'vim-scripts/matrix.vim'
 " most recent used
-Plugin 'mru.vim'
+Plug 'vim-scripts/mru.vim'
 " auto comment
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'restart.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'vim-scripts/restart.vim'
 "Tlist
-"Plugin 'taglist.vim'
-"Plugin 'templates.vim'
-Plugin 'majutsushi/tagbar'
-"Plugin 'vimim.vim'
-Plugin 'mattn/emmet-vim'
-"Plugin 'css_color.vim'
-"Plugin 'hallettj/jslint.vim'
+"Plug 'vim-scripts/taglist.vim'
+"Plug 'vim-scripts/templates.vim'
+Plug 'majutsushi/tagbar'
+"Plug 'vim-scripts/vimim.vim'
+Plug 'mattn/emmet-vim'
+"Plug 'css_color.vim'
+"Plug 'hallettj/jslint.vim'
 " code source
-"Plugin 'vcscommand.vim'
+"Plug 'vim-scripts/vcscommand.vim'
 " task list search
-"Plugin 'TaskList.vim'
-Plugin 'pep8'
-"Plugin 'git://github.com/kevinw/pyflakes-vim.git'
+"Plug 'vim-scripts/TaskList.vim'
+Plug 'vim-scripts/pep8'
+"Plug 'git://github.com/kevinw/pyflakes-vim.git'
 "Rope, a python refactoring library
-"Plugin 'sontek/rope-vim'
-"Plugin 'project.tar.gz'
-"Plugin 'minibufexplorerpp'
-Plugin 'bufexplorer.zip'
-"Plugin 'Align.vim'
-"Plugin 'SQLUtilities'
+"Plug 'sontek/rope-vim'
+"Plug 'project.tar.gz'
+"Plug 'vim-scripts/minibufexplorerpp'
+Plug 'vim-scripts/bufexplorer.zip'
+"Plug 'vim-scripts/Align.vim'
+"Plug 'vim-scripts/SQLUtilities'
 " extened % for html ...
-Plugin 'matchit.zip'
+Plug 'vim-scripts/matchit.zip'
 " % jump, </> pair, >> for complete
-Plugin 'xmledit'
+Plug 'vim-scripts/xmledit'
 " ascii drawing, \di, \ds
-Plugin 'DrawIt'
+Plug 'vim-scripts/DrawIt'
 " NR, NW
-Plugin 'chrisbra/NrrwRgn'
+Plug 'chrisbra/NrrwRgn'
 " status bar
-" Plugin 'Lokaltog/vim-powerline'
-" Plugin 'scala/scala-dist'
-Plugin 'terryma/vim-multiple-cursors'
+" Plug 'Lokaltog/vim-powerline'
+" Plug 'scala/scala-dist'
+Plug 'terryma/vim-multiple-cursors'
 " original repos on github
-"Plugin 'tpope/vim-fugitive'
-"Plugin 'Lokaltog/vim-easymotion'
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-"Plugin 'tpope/vim-rails.git'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'Rename'
-Plugin '907th/vim-auto-save'
-" Plugin 'nelstrom/vim-markdown-folding'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
-Plugin 'rhysd/vim-gfm-syntax'
-Plugin 'dhruvasagar/vim-table-mode'
-" Plugin 'lilydjwg/fcitx.vim'
-Plugin 'CodeFalling/fcitx-vim-osx'
-Plugin 'junegunn/vim-easy-align'
-"Plugin 'wannesm/wmgraphviz.vim'
-Plugin 'hotoo/pangu.vim'
-Plugin 'vim-jp/autofmt'
-Plugin 'sirver/ultisnips'
-Plugin 'honza/vim-snippets'
-"Plugin 'jiangmiao/auto-pairs'
+"Plug 'tpope/vim-fugitive'
+"Plug 'Lokaltog/vim-easymotion'
+"Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Plug 'tpope/vim-rails.git'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-scripts/Rename'
+Plug '907th/vim-auto-save'
+" Plug 'nelstrom/vim-markdown-folding'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'rhysd/vim-gfm-syntax'
+Plug 'dhruvasagar/vim-table-mode'
+" Plug 'lilydjwg/fcitx.vim'
+Plug 'CodeFalling/fcitx-vim-osx'
+Plug 'junegunn/vim-easy-align'
+"Plug 'wannesm/wmgraphviz.vim'
+Plug 'hotoo/pangu.vim'
+Plug 'vim-jp/autofmt'
+Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
+"Plug 'jiangmiao/auto-pairs'
 
 
 
 " for vim-pyref
 
 " non github repos
-"Plugin 'git://git.wincent.com/command-t.git'
-call vundle#end()
-
+"Plug 'git://git.wincent.com/command-t.git'
+call plug#end()
 
 """""""""""""""""""""""""""""""""""""""
 "VIM user interface
@@ -350,8 +345,8 @@ if has("gui_running")
 	set printmbfont=r:PingFang\ SC\ Light,c:yes
 
 	" Set syntax color
-	colorscheme molokai
-	" colorscheme gruvbox
+	" colorscheme monokai
+	colorscheme gruvbox
 else
 	colorscheme gruvbox
 	"colorscheme desert256
@@ -410,7 +405,7 @@ set wrap "Wrap lines
 "FileType setting
 """""""""""""""""""""""""""""""""""""""
 
-au BufRead,BufNewFile *.md set filetype=markdown.pandoc
+au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile */tmp/edit-server-*.txt set filetype=markdown.gfm
 au BufRead,BufNewFile *.pmd set filetype=markdown.pandoc
 au BufRead,BufNewFile *.scala set filetype=scala
@@ -432,19 +427,19 @@ au FileType python map <F9> :!python %
 au FileType asciidoc setlocal colorcolumn=120
 au FileType markdown setlocal colorcolumn=120 expandtab shiftwidth=4 nowrap
 			\ nowrap textwidth=120
-			\ formatexpr=autofmt#japanese#formatexpr()
+			\ formatexpr=autofmt#uax14#formatexpr()
 			\ noshowmatch
 au FileType markdown.pandoc setlocal colorcolumn=120 expandtab shiftwidth=4
 			\ nowrap textwidth=120
-			\ formatexpr=autofmt#japanese#formatexpr()
+			\ formatexpr=autofmt#uax14#formatexpr()
 			\ noshowmatch
 au FileType markdown.github setlocal colorcolumn=120 expandtab shiftwidth=4
 			\ nowrap textwidth=120
-			\ formatexpr=autofmt#japanese#formatexpr()
+			\ formatexpr=autofmt#uax14#formatexpr()
 			\ noshowmatch
 au FileType markdown.gfm setlocal colorcolumn=120 expandtab shiftwidth=4
 			\ nowrap textwidth=120
-			\ formatexpr=autofmt#japanese#formatexpr()
+			\ formatexpr=autofmt#uax14#formatexpr()
 			\ noshowmatch
 au FileType mako setlocal colorcolumn=120 cc=0 fdm=indent
 "au FileType html setlocal shiftwidth=2 tabstop=2
@@ -458,6 +453,7 @@ au FileType rst setlocal colorcolumn=120
 au FileType htmldjango setlocal expandtab shiftwidth=2 foldmethod=indent
 au FileType yaml setlocal expandtab shiftwidth=2 foldmethod=indent
 au FileType plantuml setlocal expandtab
+au FileType sh setlocal expandtab shiftwidth=2
 
 """""""""""""""""""""""""""""""""""""""
 "Visual mode related
@@ -504,6 +500,12 @@ set numberwidth=2 "行号栏的宽度
 """""""""""""""""""""""""""""""""""""""
 
 set formatoptions+=mB
+"set formatoptions=croqn2mB1
+"try
+  "" Vim 7.4
+  "set formatoptions+=j
+"catch /.*/
+"endtry
 set linebreak "智能换行
 "set tw=500 "自动换行 超过n列
 
@@ -706,21 +708,23 @@ runtime plugin/mark.vim
 "silent 4Mark @jingchao
 
 " autofmt
-"let g:autofmt_allow_over_tw = 0
-
-let s:unicode = autofmt#unicode#import()
-let s:orig_prop_line_break = s:unicode.prop_line_break
-function! s:unicode.prop_line_break(char)
-    if a:char == "\u201c" || a:char == "\u2018"
-        return "OP"   " Open quotations
-    elseif a:char == "\u201d" || a:char == "\u2019"
-        return "CL"   " Close quotations
-    endif
-    return call(s:orig_prop_line_break, [a:char], self)
-endfunction
+"set runtimepath+=~/.vim/plugged/autofmt/
+let g:autofmt_allow_over_tw = 0
+"let s:unicode = autofmt#unicode#import()
+"let s:orig_prop_line_break = s:unicode.prop_line_break
+"function! s:unicode.prop_line_break(char)
+	"if a:char == "\u201c" || a:char == "\u2018"
+		"return "OP"   " Open quotations
+	"elseif a:char == "\u201d" || a:char == "\u2019"
+		"return "CL"   " Close quotations
+	"endif
+	"return call(s:orig_prop_line_break, [a:char], self)
+"endfunction
 
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_new_list_item_indent = 4
+let g:vim_markdown_math = 1
 
 " matchparen
 let g:matchparen_timeout = 2
@@ -856,15 +860,16 @@ inoremap <S-Tab> <C-d>
 " noremap <leader>M :silent exec "!killall MacDown && /usr/local/bin/macdown %"<CR>
 " pip install pandoc-plantuml
 if MySys() == "mac"
-	noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax='https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --filter=pandoc-plantuml -t html -o %.generated.html && open %.generated.html"<CR>
+	noremap <leader>m :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax='https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --filter=pandoc-plantuml -t html -o %.generated.html && open %.generated.html"<CR>
 else
 	if MySys() == "linux"
-		noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --filter=pandoc-plantuml -t html -o %.generated.html && xdg-open %.generated.html"<CR>
+		noremap <leader>m :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --filter=pandoc-plantuml -t html -o %.generated.html && xdg-open %.generated.html"<CR>
 	endif
 endif
-noremap <leader>U :silent exec "!plantuml -tpng % && open %:r.png"<CR>
-"noremap <leader>U :silent exec "!plantuml -tsvg % && open %:r.svg"<CR>
-noremap <leader>P :!$HOME/local/bin/image-from-clipboard-to-png-vim % 
+noremap <leader>u :silent exec "!plantuml -tpng % && open %:r.png"<CR>
+noremap <leader>U :silent exec "!plantuml -tsvg % && open ."<CR>
+noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-copy-markdown % 
+noremap <leader>P :!$HOME/local/bin/image-from-path-to-assets-copy-markdown % 
 noremap <leader>N :!/usr/local/bin/macdown %<CR> 
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)

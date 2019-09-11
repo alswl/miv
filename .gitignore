@@ -7,3 +7,4 @@
 .vim/xml-plugin.txt
 .vim/so/
 *.swp
+.vim/plugged
