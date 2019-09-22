@@ -12,7 +12,7 @@ forked from [alswl/.oOo.@Github][]
 git clone --recursive https://github.com/alswl/miv.git
 ln -s /miv/path/.vim $HOME
 ln -s /miv/path/.vimrc $HOME
-vim +VundleInstall +qa
+vim +PlugInstall +qa
 ```
 
 
