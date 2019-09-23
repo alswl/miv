@@ -420,6 +420,7 @@ au BufRead,BufNewFile *.wxss set filetype=css
 au BufRead,BufNewFile *.gv set filetype=dot
 au BufRead,BufNewFile *.puml set filetype=plantuml
 au BufRead,BufNewFile *.cc set filetype=cpp
+au BufRead,BufNewFile *.zshrc set filetype=sh
 
 au FileType python setlocal expandtab colorcolumn=80 textwidth=0 diffopt=vertical " fo+=Mm
 "Map F9 to Run Python Script
