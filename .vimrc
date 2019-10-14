@@ -126,7 +126,7 @@ Plug 'vim-scripts/haproxy'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'chase/vim-ansible-yaml'
 Plug 'leafgarland/typescript-vim'
-Plug 'aklt/plantuml-syntax'
+Plug 'alswl/plantuml-syntax'
 " Plug 'spacewander/openresty-vim'
 Plug 'hexchain/vim-openresty'
 Plug 'vim-scripts/applescript.vim'
@@ -405,56 +405,46 @@ set wrap "Wrap lines
 "FileType setting
 """""""""""""""""""""""""""""""""""""""
 
-au BufRead,BufNewFile *.md set filetype=markdown
-au BufRead,BufNewFile */tmp/edit-server-*.txt set filetype=markdown.gfm
-au BufRead,BufNewFile *.pmd set filetype=markdown.pandoc
-au BufRead,BufNewFile *.scala set filetype=scala
-au BufRead,BufNewFile *.sc set filetype=scala
-au BufRead,BufNewFile *.sls set filetype=sls
-au BufRead,BufNewFile *.js set expandtab shiftwidth=2
-au BufRead,BufNewFile *.go set filetype=go
-au BufRead,BufNewFile *.wiki.dev.* set filetype=confluencewiki
-au BufRead,BufNewFile *.ts set filetype=typescript
-au BufRead,BufNewFile *.wxml set filetype=xml
-au BufRead,BufNewFile *.wxss set filetype=css
-au BufRead,BufNewFile *.gv set filetype=dot
-au BufRead,BufNewFile *.puml set filetype=plantuml
-au BufRead,BufNewFile *.cc set filetype=cpp
-au BufRead,BufNewFile *.zshrc set filetype=sh
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile */tmp/edit-server-*.txt set filetype=markdown.gfm
+autocmd BufRead,BufNewFile *.pmd set filetype=markdown.pandoc
+autocmd BufRead,BufNewFile *.scala set filetype=scala
+autocmd BufRead,BufNewFile *.sc set filetype=scala
+autocmd BufRead,BufNewFile *.sls set filetype=sls
+autocmd BufRead,BufNewFile *.js set expandtab shiftwidth=2
+autocmd BufRead,BufNewFile *.go set filetype=go
+autocmd BufRead,BufNewFile *.wiki.dev.* set filetype=confluencewiki
+autocmd BufRead,BufNewFile *.ts set filetype=typescript
+autocmd BufRead,BufNewFile *.wxml set filetype=xml
+autocmd BufRead,BufNewFile *.wxss set filetype=css
+autocmd BufRead,BufNewFile *.gv set filetype=dot
+autocmd BufRead,BufNewFile *.puml set filetype=plantuml
+autocmd BufRead,BufNewFile *.cc set filetype=cpp
+autocmd BufRead,BufNewFile *.zshrc set filetype=sh
 
-au FileType python setlocal expandtab colorcolumn=80 textwidth=0 diffopt=vertical " fo+=Mm
+autocmd FileType python setlocal expandtab colorcolumn=80 textwidth=0 diffopt=vertical " fo+=Mm
 "Map F9 to Run Python Script
-au FileType python map <F9> :!python %
-au FileType asciidoc setlocal colorcolumn=120
-au FileType markdown setlocal colorcolumn=120 expandtab shiftwidth=4 nowrap
+autocmd FileType python map <F9> :!python %
+autocmd FileType asciidoc setlocal colorcolumn=120
+autocmd FileType markdown,markdown.pandoc,markdown.github,markdown.gfm setlocal colorcolumn=120 expandtab shiftwidth=4 nowrap
 			\ nowrap textwidth=120
 			\ formatexpr=autofmt#uax14#formatexpr()
 			\ noshowmatch
-au FileType markdown.pandoc setlocal colorcolumn=120 expandtab shiftwidth=4
-			\ nowrap textwidth=120
-			\ formatexpr=autofmt#uax14#formatexpr()
-			\ noshowmatch
-au FileType markdown.github setlocal colorcolumn=120 expandtab shiftwidth=4
-			\ nowrap textwidth=120
-			\ formatexpr=autofmt#uax14#formatexpr()
-			\ noshowmatch
-au FileType markdown.gfm setlocal colorcolumn=120 expandtab shiftwidth=4
-			\ nowrap textwidth=120
-			\ formatexpr=autofmt#uax14#formatexpr()
-			\ noshowmatch
-au FileType mako setlocal colorcolumn=120 cc=0 fdm=indent
-"au FileType html setlocal shiftwidth=2 tabstop=2
-au FileType haskell setlocal expandtab
-au FileType lua setlocal expandtab
-au FileType nginx setlocal expandtab
-au FileType java setlocal expandtab colorcolumn=120
-au FileType ruby setlocal expandtab shiftwidth=2 colorcolumn=120
-au FileType eruby setlocal expandtab shiftwidth=2
-au FileType rst setlocal colorcolumn=120
-au FileType htmldjango setlocal expandtab shiftwidth=2 foldmethod=indent
-au FileType yaml setlocal expandtab shiftwidth=2 foldmethod=indent
-au FileType plantuml setlocal expandtab
-au FileType sh setlocal expandtab shiftwidth=2
+			\ comments=fb:>,fb:*,fb:+,fb:-
+" comments configuration from https://github.com/plasticboy/vim-markdown/issues/390#issuecomment-450392655
+autocmd FileType mako setlocal colorcolumn=120 cc=0 fdm=indent
+"autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType haskell setlocal expandtab
+autocmd FileType lua setlocal expandtab
+autocmd FileType nginx setlocal expandtab
+autocmd FileType java setlocal expandtab colorcolumn=120
+autocmd FileType ruby setlocal expandtab shiftwidth=2 colorcolumn=120
+autocmd FileType eruby setlocal expandtab shiftwidth=2
+autocmd FileType rst setlocal colorcolumn=120
+autocmd FileType htmldjango setlocal expandtab shiftwidth=2 foldmethod=indent
+autocmd FileType yaml setlocal expandtab shiftwidth=2 foldmethod=indent
+autocmd FileType plantuml setlocal expandtab
+autocmd FileType sh setlocal expandtab shiftwidth=2
 
 """""""""""""""""""""""""""""""""""""""
 "Visual mode related
@@ -857,6 +847,10 @@ noremap <silent> <leader>w :w<CR>
 
 nnoremap <S-Tab> <<
 inoremap <S-Tab> <C-d>
+
+" delete without yanking
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
 
 " noremap <leader>M :silent exec "!killall MacDown && /usr/local/bin/macdown %"<CR>
 " pip install pandoc-plantuml
