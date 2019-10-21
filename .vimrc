@@ -430,7 +430,6 @@ autocmd FileType markdown,markdown.pandoc,markdown.github,markdown.gfm setlocal 
 			\ nowrap textwidth=120
 			\ formatexpr=autofmt#uax14#formatexpr()
 			\ noshowmatch
-			\ comments=fb:>,fb:*,fb:+,fb:-
 " comments configuration from https://github.com/plasticboy/vim-markdown/issues/390#issuecomment-450392655
 autocmd FileType mako setlocal colorcolumn=120 cc=0 fdm=indent
 "autocmd FileType html setlocal shiftwidth=2 tabstop=2
@@ -901,3 +900,9 @@ if !exists(":DiffOrig")
           \ | wincmd p | diffthis
 endif
 
+if !exists(":MarkdownListBulletOn")
+	command MarkdownListBulletOff setlocal comments=b:>,b:*,b:+,b:-
+endif
+if !exists(":MarkdownListBulletOff")
+	command MarkdownListBulletOn setlocal comments=fb:>,fb:*,fb:+,fb:-
+endif
