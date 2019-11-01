@@ -205,6 +205,7 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'vim-scripts/xmledit'
 " ascii drawing, \di, \ds
 Plug 'vim-scripts/DrawIt'
+" Plug 'gyim/vim-boxdraw' 
 " NR, NW
 Plug 'chrisbra/NrrwRgn'
 " status bar
