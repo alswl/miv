@@ -190,7 +190,7 @@ Plug 'mattn/emmet-vim'
 "Plug 'vim-scripts/vcscommand.vim'
 " task list search
 "Plug 'vim-scripts/TaskList.vim'
-Plug 'vim-scripts/pep8'
+"Plug 'vim-scripts/pep8'
 "Plug 'git://github.com/kevinw/pyflakes-vim.git'
 "Rope, a python refactoring library
 "Plug 'sontek/rope-vim'
@@ -204,7 +204,9 @@ Plug 'vim-scripts/matchit.zip'
 " % jump, </> pair, >> for complete
 Plug 'vim-scripts/xmledit'
 " ascii drawing, \di, \ds
-Plug 'vim-scripts/DrawIt'
+" Plug 'vim-scripts/DrawIt'
+" Outdated
+Plug 'alswl/DrawIt'
 " Plug 'gyim/vim-boxdraw' 
 " NR, NW
 Plug 'chrisbra/NrrwRgn'
@@ -887,6 +889,8 @@ let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
 set conceallevel=1
 let g:tex_conceal='abdmg'
+
+let g:ruby_host_prog='~/.rvm/gems/ruby-2.4.0/bin/neovim-ruby-host'
 
 """""""""""""""""""""""""""""""""""""""
 " User Defined function
