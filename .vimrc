@@ -851,8 +851,8 @@ nnoremap <S-Tab> <<
 inoremap <S-Tab> <C-d>
 
 " delete without yanking
-nnoremap <leader>d "_d
-vnoremap <leader>d "_d
+" nnoremap <leader>d "_d
+" vnoremap <leader>d "_d
 
 " noremap <leader>M :silent exec "!killall MacDown && /usr/local/bin/macdown %"<CR>
 " pip install pandoc-plantuml
@@ -864,8 +864,9 @@ else
 	endif
 endif
 noremap <leader>u :silent exec "!plantuml -tpng % && open %:r.png"<CR>
-noremap <leader>U :silent exec "!plantuml -tsvg % && open ."<CR>
+noremap <leader>U :silent exec "!plantuml -tsvg % && open . && open  %:r.svg"<CR>
 noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-copy-markdown % 
+"noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-global % 
 noremap <leader>P :!$HOME/local/bin/image-from-path-to-assets-copy-markdown % 
 noremap <leader>N :!/usr/local/bin/macdown %<CR> 
 
