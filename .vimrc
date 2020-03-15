@@ -356,6 +356,7 @@ else
 endif
 
 set background=dark
+" set background=light
 
 "set ambiwidth=double " 设定某些标点符号为宽字符
 
@@ -436,7 +437,7 @@ autocmd FileType markdown,markdown.pandoc,markdown.github,markdown.gfm
 						\ noshowmatch
 " comments configuration from https://github.com/plasticboy/vim-markdown/issues/390#issuecomment-450392655
 autocmd FileType mako setlocal colorcolumn=120 cc=0 fdm=indent
-"autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType html setlocal expandtab shiftwidth=2 tabstop=2
 autocmd FileType haskell setlocal expandtab
 autocmd FileType lua setlocal expandtab
 autocmd FileType nginx setlocal expandtab
@@ -448,6 +449,7 @@ autocmd FileType htmldjango setlocal expandtab shiftwidth=2 foldmethod=indent
 autocmd FileType yaml setlocal expandtab shiftwidth=2 foldmethod=indent
 autocmd FileType plantuml setlocal expandtab
 autocmd FileType sh setlocal expandtab shiftwidth=2
+autocmd FileType dockerfile setlocal expandtab shiftwidth=2
 
 """""""""""""""""""""""""""""""""""""""
 "Visual mode related
@@ -692,14 +694,14 @@ let g:pandoc#syntax#conceal#use = 0
 
 let g:mwAutoLoadMarks = 1
 runtime plugin/mark.vim
-"silent 4Mark TODO
-"silent 4Mark FIXME
-"silent 4Mark XXX
-"silent 4Mark @djc
-"silent 4Mark @3D
-"silent 4Mark @alswl
-"silent 4Mark @jingchao.djc
-"silent 4Mark @jingchao
+silent 4Mark TODO
+silent 4Mark FIXME
+silent 4Mark XXX
+silent 4Mark @djc
+silent 4Mark @3D
+silent 4Mark @alswl
+silent 4Mark @jingchao.djc
+silent 4Mark @jingchao
 
 " autofmt
 "set runtimepath+=~/.vim/plugged/autofmt/
@@ -893,6 +895,9 @@ set conceallevel=1
 let g:tex_conceal='abdmg'
 
 let g:ruby_host_prog='~/.rvm/gems/ruby-2.4.0/bin/neovim-ruby-host'
+
+" plasticboy/vim-markdown
+let g:vim_markdown_conceal = 0
 
 """""""""""""""""""""""""""""""""""""""
 " User Defined function
