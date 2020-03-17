@@ -526,13 +526,6 @@ set tags=tags;
 " Restart
 let g:restart_sessionoptions = "restart_session"
 
-" Mark
-"nmap <silent> <leader>hl <Plug>MarkSet
-"vmap <silent> <leader>hl <Plug>MarkSet
-"nmap <silent> <leader>hh <Plug>MarkClear
-"vmap <silent> <leader>hh <Plug>MarkClear
-"nmap <silent> <leader>hr <Plug>MarkRegex
-"vmap <silent> <leader>hr <Plug>MarkRegex
 
 " fuzzyfinder
 "map <silent> <leader>sf :FufFile<CR>
@@ -692,6 +685,13 @@ let g:tagbar_type_scala = {
 
 let g:pandoc#syntax#conceal#use = 0
 
+" vim-mark
+"nmap <silent> <leader>hl <Plug>MarkSet
+"vmap <silent> <leader>hl <Plug>MarkSet
+"nmap <silent> <leader>hh <Plug>MarkClear
+"vmap <silent> <leader>hh <Plug>MarkClear
+"nmap <silent> <leader>hr <Plug>MarkRegex
+"vmap <silent> <leader>hr <Plug>MarkRegex
 let g:mwAutoLoadMarks = 1
 runtime plugin/mark.vim
 silent 4Mark TODO
@@ -702,6 +702,24 @@ silent 4Mark @3D
 silent 4Mark @alswl
 silent 4Mark @jingchao.djc
 silent 4Mark @jingchao
+silent! unmap <k1>
+silent! unmap <k2>
+silent! unmap <k3>
+silent! unmap <k4>
+silent! unmap <k5>
+silent! unmap <k6>
+silent! unmap <k7>
+silent! unmap <k8>
+silent! unmap <k9>
+silent! unmap <C-k1>
+silent! unmap <C-k2>
+silent! unmap <C-k3>
+silent! unmap <C-k4>
+silent! unmap <C-k5>
+silent! unmap <C-k6>
+silent! unmap <C-k7>
+silent! unmap <C-k8>
+silent! unmap <C-k9>
 
 " autofmt
 "set runtimepath+=~/.vim/plugged/autofmt/
