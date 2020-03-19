@@ -694,14 +694,15 @@ let g:pandoc#syntax#conceal#use = 0
 "vmap <silent> <leader>hr <Plug>MarkRegex
 let g:mwAutoLoadMarks = 1
 runtime plugin/mark.vim
-silent 4Mark TODO
-silent 4Mark FIXME
-silent 4Mark XXX
-silent 4Mark @djc
-silent 4Mark @3D
-silent 4Mark @alswl
-silent 4Mark @jingchao.djc
-silent 4Mark @jingchao
+silent 6Mark TODO
+silent 6Mark FIXME
+silent 6Mark XXX
+silent 6Mark @djc
+silent 6Mark @3D
+silent 6Mark @alswl
+silent 6Mark @jingchao.djc
+silent 6Mark @jingchao
+silent 6Mark @三谛
 silent! unmap <k1>
 silent! unmap <k2>
 silent! unmap <k3>
@@ -735,10 +736,13 @@ let g:autofmt_allow_over_tw = 0
 	"return call(s:orig_prop_line_break, [a:char], self)
 "endfunction
 
-" vim-markdown
+" plasticboy/vim-markdown
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_new_list_item_indent = 4
 let g:vim_markdown_math = 1
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
 
 " matchparen
 let g:matchparen_timeout = 2
@@ -875,13 +879,13 @@ inoremap <S-Tab> <C-d>
 " nnoremap <leader>d "_d
 " vnoremap <leader>d "_d
 
-" noremap <leader>M :silent exec "!killall MacDown && /usr/local/bin/macdown %"<CR>
 " pip install pandoc-plantuml
 if MySys() == "mac"
-	noremap <leader>m :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax='https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --filter=pandoc-plantuml -t html -o %.generated.html && open %.generated.html"<CR>
+	noremap <leader>M :silent exec "!open -a Macdown %"<CR>
+	" noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax='https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --filter=pandoc-plantuml -t html -o %.generated.html && open %.generated.html"<CR>
 else
 	if MySys() == "linux"
-		noremap <leader>m :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --filter=pandoc-plantuml -t html -o %.generated.html && xdg-open %.generated.html"<CR>
+		noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --filter=pandoc-plantuml -t html -o %.generated.html && xdg-open %.generated.html"<CR>
 	endif
 endif
 noremap <leader>u :silent exec "!plantuml -tpng % && open %:r.png"<CR>
@@ -914,8 +918,6 @@ let g:tex_conceal='abdmg'
 
 let g:ruby_host_prog='~/.rvm/gems/ruby-2.4.0/bin/neovim-ruby-host'
 
-" plasticboy/vim-markdown
-let g:vim_markdown_conceal = 0
 
 """""""""""""""""""""""""""""""""""""""
 " User Defined function
