@@ -918,6 +918,12 @@ let g:tex_conceal='abdmg'
 
 let g:ruby_host_prog='~/.rvm/gems/ruby-2.4.0/bin/neovim-ruby-host'
 
+" fcitx
+" disable on MacVim
+if has("gui_running")
+	let g:fcitx_remote=1
+endif
+
 
 """""""""""""""""""""""""""""""""""""""
 " User Defined function
