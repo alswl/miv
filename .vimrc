@@ -924,6 +924,10 @@ if has("gui_running")
 	let g:fcitx_remote=1
 endif
 
+" nerdcommenter
+let g:NERDSpaceDelims = 1
+let g:NERDCustomDelimiters = { 'conf': { 'left': '#','right': '' } }
+
 
 """""""""""""""""""""""""""""""""""""""
 " User Defined function
