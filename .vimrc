@@ -425,6 +425,7 @@ autocmd BufRead,BufNewFile *.gv set filetype=dot
 autocmd BufRead,BufNewFile *.puml set filetype=plantuml
 autocmd BufRead,BufNewFile *.cc set filetype=cpp
 autocmd BufRead,BufNewFile *.zshrc set filetype=sh
+autocmd BufRead,BufNewFile *.omnijs set filetype=javascript
 
 autocmd FileType python setlocal expandtab colorcolumn=80 textwidth=0 diffopt=vertical " fo+=Mm
 "Map F9 to Run Python Script
@@ -438,6 +439,7 @@ autocmd FileType markdown,markdown.pandoc,markdown.github,markdown.gfm
 " comments configuration from https://github.com/plasticboy/vim-markdown/issues/390#issuecomment-450392655
 autocmd FileType mako setlocal colorcolumn=120 cc=0 fdm=indent
 autocmd FileType html setlocal expandtab shiftwidth=2 tabstop=2
+autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2
 autocmd FileType haskell setlocal expandtab
 autocmd FileType lua setlocal expandtab
 autocmd FileType nginx setlocal expandtab
@@ -743,6 +745,7 @@ let g:vim_markdown_math = 1
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
+let g:vim_markdown_new_list_item_indent = 2
 
 " matchparen
 let g:matchparen_timeout = 2
