@@ -155,7 +155,7 @@ Plug 'vim-scripts/mako.vim--Torborg'
 Plug 'gg/python.vim'
 Plug 'lepture/vim-jinja'
 
-" Plug
+" Plugins
 Plug 'scrooloose/nerdtree'
 "Plug 'AutoClose--Alves'
 Plug 'vim-scripts/auto_mkdir'
@@ -168,6 +168,7 @@ Plug 'vim-scripts/jsbeautify'
 " required by XXX
 Plug 'vim-scripts/L9'
 " required for vim-mark
+" required for FilePathConvert
 Plug 'inkarkat/vim-ingo-library'
 " mark in different color, leader + m
 Plug 'inkarkat/vim-mark'
@@ -237,7 +238,9 @@ Plug 'vim-jp/autofmt'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 "Plug 'jiangmiao/auto-pairs'
-
+" required by FilePathConvert
+Plug 'inkarkat/vim-TextTransform'
+Plug 'vim-scripts/FilePathConvert'
 
 
 " for vim-pyref
