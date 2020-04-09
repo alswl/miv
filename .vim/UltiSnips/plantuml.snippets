@@ -1,73 +1,123 @@
-snippet gantt
-	/' :EasyAlign */\(starts\)\|\(ends\)\|\(lasts\)\|\(happens\)/ '/
-	/' :EasyAlign */\(is\)\|\(are\)/ '/
-	
-	skinparam dpi 600
-	@startgantt
-	
-	project                                                   starts the 2099/01/01
-	
-	saturday                 are closed
-	sunday                   are closed
-	2099/01/01 to 2099/01/01  is closed /' 春节 '/
-	2099/01/01                is opened /' 调休 '/
-	2099/01/01                is opened /' 加班 '/
-	2099/01/01                is opened /' 加班 '/
-	
-	
-	--  需求 --
-	
-	[模型设计讨论 @X]                     lasts 1 day
-	then [需求细化 @X] as [prod detail]   lasts 1 day
+snippet gantt "Gantt"
+/' :EasyAlign */\(starts\)\|\(ends\)\|\(lasts\)\|\(happens\)/ '/
+/' :EasyAlign */\(is\)\|\(are\)/ '/
 
-	[需求宣讲 @X ] as [prod$]                               lasts 1 day and         starts at 2099/01/01
-	
-	--  设计 --
-	
-	[架构设计] as [dad]                                        lasts 1 day and         starts at [prod$]'s end
-	then [架构评审] as [dar]                                   lasts 1 day and         starts at 2099/01/01
+skinparam dpi 600
+@startgantt
 
-	[系分设计 @项目成员] as [dsd]                             starts at [dar]'s end and ends at 2099/01/01
-	then [系分评审] as [dsr]                                   lasts 1 day and         starts at 2099/01/01
-	
-	[任务拆分] as [design$]                                  happens at [dsr]'s end
-	
-	
-	-- 后端开发 --
-	
-	[bd1] as [bd1]                                   starts at [design$]'s end and ends at 2099/01/01
-	
-	[后端开发完成] as [backend$]                             happens at [bd1]'s end
-	[backend$]                                               happens at [bd1]'s end
-	
-	-- 前端开发 --
-	
-	[前端开发] as [fd0]                                       starts at [design$]'s end and ends at 2099/01/01
-	
-	[前端开发完成] as [frontend$]                            happens at 2099/01/01
-	
-	-- 联调 --
-	
-	[联调] as [it0]                                             ends at 2099/01/01
-	[it0]                                                     starts at [backend$]'s end
-	[it0]                                                     starts at [frontend$]'s end
-	
-	[联调结束] as [it$]                                      happens at [it0]'s end
-	
-	-- 测试 --
-	
-	[测试用例 @X] as [td]                                  starts at 2099/01/01 and   ends at 2099/01/01
-	[测试用例评审 @X] as [tdr]                             starts at 2099/01/01 and  lasts 1 day
-	
-	[测试] as [test1]                                     starts at [it$]'s end and ends at 2099/01/01
-	[验收测试 @X @X] as [test2]                          lasts 1 days and        starts at [test1]'s end
-	
-	[测试结束] as [test$]                                    happens at [test2]'s end
-	
-	-- 部署 --
-	
-	[封版] as [deploy$]                                       starts at [test$]'s end
-	[deploy$]                                                  lasts 1 days
-	
-	@endgantt
+project                                                   starts the 2099/01/01
 
+saturday                 are closed
+sunday                   are closed
+2099/01/01 to 2099/01/01  is closed /' 春节 '/
+2099/01/01                is opened /' 调休 '/
+2099/01/01                is opened /' 加班 '/
+2099/01/01                is opened /' 加班 '/
+
+
+--  需求 --
+
+[模型设计讨论 @X]                     lasts 1 day
+then [需求细化 @X] as [prod detail]   lasts 1 day
+
+[需求宣讲 @X ] as [prod$]                               lasts 1 day and         starts at 2099/01/01
+
+--  设计 --
+
+[架构设计] as [dad]                                        lasts 1 day and         starts at [prod$]'s end
+then [架构评审] as [dar]                                   lasts 1 day and         starts at 2099/01/01
+
+[系分设计 @项目成员] as [dsd]                             starts at [dar]'s end and ends at 2099/01/01
+then [系分评审] as [dsr]                                   lasts 1 day and         starts at 2099/01/01
+
+[任务拆分] as [design$]                                  happens at [dsr]'s end
+
+
+-- 后端开发 --
+
+[bd1] as [bd1]                                   starts at [design$]'s end and ends at 2099/01/01
+
+[后端开发完成] as [backend$]                             happens at [bd1]'s end
+[backend$]                                               happens at [bd1]'s end
+
+-- 前端开发 --
+
+[前端开发] as [fd0]                                       starts at [design$]'s end and ends at 2099/01/01
+
+[前端开发完成] as [frontend$]                            happens at 2099/01/01
+
+-- 联调 --
+
+[联调] as [it0]                                             ends at 2099/01/01
+[it0]                                                     starts at [backend$]'s end
+[it0]                                                     starts at [frontend$]'s end
+
+[联调结束] as [it$]                                      happens at [it0]'s end
+
+-- 测试 --
+
+[测试用例 @X] as [td]                                  starts at 2099/01/01 and   ends at 2099/01/01
+[测试用例评审 @X] as [tdr]                             starts at 2099/01/01 and  lasts 1 day
+
+[测试] as [test1]                                     starts at [it$]'s end and ends at 2099/01/01
+[验收测试 @X @X] as [test2]                          lasts 1 days and        starts at [test1]'s end
+
+[测试结束] as [test$]                                    happens at [test2]'s end
+
+-- 部署 --
+
+[封版] as [deploy$]                                       starts at [test$]'s end
+[deploy$]                                                  lasts 1 days
+
+@endgantt
+endsnippet
+
+
+
+snippet usecase "Use Case"
+@startuml
+
+left to right direction
+
+skinparam packageStyle rectangle
+skinparam usecase {
+    BackgroundColor Gold
+    BorderColor DarkSlateGray
+
+    BackgroundColor<< New >> Green
+    BorderColor<< New >> Green
+
+    BackgroundColor<< Modified >> SteelBlue
+    BorderColor<< Modified >> SteelBlue
+
+    ActorBorderColor black
+    ActorFontName Courier
+
+}
+
+
+actor User as user
+
+
+rectangle "Topic A" {
+    user -- ( A )
+    user -- ( B )
+
+    ( A ) << New >>
+    note right of ( A )
+        Foo Bar
+    end note
+
+    ( B ) << Modified >>
+    note right of ( B )
+        Foo Bar
+    end note
+
+}
+
+rectangle "Topic B" {
+    user -- ( C )
+}
+
+@enduml
+endsnippet
