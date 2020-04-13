@@ -121,3 +121,40 @@ rectangle "Topic B" {
 
 @enduml
 endsnippet
+
+snippet sequence "Sequence"
+@startuml
+
+skinparam ParticipantPadding 20
+skinparam BoxPadding 10
+
+/'EasyAlign */as/'/
+/'EasyAlign */\(->\)|\(-->\)/|\(-->\)|\(--x\)'/
+/'EasyAlign */:/'/
+
+title Foo Bar
+autonumber
+
+actor "A"        as a
+box "Box 1"
+    participant "B" as b
+end box
+box "Box 2"
+    participant "C" as c
+end box
+
+
+note over a1 : Foo Bar
+
+activate a
+
+a -> b   : request
+activate b
+/' do something '/
+deactivate b
+
+b --> a : response
+deactivate a
+
+@enduml
+endsnippet
