@@ -158,3 +158,27 @@ deactivate a
 
 @enduml
 endsnippet
+
+snippet ac "Activate"
+activate ${0:element}
+endsnippet
+
+snippet de "Deactivate"
+deactivate ${0:element}
+endsnippet
+
+snippet ad "Activate and Deactivate"
+activate ${0:${VISUAL}}
+    ${1}
+deactivate ${0:${VISUAL}}
+endsnippet
+
+snippet no "Note Over"
+note over ${1:element} : ${0}
+endsnippet
+
+snippet nob "Note Over Block"
+note over ${1:element}
+    ${0:${VISUAL}}
+end note
+endsnippet
