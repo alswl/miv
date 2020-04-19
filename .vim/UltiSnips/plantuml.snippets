@@ -173,12 +173,31 @@ activate ${0:${VISUAL}}
 deactivate ${0:${VISUAL}}
 endsnippet
 
-snippet no "Note Over"
+snippet note "Note Over"
 note over ${1:element} : ${0}
 endsnippet
 
-snippet nob "Note Over Block"
+snippet noteo "Note Over Block"
 note over ${1:element}
     ${0:${VISUAL}}
 end note
+endsnippet
+
+
+snippet alt "Alt Block"
+alt ${1:element}
+    ${0:${VISUAL}}
+end alt
+endsnippet
+
+snippet opt "Opt Block"
+opt ${1:element}
+    ${0:${VISUAL}}
+end opt
+endsnippet
+
+snippet loop "Loop Block"
+loop ${1:element}
+    ${0:${VISUAL}}
+end loop
 endsnippet

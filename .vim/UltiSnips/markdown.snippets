@@ -162,9 +162,20 @@ snippet table "Table"
 
 endsnippet
 
+snippet 10l "10 Empty Lines"
 
 
-snippet lines "Empty Lines"
+
+
+
+
+
+
+
+
+endsnippet
+
+snippet 30l "30 Empty Lines"
 
 
 
@@ -200,8 +211,7 @@ endsnippet
 
 snippet interview "Interview"
 
-## Interview ${0} - `#!/bin/bash
-date '+%Y-%m-%d'`
+## Interview ${1}
 
 优：
 
@@ -215,7 +225,20 @@ date '+%Y-%m-%d'`
 问题：
 
 - 最近几年从事的技术领域是什么
-  - ${1}
+  - ${0}
 
 
+endsnippet
+
+snippet del "del"
+<del>${0:${VISUAL}}</del>
+endsnippet
+
+snippet api "API Document"
+- Name：${1}
+- Path
+- Method: 
+- Params
+- Request Payload
+- Response
 endsnippet

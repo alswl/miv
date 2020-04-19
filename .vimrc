@@ -887,8 +887,9 @@ inoremap <S-Tab> <C-d>
 
 " pip install pandoc-plantuml
 if MySys() == "mac"
-	noremap <leader>M :silent exec "!open -a Macdown %"<CR>
-	" noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax='https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --filter=pandoc-plantuml -t html -o %.generated.html && open %.generated.html"<CR>
+	noremap <leader>N :!open -a Macdown %<CR> 
+	" noremap <leader>M :silent exec "!open -a Macdown %"<CR>
+	noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax='https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --filter=pandoc-plantuml -t html -o %.generated.html && open %.generated.html"<CR>
 else
 	if MySys() == "linux"
 		noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --filter=pandoc-plantuml -t html -o %.generated.html && xdg-open %.generated.html"<CR>
@@ -899,7 +900,6 @@ noremap <leader>U :silent exec "!plantuml -tsvg % && open . && open  %:r.svg"<CR
 noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-copy-markdown % 
 "noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-global % 
 noremap <leader>P :!$HOME/local/bin/image-from-path-to-assets-copy-markdown % 
-noremap <leader>N :!/usr/local/bin/macdown %<CR> 
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
