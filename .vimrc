@@ -156,7 +156,7 @@ Plug 'gg/python.vim'
 Plug 'lepture/vim-jinja'
 
 " Plugins
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 "Plug 'AutoClose--Alves'
 Plug 'vim-scripts/auto_mkdir'
 " required by XXX
@@ -453,6 +453,8 @@ autocmd FileType rst setlocal colorcolumn=120
 autocmd FileType htmldjango setlocal expandtab shiftwidth=2 foldmethod=indent
 autocmd FileType yaml setlocal expandtab shiftwidth=2 foldmethod=indent
 autocmd FileType plantuml setlocal expandtab
+" notice, here is more `\` for `\|` for autocmd
+autocmd FileType plantuml vnoremap = :EasyAlign */\(starts\)\\|\(ends\)\\|\(lasts\)\\|\(happens\)/<CR>
 autocmd FileType sh setlocal expandtab shiftwidth=2
 autocmd FileType dockerfile setlocal expandtab shiftwidth=2
 
