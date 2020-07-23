@@ -133,6 +133,7 @@ Plug 'vim-scripts/applescript.vim'
 "Plug 'pangloss/vim-javascript'
 "Plug 'othree/yajs.vim'
 "Plug 'mxw/vim-jsx'
+Plug 'skreuzer/vim-prometheus'
 
 
 " Color
@@ -413,6 +414,7 @@ set wrap "Wrap lines
 """""""""""""""""""""""""""""""""""""""
 
 autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile */tmp/edit-server-prometheus**.txt set filetype=prometheus
 autocmd BufRead,BufNewFile */tmp/edit-server-*.txt set filetype=markdown.gfm
 autocmd BufRead,BufNewFile *.pmd set filetype=markdown.pandoc
 autocmd BufRead,BufNewFile *.scala set filetype=scala
