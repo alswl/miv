@@ -891,8 +891,8 @@ inoremap <S-Tab> <C-d>
 
 " pip install pandoc-plantuml
 if MySys() == "mac"
-	" noremap <leader>N :!open -a Macdown %<CR> 
-	noremap <leader>N :!open -a Typora %<CR> 
+	noremap <leader>N :!open -a MacDown %<CR> 
+	" noremap <leader>N :!open -a Typora %<CR> 
 	" noremap <leader>M :silent exec "!open -a Macdown %"<CR>
 	noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax='https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --filter=pandoc-plantuml -t html -o %.generated.html && open %.generated.html"<CR>
 else
