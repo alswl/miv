@@ -417,6 +417,7 @@ set wrap "Wrap lines
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile */tmp/edit-server-prometheus**.txt set filetype=prometheus
 autocmd BufRead,BufNewFile */tmp/edit-server-*.txt set filetype=markdown.gfm
+autocmd BufRead,BufNewFile /private/tmp/zsh* set filetype=sh
 autocmd BufRead,BufNewFile *.pmd set filetype=markdown.pandoc
 autocmd BufRead,BufNewFile *.scala set filetype=scala
 autocmd BufRead,BufNewFile *.sc set filetype=scala
