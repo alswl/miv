@@ -45,7 +45,7 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 " 禁用Vi的兼容模式
 set nocompatible
 
-if has("gui_running")
+if has("gui_running") && ! has('gui_vimr')
 	"winpos 0 0
 	set guioptions -=m
 	set guioptions -=T
@@ -128,7 +128,6 @@ Plug 'chase/vim-ansible-yaml'
 Plug 'leafgarland/typescript-vim'
 Plug 'alswl/plantuml-syntax'
 " Plug 'spacewander/openresty-vim'
-Plug 'hexchain/vim-openresty'
 Plug 'vim-scripts/applescript.vim'
 "Plug 'pangloss/vim-javascript'
 "Plug 'othree/yajs.vim'
@@ -299,7 +298,7 @@ set novisualbell
 
 "set iskeyword=@,48-57,192-255
 
-if ! has("gui_running")
+if ! has("gui_running") && ! has('gui_vimr')
 	set mouse-=a
 endif
 
@@ -326,7 +325,7 @@ syntax enable "Enable syntax hl
 
 "gfn=consolas:h10
 "set gui options
-if has("gui_running")
+if has("gui_running") && ! has('gui_vimr')
 	" set linespace=10
 	" set "uifont=Monospace\ 11
 	" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h16
@@ -414,7 +413,7 @@ set wrap "Wrap lines
 "FileType setting
 """""""""""""""""""""""""""""""""""""""
 
-autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile *.md set filetype=markdown.pandoc
 autocmd BufRead,BufNewFile */tmp/edit-server-prometheus**.txt set filetype=prometheus
 autocmd BufRead,BufNewFile */tmp/edit-server-*.txt set filetype=markdown.gfm
 autocmd BufRead,BufNewFile /private/tmp/zsh* set filetype=sh
@@ -563,7 +562,7 @@ let g:NERDTreeShowBookmarks=1
 nnoremap <C-p> :GFiles<CR>
 
 " powerline
-if has("gui_running")
+if has("gui_running") && ! has('gui_vimr')
 	"python from powerline.vim import setup as powerline_setup
 	"python powerline_setup()
 	"python del powerline_setup
@@ -772,7 +771,7 @@ inoremap <C-Tab> <Esc>:tabnext<CR>
 inoremap <C-S-Tab> <Esc>:tabprev<CR>
 map <S-k> <Nop>
 
-if has("gui_running")
+if has("gui_running") && ! has('gui_vimr')
 	imap <D-1> <Esc>1gt
 	nmap <D-1> 1gt
 	imap <D-2> <Esc>2gt
@@ -793,7 +792,7 @@ if has("gui_running")
 	nmap <D-9> 9gt
 endif
 
-if has("gui_running")
+if has("gui_running") && ! has('gui_vimr')
 	imap <silent> <S-Insert> <MiddleMouse>
 	cmap <silent> <S-Insert> <MiddleMouse>
 endif
