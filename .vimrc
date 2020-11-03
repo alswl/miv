@@ -678,10 +678,11 @@ let g:tagbar_type_scala = {
 
 " markdown.pandoc
 let g:pandoc#syntax#conceal#use = 0
-let g:pandoc#syntax#conceal#blacklist = ["atx","codeblock_start","codeblock_delim"]
+" let g:pandoc#syntax#conceal#urls = 1
+" let g:pandoc#syntax#conceal#blacklist = ["atx","codeblock_start","codeblock_delim"]
 au syntax * hi link pandocAtxStart Type 
 au syntax * hi link pandocAtxHeader Type
-au syntax * hi Default cterm=none term=none
+" au syntax * hi Default cterm=none term=none
 au syntax * hi pandocEmphasis cterm=none term=none guifg=Orange ctermfg=Magenta 
 au syntax * hi pandocStrong cterm=bold term=bold guifg=Orange ctermfg=Magenta 
 
