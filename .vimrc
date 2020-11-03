@@ -335,6 +335,7 @@ if has("gui_running") && ! has('gui_vimr')
 	" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h13
 	if MySys() == "mac"
 		set guifont=Fira\ Code:h14
+		set guifontwide=Pingfang\ SC:h14
 		set printfont=Fira\ Code:h12
 	else
 		if MySys() == "linux"
@@ -675,7 +676,14 @@ let g:tagbar_type_scala = {
     \ ]
 \ }
 
+" markdown.pandoc
 let g:pandoc#syntax#conceal#use = 0
+let g:pandoc#syntax#conceal#blacklist = ["atx","codeblock_start","codeblock_delim"]
+au syntax * hi link pandocAtxStart Type 
+au syntax * hi link pandocAtxHeader Type
+au syntax * hi Default cterm=none term=none
+au syntax * hi pandocEmphasis cterm=none term=none guifg=Orange ctermfg=Magenta 
+au syntax * hi pandocStrong cterm=bold term=bold guifg=Orange ctermfg=Magenta 
 
 " vim-mark
 "nmap <silent> <leader>hl <Plug>MarkSet
