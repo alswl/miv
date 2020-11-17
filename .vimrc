@@ -208,7 +208,7 @@ Plug 'vim-scripts/xmledit'
 " Plug 'vim-scripts/DrawIt'
 " Outdated
 Plug 'alswl/DrawIt'
-" Plug 'gyim/vim-boxdraw' 
+" Plug 'gyim/vim-boxdraw'
 " NR, NW
 Plug 'chrisbra/NrrwRgn'
 " status bar
@@ -279,7 +279,7 @@ set smartcase
 set hlsearch "Highlight search things
 
 set incsearch "在输入部分查找模式时显示相应的匹配点。
-"set nolazyredraw "Don't redraw while executing macros 
+"set nolazyredraw "Don't redraw while executing macros
 
 set magic "Set magic on, for regular expressions
 
@@ -529,7 +529,7 @@ set tags=tags;
 
 "SuperTab
 "let g:SuperTabRetainCompletionType = 2
-"let g:SuperTabDefaultCompletionType = "<C-X><C-O>" 
+"let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
 "Neo
 "let g:neocomplcache_enable_at_startup=1
@@ -680,11 +680,12 @@ let g:tagbar_type_scala = {
 let g:pandoc#syntax#conceal#use = 0
 " let g:pandoc#syntax#conceal#urls = 1
 " let g:pandoc#syntax#conceal#blacklist = ["atx","codeblock_start","codeblock_delim"]
-au syntax * hi link pandocAtxStart Type 
+au syntax * hi link pandocAtxStart Type
 au syntax * hi link pandocAtxHeader Type
-" au syntax * hi Default cterm=none term=none
-au syntax * hi pandocEmphasis cterm=none term=none guifg=Orange ctermfg=Magenta 
-au syntax * hi pandocStrong cterm=bold term=bold guifg=Orange ctermfg=Magenta 
+au syntax * hi! link pandocEmphasis GruvboxGreen
+au syntax * hi! link pandocStrong GruvboxGreen
+au syntax * hi link pandocListItemBullet GruvboxBlue
+au syntax * hi link pandocUListItemBullet GruvboxBlue
 
 " vim-mark
 "nmap <silent> <leader>hl <Plug>MarkSet
@@ -883,8 +884,8 @@ inoremap <S-Tab> <C-d>
 
 " pip install pandoc-plantuml
 if MySys() == "mac"
-	noremap <leader>N :!open -a MacDown %<CR> 
-	" noremap <leader>N :!open -a Typora %<CR> 
+	noremap <leader>N :!open -a MacDown %<CR>
+	" noremap <leader>N :!open -a Typora %<CR>
 	" noremap <leader>M :silent exec "!open -a Macdown %"<CR>
 	noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax='https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --filter=pandoc-plantuml -t html -o %.generated.html && open %.generated.html"<CR>
 else
@@ -894,9 +895,9 @@ else
 endif
 noremap <leader>u :silent exec "!plantuml -tpng % && open %:r.png"<CR>
 noremap <leader>U :silent exec "!plantuml -tsvg % && open . && open  %:r.svg"<CR>
-noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-copy-markdown % 
-"noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-global % 
-noremap <leader>P :!$HOME/local/bin/image-from-path-to-assets-copy-markdown % 
+noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-copy-markdown %
+"noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-global %
+noremap <leader>P :!$HOME/local/bin/image-from-path-to-assets-copy-markdown %
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -936,7 +937,7 @@ let g:NERDCustomDelimiters = { 'conf': { 'left': '#','right': '' } }
 " User Defined function
 """""""""""""""""""""""""""""""""""""""
 
-" trim right of line 
+" trim right of line
 command! -nargs=0 TrimR :%s/\s\+$//g
 
 " diff Original file
