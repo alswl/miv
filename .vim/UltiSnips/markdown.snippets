@@ -30,17 +30,13 @@ date '+%Y-%m-%d'`
 
 需要讨论解决问题：
 
-- Question
 
 
 会议过程记录：
 
-- Topic
 
 
 遗留问题：
-
-- Question
 
 
 
@@ -162,31 +158,31 @@ snippet review "Review"
 ## Review - `#!/bin/bash
 date '+%Y-%m-%d'`
 
-感受：
+**感受**：
 
 
-正面：
+**正面**：
 
 
-负面：
+**负面**：
 
 
-问题:
+**问题**:
 
 
-思考：
+**思考**：
 
 
-行动：
+**行动**：
 
 
-记录：
+**记录**：
 
 
 endsnippet
 
 
-snippet inbox "Inbox"
+snippet ib "Inbox"
 
 ## Inbox - `#!/bin/bash
 date '+%Y-%m-%d'`
@@ -372,28 +368,68 @@ Hint：
 endsnippet
 
 
-snippet doc "Simple Document"
+snippet designdoc "Design Document"
+
+> Status: Draft (Draft -> In Review -> Approved/Abandon）
+>
+> Author(s): [Author Name, Co-Author Name]
+> 
+> Last updated: [Date]
+
+
+## Abstract
+
+> 必选，关于方案的简要描述
 
 
 ## Motivation
 
+> 必选，介绍方案的背景，解决的问题和困难
 
-### Goal
+
+### Goals
+
+> 可选，一般和 Non-Goal 成对出现，描述文档关注的目标
 
 
-## Searching and Background
+### Non-Goal
+
+> 可选，一般和 Goal 成对出现，描述文档不解决的目标
 
 
 ## Proposal
 
+> 必选，方案的详细描述
+
+
+### Use Cases
+
+> 必选，介绍用户场景下的行为 / 流程，使用案例等
+
+
+### API Changes
+
+> 可选，如果对系统带来改动，需要在这里集中描述
+
 
 ## Implementations
+
+> 必选，方案的详细实现描述，包括但不限于流程图，组件交互图，状态机，关键配置等。
+
+
+## Alternatives
+
+> 必选，有其他参考方案或实现都可以在这里列出，形成优缺点对比
 
 
 ## Tasks
 
+> 必选，描述完成本方案需要任务拆解、负责人和时间评估
+
 
 ## References
+
+> 必选，文档中引用的关联内容
 
 
 endsnippet
@@ -404,24 +440,35 @@ snippet oncall "On-call 处理"
 ## On-call `#!/bin/bash
 date '+%Y-%m-%d'`
 
-元数据：
+**元数据**：
 
 - 开始时间：
 - 结束时间：
-- 吹哨者：
+- 吹哨人：
 - 参与人：
 
 
-
-表现：
-
-
-
-排查过程：
+**表现** ：
 
 
 
-补充资料：
+**时间线**：
+
+
+
+**补充资料**：
+
+
+
+**根因**：
+
+
+
+**如何防范**：
+
+
+
+**Hint**：
 
 
 
