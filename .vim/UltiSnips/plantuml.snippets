@@ -81,18 +81,17 @@ left to right direction
 
 skinparam packageStyle rectangle
 skinparam usecase {
-    BackgroundColor Gold
-    BorderColor DarkSlateGray
+    BackgroundColor LightBlue
+    BorderColor LightBlue
 
-    BackgroundColor<< New >> Green
-    BorderColor<< New >> Green
+    BackgroundColor<< New >> GreenYellow
+    BorderColor<< New >> GreenYellow
 
-    BackgroundColor<< Modified >> SteelBlue
-    BorderColor<< Modified >> SteelBlue
+    BackgroundColor<< Modified >> Moccasin
+    BorderColor<< Modified >> Moccasin
 
     ActorBorderColor black
     ActorFontName Courier
-
 }
 
 
@@ -159,6 +158,53 @@ deactivate a
 @enduml
 endsnippet
 
+snippet er "ER Diagram"
+@startuml
+
+!define table(x) class x << (T,#ffebf3) >>
+
+hide methods
+hide stereotypes
+
+skinparam classFontColor #3b0018
+skinparam classArrowColor #ff0066
+skinparam classBorderColor #ff0066
+skinparam classBackgroundColor ##f6f4ee
+skinparam shadowing false
+
+package Common << Rectangle >> {
+
+    package Resource << Rectangle >> {
+
+        table(classroom) {
+            {field} +id: int(11)
+            {field} name: varchar(200)
+            {field} description: ?varchar(2000)
+        }
+
+        table(student) {
+            {field} +id: int(11)
+            {field} +classroom_id: int(11)
+            {field} name: varchar(200)
+            {field} description: ?varchar(1000)
+        }
+        student --> classroom : on classroom_id = id
+
+
+        note top of student
+            student can join in an classroom only
+        end note
+
+    }
+
+    table(grade) {
+        {field} +id: int(11)
+        {field} name: varchar(200)
+    }
+
+@enduml
+endsnippet
+
 snippet ac "Activate"
 activate ${0:element}
 endsnippet
@@ -184,6 +230,8 @@ end note
 endsnippet
 
 
+# snips >>>
+
 snippet alt "Alt Block"
 alt ${1:element}
     ${0:${VISUAL}}
@@ -201,3 +249,19 @@ loop ${1:element}
     ${0:${VISUAL}}
 end loop
 endsnippet
+
+
+snippet table "Table in ER"
+table(classroom) {
+    {field} +id: int(11)
+    {field} name: varchar(200)
+    {field} description: ?varchar(2000)
+}
+
+endsnippet
+
+snippet ref "Table Reference in ER"
+${1:table} --> ${2:table} : on ${3:}_id = ${4:id}
+endsnippet
+
+# snips <<<

@@ -2,9 +2,40 @@
 # `${0:${VISUAL}}`
 # endsnippet
 
+# Style >>>
 
 snippet more "more"
 <!-- more -->
+endsnippet
+
+
+snippet h1 "h1"
+# ${0}
+
+endsnippet
+
+
+snippet h2 "h2"
+## ${0}
+
+endsnippet
+
+
+snippet h3 "h3"
+### ${0}
+
+endsnippet
+
+
+snippet h4 "h4"
+#### ${0}
+
+endsnippet
+
+
+snippet h5 "h5"
+##### ${0}
+
 endsnippet
 
 
@@ -13,30 +44,114 @@ snippet del "del"
 endsnippet
 
 
+# Style <<<
+
+
+# Snips >>>
+
+snippet today "Today"
+`#!/bin/bash
+date '+%Y-%m-%d'`
+endsnippet
+
+snippet now "Now"
+`#!/bin/bash
+date '+%Y-%m-%d %H:%M:%S'`
+endsnippet
+
+snippet 30l "30 Empty Lines"
+${0}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+endsnippet
+
+
+snippet ib "Inbox"
+
+## Inbox - `#!/bin/bash
+date '+%Y-%m-%d'`
+
+endsnippet
+
+snippet table "Table"
+| A             | B             | C             | D             |
+| ---           | ---           | ---           | ---           |
+|               |               |               |               |
+|               |               |               |               |
+|               |               |               |               |
+|               |               |               |               |
+
+endsnippet
+
+snippet 10l "10 Empty Lines"
+${0}
+
+
+
+
+
+
+
+
+
+endsnippet
+
+# Snips >>>
+
+
+# Templates >>>
+
 snippet meeting "会议记录"
 
 
 ## ${0}会议记录 `#!/bin/bash
 date '+%Y-%m-%d'`
 
-参会人：
+**参会人**
 
 
 
-会议材料：
+**会议材料**
 
 
 
 
-需要讨论解决问题：
+**需要讨论解决问题**
 
 
 
-会议过程记录：
+**会议过程记录**
 
 
 
-遗留问题：
+**遗留问题**
 
 
 
@@ -74,49 +189,30 @@ snippet issue "问题"
 ## 问题： `#!/bin/bash
 date '+%Y-%m-%d'`
 
-参会人：
-
-- A
+**参会人**
 
 
-问题：
 
-A
-
-
-解决问题方向：
-
-- A
+**问题**
 
 
-解决方案：
 
-- A
-- B
+**解决问题方向**
 
 
-优劣分析：
 
-- A
-- B
+**解决方案**
 
 
-待办项：
 
-- A
-
-
-endsnippet
+**优劣分析**
 
 
-snippet today "Today"
-`#!/bin/bash
-date '+%Y-%m-%d'`
-endsnippet
 
-snippet now "Today"
-`#!/bin/bash
-date '+%Y-%m-%d %H:%M:%S'`
+**待办项**
+
+
+
 endsnippet
 
 snippet planning "计划"
@@ -161,85 +257,28 @@ date '+%Y-%m-%d'`
 **感受**：
 
 
+
 **正面**：
+
 
 
 **负面**：
 
 
+
 **问题**:
+
 
 
 **思考**：
 
 
+
 **行动**：
 
 
+
 **记录**：
-
-
-endsnippet
-
-
-snippet ib "Inbox"
-
-## Inbox - `#!/bin/bash
-date '+%Y-%m-%d'`
-
-endsnippet
-
-snippet table "Table"
-| A             | B             | C             | D             |
-| ---           | ---           | ---           | ---           |
-|               |               |               |               |
-|               |               |               |               |
-|               |               |               |               |
-|               |               |               |               |
-
-endsnippet
-
-snippet 10l "10 Empty Lines"
-${0}
-
-
-
-
-
-
-
-
-
-endsnippet
-
-snippet 30l "30 Empty Lines"
-${0}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -250,16 +289,16 @@ snippet interview "Interview"
 
 ## Interview ${1}
 
-优：
+**优**
 
 
-劣：
+**劣**
 
 
-小结：
+**小结**
 
 
-问题：
+**问题**
 
 - 最近几年从事的技术领域是什么
   - ${0}
@@ -278,11 +317,16 @@ endsnippet
 
 snippet reading "Reading Note"
 
-感想：
+**感想**
+
+> 做总体，写感受，要扑面而来不假思索的那种
 
 ${0}
 
-笔记：
+
+**笔记**
+
+> 固定格式，读作者心，问作者话
 
 - 链接
   - 
@@ -310,7 +354,9 @@ ${0}
   - 缺点
     - 
 
-摘抄：
+**摘抄**
+
+> 给自己 Hint 的那种文字
 
 
 endsnippet
@@ -342,23 +388,23 @@ date '+%Y-%m-%d'`
 
 
 
-表现：
+**表现**
 
 
 
-时间线：
+**时间线**
 
 
 
-补充资料：
+**补充资料**
 
 
 
-根因：
+**根因**
 
 
 
-如何防范：
+**如何防范**
 
 
 
@@ -397,6 +443,12 @@ snippet designdoc "Design Document"
 > 可选，一般和 Goal 成对出现，描述文档不解决的目标
 
 
+
+### Definitions
+
+> 可选，涉及本案的概念申明
+
+
 ## Proposal
 
 > 必选，方案的详细描述
@@ -407,14 +459,14 @@ snippet designdoc "Design Document"
 > 必选，介绍用户场景下的行为 / 流程，使用案例等
 
 
-### API Changes
-
-> 可选，如果对系统带来改动，需要在这里集中描述
-
-
 ## Implementations
 
 > 必选，方案的详细实现描述，包括但不限于流程图，组件交互图，状态机，关键配置等。
+
+
+### API Changes
+
+> 可选，如果对系统带来改动，需要在这里集中描述
 
 
 ## Alternatives
@@ -507,3 +559,5 @@ snippet playbook "Playbook"
 
 
 endsnippet
+
+# Templates >>>

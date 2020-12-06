@@ -242,6 +242,7 @@ Plug 'honza/vim-snippets'
 " required by FilePathConvert
 Plug 'inkarkat/vim-TextTransform'
 Plug 'vim-scripts/FilePathConvert'
+Plug 'mileszs/ack.vim'
 
 
 " for vim-pyref
@@ -931,6 +932,9 @@ endif
 " nerdcommenter
 let g:NERDSpaceDelims = 1
 let g:NERDCustomDelimiters = { 'conf': { 'left': '#','right': '' } }
+
+" ack.vim
+let g:ackprg = 'ag --vimgrep'
 
 
 """""""""""""""""""""""""""""""""""""""
