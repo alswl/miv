@@ -8,3 +8,4 @@
 .vim/so/
 *.swp
 .vim/plugged
+.vim/spell

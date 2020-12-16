@@ -226,7 +226,7 @@ Plug 'vim-scripts/Rename'
 Plug '907th/vim-auto-save'
 " Plug 'nelstrom/vim-markdown-folding'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+" Plug 'plasticboy/vim-markdown'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'rhysd/vim-gfm-syntax'
 Plug 'dhruvasagar/vim-table-mode'
@@ -260,6 +260,8 @@ call plug#end()
 "set the menu & the message to English
 set langmenu=en_US
 let $LANG="en_US.UTF-8"
+" set spell spelllang=en_us,cjk
+set nospell
 
 set ruler "右下角显示当前光标
 
@@ -369,6 +371,11 @@ set background=dark
 " 设定行首tab为灰色
 highlight LeaderTab guifg=#666666
 
+" Hi links
+au syntax * hi link markdownBold GruvboxRed
+au syntax * hi link markdownOrderedListMarker GruvboxBlue
+au syntax * hi link markdownListMarker GruvboxBlue
+au syntax * hi link markdownCode GruvboxGray
 
 """""""""""""""""""""""""""""""""""""""
 "Files, backups and undo
@@ -415,7 +422,7 @@ set wrap "Wrap lines
 "FileType setting
 """""""""""""""""""""""""""""""""""""""
 
-autocmd BufRead,BufNewFile *.md set filetype=markdown.pandoc
+autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile */tmp/edit-server-prometheus**.txt set filetype=prometheus
 autocmd BufRead,BufNewFile */tmp/edit-server-*.txt set filetype=markdown.gfm
 autocmd BufRead,BufNewFile /private/tmp/zsh* set filetype=sh
@@ -516,7 +523,8 @@ set formatoptions+=mB
 "endtry
 set linebreak "智能换行
 "set tw=500 "自动换行 超过n列
-
+" text hidden
+set conceallevel=0
 
 """""""""""""""""""""""""""""""""""""""
 " Plugin
@@ -914,12 +922,11 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-" latex
-let g:tex_flavor='latex'
-let g:vimtex_view_method='zathura'
-let g:vimtex_quickfix_mode=0
-set conceallevel=1
-let g:tex_conceal='abdmg'
+" markdown latex
+" let g:tex_flavor='latex'
+" let g:vimtex_view_method='zathura'
+" let g:vimtex_quickfix_mode=0
+" let g:tex_conceal='abdmg'
 
 let g:ruby_host_prog='~/.rvm/gems/ruby-2.4.0/bin/neovim-ruby-host'
 
