@@ -375,7 +375,9 @@ highlight LeaderTab guifg=#666666
 au syntax * hi link markdownBold GruvboxRed
 au syntax * hi link markdownOrderedListMarker GruvboxBlue
 au syntax * hi link markdownListMarker GruvboxBlue
-au syntax * hi link markdownCode GruvboxGray
+au syntax * hi link markdownCode GruvboxAqua
+au syntax * hi link markdownCodeDelimator GruvboxAqua
+au syntax * hi link markdownBlockquote GruvboxYellowSign
 
 """""""""""""""""""""""""""""""""""""""
 "Files, backups and undo
