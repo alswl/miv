@@ -121,6 +121,7 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/django.vim'
 " Plug 'vim-scripts/nginx.vim'
 Plug 'saltstack/salt-vim'
+" Install gopls, `go get golang.org/x/tools/gopls@latest`
 Plug 'fatih/vim-go'
 Plug 'vim-scripts/haproxy'
 Plug 'mustache/vim-mustache-handlebars'
