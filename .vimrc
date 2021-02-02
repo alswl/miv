@@ -242,6 +242,7 @@ Plug 'honza/vim-snippets'
 "Plug 'jiangmiao/auto-pairs'
 " required by FilePathConvert
 Plug 'inkarkat/vim-TextTransform'
+" shortcut \sf
 Plug 'vim-scripts/FilePathConvert'
 Plug 'mileszs/ack.vim'
 
@@ -589,7 +590,7 @@ let g:auto_save_silent = 1  " do not display the auto-save notification
 let g:auto_save_presave_hook = 'call AbortIfNotFileType()'
 
 function! AbortIfNotFileType()
-  if &filetype != 'markdown' && &filetype != 'markdown.gfm' && &filetype != 'markdown.pandoc'&& &filetype != 'plantuml'
+  if &filetype != 'markdown' && &filetype != 'markdown.gfm' && &filetype != 'markdown.pandoc' && &filetype != 'plantuml' && &filetype != 'yaml'
     let g:auto_save_abort = 1
   endif
 endfunction
