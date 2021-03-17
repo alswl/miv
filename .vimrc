@@ -339,7 +339,7 @@ syntax enable "Enable syntax hl
 
 "gfn=consolas:h10
 "set gui options
-if has("gui_running") && ! has('gui_vimr')
+if (has("gui_running") || exists(":GonvimVersion")) && ! has('gui_vimr')
 	" set linespace=10
 	" set "uifont=Monospace\ 11
 	" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h16
