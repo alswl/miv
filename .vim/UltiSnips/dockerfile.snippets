@@ -16,7 +16,7 @@ snippet go "go"
 FROM golang:1.16.2-buster as builder
 # build-env contains all dependencies
 
-WORKDIR xxx
+WORKDIR app
 
 ENV GOPATH /go
 ENV GOPROXY=""
@@ -24,7 +24,7 @@ ENV GOPRIVATE=""
 ENV GOFLAGS=""
 
 ARG CMD_DIR=./cmd
-ARG ROOT=XXX
+ARG ROOT=/path
 ARG VERSION=
 ARG COMMIT=
 
@@ -37,15 +37,16 @@ RUN go build -i -v -o /tmp/notifier                           \
 	-ldflags "-s -w -X ${ROOT}/pkg/version.Version=${VERSION}  \
 	-X ${ROOT}/pkg/version.Commit=${COMMIT}                    \
 	-X ${ROOT}/pkg/version.Package=${ROOT}"                    \
-	${CMD_DIR}/XXX;
+	${CMD_DIR}/app;
 
-FROM XXX
+FROM alpine:3.7
+RUN apk update && apk add --no-cache bash make curl git util-linux util-linux-doc binutils findutils readline
 
 WORKDIR /
 
-COPY --from=builder /tmp/XXX /XXX
+COPY --from=builder /tmp/app /app
 
-ENTRYPOINT ["/XXX"]
+ENTRYPOINT ["/app"]
 
 endsnippet
 	
