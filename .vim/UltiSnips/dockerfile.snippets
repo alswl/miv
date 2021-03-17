@@ -1,0 +1,51 @@
+snippet alpine "alpine"
+FROM alpine:3.7
+
+RUN apk update && apk add --no-cache bash make curl git util-linux util-linux-doc binutils findutils readline
+
+endsnippet
+
+snippet debian "debian"
+FROM debian:10.8-slim
+
+RUN apt update && apt install bash make curl git binutils findutils readline && apt clean
+
+endsnippet
+
+snippet go "go"
+FROM golang:1.16.2-buster as builder
+# build-env contains all dependencies
+
+WORKDIR xxx
+
+ENV GOPATH /go
+ENV GOPROXY=""
+ENV GOPRIVATE=""
+ENV GOFLAGS=""
+
+ARG CMD_DIR=./cmd
+ARG ROOT=XXX
+ARG VERSION=
+ARG COMMIT=
+
+RUN export CGO_ENABLED=0 GOOS=linux GOARCH=amd64
+
+# all go mod id downloaded in build-env image
+COPY . .
+
+RUN go build -i -v -o /tmp/notifier                           \
+	-ldflags "-s -w -X ${ROOT}/pkg/version.Version=${VERSION}  \
+	-X ${ROOT}/pkg/version.Commit=${COMMIT}                    \
+	-X ${ROOT}/pkg/version.Package=${ROOT}"                    \
+	${CMD_DIR}/XXX;
+
+FROM XXX
+
+WORKDIR /
+
+COPY --from=builder /tmp/XXX /XXX
+
+ENTRYPOINT ["/XXX"]
+
+endsnippet
+	
