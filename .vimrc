@@ -20,11 +20,19 @@ endfunction
 " vnoremap <C-C> "+y
 
 " CTRL-V and SHIFT-Insert are Paste
-if MySys() == "linux" || has("xxx")
+if MySys() == "linux"
 	vmap <C-c> "+yi
 	vmap <C-x> "+c
 	vmap <C-v> c<ESC>"+p
 	imap <C-v> <ESC>"+pa
+	noremap <C-v> "+p
+endif
+if exists(":GonvimVersion")
+	vmap <D-c> "+yi
+	vmap <D-x> "+c
+	vmap <D-v> c<ESC>"+p
+	imap <D-v> <ESC>"+pa
+	noremap <D-v> "+p
 endif
 
 
@@ -975,9 +983,9 @@ if !exists(":DiffOrig")
           \ | wincmd p | diffthis
 endif
 
-if !exists(":MarkdownListBulletOn")
-	command MarkdownListBulletOff setlocal comments=b:>,b:*,b:+,b:-
-endif
-if !exists(":MarkdownListBulletOff")
-	command MarkdownListBulletOn setlocal comments=fb:>,fb:*,fb:+,fb:-
-endif
+" if !exists(":MarkdownListBulletOn")
+	" command MarkdownListBulletOff setlocal comments=b:>,b:*,b:+,b:-
+" endif
+" if !exists(":MarkdownListBulletOff")
+	" command MarkdownListBulletOn setlocal comments=fb:>,fb:*,fb:+,fb:-
+" endif
