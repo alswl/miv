@@ -119,7 +119,7 @@ Plug 'tpope/vim-haml'
 Plug 'kchmck/vim-coffee-script'
 Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/django.vim'
-" Plug 'vim-scripts/nginx.vim'
+Plug 'chr4/nginx.vim'
 Plug 'saltstack/salt-vim'
 " Install gopls, `go get golang.org/x/tools/gopls@latest`
 Plug 'fatih/vim-go'
@@ -531,6 +531,172 @@ set linebreak "智能换行
 set conceallevel=0
 
 """""""""""""""""""""""""""""""""""""""
+" Map
+"""""""""""""""""""""""""""""""""""""""
+map <F1> :NERDTreeToggle<cr>
+imap <F1> <Esc>:NERDTreeToggle<cr>
+"map <F2> :Tlist<cr>
+map <F2> :TagbarToggle<cr>
+imap <F2> <Esc>:TagbarToggle<cr>
+"代码折叠快捷方式
+map <F3> zR
+imap <F3><Esc> zR
+map <F4> zM
+imap <F4> <Esc>zM
+
+" 标签设置
+map <F7> gT
+imap <F7> <Esc>gT
+map <F8> gt
+imap <F8> <Esc>gt
+map <C-h> gT
+map <C-l> gt
+imap <F7> <Esc>gT
+imap <F8> <Esc>gt
+noremap <C-Tab> :tabnext<CR>
+noremap <C-S-Tab> :tabprev<CR>
+inoremap <C-Tab> <Esc>:tabnext<CR>
+inoremap <C-S-Tab> <Esc>:tabprev<CR>
+map <S-k> <Nop>
+
+if has("gui_running") && ! has('gui_vimr')
+	imap <D-1> <Esc>1gt
+	nmap <D-1> 1gt
+	imap <D-2> <Esc>2gt
+	nmap <D-2> 2gt
+	imap <D-3> <Esc>3gt
+	nmap <D-3> 3gt
+	imap <D-4> <Esc>4gt
+	nmap <D-4> 4gt
+	imap <D-5> <Esc>5gt
+	nmap <D-5> 5gt
+	imap <D-6> <Esc>6gt
+	nmap <D-6> 6gt
+	imap <D-7> <Esc>7gt
+	nmap <D-7> 7gt
+	imap <D-8> <Esc>8gt
+	nmap <D-8> 8gt
+	imap <D-9> <Esc>9gt
+	nmap <D-9> 9gt
+endif
+
+if has("gui_running") && ! has('gui_vimr')
+	imap <silent> <S-Insert> <MiddleMouse>
+	cmap <silent> <S-Insert> <MiddleMouse>
+endif
+
+" 用空格键来开关折叠
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+
+map Q :q<CR>
+
+vnoremap <leader> v :NRV<CR>
+
+" 用 * / # 匹配选中
+vnoremap  *  y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
+vnoremap  #  y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
+
+" html缩进
+let g:html_indent_inctags = "p,li,dt,dd"
+
+nnoremap <S-Tab> <<
+inoremap <S-Tab> <C-D>
+
+" 模拟 Emacs 键绑定
+" Move
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+" inoremap <C-p> <Up>
+" inoremap <C-n> <Down>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+cmap <C-a> <Home>
+cmap <C-e> <End>
+cmap <C-p> <Up>
+cmap <C-n> <Down>
+cmap <C-b> <Left>
+cmap <C-f> <Right>
+
+inoremap <M-b> <C-o>b
+inoremap <M-f> <C-o>w
+" Rubout word / line and enter insert mode
+" use <Esc><Right> instead of <C-o>
+inoremap <C-w> <Esc>dbcl
+" delete
+inoremap <C-u> <Esc>d0cl
+inoremap <C-k> <Esc><Right>C
+inoremap <C-d> <Del>
+inoremap <M-d> <C-o>de
+
+"let g:pep8_map='<leader>8' " PEP8 Check
+map <leader>f :NERDTreeToggle<CR>
+
+" diff
+map <leader>d /^[=<>]\{7\}<CR>
+
+" noremap <silent> <leader>b :BufExplorer<CR>
+noremap <silent> <leader>s :BufExplorerVerticalSplit<CR>
+noremap <silent> <leader>h :BufExplorerHorizontalSplit<CR>
+
+imap <C-\> <Esc>:split<CR>:set nocursorbind noscrollbind<CR>:diffoff<CR>
+nmap <C-\> :split<CR>:set nocursorbind noscrollbind<CR>:diffoff<CR>
+
+nmap <silent> <leader>t :tabe %<CR>
+nmap <silent> <leader>\ :split<CR>:set nocursorbind noscrollbind<CR>:diffoff<CR><C-]>
+
+inoremap <silent> <leader>p "*p<CR>
+noremap <silent> <leader>p "*p<CR>
+
+inoremap <silent> <leader>q :q<CR>
+noremap <silent> <leader>q :q<CR>
+
+inoremap <silent> <leader>w :w<CR>
+noremap <silent> <leader>w :w<CR>
+
+nnoremap <S-Tab> <<
+inoremap <S-Tab> <C-d>
+
+" delete without yanking
+" nnoremap <leader>d "_d
+" vnoremap <leader>d "_d
+
+" pip install pandoc-plantuml
+if MySys() == "mac"
+	noremap <leader>N :!open -a MacDown %<CR>
+	" noremap <leader>N :!open -a Typora %<CR>
+	" noremap <leader>M :silent exec "!open -a Macdown %"<CR>
+	noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax='https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --filter=pandoc-plantuml -t html -o %.generated.html && open %.generated.html"<CR>
+else
+	if MySys() == "linux"
+		noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --filter=pandoc-plantuml -t html -o %.generated.html && xdg-open %.generated.html"<CR>
+	endif
+endif
+noremap <leader>u :silent exec "!plantuml -tpng % && open %:r.png"<CR>
+noremap <leader>U :silent exec "!plantuml -tsvg % && open . && open  %:r.svg"<CR>
+noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-copy-markdown %
+"noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-global %
+noremap <leader>P :!$HOME/local/bin/image-from-path-to-assets-copy-markdown %
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+if has('macunix')
+	function! OpenURLUnderCursor()
+		let s:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;()]*')
+		let s:uri = shellescape(s:uri, 1)
+		if s:uri != ''
+			silent exec "!open '".s:uri."'"
+			:redraw!
+		endif
+	endfunction
+	nnoremap gx :call OpenURLUnderCursor()<CR>
+endif
+
+
+"""""""""""""""""""""""""""""""""""""""
 " Plugin
 """""""""""""""""""""""""""""""""""""""
 set tags=tags;
@@ -763,160 +929,6 @@ let g:vim_markdown_new_list_item_indent = 2
 " matchparen
 let g:matchparen_timeout = 2
 let g:matchparen_insert_timeout = 2
-
-
-"""""""""""""""""""""""""""""""""""""""
-" Map
-"""""""""""""""""""""""""""""""""""""""
-map <F1> :NERDTreeToggle<cr>
-imap <F1> <Esc>:NERDTreeToggle<cr>
-"map <F2> :Tlist<cr>
-map <F2> :TagbarToggle<cr>
-imap <F2> <Esc>:TagbarToggle<cr>
-"代码折叠快捷方式
-map <F3> zR
-imap <F3><Esc> zR
-map <F4> zM
-imap <F4> <Esc>zM
-
-" 标签设置
-map <F7> gT
-imap <F7> <Esc>gT
-map <F8> gt
-imap <F8> <Esc>gt
-map <C-h> gT
-map <C-l> gt
-imap <F7> <Esc>gT
-imap <F8> <Esc>gt
-noremap <C-Tab> :tabnext<CR>
-noremap <C-S-Tab> :tabprev<CR>
-inoremap <C-Tab> <Esc>:tabnext<CR>
-inoremap <C-S-Tab> <Esc>:tabprev<CR>
-map <S-k> <Nop>
-
-if has("gui_running") && ! has('gui_vimr')
-	imap <D-1> <Esc>1gt
-	nmap <D-1> 1gt
-	imap <D-2> <Esc>2gt
-	nmap <D-2> 2gt
-	imap <D-3> <Esc>3gt
-	nmap <D-3> 3gt
-	imap <D-4> <Esc>4gt
-	nmap <D-4> 4gt
-	imap <D-5> <Esc>5gt
-	nmap <D-5> 5gt
-	imap <D-6> <Esc>6gt
-	nmap <D-6> 6gt
-	imap <D-7> <Esc>7gt
-	nmap <D-7> 7gt
-	imap <D-8> <Esc>8gt
-	nmap <D-8> 8gt
-	imap <D-9> <Esc>9gt
-	nmap <D-9> 9gt
-endif
-
-if has("gui_running") && ! has('gui_vimr')
-	imap <silent> <S-Insert> <MiddleMouse>
-	cmap <silent> <S-Insert> <MiddleMouse>
-endif
-
-" 用空格键来开关折叠
-nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-
-map Q :q<CR>
-
-vnoremap <leader> v :NRV<CR>
-
-" 用 * / # 匹配选中
-vnoremap  *  y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
-vnoremap  #  y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
-
-" html缩进
-let g:html_indent_inctags = "p,li,dt,dd"
-
-nnoremap <S-Tab> <<
-inoremap <S-Tab> <C-D>
-
-" 模拟 Emacs 键绑定
-" Move
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
-" inoremap <C-p> <Up>
-" inoremap <C-n> <Down>
-inoremap <C-b> <Left>
-inoremap <C-f> <Right>
-cmap <C-a> <Home>
-cmap <C-e> <End>
-cmap <C-p> <Up>
-cmap <C-n> <Down>
-cmap <C-b> <Left>
-cmap <C-f> <Right>
-
-inoremap <M-b> <C-o>b
-inoremap <M-f> <C-o>w
-" Rubout word / line and enter insert mode
-" use <Esc><Right> instead of <C-o>
-inoremap <C-w> <Esc>dbcl
-" delete
-inoremap <C-u> <Esc>d0cl
-inoremap <C-k> <Esc><Right>C
-inoremap <C-d> <Del>
-inoremap <M-d> <C-o>de
-
-"let g:pep8_map='<leader>8' " PEP8 Check
-map <leader>f :NERDTreeToggle<CR>
-
-" diff
-map <leader>d /^[=<>]\{7\}<CR>
-
-" noremap <silent> <leader>b :BufExplorer<CR>
-noremap <silent> <leader>s :BufExplorerVerticalSplit<CR>
-noremap <silent> <leader>h :BufExplorerHorizontalSplit<CR>
-
-imap <C-\> <Esc>:split<CR>:set nocursorbind noscrollbind<CR>:diffoff<CR>
-nmap <C-\> :split<CR>:set nocursorbind noscrollbind<CR>:diffoff<CR>
-
-nmap <silent> <leader>t :tabe %<CR>
-nmap <silent> <leader>\ :split<CR>:set nocursorbind noscrollbind<CR>:diffoff<CR><C-]>
-
-inoremap <silent> <leader>p "*p<CR>
-noremap <silent> <leader>p "*p<CR>
-
-inoremap <silent> <leader>q :q<CR>
-noremap <silent> <leader>q :q<CR>
-
-inoremap <silent> <leader>w :w<CR>
-noremap <silent> <leader>w :w<CR>
-
-nnoremap <S-Tab> <<
-inoremap <S-Tab> <C-d>
-
-" delete without yanking
-" nnoremap <leader>d "_d
-" vnoremap <leader>d "_d
-
-" pip install pandoc-plantuml
-if MySys() == "mac"
-	noremap <leader>N :!open -a MacDown %<CR>
-	" noremap <leader>N :!open -a Typora %<CR>
-	" noremap <leader>M :silent exec "!open -a Macdown %"<CR>
-	noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax='https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --filter=pandoc-plantuml -t html -o %.generated.html && open %.generated.html"<CR>
-else
-	if MySys() == "linux"
-		noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --filter=pandoc-plantuml -t html -o %.generated.html && xdg-open %.generated.html"<CR>
-	endif
-endif
-noremap <leader>u :silent exec "!plantuml -tpng % && open %:r.png"<CR>
-noremap <leader>U :silent exec "!plantuml -tsvg % && open . && open  %:r.svg"<CR>
-noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-copy-markdown %
-"noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-global %
-noremap <leader>P :!$HOME/local/bin/image-from-path-to-assets-copy-markdown %
-
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
