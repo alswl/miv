@@ -17,10 +17,10 @@ endfunction
 "vnoremap <C-X> "+x
 
 " CTRL-C and CTRL-Insert are Copy
-"vnoremap <C-C> "+y
+" vnoremap <C-C> "+y
 
 " CTRL-V and SHIFT-Insert are Paste
-if MySys() == "linux"
+if MySys() == "linux" || has("xxx")
 	vmap <C-c> "+yi
 	vmap <C-x> "+c
 	vmap <C-v> c<ESC>"+p
@@ -81,8 +81,8 @@ autocmd BufEnter * silent! lcd %:p:h
 
 "auto save zz info
 if ! has("gui_running")
-	autocmd! BufWinLeave *.* silent mkview
-	autocmd! BufWinEnter *.* silent loadview
+	"autocmd! BufWinLeave *.* mkview 1
+	"autocmd! BufWinEnter *.* silent loadview 1
 endif
 
 set viminfo+=!
@@ -165,6 +165,7 @@ Plug 'vim-scripts/cecutil'
 " encode detect
 Plug 'mbbill/fencview'
 " Plug 'vim-scripts/FuzzyFinder'
+Plug 'akiyosi/gonvim-fuzzy'
 Plug 'vim-scripts/jsbeautify'
 " required by XXX
 Plug 'vim-scripts/L9'
@@ -739,7 +740,8 @@ let g:NERDTreeChDirMode = 2
 let g:NERDTreeShowBookmarks=1
 
 " fzf.vim
-nnoremap <C-p> :GFiles<CR>
+" nnoremap <C-p> :GFiles<CR>
+nnoremap <C-p> :FZF<CR>
 
 " powerline
 if has("gui_running") && ! has('gui_vimr')
