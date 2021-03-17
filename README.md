@@ -37,5 +37,21 @@ vim +PlugInstall +qa
 - into view mode, `ga:` align block with `:`, right margin
 - `\sf` File path convert
 
+## Install with nvim
+
+```
+mkdir -p ~/.config/nvim
+cat <<EOF > ~/.config/nvim/init.vim
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+source ~/.vimrc
+EOF
+ln -s ~/.vim/UltiSnips ~/.config/nvim/
+```
+
+
+
 [alswl/.oOo.@Github]: https://github.com/alswl/.oOo.
+
+
 
