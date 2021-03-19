@@ -1,7 +1,6 @@
 """""""""""""""""""""""""""""""""""""""
 "Utils
 """""""""""""""""""""""""""""""""""""""
-
 function! MySys()
 	if has("win32")
 		return "windows"
@@ -21,14 +20,14 @@ endfunction
 
 " CTRL-V and SHIFT-Insert are Paste
 if MySys() == "linux"
-	vmap <C-c> "+yi
+	vmap <C-c> "+y
 	vmap <C-x> "+c
 	vmap <C-v> c<ESC>"+p
 	imap <C-v> <ESC>"+pa
 	noremap <C-v> "+p
 endif
 if exists(":GonvimVersion")
-	vmap <D-c> "+yi
+	vmap <D-c> "+y
 	vmap <D-x> "+c
 	vmap <D-v> c<ESC>"+p
 	imap <D-v> <ESC>"+pa
@@ -339,7 +338,8 @@ syntax enable "Enable syntax hl
 
 "gfn=consolas:h10
 "set gui options
-if (has("gui_running") || exists(":GonvimVersion")) && ! has('gui_vimr')
+" Gonvim please setting in ~/.config/goneovim/settings.toml
+if (has("gui_running")  && ! has('gui_vimr'))
 	" set linespace=10
 	" set "uifont=Monospace\ 11
 	" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h16
@@ -454,6 +454,7 @@ autocmd BufRead,BufNewFile *.puml set filetype=plantuml
 autocmd BufRead,BufNewFile *.cc set filetype=cpp
 autocmd BufRead,BufNewFile *.zshrc set filetype=sh
 autocmd BufRead,BufNewFile *.omnijs set filetype=javascript
+autocmd BufRead,BufNewFile OWNERS set filetype=yaml
 
 autocmd FileType python setlocal expandtab colorcolumn=80 textwidth=0 diffopt=vertical " fo+=Mm
 "Map F9 to Run Python Script
@@ -644,8 +645,8 @@ map <leader>f :NERDTreeToggle<CR>
 map <leader>d /^[=<>]\{7\}<CR>
 
 " noremap <silent> <leader>b :BufExplorer<CR>
-noremap <silent> <leader>s :BufExplorerVerticalSplit<CR>
-noremap <silent> <leader>h :BufExplorerHorizontalSplit<CR>
+" noremap <silent> <leader>s :BufExplorerVerticalSplit<CR>
+noremap <silent> <leader>b :BufExplorerHorizontalSplit<CR>
 
 imap <C-\> <Esc>:split<CR>:set nocursorbind noscrollbind<CR>:diffoff<CR>
 nmap <C-\> :split<CR>:set nocursorbind noscrollbind<CR>:diffoff<CR>
@@ -665,26 +666,33 @@ noremap <silent> <leader>w :w<CR>
 nnoremap <S-Tab> <<
 inoremap <S-Tab> <C-d>
 
+
 " delete without yanking
 " nnoremap <leader>d "_d
 " vnoremap <leader>d "_d
 
 " pip install pandoc-plantuml
 if MySys() == "mac"
+	" markdown preview
 	noremap <leader>N :!open -a MacDown %<CR>
 	" noremap <leader>N :!open -a Typora %<CR>
 	" noremap <leader>M :silent exec "!open -a Macdown %"<CR>
+	" preview
+	" noremap <leader>M :GonvimMarkdown<CR>
 	noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax='https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --filter=pandoc-plantuml -t html -o %.generated.html && open %.generated.html"<CR>
+
+	" markdown image processing
+	noremap <leader>u :silent exec "!plantuml -tpng % && open %:r.png"<CR>
+	noremap <leader>U :silent exec "!plantuml -tsvg % && open . && open  %:r.svg"<CR>
+	noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-copy-markdown %
+	"noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-global %
+	noremap <leader>P :!$HOME/local/bin/image-from-path-to-assets-copy-markdown %
 else
 	if MySys() == "linux"
-		noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --filter=pandoc-plantuml -t html -o %.generated.html && xdg-open %.generated.html"<CR>
+		" markdown preview
+		noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax='https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --filter=pandoc-plantuml -t html -o %.generated.html && xdg-open %.generated.html"<CR>
 	endif
 endif
-noremap <leader>u :silent exec "!plantuml -tpng % && open %:r.png"<CR>
-noremap <leader>U :silent exec "!plantuml -tsvg % && open . && open  %:r.svg"<CR>
-noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-copy-markdown %
-"noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-global %
-noremap <leader>P :!$HOME/local/bin/image-from-path-to-assets-copy-markdown %
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -928,13 +936,13 @@ let g:autofmt_allow_over_tw = 0
 "endfunction
 
 " plasticboy/vim-markdown
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_new_list_item_indent = 4
-let g:vim_markdown_math = 1
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_conceal_code_blocks = 0
-let g:vim_markdown_new_list_item_indent = 2
+" let g:vim_markdown_folding_disabled = 1
+" let g:vim_markdown_new_list_item_indent = 4
+" let g:vim_markdown_math = 1
+" let g:vim_markdown_conceal = 0
+" let g:vim_markdown_conceal = 0
+" let g:vim_markdown_conceal_code_blocks = 0
+" let g:vim_markdown_new_list_item_indent = 2
 
 " matchparen
 let g:matchparen_timeout = 2
