@@ -253,6 +253,7 @@ Plug 'inkarkat/vim-TextTransform'
 " shortcut \sf
 Plug 'vim-scripts/FilePathConvert'
 Plug 'mileszs/ack.vim'
+Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
 
 
 " for vim-pyref
