@@ -964,7 +964,12 @@ let g:UltiSnipsEditSplit="vertical"
 " let g:vimtex_quickfix_mode=0
 " let g:tex_conceal='abdmg'
 
-let g:ruby_host_prog='~/.rvm/gems/ruby-2.4.0/bin/neovim-ruby-host'
+" neovim need prog
+let g:python_host_prog='/usr/local/bin/python2'
+let g:python3_host_prog='/usr/local/bin/python3'
+" disable neovim ruby
+let g:loaded_ruby_provider = 0
+" let g:ruby_host_prog='~/.rvm/gems/ruby-2.4.0/bin/neovim-ruby-host'
 
 " fcitx
 " disable on MacVim
