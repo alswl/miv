@@ -640,7 +640,6 @@ inoremap <C-k> <Esc><Right>C
 inoremap <C-d> <Del>
 inoremap <M-d> <C-o>de
 
-"let g:pep8_map='<leader>8' " PEP8 Check
 map <leader>f :NERDTreeToggle<CR>
 
 " diff
@@ -648,7 +647,8 @@ map <leader>d /^[=<>]\{7\}<CR>
 
 " noremap <silent> <leader>b :BufExplorer<CR>
 " noremap <silent> <leader>s :BufExplorerVerticalSplit<CR>
-noremap <silent> <leader>b :BufExplorerHorizontalSplit<CR>
+" noremap <silent> <leader>b :BufExplorerHorizontalSplit<CR>
+noremap <silent> <leader>b :CtrlPMRUFiles<CR>
 
 imap <C-\> <Esc>:split<CR>:set nocursorbind noscrollbind<CR>:diffoff<CR>
 nmap <C-\> :split<CR>:set nocursorbind noscrollbind<CR>:diffoff<CR>
