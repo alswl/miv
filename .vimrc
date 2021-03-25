@@ -457,6 +457,8 @@ autocmd BufRead,BufNewFile *.cc set filetype=cpp
 autocmd BufRead,BufNewFile *.zshrc set filetype=sh
 autocmd BufRead,BufNewFile *.omnijs set filetype=javascript
 autocmd BufRead,BufNewFile OWNERS set filetype=yaml
+autocmd BufRead,BufNewFile Dockerfile.* set filetype=dockerfile
+autocmd BufRead,BufNewFile Dockerfile-* set filetype=dockerfile
 
 autocmd FileType python setlocal expandtab colorcolumn=80 textwidth=0 diffopt=vertical " fo+=Mm
 "Map F9 to Run Python Script
@@ -698,7 +700,6 @@ endif
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
-
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
