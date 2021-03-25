@@ -141,6 +141,7 @@ Plug 'vim-scripts/applescript.vim'
 "Plug 'othree/yajs.vim'
 "Plug 'mxw/vim-jsx'
 Plug 'skreuzer/vim-prometheus'
+Plug 'cespare/vim-toml'
 
 
 " Color
@@ -214,8 +215,7 @@ Plug 'vim-scripts/matchit.zip'
 " % jump, </> pair, >> for complete
 Plug 'vim-scripts/xmledit'
 " ascii drawing, \di, \ds
-" Plug 'vim-scripts/DrawIt'
-" Outdated
+" Plug 'vim-scripts/DrawIt is Outdated
 Plug 'alswl/DrawIt'
 " Plug 'gyim/vim-boxdraw'
 " NR, NW
@@ -229,6 +229,7 @@ Plug 'terryma/vim-multiple-cursors'
 "Plug 'Lokaltog/vim-easymotion'
 "Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Plug 'tpope/vim-rails.git'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-scripts/Rename'
@@ -756,9 +757,30 @@ let g:NERDTreeIgnore = ['\.pyc$', '\.class$', '\.jpeg$', '\.jpg$', '\.png$', '\.
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeShowBookmarks=1
 
+" ctrlp
+nnoremap <C-p> :call RunCtrlP()<CR>
+let g:ctrlp_map = ''
+fun! RunCtrlP()
+  lcd %:p:h
+  if (getcwd() == $HOME)
+    echo "Can't run in \$HOME"
+    return
+  endif
+  CtrlP
+endfunc
+"let g:ctrlp_working_path_mode = 'c'
+"let g:ctrlp_working_path_mode = 'ca'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_root_markers = ['.ctrlp', 'README.md', 'build.sbt', '.git']
+let g:ctrlp_custom_ignore = {
+        \ 'dir':  '\v[\/](\.(git|hg|svn)$)|target|node_modules',
+        \ 'file': '\v\.(exe|so|dll|class|jar|png|jpeg|jpg|numbers|slide.html|generated.html|graphml|svg)$',
+        \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+        \ }
+
 " fzf.vim
 " nnoremap <C-p> :GFiles<CR>
-nnoremap <C-p> :FZF<CR>
+" nnoremap <C-p> :FZF<CR>
 
 " powerline
 if has("gui_running") && ! has('gui_vimr')
