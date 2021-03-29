@@ -21,6 +21,17 @@ vim +PlugInstall +qa
 :help nvim-from-vim
 ```
 
+Or type these commands in your shell:
+
+```
+mkdir -p ~/.config/nvim
+cat <<EOF > ~/.config/nvim/init.vim
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+source ~/.vimrc
+EOF
+```
+
 
 ## Tips
 
@@ -42,18 +53,6 @@ vim +PlugInstall +qa
 - `vipga➡️=` align a paragraph with `=`, right margin
 - into view mode, `ga:` align block with `:`, right margin
 - `\sf` File path convert
-
-## Install with nvim
-
-```
-mkdir -p ~/.config/nvim
-cat <<EOF > ~/.config/nvim/init.vim
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
-source ~/.vimrc
-EOF
-ln -s ~/.vim/UltiSnips ~/.config/nvim/
-```
 
 
 
