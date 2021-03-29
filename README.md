@@ -15,6 +15,12 @@ ln -s $(pwd)/miv/.vimrc $HOME/
 vim +PlugInstall +qa
 ```
 
+(Optional) if you are using neovim, type the next command in your vim:
+
+```
+:help nvim-from-vim
+```
+
 
 ## Tips
 
