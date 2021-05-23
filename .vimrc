@@ -456,6 +456,8 @@ autocmd BufRead,BufNewFile *.puml set filetype=plantuml
 autocmd BufRead,BufNewFile *.cc set filetype=cpp
 autocmd BufRead,BufNewFile *.zshrc set filetype=sh
 autocmd BufRead,BufNewFile *.omnijs set filetype=javascript
+" using python sytax for kcl
+autocmd BufRead,BufNewFile *.k set filetype=python
 autocmd BufRead,BufNewFile OWNERS set filetype=yaml
 autocmd BufRead,BufNewFile Dockerfile.* set filetype=dockerfile
 autocmd BufRead,BufNewFile Dockerfile-* set filetype=dockerfile
