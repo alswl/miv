@@ -8,4 +8,74 @@ watchers: []
 threshold: 2
 
 endsnippet
+
+
+snippet deployment "deployment"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      # hostNetwork: true
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+        env:
+        - name: FOO
+          value: BAR
+        volumeMounts:
+        - name: localtime
+          mountPath: /etc/localtime
+        resources:
+          limits:
+            cpu: "1"
+            ephemeral-storage: 1Gi
+            memory: 1Gi
+          requests:
+            cpu: "1"
+            ephemeral-storage: 1Gi
+            memory: 1Gi
+      dnsPolicy: Default
+      restartPolicy: Always
+      # serviceAccountName: your-sa
+      volumes:
+      - name: localtime
+        hostPath:
+          path: /usr/share/zoneinfo/Asia/Shanghai
+endsnippet
+
+snippet service "service"
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: default
+  name: nginx-service
+spec:
+  # type: ClusterIP
+  # clusterIP: None
+  selector:
+    app: nginx
+  ports:
+    - name: http
+	  protocol: TCP
+      port: 80
+      targetPort: 9376
+endsnippet
 	
+
