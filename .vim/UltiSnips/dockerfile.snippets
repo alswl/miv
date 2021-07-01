@@ -1,5 +1,5 @@
 snippet alpine "alpine"
-FROM alpine:3.7
+FROM alpine:3.14
 
 RUN apk update && apk add --no-cache bash make curl git util-linux util-linux-doc binutils findutils readline
 
@@ -8,13 +8,14 @@ endsnippet
 snippet debian "debian"
 FROM debian:10.8-slim
 
-RUN apt update && apt install bash make curl git binutils findutils readline && apt clean
+RUN apt update && apt install bash make curl git binutils findutils libreadline7 && apt clean
 
 endsnippet
 
 snippet go "go"
-FROM golang:1.16.2-buster as builder
+FROM golang:1.16.5-buster as builder
 # build-env contains all dependencies
+#
 
 WORKDIR app
 
@@ -49,4 +50,37 @@ COPY --from=builder /tmp/app /app
 ENTRYPOINT ["/app"]
 
 endsnippet
-	
+
+snippet goenv "goenv"
+FROM golang:1.16.5-buster
+
+# add your dependencies
+RUN apt update && apt install bash make curl git binutils findutils libreadline7 && apt clean
+
+
+WORKDIR /knives
+
+ENV GOPATH /go
+ENV GOPROXY="https://goproxy.cn,direct"
+ENV GOPRIVATE="*.test.com"
+ENV GOFLAGS=""
+
+
+RUN export CGO_ENABLED=0 GOOS=linux GOARCH=amd64
+
+RUN                                                                                     \
+      mkdir -p $HOME/.ssh &&                                                            \
+      chmod 700 $HOME/.ssh &&                                                           \
+      ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts &&                            \
+      ssh-keyscan -t rsa gitlab.test.com >> ~/.ssh/known_hosts &&                       \
+      git config --global url.git@github.com:.insteadOf https://github.com &&           \
+      git config --global --add url.git@github.com:.insteadOf http://gitlab.test.com && \
+      git config --global --add url.git@github.com:.insteadOf http://gitlab.test.com && \
+      echo -n "";
+
+# copy go.mod first, avoid too many copy
+COPY go.mod .
+RUN --mount=type=ssh go mod download
+
+
+endsnippet

@@ -19,6 +19,7 @@ snippet go "go"
 SHELL := /bin/bash
 NOW_SHORT := $(shell date +%Y%m%d%H%M)
 
+PROJECT := project
 # Target binaries. You can build multiple binaries for a single project.
 TARGETS := app
 
@@ -93,17 +94,16 @@ lint:
 	gofmt -w ./pkg/ ./test/ ./cmd/
 
 container-build-env:
-	@for target in $(TARGETS); do                                                           \
-	  for registry in $(REGISTRIES); do                                                     \
-	    image=$(IMAGE_PREFIX)$${target}$(IMAGE_SUFFIX);                                     \
-	    DOCKER_BUILDKIT=1 docker build -t $${registry}$${image}-build-env:$(GO_MOD_VERSION) \
-	      --build-arg ROOT=$(ROOT) --build-arg TARGET=$${target}                            \
-	      --build-arg CMD_DIR=$(CMD_DIR)                                                    \
-	      --build-arg VERSION=$(GO_MOD_VERSION)                                             \
-	      --build-arg COMMIT=$(COMMIT)                                                      \
-	      --ssh default                                                                     \
-	      -f $(BUILD_DIR)/$${target}/Dockerfile.build-env .;                                \
-	  done                                                                                  \
+	@for registry in $(REGISTRIES); do                                                    \
+	  image=$(IMAGE_PREFIX)$(PROJECT)$(IMAGE_SUFFIX);                                     \
+	  DOCKER_BUILDKIT=1 docker build -t $${registry}$${image}-build-env:$(GO_MOD_VERSION) \
+	    --build-arg ROOT=$(ROOT) --build-arg TARGET=$(PROJECT)                            \
+	    --build-arg CMD_DIR=$(CMD_DIR)                                                    \
+	    --build-arg VERSION=$(GO_MOD_VERSION)                                             \
+	    --build-arg COMMIT=$(COMMIT)                                                      \
+	    --ssh default                                                                     \
+	    --progress=plain                                                                  \
+	    -f $(BUILD_DIR)/$(PROJECT)/Dockerfile .;                                          \
 	done
 
 container:
@@ -120,11 +120,9 @@ container:
 	done
 	
 push-container-build-env:
-	@for target in $(TARGETS); do                                      \
-	  for registry in $(REGISTRIES); do                                \
-	    image=$(IMAGE_PREFIX)$${target}$(IMAGE_SUFFIX);                \
-	    docker push $${registry}$${image}-build-env:$(GO_MOD_VERSION); \
-	  done                                                             \
+	@for registry in $(REGISTRIES); do                               \
+	  image=$(IMAGE_PREFIX)$(PROJECT)$(IMAGE_SUFFIX);                \
+	  docker push $${registry}$${image}-build-env:$(GO_MOD_VERSION); \
 	done
 
 push:

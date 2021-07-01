@@ -1,0 +1,27 @@
+snippet pandas "pandas"
+import numpy as np
+import pandas as pd
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+from IPython.display import set_matplotlib_formats
+
+import re
+import pydash as _
+import json
+import os
+import pytz
+
+import matplotlib.pyplot as plt
+from matplotlib.font_manager import FontManager
+
+# PingFang HK works, PingFang SC did not work
+plt.rcParams['font.sans-serif'] = ['PingFang HK']
+plt.rcParams['axes.unicode_minus'] = False
+tz_shanghai = pytz.timezone('Asia/Shanghai')
+set_matplotlib_formats('svg')
+
+# view fonts
+# fm = FontManager()
+# mat_fonts = set(f.name for f in fm.ttflist)
+# print(mat_fonts)
+endsnippet
