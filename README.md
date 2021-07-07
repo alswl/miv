@@ -57,6 +57,3 @@ EOF
 
 
 [alswl/.oOo.@Github]: https://github.com/alswl/.oOo.
-
-
-
