@@ -86,11 +86,9 @@ endif
 
 autocmd BufEnter * silent! lcd %:p:h
 
-"auto save zz info
-if ! has("gui_running")
-	"autocmd! BufWinLeave *.* mkview 1
-	"autocmd! BufWinEnter *.* silent loadview 1
-endif
+"auto save exit info
+autocmd! BufWinLeave *.* mkview 1
+autocmd! BufWinEnter *.* silent loadview 1
 
 set viminfo+=!
 
