@@ -71,7 +71,7 @@ download:
 
 build: lint
 	@for target in $(TARGETS); do                                 \
-	  go build -i -v -o $(OUTPUT_DIR)/$${target}                  \
+	  go build  -v -o $(OUTPUT_DIR)/$${target}                    \
 	    -ldflags "-s -w -X $(ROOT)/pkg/version.Version=$(VERSION) \
 	    -X $(ROOT)/pkg/version.Commit=$(COMMIT)                   \
 	    -X $(ROOT)/pkg/version.Package=$(ROOT)"                   \
