@@ -34,7 +34,7 @@ RUN export CGO_ENABLED=0 GOOS=linux GOARCH=amd64
 # all go mod id downloaded in build-env image
 COPY . .
 
-RUN go build -i -v -o /tmp/notifier                           \
+RUN go build -i -v -o /tmp/app                                 \
 	-ldflags "-s -w -X ${ROOT}/pkg/version.Version=${VERSION}  \
 	-X ${ROOT}/pkg/version.Commit=${COMMIT}                    \
 	-X ${ROOT}/pkg/version.Package=${ROOT}"                    \
