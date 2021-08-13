@@ -330,6 +330,8 @@ set statusline=\ \%F\ \ \ \ \ %m%r%h%w\ \ %y\ [%{&ff}]\ [%{&fileencoding}]\ [%p%
 
 set ttyfast
 
+set shortmess-=S
+
 """""""""""""""""""""""""""""""""""""""
 "Colors and Fonts
 """""""""""""""""""""""""""""""""""""""
