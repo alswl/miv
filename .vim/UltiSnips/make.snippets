@@ -51,8 +51,8 @@ COMMIT := $(COMMIT)$(shell [[ -z $$(git status -s) ]] || echo '-dirty')
 COMMIT := $(if $(COMMIT),$(COMMIT),"Unknown")
 
 # Current version of the project.
-MAJOR_VERSION = 1
-MINOR_VERSION = 0
+MAJOR_VERSION = 0
+MINOR_VERSION = 1
 PATCH_VERSION = 0
 BUILD_VERSION = $(COMMIT)
 GO_MOD_VERSION = $(shell cat go.mod | sha256sum | cut -c-6)
