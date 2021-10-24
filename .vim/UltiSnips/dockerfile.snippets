@@ -1,12 +1,15 @@
 snippet alpine "alpine"
 FROM alpine:3.14
 
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
 RUN apk update && apk add --no-cache bash make curl git util-linux util-linux-doc binutils findutils readline
 
 endsnippet
 
 snippet debian "debian"
 FROM debian:10.8-slim
+RUN sed -i "s@http://.*.debian.org@https://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list
+RUN apt update && apt install -y bash make curl git binutils findutils libreadline7 && apt clean && rm -rf /var/apt/cache/*
 
 RUN apt update && apt install -y bash make curl git binutils findutils libreadline7 && apt clean
 
@@ -14,38 +17,33 @@ endsnippet
 
 snippet go "go"
 FROM golang:1.16.5-buster as builder
+RUN sed -i "s@http://.*.debian.org@https://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list
+RUN apt update && apt install -y bash make curl git binutils findutils libreadline7 && apt clean && rm -rf /var/apt/cache/*
+
 # build-env contains all dependencies
 #
 
-WORKDIR app
+WORKDIR /app
 
 ENV GOPATH /go
 ENV GOPROXY=""
 ENV GOPRIVATE=""
 ENV GOFLAGS=""
 
-ARG CMD_DIR=./cmd
-ARG ROOT=/path
-ARG VERSION=
-ARG COMMIT=
-
-RUN export CGO_ENABLED=0 GOOS=linux GOARCH=amd64
-
 # all go mod id downloaded in build-env image
-COPY . .
+COPY Makefile .
+COPY go.mod .
+COPY go.sum .
+RUN make download
 
-RUN go build -i -v -o /tmp/app                                 \
-	-ldflags "-s -w -X ${ROOT}/pkg/version.Version=${VERSION}  \
-	-X ${ROOT}/pkg/version.Commit=${COMMIT}                    \
-	-X ${ROOT}/pkg/version.Package=${ROOT}"                    \
-	${CMD_DIR}/app;
 
 FROM alpine:3.7
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
 RUN apk update && apk add --no-cache bash make curl git util-linux util-linux-doc binutils findutils readline
 
 WORKDIR /
 
-COPY --from=builder /tmp/app /app
+COPY --from=builder /app/bin/app /app
 
 ENTRYPOINT ["/app"]
 
@@ -53,9 +51,9 @@ endsnippet
 
 snippet goenv "goenv"
 FROM golang:1.16.5-buster
-
+RUN sed -i "s@http://.*.debian.org@https://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list
+RUN apt update && apt install -y bash make curl git binutils findutils libreadline7 && apt clean && rm -rf /var/apt/cache/*
 # add your dependencies
-RUN apt update && apt install -y bash make curl git binutils findutils libreadline7 && apt clean
 
 
 WORKDIR /knives
