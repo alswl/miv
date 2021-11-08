@@ -11,7 +11,29 @@ FROM debian:10.8-slim
 RUN sed -i "s@http://.*.debian.org@https://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list
 RUN apt update && apt install -y bash make curl git binutils findutils libreadline7 && apt clean && rm -rf /var/apt/cache/*
 
-RUN apt update && apt install -y bash make curl git binutils findutils libreadline7 && apt clean
+RUN apt update && apt install -y bash make curl git binutils findutils net-tools lsof zip libreadline7 && apt clean
+
+endsnippet
+
+snippet centos "centos"
+FROM centos:centos7.6.1810
+
+ENV LANG en_US.UTF-8
+
+# disable fastestmirror, network detection are too slow, use aliyun
+RUN sed -i 's/enabled=1/enabled=0/g' /etc/yum/pluginconf.d/fastestmirror.conf
+RUN cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak
+RUN sed -i -e 's/mirror.centos.org/mirrors.aliyun.com/g' /etc/yum.repos.d/CentOS-Base.repo
+RUN sed -i -e 's/^#baseurl/baseurl/g' /etc/yum.repos.d/CentOS-Base.repo
+RUN sed -i -e 's/^mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Base.repo
+RUN yum clean all
+RUN yum makecache 
+
+RUN yum install -y unzip which less vim
+RUN yum install -y sysstat lsof net-tools
+RUN yum install -y nc curl
+RUN yum clean all
+RUN rm -rf /var/cache/yum
 
 endsnippet
 
@@ -90,6 +112,34 @@ FROM node:13.4.0-stretch-slim
 RUN apt-get update
 RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
 RUN npm config set registry https://registry.npm.taobao.org
+endsnippet
+
+
+snippet centossrcpython "centos python from source"
+RUN yum install -y gcc make
+RUN yum install -y epel-release.noarch
+RUN yum install -y jq
+RUN yum install -y mysql sshpass openssh-clients
+RUN yum install -y zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel mysql-devel gcc-devel python-devel
+RUN yum install -y libffi-devel
+RUN yum install -y python-virtualenv
+RUN yum clean all
+RUN rm -rf /var/cache/yum
+
+RUN mkdir /tmp/python && \
+  curl -L https://www.python.org/ftp/python/3.9.8/Python-3.9.8.tgz | tar -zx -C /tmp/python --strip-components 1 && \
+  cd /tmp/python && \
+  ./configure --enable-shared && \
+  make -j4 && \
+  make install && \
+  rm -rf /tmp/python
+RUN ldconfig /usr/local/lib
+
+USER admin
+# pip env
+RUN mkdir $HOME/.pip;\
+	echo -e '[global]\nindex-url=https://mirrors.aliyun.com/pypi/simple/\n[install]\ntrusted-host=mirrors.aliyuncs.com\n'> $HOME/.pip/pip.conf;\
+	echo -e '[easy_install]\nindex-url = https://mirrors.aliyun.com/pypi/simple/\n' > $HOME/.pydistutils.cfg;
 endsnippet
 
 
