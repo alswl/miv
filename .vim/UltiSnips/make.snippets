@@ -62,14 +62,22 @@ VERSION ?= v$(MAJOR_VERSION).$(MINOR_VERSION).$(PATCH_VERSION)-$(BUILD_VERSION)
 # Define all targets. At least the following commands are required:
 #
 
-.PHONY: build lint lint-test container test integration-test push clean generate-code
-
+.PHONY all
 all: download generate-code test build
 
-download:
+##@ General
+
+.PHONY: help
+help: ## Display this help.
+	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_0-9-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
+
+
+.PHONY download
+download: Download
 	go mod download
 
-build: lint
+.PHONY  build
+build: lint ## Run build
 	@for target in $(TARGETS); do                                 \
 	  go build  -v -o $(OUTPUT_DIR)/$${target}                    \
 	    -ldflags "-s -w -X $(ROOT)/pkg/version.Version=$(VERSION) \
@@ -78,22 +86,26 @@ build: lint
 	    $(CMD_DIR)/$${target};                                    \
 	done
 	
-generate-code:
+.PHONY generate-code
+generate-code: ## Run generate code
 	# generate mock of interfaces for testing
 	rm -rf test/mock
 	cd pkg && mockery --all --keeptree --case=underscore --packageprefix=mock --output=../test/mock && cd ..
 
-lint-test:
+.PHONY lint-test
+lint-test: ## Run lint test
 	echo "gofmt"
 	@test $$(gofmt -l ./pkg/ ./test/ ./cmd/ | wc -l) -eq 0
 
 	echo "ensure integration test with integration tags"
 	@test $$(find test -name '*_test.go' | wc -l) -eq $$(cat $$(find test -name '*_test.go') | grep '//+build integration' | wc -l)
 
-lint:
+.PHONY lint
+lint: ## Lint
 	gofmt -w ./pkg/ ./test/ ./cmd/
 
-container-build-env:
+.PHONY container-build-env
+container-build-env: ## Build container build env image
 	@for registry in $(REGISTRIES); do                                                    \
 	  image=$(IMAGE_PREFIX)$(PROJECT)$(IMAGE_SUFFIX);                                     \
 	  DOCKER_BUILDKIT=1 docker build -t $${registry}$${image}-build-env:$(GO_MOD_VERSION) \
@@ -106,7 +118,8 @@ container-build-env:
 	    -f $(BUILD_DIR)/$(PROJECT)/Dockerfile .;                                          \
 	done
 
-container:
+.PHONY container
+container: ## Build container image
 	@for target in $(TARGETS); do                                                      \
 	  for registry in $(REGISTRIES); do                                                \
 	    image=$(IMAGE_PREFIX)$${target}$(IMAGE_SUFFIX);                                \
@@ -119,13 +132,15 @@ container:
 	  done                                                                             \
 	done
 	
-push-container-build-env:
+.PHONY push-container-build-env
+push-container-build-env: ## Push container build env to registry
 	@for registry in $(REGISTRIES); do                               \
 	  image=$(IMAGE_PREFIX)$(PROJECT)$(IMAGE_SUFFIX);                \
 	  docker push $${registry}$${image}-build-env:$(GO_MOD_VERSION); \
 	done
 
-push:
+.PHONY push
+push: ## Push container image to registry
 	@for target in $(TARGETS); do                       \
 	  for registry in $(REGISTRIES); do                 \
 	    image=$(IMAGE_PREFIX)$${target}$(IMAGE_SUFFIX); \
@@ -133,13 +148,16 @@ push:
 	  done                                              \
 	done
 
-test: lint
+.PHONY test
+test: lint ## Run unit tests
 	@go test -tags=\!integration ./...
 
-integration-test:
+.PHONY integration-test
+integration-test: ## Run integration tests
 	@go test -tags=integration ./...
 
-clean:
+.PHONY clean
+clean: ## Clean temp files
 	@rm -vrf ${OUTPUT_DIR}/*
 endsnippet
 	
@@ -180,23 +198,36 @@ VERSION ?= v$(MAJOR_VERSION).$(MINOR_VERSION).$(PATCH_VERSION)-$(BUILD_VERSION)
 # Define all targets. At least the following commands are required:
 #
 
-.PHONY: lint test build clean
-
+.PHONY: all
 all: lint test build
 
-lint:
+##@ General
+
+.PHONY: help
+help: ## Display this help.
+	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_0-9-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
+
+
+##@ Build
+
+.PHONY lint
+lint: ## Run lint
 	@echo lint
 
-test: lint
+.PHONY test
+test: lint ## Run test
 	@echo test
 
-build: lint
+.PHONY build
+build: lint ## Run build
 	@echo build
 	
-dry-run: lint
+.PHONY dry-run
+dry-run: lint ## Do nothing
 	@echo dry-run
 
-clean:
+.PHONY clean
+clean: ## Clean temp files
 	@echo clean
 endsnippet
 
