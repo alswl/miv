@@ -392,6 +392,13 @@ au syntax * hi link markdownCode GruvboxAqua
 au syntax * hi link markdownCodeDelimator GruvboxAqua
 au syntax * hi link markdownBlockquote GruvboxYellowSign
 
+
+" Hi todos
+syn match myTodo contained "\<\(TODO\|FIXME\|XXX\):"
+syn match myself contained "\<@\(alswl\|jingchao\|3d\|djc\|三谛\):"
+hi def link myTodo Todo
+hi def link myself Myself
+
 """""""""""""""""""""""""""""""""""""""
 "Files, backups and undo
 """""""""""""""""""""""""""""""""""""""
@@ -919,15 +926,6 @@ au syntax * hi link pandocUListItemBullet GruvboxBlue
 "vmap <silent> <leader>hr <Plug>MarkRegex
 let g:mwAutoLoadMarks = 1
 runtime plugin/mark.vim
-silent 6Mark TODO
-silent 6Mark FIXME
-silent 6Mark XXX
-silent 6Mark @djc
-silent 6Mark @3D
-silent 6Mark @alswl
-silent 6Mark @jingchao.djc
-silent 6Mark @jingchao
-silent 6Mark @三谛
 silent! unmap <k1>
 silent! unmap <k2>
 silent! unmap <k3>
