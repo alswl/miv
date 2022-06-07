@@ -252,7 +252,8 @@ Plug 'inkarkat/vim-TextTransform'
 " shortcut \sf
 Plug 'vim-scripts/FilePathConvert'
 Plug 'mileszs/ack.vim'
-Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
+" Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
+Plug 'f-person/auto-dark-mode.nvim'
 
 
 " for vim-pyref
