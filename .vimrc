@@ -422,9 +422,9 @@ if exists('+undodir')
 		if has('nvim-0.5')
 			" New format in https://github.com/neovim/neovim/pull/13973 (f42e932,
 			" 2021-04-13).
-			let &undodir = "~/.vim_runtime" . '/undodir2'
+			let &undodir = $HOME . "/.vim_runtime" . '/undodir2'
 		else
-			let &undodir = "~/.vim_runtime" . '/undodir'
+			let &undodir = $HOME . "/.vim_runtime" . '/undodir'
 		endif
 	endif
 	set undofile
