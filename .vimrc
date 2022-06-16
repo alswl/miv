@@ -26,13 +26,6 @@ if MySys() == "linux"
 	imap <C-v> <ESC>"+pa
 	noremap <C-v> "+p
 endif
-if exists(":GonvimVersion")
-	vmap <D-c> "+y
-	vmap <D-x> "+c
-	vmap <D-v> c<ESC>"+p
-	imap <D-v> <ESC>"+pa
-	noremap <D-v> "+p
-endif
 
 
 """""""""""""""""""""""""""""""""""""""
