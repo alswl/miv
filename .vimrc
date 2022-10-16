@@ -693,7 +693,9 @@ if MySys() == "mac"
 	" noremap <leader>M :silent exec "!open -a Macdown %"<CR>
 	" preview
 	" noremap <leader>M :GonvimMarkdown<CR>
-	noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax='https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --filter=pandoc-plantuml -t html -o %.generated.html && open %.generated.html"<CR>
+	noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax='https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' -t html -o %.generated.html && open %.generated.html"<CR>
+	" Error running filter pandoc-plantuml:, rm
+	" --filter=pandoc-plantuml 
 
 	" markdown image processing
 	noremap <leader>u :silent exec "!plantuml -tpng % && open %:r.png"<CR>
