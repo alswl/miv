@@ -233,7 +233,7 @@ Plug 'rhysd/vim-gfm-syntax'
 Plug 'dhruvasagar/vim-table-mode'
 " Plug 'lilydjwg/fcitx.vim'
 " now I using Rime to detect
-" Plug 'CodeFalling/fcitx-vim-osx'
+Plug 'CodeFalling/fcitx-vim-osx'
 Plug 'junegunn/vim-easy-align'
 "Plug 'wannesm/wmgraphviz.vim'
 Plug 'hotoo/pangu.vim'
@@ -999,7 +999,7 @@ let g:loaded_ruby_provider = 0
 " let g:ruby_host_prog='~/.rvm/gems/ruby-2.4.0/bin/neovim-ruby-host'
 
 " fcitx
-" disable on MacVim
+" disable on MacVim / VimR (Squirrel has vim_mode)
 if has("gui_running")
 	let g:fcitx_remote=1
 endif
