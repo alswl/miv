@@ -234,7 +234,8 @@ Plug 'rhysd/vim-gfm-syntax'
 Plug 'dhruvasagar/vim-table-mode'
 " Plug 'lilydjwg/fcitx.vim'
 " now I using Rime to detect in GUI, only using fcitx-remote in Terminal, https://github.com/xcodebuild/fcitx-remote-for-osx
-Plug 'CodeFalling/fcitx-vim-osx'
+" too slow, disable it
+" Plug 'CodeFalling/fcitx-vim-osx'
 Plug 'junegunn/vim-easy-align'
 "Plug 'wannesm/wmgraphviz.vim'
 Plug 'hotoo/pangu.vim'
