@@ -478,9 +478,11 @@ autocmd FileType python map <F9> :!python %
 autocmd FileType asciidoc setlocal colorcolumn=120
 autocmd FileType markdown,markdown.pandoc,markdown.github,markdown.gfm
 						\ setlocal colorcolumn=120 expandtab shiftwidth=2 nowrap
-						\ tabstop=4 textwidth=120
+						\ tabstop=2 textwidth=120
 						\ formatexpr=autofmt#uax14#formatexpr()
 						\ noshowmatch
+" mardown set shfitwidth for obsidian
+autocmd BufRead,BufNewFile */*kms/**.md set shiftwidth=4
 " comments configuration from https://github.com/plasticboy/vim-markdown/issues/390#issuecomment-450392655
 autocmd FileType mako setlocal colorcolumn=120 cc=0 fdm=indent
 autocmd FileType html setlocal expandtab shiftwidth=2 tabstop=2
