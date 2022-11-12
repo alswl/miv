@@ -154,7 +154,9 @@ Plug 'vim-scripts/IndentAnything'
 " Plug 'vim-scripts/Javascript-Indentation'
 Plug 'vim-scripts/mako.vim--Torborg'
 Plug 'gg/python.vim'
-Plug 'lepture/vim-jinja'
+" it cause nvim load plugins error
+" Plug 'lepture/vim-jinja'
+Plug 'Glench/Vim-Jinja2-Syntax'
 
 " Plugins
 Plug 'preservim/nerdtree'
