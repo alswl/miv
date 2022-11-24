@@ -1,5 +1,5 @@
 """""""""""""""""""""""""""""""""""""""
-"Utils
+"Utils {{{
 """""""""""""""""""""""""""""""""""""""
 function! MySys()
 	if has("win32")
@@ -27,9 +27,13 @@ if MySys() == "linux"
 	noremap <C-v> "+p
 endif
 
+"""""""""""""""""""""""""""""""""""""""
+"Utils }}}
+"""""""""""""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""""""""""
-"Gerneral
+"Gerneral {{{
 """""""""""""""""""""""""""""""""""""""
 
 " Enable filetype plugin
@@ -77,6 +81,7 @@ if exists('+autochdir')
 	set autochdir
 endif
 
+" auto set current work dir
 autocmd BufEnter * silent! lcd %:p:h
 
 "auto save exit info
@@ -85,14 +90,16 @@ autocmd! BufWinEnter *.* silent loadview 1
 
 set viminfo+=!
 
+"""""""""""""""""""""""""""""""""""""""
+"Gerneral }}}
+"""""""""""""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""""""""""
-" Plugin Management
+" Plugin Management {{{
 """""""""""""""""""""""""""""""""""""""
 
 call plug#begin()
-
-" My Bundles here:
 
 
 " Syntax
@@ -261,8 +268,14 @@ Plug 'f-person/auto-dark-mode.nvim'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""
-"VIM user interface
+" Plugin Management }}}
 """""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""
+"VIM user interface {{{
+"""""""""""""""""""""""""""""""""""""""
+
 " use chinese help
 "set helplang=cn
 
@@ -331,8 +344,27 @@ set ttyfast
 
 set shortmess-=S
 
+
+if !exists(':relativenumber')
+	set relativenumber " 显示相对行号
+endif
+set number " 显示行号
+set numberwidth=2 "行号栏的宽度
+" set foldclose=all
+
+"function! MarkPoint()
+	"mark `
+"endfunction
+
+"autocmd CursorMoved * call MarkPoint()
+
+
 """""""""""""""""""""""""""""""""""""""
-"Colors and Fonts
+"VIM user interface }}}
+"""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""
+"Colors and Fonts {{{
 """""""""""""""""""""""""""""""""""""""
 
 syntax enable "Enable syntax hl
@@ -399,7 +431,11 @@ hi def link myTodo Todo
 hi def link myself Myself
 
 """""""""""""""""""""""""""""""""""""""
-"Files, backups and undo
+"Colors and Fonts }}}
+"""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""
+"Files, backups and undo {{{
 """""""""""""""""""""""""""""""""""""""
 
 " Turn backup off, since most stuff is in SVN, git anyway...
@@ -429,9 +465,13 @@ if exists('+undodir')
 	set undofile
 endif
 
+"""""""""""""""""""""""""""""""""""""""
+"Files, backups and undo }}}
+"""""""""""""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""""""""""
-"Text, tab and indent related
+"Text, tab and indent related {{{
 """""""""""""""""""""""""""""""""""""""
 
 "set expandtab
@@ -446,7 +486,11 @@ set smartindent "Smart indet
 set wrap "Wrap lines
 
 """""""""""""""""""""""""""""""""""""""
-"FileType setting
+"Text, tab and indent related }}}
+"""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""
+"FileType setting {{{
 """""""""""""""""""""""""""""""""""""""
 
 autocmd BufRead,BufNewFile *.md set filetype=markdown
@@ -505,16 +549,14 @@ autocmd FileType sh setlocal expandtab shiftwidth=2
 autocmd FileType dockerfile setlocal expandtab shiftwidth=2
 
 """""""""""""""""""""""""""""""""""""""
-"Visual mode related
+"FileType setting }}}
 """""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""
-"Command mode related
-"""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""
-"Moving around, tabs and buffers
+"Moving around, tabs and buffers {{{
 """""""""""""""""""""""""""""""""""""""
+
 " Smart way to move btw. windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -527,25 +569,11 @@ map <left> :bp<cr>
 
 
 """""""""""""""""""""""""""""""""""""""
-"Visual Cues
+"Moving around, tabs and buffers }}}
 """""""""""""""""""""""""""""""""""""""
 
-if !exists(':relativenumber')
-	set relativenumber " 显示相对行号
-endif
-set number " 显示行号
-set numberwidth=2 "行号栏的宽度
-" set foldclose=all
-
-"function! MarkPoint()
-	"mark `
-"endfunction
-
-"autocmd CursorMoved * call MarkPoint()
-
-
 """""""""""""""""""""""""""""""""""""""
-" Text Formatting/Layout
+" Text Formatting/Layout {{{
 """""""""""""""""""""""""""""""""""""""
 
 set formatoptions+=mB
@@ -561,8 +589,13 @@ set linebreak "智能换行
 set conceallevel=0
 
 """""""""""""""""""""""""""""""""""""""
-" Map
+" Text Formatting/Layout }}}
 """""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""
+" Map {{{
+"""""""""""""""""""""""""""""""""""""""
+
 map <F1> :NERDTreeToggle<cr>
 imap <F1> <Esc>:NERDTreeToggle<cr>
 "map <F2> :Tlist<cr>
@@ -733,10 +766,15 @@ if has('macunix')
 	nnoremap gx :call OpenURLUnderCursor()<CR>
 endif
 
+"""""""""""""""""""""""""""""""""""""""
+" Map }}}
+"""""""""""""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""""""""""
-" Plugin
+" Plugin {{{
 """""""""""""""""""""""""""""""""""""""
+
 set tags=tags;
 
 "pydiction 1.2 python auto complete
@@ -1017,9 +1055,13 @@ let g:NERDCustomDelimiters = { 'conf': { 'left': '#','right': '' } }
 " ack.vim
 let g:ackprg = 'ag --vimgrep'
 
+"""""""""""""""""""""""""""""""""""""""
+" Plugin }}}
+"""""""""""""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""""""""""
-" User Defined function
+" User Defined function {{{
 """""""""""""""""""""""""""""""""""""""
 
 " trim right of line
@@ -1037,3 +1079,8 @@ endif
 " if !exists(":MarkdownListBulletOff")
 	" command MarkdownListBulletOn setlocal comments=fb:>,fb:*,fb:+,fb:-
 " endif
+"
+
+"""""""""""""""""""""""""""""""""""""""
+" User Defined function }}}
+"""""""""""""""""""""""""""""""""""""""
