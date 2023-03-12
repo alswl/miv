@@ -259,6 +259,9 @@ Plug 'vim-scripts/FilePathConvert'
 Plug 'mileszs/ack.vim'
 " Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
 Plug 'f-person/auto-dark-mode.nvim'
+" for weirongxu/plantuml-previewer.vim
+Plug 'tyru/open-browser.vim'
+Plug 'weirongxu/plantuml-previewer.vim'
 
 
 " for vim-pyref
