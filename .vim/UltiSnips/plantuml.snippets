@@ -126,6 +126,13 @@ snippet sequence "Sequence"
 
 skinparam ParticipantPadding 20
 skinparam BoxPadding 10
+/' !theme spacelab '/
+/' !theme mars '/
+/' !theme aws-orange '/
+/' !theme lightgray '/
+/' !theme vibrant '/
+!theme cloudscape-design
+hide footbox
 
 /'EasyAlign */as/'/
 /'EasyAlign */\(->\)|\(-->\)/|\(-->\)|\(--x\)'/
@@ -271,4 +278,50 @@ snippet ref "Table Reference in ER"
 ${1:table} --> ${2:table} : on ${3:}_id = ${4:id}
 endsnippet
 
+
+snippet states "States"
+@startuml
+
+!theme cloudscape-design
+skinparam BoxPadding 3
+skinparam defaultFontSize 28
+skinparam state {
+    FontColor white
+}
+
+state "订单创建" as created
+state "库存不足" as lack
+state "库存锁定" as lock
+state "待支付" as pay_waiting
+state "支付成功" as pay_success
+state "支付失败" as pay_failed
+state "交付完成" as delivery_done
+
+state c_lock <<choice>>
+state c_pay <<choice>>
+
+
+[*] -down-> created : 选配
+created --> c_lock
+
+c_lock -right-> lack : [库存不足]
+c_lock --> lock : [库存足够]
+lack -right-> c_lock : [刷新]
+
+lock -down-> pay_waiting
+pay_waiting --> c_pay
+
+c_pay --> pay_success : [支付成功]
+c_pay -right-> pay_failed : [支付失败]
+pay_failed --> pay_waiting : 重新支付
+pay_success -down-> delivery_done
+
+delivery_done -down-> [*]
+
+
+@enduml
+endsnippet
+
+
 # snips <<<
+
