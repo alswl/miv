@@ -2,6 +2,74 @@ snippet gantt "Gantt"
 /' :EasyAlign */\(starts\)\|\(ends\)\|\(lasts\)\|\(happens\)/ '/
 /' :EasyAlign */\(is\)\|\(are\)/ '/
 
+!theme mars
+skinparam dpi 600
+@startgantt
+
+project                                                   starts the 2099/01/01
+
+saturday                 are closed
+sunday                   are closed
+2099/01/01 to 2099/01/01  is closed /' 春节 '/
+2099/01/01                is opened /' 调休 '/
+2099/01/01                is opened /' 加班 '/
+2099/01/01                is opened /' 加班 '/
+
+
+--  需求 --
+
+[需求讨论设计]                  lasts 2 day
+then [需求宣讲]                 lasts 1 day
+
+--  设计 --
+
+then [架构设计]                 lasts 1 day
+then [架构评审]                 lasts 1 day
+
+then [系分设计]                 lasts 1 day
+then [系分评审] as [design$]    lasts 1 day
+
+
+-- 后端开发 --
+
+[模块 1] as [m1]               starts at [design$]'s end
+[模块 2] as [m2]               starts at [design$]'s end
+
+[后端开发完成] as [backend$]  happens at [m1]'s end
+[backend$]                    happens at [m1]'s end
+
+-- 前端开发 --
+
+[前端开发] as [fe1]            starts at [design$]'s end
+
+[前端开发完成] as [frontend$] happens at [fe1]'s end
+
+-- 联调 --
+
+[联调] as [it]                 starts at [backend$]'s end
+[it]                           starts at [frontend$]'s end
+
+[联调结束] as [it$]           happens at [it]'s end
+
+-- 测试 --
+
+[测试] as [test1]              starts at [it$]'s end and lasts 1 days
+
+[测试结束] as [test$]         happens at [test1]'s end
+
+-- 部署 --
+
+[部署] as [deploy$]            starts at [test$]'s end
+[deploy$]                       lasts 1 days
+
+@endgantt
+endsnippet
+
+
+snippet ganttext "Gantt Ext"
+/' :EasyAlign */\(starts\)\|\(ends\)\|\(lasts\)\|\(happens\)/ '/
+/' :EasyAlign */\(is\)\|\(are\)/ '/
+
 skinparam dpi 600
 @startgantt
 
@@ -71,7 +139,6 @@ then [系分评审] as [dsr]                                   lasts 1 day and  
 
 @endgantt
 endsnippet
-
 
 
 snippet usecase "Use Case"
