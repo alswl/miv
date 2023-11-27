@@ -51,10 +51,10 @@ set nocompatible
 
 if has("gui_running") && ! has('gui_vimr')
 	"winpos 0 0
-	set guioptions -=m
-	set guioptions -=T
-	set guioptions -=L
-	set guioptions -=r
+	" set guioptions -=m
+	" set guioptions -=T
+	" set guioptions -=L
+	" set guioptions -=r
 	" auto select
 	" set guioptions +=a
 	" set macmeta
@@ -385,12 +385,12 @@ if (has("gui_running")  && ! has('gui_vimr'))
 	" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h13
 	if MySys() == "mac"
 		set guifont=Fira\ Code:h14
-		set guifontwide=Pingfang\ SC:h14
-		set printfont=Fira\ Code:h12
+		set guifontwide=Fira\ SC:h14
+		" set printfont=Fira\ Code:h12
 	else
 		if MySys() == "linux"
 			set guifont=Fira\ Code\ 16
-			set printfont=Fira\ Code\ 12
+			" set printfont=Fira\ Code\ 12
 		endif
 	endif
 	" set guifont=Source\ Code\ Pro\ for\ Powerline:h20
@@ -398,9 +398,9 @@ if (has("gui_running")  && ! has('gui_vimr'))
 	" set guifont=Ubuntu\ Mono\ derivative\ Powerline:h20
 	"set guifont=Menlo:h18
 	"let Powerline_symbols = 'fancy'
-	set printencoding=utf-8
-	set printmbcharset=ISO10646
-	set printmbfont=r:PingFang\ SC\ Light,c:yes
+	" set printencoding=utf-8
+	" set printmbcharset=ISO10646
+	" set printmbfont=r:Fira\ SC\ Light,c:yes
 
 	" Set syntax color
 	" colorscheme monokai
