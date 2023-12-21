@@ -385,7 +385,7 @@ if (has("gui_running")  && ! has('gui_vimr'))
 	" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h13
 	if MySys() == "mac"
 		set guifont=Fira\ Code:h14
-		set guifontwide=Fira\ SC:h14
+		set guifontwide=Fira\ Code:h14
 		" set printfont=Fira\ Code:h12
 	else
 		if MySys() == "linux"
