@@ -527,7 +527,7 @@ autocmd FileType python map <F9> :!python %
 autocmd FileType asciidoc setlocal colorcolumn=120
 autocmd FileType markdown,markdown.pandoc,markdown.github,markdown.gfm
 						\ setlocal colorcolumn=120 expandtab shiftwidth=2 nowrap
-						\ tabstop=2 textwidth=0
+						\ tabstop=4 textwidth=0
 						\ formatexpr=autofmt#uax14#formatexpr()
 						\ noshowmatch
 " mardown set shfitwidth for obsidian
@@ -1069,6 +1069,9 @@ let g:ackprg = 'ag --vimgrep'
 
 " trim right of line
 command! -nargs=0 TrimR :%s/\s\+$//g
+
+" remove blank lines, 2 blank lines to 1 blank line
+command! -nargs=0 RemoveBlankLines :g/^\n$/d
 
 " diff Original file
 if !exists(":DiffOrig")
