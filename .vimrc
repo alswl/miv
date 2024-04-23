@@ -410,8 +410,8 @@ else
 	"colorscheme desert256
 endif
 
-set background=dark
-" set background=light
+" set background=dark
+set background=light
 
 "set ambiwidth=double " 设定某些标点符号为宽字符
 
@@ -531,7 +531,9 @@ autocmd FileType markdown,markdown.pandoc,markdown.github,markdown.gfm
 						\ formatexpr=autofmt#uax14#formatexpr()
 						\ noshowmatch
 " mardown set shfitwidth for obsidian
-autocmd BufRead,BufNewFile */*kms/**.md set shiftwidth=4
+autocmd BufRead,BufNewFile */*kms/**.md set shiftwidth=4 tabstop=4
+autocmd BufRead,BufNewFile */*kms/*/**.md set shiftwidth=4 tabstop=4
+autocmd BufRead,BufNewFile */*kms/*/*/**.md set shiftwidth=4 tabstop=4
 " comments configuration from https://github.com/plasticboy/vim-markdown/issues/390#issuecomment-450392655
 autocmd FileType mako setlocal colorcolumn=120 cc=0 fdm=indent
 autocmd FileType html setlocal expandtab shiftwidth=2 tabstop=2
