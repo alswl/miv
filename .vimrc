@@ -410,8 +410,8 @@ else
 	"colorscheme desert256
 endif
 
-" set background=dark
-set background=light
+set background=dark
+" set background=light
 
 "set ambiwidth=double " 设定某些标点符号为宽字符
 
