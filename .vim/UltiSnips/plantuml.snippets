@@ -310,6 +310,12 @@ note over ${1:element}
 end note
 endsnippet
 
+snippet noteb "Note Over Block"
+note bottom of ${1:element}
+    ${0:${VISUAL}}
+end note
+endsnippet
+
 
 # snips >>>
 
@@ -391,4 +397,11 @@ endsnippet
 
 
 # snips <<<
+
+
+snippet pa "package"
+package "${1:element}" {
+    ${0:${VISUAL}}
+}
+endsnippet
 
