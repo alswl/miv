@@ -446,6 +446,8 @@ set nobackup
 set nowritebackup
 "set noswapfile
 set backupext=.bak
+" paste for any files keey original indent
+set paste
 
 "设置编码
 set fileencodings=utf-8,gbk,ucs-bom,default,latin1
