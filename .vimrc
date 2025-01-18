@@ -258,7 +258,7 @@ Plug 'inkarkat/vim-TextTransform'
 Plug 'vim-scripts/FilePathConvert'
 Plug 'mileszs/ack.vim'
 " Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
-Plug 'f-person/auto-dark-mode.nvim'
+" Plug 'f-person/auto-dark-mode.nvim'
 " for weirongxu/plantuml-previewer.vim
 Plug 'tyru/open-browser.vim'
 Plug 'weirongxu/plantuml-previewer.vim'
@@ -1032,9 +1032,12 @@ let g:matchparen_timeout = 2
 let g:matchparen_insert_timeout = 2
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger="<C-F11>"
 let g:UltiSnipsJumpBackwardTrigger="<C-F12>"
+let g:UltiSnipsSnippetsDir = $HOME."/.config/UltiSnips"
+let g:UltiSnipsSnippetDirectories = ['UltiSnips', $HOME.'/.config/UltiSnips']
+let g:UltiSnipsEnableSnipMate = 0
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
