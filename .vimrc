@@ -333,8 +333,6 @@ endif
 
 set equalalways "分割窗口时保持相等的宽/高
 
-set guitablabel=%N.%t " 设定标签上显示序号
-
 set foldmethod=syntax
 set foldcolumn=0
 set foldlevel=0
@@ -405,6 +403,7 @@ if (has("gui_running")  && ! has('gui_vimr'))
 
 	" Set syntax color
 	" colorscheme monokai
+	set guitablabel=%N.%t " 设定标签上显示序号
 	colorscheme gruvbox
 else
 	colorscheme gruvbox
@@ -450,7 +449,7 @@ set backupext=.bak
 
 "设置编码
 set fileencodings=utf-8,gbk,ucs-bom,default,latin1
-set termencoding=utf-8
+" set termencoding=utf-8
 set encoding=utf-8
 
 "Persistent undo
@@ -1069,6 +1068,10 @@ let g:NERDCustomDelimiters = { 'conf': { 'left': '#','right': '' } }
 
 " ack.vim
 let g:ackprg = 'ag --vimgrep'
+
+" copilot.vim
+let g:copilot_enabled = v:false
+
 
 """""""""""""""""""""""""""""""""""""""
 " Plugin }}}
