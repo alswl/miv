@@ -262,6 +262,7 @@ Plug 'mileszs/ack.vim'
 " for weirongxu/plantuml-previewer.vim
 Plug 'tyru/open-browser.vim'
 Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'github/copilot.vim'
 
 
 " for vim-pyref
