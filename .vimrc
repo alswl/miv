@@ -403,7 +403,7 @@ if (has("gui_running")  && ! has('gui_vimr'))
 
 	" Set syntax color
 	" colorscheme monokai
-	set guitablabel=%N.%t " 设定标签上显示序号
+	" set guitablabel=%N.%t " 设定标签上显示序号
 	colorscheme gruvbox
 else
 	colorscheme gruvbox
