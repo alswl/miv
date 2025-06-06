@@ -652,9 +652,20 @@ if has("gui_running") && ! has('gui_vimr')
 	nmap <D-8> 8gt
 	imap <D-9> <Esc>9gt
 	nmap <D-9> 9gt
-endif
 
-if has("gui_running") && ! has('gui_vimr')
+	nmap <D-t> :tabe<cr>
+
+	" set CMD+V to paste in all modes
+	nnoremap <D-v> "+p
+	inoremap <D-v> <Esc>"+pa
+	cnoremap <D-v> "+p
+
+	vnoremap <D-c> "+y<cr>
+
+	nnoremap <D-a> gg0vG$
+	inoremap <D-v> <Esc>gg0vG$
+	cnoremap <D-v> gg0vG$
+
 	imap <silent> <S-Insert> <MiddleMouse>
 	cmap <silent> <S-Insert> <MiddleMouse>
 endif
