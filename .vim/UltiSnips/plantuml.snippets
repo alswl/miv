@@ -405,3 +405,39 @@ package "${1:element}" {
 }
 endsnippet
 
+
+snippet mindmap "mindmap"
+@startmindmap
+<style>
+mindmapDiagram {
+    node {
+        BackgroundColor white
+    }
+    :depth(0) {
+      BackGroundColor #ffbbcc
+    }
+    :depth(1) {
+      BackGroundColor lightblue
+    }
+    :depth(2) {
+      BackGroundColor lightgreen
+    }
+    :depth(3) {
+      BackGroundColor lightyellow
+    }
+    :depth(4) {
+      BackGroundColor lightpink
+    }
+    :depth(5) {
+      BackGroundColor lightgray
+    }
+}
+</style>
+
+* root node
+	* some first level node
+		* second level node
+		* another second level node
+	* another first level node
+@endmindmap
+endsnippet

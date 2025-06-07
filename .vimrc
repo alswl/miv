@@ -657,14 +657,14 @@ if has("gui_running") && ! has('gui_vimr')
 
 	" set CMD+V to paste in all modes
 	nnoremap <D-v> "+p
-	inoremap <D-v> <Esc>"+pa
+	inoremap <D-v> <Esc>"+p
 	cnoremap <D-v> "+p
 
 	vnoremap <D-c> "+y<cr>
 
 	nnoremap <D-a> gg0vG$
-	inoremap <D-v> <Esc>gg0vG$
-	cnoremap <D-v> gg0vG$
+	inoremap <D-a> <Esc>gg0vG$
+	cnoremap <D-a> gg0vG$
 
 	imap <silent> <S-Insert> <MiddleMouse>
 	cmap <silent> <S-Insert> <MiddleMouse>
