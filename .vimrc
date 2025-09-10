@@ -1062,7 +1062,7 @@ let g:UltiSnipsEditSplit="vertical"
 " let g:python_host_prog='/opt/homebrew/bin/python2'
 " using python3 in apple silicon
 " sudo ln -s /opt/homebrew/bin/python3 /usr/local/bin/
-let g:python3_host_prog='/usr/local/bin/python3'
+let g:python3_host_prog='/opt/homebrew/bin/python3'
 " disable neovim ruby
 let g:loaded_ruby_provider = 0
 " let g:ruby_host_prog='~/.rvm/gems/ruby-2.4.0/bin/neovim-ruby-host'
