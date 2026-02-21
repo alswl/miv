@@ -263,6 +263,8 @@ Plug 'mileszs/ack.vim'
 Plug 'tyru/open-browser.vim'
 Plug 'weirongxu/plantuml-previewer.vim'
 Plug 'github/copilot.vim'
+" TODO detect neovim
+Plug 'OXY2DEV/markview.nvim'
 
 
 " for vim-pyref
