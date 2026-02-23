@@ -49,7 +49,7 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 " 禁用Vi的兼容模式
 set nocompatible
 
-if has("gui_running") && ! has('gui_vimr')
+if has("gui_running") && ! exists("g:gui_vimr")
 	"winpos 0 0
 	" set guioptions -=m
 	" set guioptions -=T
@@ -265,6 +265,7 @@ Plug 'weirongxu/plantuml-previewer.vim'
 Plug 'github/copilot.vim'
 " TODO detect neovim
 Plug 'OXY2DEV/markview.nvim'
+Plug 'nvim-treesitter/nvim-treesitter'
 
 
 " for vim-pyref
@@ -329,7 +330,7 @@ set novisualbell
 
 "set iskeyword=@,48-57,192-255
 
-if ! has("gui_running") && ! has('gui_vimr')
+if ! has("gui_running") && ! exists("g:gui_vimr")
 	set mouse-=a
 endif
 
@@ -376,7 +377,7 @@ syntax enable "Enable syntax hl
 "gfn=consolas:h10
 "set gui options
 " Gonvim please setting in ~/.config/goneovim/settings.toml
-if (has("gui_running")  && ! has('gui_vimr'))
+if (has("gui_running") && ! exists("g:gui_vimr"))
 	" set linespace=10
 	" set "uifont=Monospace\ 11
 	" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h16
@@ -635,7 +636,7 @@ inoremap <C-Tab> <Esc>:tabnext<CR>
 inoremap <C-S-Tab> <Esc>:tabprev<CR>
 map <S-k> <Nop>
 
-if has("gui_running") && ! has('gui_vimr')
+if has("gui_running") && ! exists("g:gui_vimr")
 	imap <D-1> <Esc>1gt
 	nmap <D-1> 1gt
 	imap <D-2> <Esc>2gt
@@ -864,7 +865,7 @@ let g:ctrlp_custom_ignore = {
 " nnoremap <C-p> :FZF<CR>
 
 " powerline
-if has("gui_running") && ! has('gui_vimr')
+if has("gui_running") && ! exists("g:gui_vimr")
 	"python from powerline.vim import setup as powerline_setup
 	"python powerline_setup()
 	"python del powerline_setup
