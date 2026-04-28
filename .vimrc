@@ -85,8 +85,8 @@ endif
 autocmd BufEnter * silent! lcd %:p:h
 
 "auto save exit info
-autocmd! BufWinLeave *.* mkview 1
-autocmd! BufWinEnter *.* silent loadview 1
+autocmd! BufWinLeave *.* silent! mkview 1
+autocmd! BufWinEnter *.* silent! loadview 1
 
 set viminfo+=!
 
