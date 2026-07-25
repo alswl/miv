@@ -1,126 +1,130 @@
 # miv
 
-vim(nvim) configuration —— 适用于 Vim 与 NeoVim 的配置仓库。
+Personal Vim / NeoVim configuration (**m**y v**i**m). A single configuration
+serves both Vim and NeoVim, with plugins managed by
+[vim-plug](https://github.com/junegunn/vim-plug).
 
-## 简介
+## Features
 
-miv 是一套统一的 Vim/NeoVim 配置，基于 [vim-plug](https://github.com/junegunn/vim-plug) 管理插件，支持多语言语法高亮、文件树、标签栏、模糊搜索、Markdown/PlantUML 等常用场景。
+- **One config, two editors** — Vim reads `.vimrc`; NeoVim goes through
+  `init.lua` → `legacy.vim` → `.vimrc` to reuse the same setup.
+- Syntax highlighting, indentation, and folding for many languages.
+- File tree (NERDTree), outline (Tagbar), fuzzy finding (CtrlP + fzf).
+- Markdown / PlantUML authoring and preview, table alignment, multiple
+  cursors, and Emacs-style insert-mode keys.
+- NeoVim additionally enables
+  [markview.nvim](https://github.com/OXY2DEV/markview.nvim) and treesitter.
 
-- **Vim**：直接使用 `.vimrc` 与 `.vim` 目录
-- **NeoVim**：通过 `~/.config/nvim/init.lua` 加载，并复用 `.vim` 与 `.vimrc` 配置
+## Requirements
 
-## 前置要求
-
-- [Vim](https://www.vim.org/) 或 [NeoVim](https://neovim.io/)
-- [vim-plug](https://github.com/junegunn/vim-plug)
+- [Vim](https://www.vim.org/) or [NeoVim](https://neovim.io/)
 - Git
 
-## 安装
+[vim-plug](https://github.com/junegunn/vim-plug) is vendored in
+`.vim/autoload/plug.vim`, so there is nothing extra to install.
+
+## Installation
 
 ```bash
-# 克隆仓库
 git clone https://github.com/alswl/miv.git
 cd miv
 
-# 创建符号链接
-ln -sf "$(pwd)/.vim" "$HOME/.vim"
-ln -sf "$(pwd)/.vimrc" "$HOME/.vimrc"
+# Create symlinks (-n replaces existing dir links instead of nesting into them)
+ln -sfn "$(pwd)/.vim"   "$HOME/.vim"
+ln -sf  "$(pwd)/.vimrc" "$HOME/.vimrc"
 mkdir -p "$HOME/.config"
-ln -sf "$(pwd)/.config/nvim" "$HOME/.config/nvim"
+ln -sfn "$(pwd)/.config/nvim" "$HOME/.config/nvim"
 
-# 安装插件（Vim 或 NeoVim 二选一）
-vim +PlugInstall +qa
-# 或
+# Install plugins (run either one; plug.vim is already bundled)
+vim  +PlugInstall +qa
 nvim +PlugInstall +qa
 ```
 
-安装完成后，使用 `vim` 或 `nvim` 即可加载本配置。
+## Layout
 
-## 配置结构
+| Path | Description |
+|------|-------------|
+| `.vimrc` | Main config: plugin list, key maps, general and filetype settings |
+| `.vim/` | UltiSnips snippets, autoload, ftplugin, syntax, etc. |
+| `.config/nvim/init.lua` | NeoVim entry point; loads legacy config and sets up markview |
+| `.config/nvim/legacy.vim` | Sets `runtimepath` and sources `~/.vimrc` |
 
-| 路径 | 说明 |
-|------|------|
-| `.vimrc` | 主配置（插件、键位、通用设置） |
-| `.vim/` | 插件目录、UltiSnips 片段等 |
-| `.config/nvim/init.lua` | NeoVim 入口，加载 legacy 配置 |
-| `.config/nvim/legacy.vim` | 设置 runtimepath 并 `source ~/.vimrc` |
+## Key Bindings
 
-## 快捷键速查
+`<leader>` is the default `\`.
 
-### 通用
+### Interface & Navigation
 
-| 按键 | 功能 |
-|------|------|
-| `F1` | NERDTree 开关 |
-| `F2` | Tagbar 目录/大纲 |
-| `F3` | 展开所有折叠 `zR` |
-| `F4` | 折叠所有 `zM` |
-| `F7` / `Ctrl+H` | 上一个标签 |
-| `F8` / `Ctrl+L` | 下一个标签 |
-| `Space` | 切换当前行折叠 |
-| `<leader>f` | NERDTree 开关 |
-| `<leader>b` | CtrlP 最近文件 |
-| `<leader>q` | 退出 |
-| `<leader>w` | 保存 |
-| `<leader>t` | 新标签页打开当前文件 |
+| Key | Action |
+|-----|--------|
+| `F1` / `<leader>f` | Toggle NERDTree file tree |
+| `F2` | Toggle Tagbar outline |
+| `F3` / `F4` | Open all folds `zR` / close all folds `zM` |
+| `Space` | Toggle fold on the current line |
+| `Ctrl+J/K` | Move to window below / above |
+| `F7` / `Ctrl+H` | Previous tab |
+| `F8` / `Ctrl+L` | Next tab |
+| `Ctrl+Tab` / `Ctrl+Shift+Tab` | Next / previous tab |
+| `←` / `→` | Previous / next buffer |
+| `Ctrl+P` | CtrlP file search (current dir; disabled under `$HOME`) |
+| `<leader>b` | CtrlP most-recently-used files |
+| `<leader>t` | Open current file in a new tab |
+| `<leader>w` / `<leader>q` | Save / quit |
+| `Q` | Quit |
+| `gx` | Open URL under cursor (macOS) |
 
-### 窗口与缓冲
+### Marks & Search
 
-| 按键 | 功能 |
-|------|------|
-| `Ctrl+J/K` | 下/上窗口 |
-| `←` / `→` | 上一个/下一个缓冲区 |
+| Key | Action |
+|-----|--------|
+| `<leader>m` | vim-mark highlight mark |
+| `<leader>n` | Clear highlight marks |
+| `<leader>r` | Regex mark |
+| `<leader>d` | Jump to diff separator line |
+| Visual `*` / `#` | Search forward / backward for the selection |
 
-### 标记与搜索
+### Editing & Alignment
 
-| 按键 | 功能 |
-|------|------|
-| `<leader>m` | 高亮标记 |
-| `<leader>n` | 清除高亮标记 |
-| `<leader>r` | 正则标记 |
-| `g Ctrl+]` | 打开 ctags 列表 |
-| `<leader>d` | 跳转到 diff 分隔行 |
+| Key | Action |
+|-----|--------|
+| `<leader>tm` | Table Mode |
+| `<leader>nr` / `:NR` / `:NRV` / `:NW` | NrrwRgn narrowed-region editing |
+| `gaip=` / `vipga=` | EasyAlign on `=` |
+| `\sf` | FilePathConvert path-format conversion |
+| `Tab` | Expand UltiSnips snippet |
+| `Ctrl+A/E/B/F`, etc. | Emacs-style motion / deletion in insert & command mode |
 
-### 编辑与对齐
+### Markdown / PlantUML (macOS)
 
-| 按键 | 功能 |
-|------|------|
-| `<leader>tm` | Table Mode 表格模式 |
-| `<leader>nr` | 对选中区域进行 NrrwRgn 编辑 |
-| `:NR` | 对选中行进行窄区编辑 |
-| `:NRV` | 对选中区域进行窄区编辑 |
-| `:NW` | 对当前窗口区域编辑 |
-| `vipga=` | 按 `=` 对齐段落 |
-| `gaip=` | 按 `=` 对齐段落（操作符） |
-| `vipga➡️=` | 按 `=` 右对齐段落 |
-| 可视模式 `ga:` | 按 `:` 右对齐块 |
-| `\sf` | 文件路径格式转换 |
+| Key | Action |
+|-----|--------|
+| `<leader>N` | Open preview in MacDown |
+| `<leader>M` | Render HTML via pandoc and open |
+| `<leader>u` / `<leader>U` | Render PlantUML to PNG / SVG and open |
+| `<leader>p` / `<leader>P` | Save clipboard / path image into assets and insert a Markdown link |
 
-### 其他
+### Custom Commands
 
-| 按键 | 功能 |
-|------|------|
-| `:DrawIt` | 进入 DrawIt 绘图模式 |
-| `Ctrl+P` | CtrlP 文件搜索（当前目录，非 HOME） |
+| Command | Action |
+|---------|--------|
+| `:TrimR` | Strip trailing whitespace |
+| `:RemoveBlankLines` | Collapse extra blank lines |
+| `:DiffOrig` | Diff against the file on disk |
+| `:DrawIt` | Enter ASCII drawing mode |
 
 ### ctags
 
-跳过 Python import 的推荐用法：
-
 ```bash
+# Generate tags, skipping Python imports
 ctags -R --python-kinds=-i
 ```
 
-## 从 Vim 迁移到 NeoVim
+## Migrating from Vim to NeoVim
 
-若已在使用 Vim，可参考 NeoVim 内置说明：
+This repo ships NeoVim config (`init.lua` + `legacy.vim`). Symlink
+`~/.config/nvim` as shown in [Installation](#installation) — no need to write
+`init.vim` by hand. See `:help nvim-from-vim`.
 
-```
-:help nvim-from-vim
-```
+## Related
 
-本仓库已包含 NeoVim 配置（`init.lua` + `legacy.vim`），按上述「安装」步骤链接 `~/.config/nvim` 即可，无需再手写 `init.vim`。
-
-## 相关链接
-
-- [alswl/.oOo.](https://github.com/alswl/.oOo.) —— 其他 dotfiles 仓库
+- [alswl/.oOo.](https://github.com/alswl/.oOo.) — other dotfiles repo
