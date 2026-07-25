@@ -13,13 +13,13 @@ miv 是一套统一的 Vim/NeoVim 配置，基于 [vim-plug](https://github.com/
 
 - [Vim](https://www.vim.org/) 或 [NeoVim](https://neovim.io/)
 - [vim-plug](https://github.com/junegunn/vim-plug)
-- Git（含 `--recursive` 以拉取子模块）
+- Git
 
 ## 安装
 
 ```bash
-# 克隆仓库（含子模块）
-git clone --recursive https://github.com/alswl/miv.git
+# 克隆仓库
+git clone https://github.com/alswl/miv.git
 cd miv
 
 # 创建符号链接
@@ -68,7 +68,7 @@ nvim +PlugInstall +qa
 
 | 按键 | 功能 |
 |------|------|
-| `Ctrl+J/K/H/L` | 下/上/左/右窗口 |
+| `Ctrl+J/K` | 下/上窗口 |
 | `←` / `→` | 上一个/下一个缓冲区 |
 
 ### 标记与搜索

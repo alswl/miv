@@ -9,6 +9,7 @@ function! MySys()
 			return "mac"
 		else
 			return "linux"
+		endif
 	endif
 endfunction
 
@@ -106,19 +107,12 @@ call plug#begin()
 Plug 'vim-scripts/asciidoc.vim'
 Plug 'vim-scripts/confluencewiki.vim'
 Plug 'othree/html5.vim'
-"Plug 'vim-scripts/JavaScript-syntax'
-"Plug 'vim-scripts/mako.vim'
 Plug 'vim-scripts/moin.vim'
 Plug 'vim-scripts/python.vim--Vasiliev'
 Plug 'vim-scripts/xml.vim'
 Plug 'vim-scripts/less'
-" Plug 'hallison/vim-markdown'
-" Plug 'tpope/vim-markdown'
 Plug 'vim-scripts/wikipedia.vim'
 Plug 'derekwyatt/vim-scala'
-" play1
-" Plug 'alswl/play2vim'
-" play2
 Plug 'gre/play2vim'
 Plug 'tpope/vim-haml'
 Plug 'kchmck/vim-coffee-script'
@@ -126,19 +120,12 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/django.vim'
 Plug 'chr4/nginx.vim'
 Plug 'saltstack/salt-vim'
-" Install gopls, `go get golang.org/x/tools/gopls@latest`
-" Plug 'fatih/vim-go'
 Plug 'vim-scripts/haproxy'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'chase/vim-ansible-yaml'
 Plug 'leafgarland/typescript-vim'
 Plug 'aklt/plantuml-syntax'
-" Plug 'alswl/plantuml-syntax'
-" Plug 'spacewander/openresty-vim'
 Plug 'vim-scripts/applescript.vim'
-"Plug 'pangloss/vim-javascript'
-"Plug 'othree/yajs.vim'
-"Plug 'mxw/vim-jsx'
 Plug 'skreuzer/vim-prometheus'
 Plug 'cespare/vim-toml'
 
@@ -147,131 +134,74 @@ Plug 'cespare/vim-toml'
 Plug 'vim-scripts/desert256.vim'
 Plug 'vim-scripts/vividchalk.vim'
 Plug 'vim-scripts/ego.vim'
-"Plug 'tomasr/molokai'
 Plug 'crusoexia/vim-monokai'
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 
-" Ftplugin
-"Plug 'vim-scripts/python_fold'
-
 " Indent
-"Plug 'indent/html.vim'
 Plug 'vim-scripts/IndentAnything'
-" Plug 'vim-scripts/Javascript-Indentation'
 Plug 'vim-scripts/mako.vim--Torborg'
 Plug 'gg/python.vim'
-" it cause nvim load plugins error
-" Plug 'lepture/vim-jinja'
+" replaces lepture/vim-jinja (that one breaks nvim plugin loading)
 Plug 'Glench/Vim-Jinja2-Syntax'
 
 " Plugins
 Plug 'preservim/nerdtree'
-"Plug 'AutoClose--Alves'
 Plug 'vim-scripts/auto_mkdir'
-" required by XXX
+" dependency (cecutil / L9)
 Plug 'vim-scripts/cecutil'
 " encode detect
 Plug 'mbbill/fencview'
-" Plug 'vim-scripts/FuzzyFinder'
-Plug 'akiyosi/gonvim-fuzzy'
 Plug 'vim-scripts/jsbeautify'
-" required by XXX
 Plug 'vim-scripts/L9'
-" required for vim-mark
-" required for FilePathConvert
+" required for vim-mark and FilePathConvert
 Plug 'inkarkat/vim-ingo-library'
 " mark in different color, leader + m
 Plug 'inkarkat/vim-mark'
 " joke
 Plug 'vim-scripts/matrix.vim'
-" most recent used
-Plug 'vim-scripts/mru.vim'
 " auto comment
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-scripts/restart.vim'
-"Tlist
-"Plug 'vim-scripts/taglist.vim'
-"Plug 'vim-scripts/templates.vim'
 Plug 'majutsushi/tagbar'
-"Plug 'vim-scripts/vimim.vim'
 Plug 'mattn/emmet-vim'
-"Plug 'css_color.vim'
-"Plug 'hallettj/jslint.vim'
-" code source
-"Plug 'vim-scripts/vcscommand.vim'
-" task list search
-"Plug 'vim-scripts/TaskList.vim'
-"Plug 'vim-scripts/pep8'
-"Plug 'git://github.com/kevinw/pyflakes-vim.git'
-"Rope, a python refactoring library
-"Plug 'sontek/rope-vim'
-"Plug 'project.tar.gz'
-"Plug 'vim-scripts/minibufexplorerpp'
 Plug 'vim-scripts/bufexplorer.zip'
-"Plug 'vim-scripts/Align.vim'
-"Plug 'vim-scripts/SQLUtilities'
 " extened % for html ...
 Plug 'vim-scripts/matchit.zip'
 " % jump, </> pair, >> for complete
 Plug 'vim-scripts/xmledit'
 " ascii drawing, \di, \ds
-" Plug 'vim-scripts/DrawIt is Outdated
 Plug 'alswl/DrawIt'
-" Plug 'gyim/vim-boxdraw'
 " NR, NW
 Plug 'chrisbra/NrrwRgn'
-" status bar
-" Plug 'Lokaltog/vim-powerline'
-" Plug 'scala/scala-dist'
 Plug 'terryma/vim-multiple-cursors'
-" original repos on github
-"Plug 'tpope/vim-fugitive'
-"Plug 'Lokaltog/vim-easymotion'
-"Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
-"Plug 'tpope/vim-rails.git'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-scripts/Rename'
 Plug '907th/vim-auto-save'
-" Plug 'nelstrom/vim-markdown-folding'
 Plug 'godlygeek/tabular'
-" Plug 'plasticboy/vim-markdown'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'rhysd/vim-gfm-syntax'
 Plug 'dhruvasagar/vim-table-mode'
-" Plug 'lilydjwg/fcitx.vim'
-" now I using Rime to detect in GUI, only using fcitx-remote in Terminal, https://github.com/xcodebuild/fcitx-remote-for-osx
-" too slow, disable it
-" Plug 'CodeFalling/fcitx-vim-osx'
+" IME: using Rime in GUI + fcitx-remote in Terminal, so no fcitx vim plugin
 Plug 'junegunn/vim-easy-align'
-"Plug 'wannesm/wmgraphviz.vim'
 Plug 'hotoo/pangu.vim'
 Plug 'vim-jp/autofmt'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
-"Plug 'jiangmiao/auto-pairs'
 " required by FilePathConvert
 Plug 'inkarkat/vim-TextTransform'
 " shortcut \sf
 Plug 'vim-scripts/FilePathConvert'
 Plug 'mileszs/ack.vim'
-" Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
-" Plug 'f-person/auto-dark-mode.nvim'
 " for weirongxu/plantuml-previewer.vim
 Plug 'tyru/open-browser.vim'
 Plug 'weirongxu/plantuml-previewer.vim'
 Plug 'github/copilot.vim'
-" TODO detect neovim
+" TODO: nvim-only, guard for pure vim
 Plug 'OXY2DEV/markview.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
-
-
-" for vim-pyref
-
-" non github repos
-"Plug 'git://git.wincent.com/command-t.git'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""
@@ -572,10 +502,9 @@ autocmd FileType dockerfile setlocal expandtab shiftwidth=2
 """""""""""""""""""""""""""""""""""""""
 
 " Smart way to move btw. windows
+" note: <C-h>/<C-l> are used for tab switching below (gT/gt)
 map <C-j> <C-W>j
 map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
 
 " Use the arrows to something usefull
 map <right> :bn<cr>
@@ -740,9 +669,6 @@ noremap <silent> <leader>q :q<CR>
 
 inoremap <silent> <leader>w :w<CR>
 noremap <silent> <leader>w :w<CR>
-
-nnoremap <S-Tab> <<
-inoremap <S-Tab> <C-d>
 
 
 " delete without yanking
