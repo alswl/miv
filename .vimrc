@@ -202,6 +202,8 @@ Plug 'github/copilot.vim'
 " TODO: nvim-only, guard for pure vim
 Plug 'OXY2DEV/markview.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'sindrets/diffview.nvim'
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""
