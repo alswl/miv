@@ -100,7 +100,9 @@ Plug 'nvim-tree/nvim-web-devicons'
 
 
 " Theme
-Plug 'EdenEast/nightfox.nvim'
+if has('nvim')
+	Plug 'EdenEast/nightfox.nvim'
+endif
 
 " Indent
 Plug 'vim-scripts/mako.vim--Torborg'
@@ -144,7 +146,6 @@ Plug 'honza/vim-snippets'
 " for weirongxu/plantuml-previewer.vim
 Plug 'tyru/open-browser.vim'
 Plug 'weirongxu/plantuml-previewer.vim'
-Plug 'github/copilot.vim'
 
 if has('nvim')
 	Plug 'OXY2DEV/markview.nvim'
@@ -258,10 +259,18 @@ set numberwidth=2 "行号栏的宽度
 
 syntax enable "Enable syntax hl
 
-" Ghostty supports true colour; enable it so the GitHub palette is rendered
-" exactly rather than reduced to a 256-colour approximation.
+
+" Enable true color only when the terminal advertises 24-bit color. This is
+" important inside tmux/screen, where TERM is intentionally not the outer
+" terminal's value.
 if has('termguicolors')
-	set termguicolors
+	" Do not send RGB escape sequences through multiplexers until their
+	" actual RGB passthrough has been verified; 256 colors are reliable.
+	if $TERM !~# '^\%(tmux\|screen\)' && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit')
+		set termguicolors
+	else
+		set notermguicolors
+	endif
 endif
 
 " Nordfox provides a restrained blue-gray palette for long reading and diff review.
@@ -299,7 +308,14 @@ if (has("gui_running") && ! exists("g:gui_vimr"))
 
 endif
 
-colorscheme nordfox
+if has('nvim') && $TERM !~# '^screen'
+	colorscheme nordfox
+elseif has('nvim')
+	" Use Vim's classic 256-color fallback for GNU screen.
+	colorscheme desert
+else
+	colorscheme desert
+endif
 
 "set ambiwidth=double " 设定某些标点符号为宽字符
 
@@ -878,9 +894,6 @@ let g:loaded_ruby_provider = 0
 let g:NERDSpaceDelims = 1
 let g:NERDCustomDelimiters = { 'conf': { 'left': '#','right': '' } }
 
-" copilot.vim
-let g:copilot_enabled = v:false
-
 
 """""""""""""""""""""""""""""""""""""""
 " Plugin }}}
@@ -899,12 +912,18 @@ function! s:RefreshThemeIntegrations()
 endfunction
 
 function! s:ToggleTheme()
-	if get(g:, 'colors_name', '') ==# 'nordfox'
+	if has('nvim') && $TERM !~# '^screen' && get(g:, 'colors_name', '') ==# 'nordfox'
 		set background=light
 		colorscheme dayfox
-	else
+	elseif has('nvim') && $TERM !~# '^screen'
 		set background=dark
 		colorscheme nordfox
+	elseif has('nvim')
+		set background=dark
+		colorscheme desert
+	else
+		set background=dark
+		colorscheme desert
 	endif
 	call s:RefreshThemeIntegrations()
 endfunction
