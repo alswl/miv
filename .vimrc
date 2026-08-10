@@ -154,7 +154,8 @@ if has('nvim')
 	Plug 'ibhagwan/fzf-lua'
 	Plug 'stevearc/conform.nvim'
 	Plug 'stevearc/oil.nvim'
-	Plug 'stevearc/aerial.nvim'
+	" Debian Trixie ships a restricted Neovim version; use the compatible Aerial branch.
+	Plug 'stevearc/aerial.nvim', { 'branch': 'nvim-0.9' }
 endif
 
 call plug#end()
