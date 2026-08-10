@@ -1,7 +1,9 @@
 """""""""""""""""""""""""""""""""""""""
 "Utils {{{
 """""""""""""""""""""""""""""""""""""""
-function! MySys()
+set nocompatible
+
+function! s:System()
 	if has("win32")
 		return "windows"
 	else
@@ -13,14 +15,7 @@ function! MySys()
 	endif
 endfunction
 
-" CTRL-X and SHIFT-Del are Cut
-"vnoremap <C-X> "+x
-
-" CTRL-C and CTRL-Insert are Copy
-" vnoremap <C-C> "+y
-
-" CTRL-V and SHIFT-Insert are Paste
-if MySys() == "linux"
+if s:System() == "linux"
 	vmap <C-c> "+y
 	vmap <C-x> "+c
 	vmap <C-v> c<ESC>"+p
@@ -44,35 +39,13 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" 编辑vimrc之后，重新加载
-autocmd! bufwritepost .vimrc source ~/.vimrc
-
-" 禁用Vi的兼容模式
-set nocompatible
-
-if has("gui_running") && ! exists("g:gui_vimr")
-	"winpos 0 0
-	" set guioptions -=m
-	" set guioptions -=T
-	" set guioptions -=L
-	" set guioptions -=r
-	" auto select
-	" set guioptions +=a
-	" set macmeta
-	"set transparency=10
-	"set showtabline=0
-	"set lines=45
-	"set columns=85
-
-	" insert mode to IME
-	"set noimdisable
-	"set iminsert=2
-
-	"autocmd! InsertEnter * set noimdisable|set iminsert=0
-	"autocmd! InsertLeave * set imdisable|set iminsert=0
-	"autocmd! FocusGained * set imdisable|set iminsert=0
-endif
-
+augroup user_general
+	autocmd!
+	autocmd BufWritePost .vimrc source ~/.vimrc
+	autocmd BufEnter * silent! lcd %:p:h
+	autocmd BufWinLeave *.* silent! mkview 1
+	autocmd BufWinEnter *.* silent! loadview 1
+augroup END
 
 set noscrollbind
 set nocursorbind
@@ -81,13 +54,6 @@ if exists('+autochdir')
 	" 文件路径设置为当前路径
 	set autochdir
 endif
-
-" auto set current work dir
-autocmd BufEnter * silent! lcd %:p:h
-
-"auto save exit info
-autocmd! BufWinLeave *.* silent! mkview 1
-autocmd! BufWinEnter *.* silent! loadview 1
 
 set viminfo+=!
 
@@ -100,7 +66,9 @@ set viminfo+=!
 " Plugin Management {{{
 """""""""""""""""""""""""""""""""""""""
 
-call plug#begin()
+" Keep Vim and Neovim on one plugin directory; vim-plug otherwise chooses
+" different defaults for each editor.
+call plug#begin('~/.vim/plugged')
 
 
 " Syntax
@@ -128,18 +96,13 @@ Plug 'aklt/plantuml-syntax'
 Plug 'vim-scripts/applescript.vim'
 Plug 'skreuzer/vim-prometheus'
 Plug 'cespare/vim-toml'
+Plug 'nvim-tree/nvim-web-devicons'
 
 
-" Color
-Plug 'vim-scripts/desert256.vim'
-Plug 'vim-scripts/vividchalk.vim'
-Plug 'vim-scripts/ego.vim'
-Plug 'crusoexia/vim-monokai'
-Plug 'altercation/vim-colors-solarized'
-Plug 'morhetz/gruvbox'
+" Theme
+Plug 'EdenEast/nightfox.nvim'
 
 " Indent
-Plug 'vim-scripts/IndentAnything'
 Plug 'vim-scripts/mako.vim--Torborg'
 Plug 'gg/python.vim'
 " replaces lepture/vim-jinja (that one breaks nvim plugin loading)
@@ -147,29 +110,18 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 
 " Plugins
 Plug 'preservim/nerdtree'
-Plug 'vim-scripts/auto_mkdir'
-" dependency (cecutil / L9)
-Plug 'vim-scripts/cecutil'
 " encode detect
-Plug 'mbbill/fencview'
-Plug 'vim-scripts/jsbeautify'
-Plug 'vim-scripts/L9'
-" required for vim-mark and FilePathConvert
+" required for vim-mark
 Plug 'inkarkat/vim-ingo-library'
 " mark in different color, leader + m
 Plug 'inkarkat/vim-mark'
-" joke
-Plug 'vim-scripts/matrix.vim'
 " auto comment
 Plug 'scrooloose/nerdcommenter'
-Plug 'vim-scripts/restart.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
-Plug 'vim-scripts/bufexplorer.zip'
 " extened % for html ...
 Plug 'vim-scripts/matchit.zip'
 " % jump, </> pair, >> for complete
-Plug 'vim-scripts/xmledit'
 " ascii drawing, \di, \ds
 Plug 'alswl/DrawIt'
 " NR, NW
@@ -178,7 +130,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'vim-scripts/Rename'
 Plug '907th/vim-auto-save'
 Plug 'godlygeek/tabular'
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -190,19 +141,20 @@ Plug 'hotoo/pangu.vim'
 Plug 'vim-jp/autofmt'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
-" required by FilePathConvert
-Plug 'inkarkat/vim-TextTransform'
-" shortcut \sf
-Plug 'vim-scripts/FilePathConvert'
-Plug 'mileszs/ack.vim'
 " for weirongxu/plantuml-previewer.vim
 Plug 'tyru/open-browser.vim'
 Plug 'weirongxu/plantuml-previewer.vim'
 Plug 'github/copilot.vim'
-" TODO: nvim-only, guard for pure vim
-Plug 'OXY2DEV/markview.nvim'
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'sindrets/diffview.nvim'
+
+if has('nvim')
+	Plug 'OXY2DEV/markview.nvim'
+	Plug 'nvim-treesitter/nvim-treesitter'
+	Plug 'sindrets/diffview.nvim'
+	Plug 'ibhagwan/fzf-lua'
+	Plug 'stevearc/conform.nvim'
+	Plug 'stevearc/oil.nvim'
+	Plug 'stevearc/aerial.nvim'
+endif
 
 call plug#end()
 
@@ -282,7 +234,7 @@ set ttyfast
 set shortmess-=S
 
 
-if !exists(':relativenumber')
+if exists('+relativenumber')
 	set relativenumber " 显示相对行号
 endif
 set number " 显示行号
@@ -306,6 +258,15 @@ set numberwidth=2 "行号栏的宽度
 
 syntax enable "Enable syntax hl
 
+" Ghostty supports true colour; enable it so the GitHub palette is rendered
+" exactly rather than reduced to a 256-colour approximation.
+if has('termguicolors')
+	set termguicolors
+endif
+
+" Nordfox provides a restrained blue-gray palette for long reading and diff review.
+set background=dark
+
 "gfn=consolas:h10
 "set gui options
 " Gonvim please setting in ~/.config/goneovim/settings.toml
@@ -317,12 +278,12 @@ if (has("gui_running") && ! exists("g:gui_vimr"))
 	" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h20
 	" set macligatures
 	" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h13
-	if MySys() == "mac"
+	if s:System() == "mac"
 		set guifont=Fira\ Code\ Light,PingFang\ SC\ Light:h14
 		set guifontwide=Fira\ Code\ Light,PingFang\ SC\ Light:h14
 		" set printfont=Fira\ Code:h12
 	else
-		if MySys() == "linux"
+		if s:System() == "linux"
 			set guifont=Fira\ Code\ 16
 			" set printfont=Fira\ Code\ 12
 		endif
@@ -336,31 +297,11 @@ if (has("gui_running") && ! exists("g:gui_vimr"))
 	" set printmbcharset=ISO10646
 	" set printmbfont=r:Fira\ SC\ Light,c:yes
 
-	" Set syntax color
-	" colorscheme monokai
-	" set guitablabel=%N.%t " 设定标签上显示序号
-	colorscheme gruvbox
-else
-	colorscheme gruvbox
-	"colorscheme desert256
 endif
 
-set background=dark
-" set background=light
+colorscheme nordfox
 
 "set ambiwidth=double " 设定某些标点符号为宽字符
-
-" 设定行首tab为灰色
-highlight LeaderTab guifg=#666666
-
-" Hi links
-au syntax * hi link markdownBold GruvboxRed
-au syntax * hi link markdownOrderedListMarker GruvboxBlue
-au syntax * hi link markdownListMarker GruvboxBlue
-au syntax * hi link markdownCode GruvboxAqua
-au syntax * hi link markdownCodeDelimator GruvboxAqua
-au syntax * hi link markdownBlockquote GruvboxYellowSign
-
 
 " Hi todos
 syn match myTodo contained "\<\(TODO\|FIXME\|XXX\):"
@@ -389,7 +330,7 @@ set encoding=utf-8
 
 "Persistent undo
 if exists('+undodir')
-	if MySys() == "windows"
+	if s:System() == "windows"
 		set undodir=C:\Windows\Temp
 	else
 		if has('nvim-0.5')
@@ -431,7 +372,9 @@ set wrap "Wrap lines
 "FileType setting {{{
 """""""""""""""""""""""""""""""""""""""
 
-autocmd BufRead,BufNewFile *.md set filetype=markdown
+augroup user_filetypes
+	autocmd!
+	autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile */tmp/edit-server-prometheus**.txt set filetype=prometheus
 autocmd BufRead,BufNewFile */tmp/edit-server-*.txt set filetype=markdown.gfm
 autocmd BufRead,BufNewFile /private/tmp/zsh* set filetype=sh
@@ -459,7 +402,7 @@ autocmd BufRead,BufNewFile Dockerfile-* set filetype=dockerfile
 
 autocmd FileType python setlocal expandtab colorcolumn=80 textwidth=0 diffopt=vertical " fo+=Mm
 "Map F9 to Run Python Script
-autocmd FileType python map <F9> :!python %
+autocmd FileType python nnoremap <buffer> <F9> :!python %<CR>
 autocmd FileType asciidoc setlocal colorcolumn=120
 autocmd FileType markdown,markdown.pandoc,markdown.github,markdown.gfm
 						\ setlocal colorcolumn=120 expandtab shiftwidth=2 nowrap
@@ -493,6 +436,7 @@ autocmd FileType plantuml let g:plantuml_previewer#plantuml_jar_path = get(
     \)
 autocmd FileType sh setlocal expandtab shiftwidth=2
 autocmd FileType dockerfile setlocal expandtab shiftwidth=2
+augroup END
 
 """""""""""""""""""""""""""""""""""""""
 "FileType setting }}}
@@ -559,8 +503,6 @@ map <F8> gt
 imap <F8> <Esc>gt
 map <C-h> gT
 map <C-l> gt
-imap <F7> <Esc>gT
-imap <F8> <Esc>gt
 noremap <C-Tab> :tabnext<CR>
 noremap <C-S-Tab> :tabprev<CR>
 inoremap <C-Tab> <Esc>:tabnext<CR>
@@ -652,9 +594,14 @@ map <leader>f :NERDTreeToggle<CR>
 " diff
 map <leader>d /^[=<>]\{7\}<CR>
 
-" noremap <silent> <leader>b :BufExplorer<CR>
-" noremap <silent> <leader>s :BufExplorerVerticalSplit<CR>
-" noremap <silent> <leader>b :BufExplorerHorizontalSplit<CR>
+" Toggle between Nordfox (dark) and Dayfox (light).
+nnoremap <silent> <leader>ct :ToggleTheme<CR>
+
+if !has('nvim')
+	" Neovim uses Conform; Vim falls back to its built-in formatter.
+	nnoremap <silent> <leader>F :normal! gggqG<CR>
+endif
+
 noremap <silent> <leader>b :CtrlPMRUFiles<CR>
 
 imap <C-\> <Esc>:split<CR>:set nocursorbind noscrollbind<CR>:diffoff<CR>
@@ -678,7 +625,7 @@ noremap <silent> <leader>w :w<CR>
 " vnoremap <leader>d "_d
 
 " pip install pandoc-plantuml
-if MySys() == "mac"
+if s:System() == "mac"
 	" markdown preview
 	noremap <leader>N :!open -a MacDown %<CR>
 	" noremap <leader>N :!open -a Typora %<CR>
@@ -696,7 +643,7 @@ if MySys() == "mac"
 	"noremap <leader>p :!$HOME/local/bin/image-from-clipboard-to-png-global %
 	noremap <leader>P :!$HOME/local/bin/image-from-path-to-assets-copy-markdown %
 else
-	if MySys() == "linux"
+	if s:System() == "linux"
 		" markdown preview
 		noremap <leader>M :silent exec "!pandoc % -f markdown+smart -s --toc --toc-depth=4 -c ~/local/etc/Blank.css --mathjax='https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --filter=pandoc-plantuml -t html -o %.generated.html && xdg-open %.generated.html"<CR>
 	endif
@@ -708,15 +655,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 if has('macunix')
-	function! OpenURLUnderCursor()
-		let s:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;()]*')
-		let s:uri = shellescape(s:uri, 1)
-		if s:uri != ''
-			silent exec "!open '".s:uri."'"
-			:redraw!
-		endif
-	endfunction
-	nnoremap gx :call OpenURLUnderCursor()<CR>
+	nnoremap gx :call <SID>OpenURLUnderCursor()<CR>
 endif
 
 """""""""""""""""""""""""""""""""""""""
@@ -730,56 +669,13 @@ endif
 
 set tags=tags;
 
-"pydiction 1.2 python auto complete
-"let g:pydiction_location = 'D:/Program Files/Vim/vimfiles/ftplugin/pydiction'
-"defalut g:pydiction_menu_height == 15
-"let g:pydiction_menu_height = 20
-
-"SuperTab
-"let g:SuperTabRetainCompletionType = 2
-"let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-
-"Neo
-"let g:neocomplcache_enable_at_startup=1
-
-" Restart
-let g:restart_sessionoptions = "restart_session"
-
-
-" fuzzyfinder
-"map <silent> <leader>sf :FufFile<CR>
-"map <silent> <leader>sb :FufBuffer<CR>
-
-" jslint.vim
-" let g:JSLintHighlightErrorLine = 0 " disabled
-
-" Fencview
-" let g:fencview_autodetect = 1
-
-" JSLint
-let g:JSLintHighlightErrorLine = 0
-
-" Project
-"map <silent> <leader>p :Project<CR>
-
-" NERDTree
 let g:NERDTreeIgnore = ['\.pyc$', '\.class$', '\.jpeg$', '\.jpg$', '\.png$', '\.git$', '^target$', '\.slide\.html$', '\.generated\.html$', '\.md\.assets$']
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeShowBookmarks=1
 
 " ctrlp
-nnoremap <C-p> :call RunCtrlP()<CR>
+nnoremap <C-p> :call <SID>RunCtrlP()<CR>
 let g:ctrlp_map = ''
-fun! RunCtrlP()
-  lcd %:p:h
-  if (getcwd() == $HOME)
-    echo "Can't run in \$HOME"
-    return
-  endif
-  CtrlP
-endfunc
-"let g:ctrlp_working_path_mode = 'c'
-"let g:ctrlp_working_path_mode = 'ca'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_root_markers = ['.ctrlp', 'README.md', 'build.sbt', '.git']
 let g:ctrlp_custom_ignore = {
@@ -788,29 +684,10 @@ let g:ctrlp_custom_ignore = {
         \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
         \ }
 
-" fzf.vim
-" nnoremap <C-p> :GFiles<CR>
-" nnoremap <C-p> :FZF<CR>
-
-" powerline
-if has("gui_running") && ! exists("g:gui_vimr")
-	"python from powerline.vim import setup as powerline_setup
-	"python powerline_setup()
-	"python del powerline_setup
-endif
-
-" autosaving
-
 let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:auto_save_silent = 1  " do not display the auto-save notification
 
 let g:auto_save_presave_hook = 'call AbortIfNotFileType()'
-
-function! AbortIfNotFileType()
-  if &filetype != 'markdown' && &filetype != 'markdown.gfm' && &filetype != 'markdown.pandoc' && &filetype != 'plantuml' && &filetype != 'yaml'
-    let g:auto_save_abort = 1
-  endif
-endfunction
 
 " Add support for markdown files in tagbar.
 "let g:tagbar_type_markdown = {
@@ -910,12 +787,11 @@ let g:tagbar_type_scala = {
 let g:pandoc#syntax#conceal#use = 0
 " let g:pandoc#syntax#conceal#urls = 1
 " let g:pandoc#syntax#conceal#blacklist = ["atx","codeblock_start","codeblock_delim"]
-au syntax * hi link pandocAtxStart Type
-au syntax * hi link pandocAtxHeader Type
-au syntax * hi! link pandocEmphasis GruvboxGreen
-au syntax * hi! link pandocStrong GruvboxGreen
-au syntax * hi link pandocListItemBullet GruvboxBlue
-au syntax * hi link pandocUListItemBullet GruvboxBlue
+augroup user_syntax
+	autocmd!
+	autocmd Syntax * hi link pandocAtxStart Type
+	autocmd Syntax * hi link pandocAtxHeader Type
+augroup END
 
 " vim-mark
 "nmap <silent> <leader>hl <Plug>MarkSet
@@ -989,27 +865,18 @@ let g:UltiSnipsEditSplit="vertical"
 " let g:vimtex_quickfix_mode=0
 " let g:tex_conceal='abdmg'
 
-" neovim need prog
-" let g:python_host_prog='/opt/homebrew/bin/python2'
-" using python3 in apple silicon
-" sudo ln -s /opt/homebrew/bin/python3 /usr/local/bin/
-let g:python3_host_prog='/opt/homebrew/bin/python3'
+" Use Python from PATH so the provider works on macOS and Linux.
+let s:python3_host = exepath('python3')
+if !empty(s:python3_host)
+	let g:python3_host_prog = s:python3_host
+endif
 " disable neovim ruby
 let g:loaded_ruby_provider = 0
 " let g:ruby_host_prog='~/.rvm/gems/ruby-2.4.0/bin/neovim-ruby-host'
 
-" fcitx
-" disable on MacVim / VimR (Squirrel has vim_mode)
-if has("gui_running")
-	let g:fcitx_remote=1
-endif
-
 " nerdcommenter
 let g:NERDSpaceDelims = 1
 let g:NERDCustomDelimiters = { 'conf': { 'left': '#','right': '' } }
-
-" ack.vim
-let g:ackprg = 'ag --vimgrep'
 
 " copilot.vim
 let g:copilot_enabled = v:false
@@ -1021,8 +888,49 @@ let g:copilot_enabled = v:false
 
 
 """""""""""""""""""""""""""""""""""""""
-" User Defined function {{{
+" Helpers and commands {{{
 """""""""""""""""""""""""""""""""""""""
+
+function! s:RefreshThemeIntegrations()
+	if has('nvim')
+		lua local ok, highlights = pcall(require, 'markview.highlights'); if ok then for name in pairs(vim.api.nvim_get_hl(0, {})) do if name:match('^Markview') then vim.api.nvim_set_hl(0, name, {}) end end; highlights.setup() end
+	endif
+	redraw!
+endfunction
+
+function! s:ToggleTheme()
+	if get(g:, 'colors_name', '') ==# 'nordfox'
+		set background=light
+		colorscheme dayfox
+	else
+		set background=dark
+		colorscheme nordfox
+	endif
+	call s:RefreshThemeIntegrations()
+endfunction
+
+command! ToggleTheme call <SID>ToggleTheme()
+
+function! s:OpenURLUnderCursor()
+	let l:uri = shellescape(matchstr(getline('.'), '[a-z]*:\/\/[^ >,;()]*'), 1)
+	if l:uri != ''
+		execute 'silent !open ' . l:uri
+		redraw!
+	endif
+endfunction
+
+function! s:RunCtrlP()
+	lcd %:p:h
+	if getcwd() ==# $HOME
+		echo "Can't run in \$HOME"
+		return
+	endif
+	CtrlP
+endfunction
+
+function! AbortIfNotFileType()
+	let g:auto_save_abort = index(['markdown', 'markdown.gfm', 'markdown.pandoc', 'plantuml', 'yaml'], &filetype) < 0
+endfunction
 
 " trim right of line
 command! -nargs=0 TrimR :%s/\s\+$//g
@@ -1036,15 +944,6 @@ if !exists(":DiffOrig")
           \ | wincmd p | diffthis
 endif
 
-" if !exists(":MarkdownListBulletOn")
-	" command MarkdownListBulletOff setlocal comments=b:>,b:*,b:+,b:-
-" endif
-" if !exists(":MarkdownListBulletOff")
-	" command MarkdownListBulletOn setlocal comments=fb:>,fb:*,fb:+,fb:-
-" endif
-"
-
 """""""""""""""""""""""""""""""""""""""
-" User Defined function }}}
+" Helpers and commands }}}
 """""""""""""""""""""""""""""""""""""""
-
