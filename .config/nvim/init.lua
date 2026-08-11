@@ -68,11 +68,24 @@ if aerial then
     aerial.setup({})
 end
 
+-- Markdown preview
+local livepreview = require_plugin("config.live_preview")
+if livepreview then
+    livepreview.setup()
+end
+
 -- Keymaps
 if conform then
     vim.keymap.set("n", "<leader>F", function()
         conform.format({ async = true, lsp_format = "fallback" })
     end, { silent = true, desc = "Format buffer" })
+end
+
+if livepreview and livepreview.enabled then
+    vim.keymap.set("n", "<leader>mp", livepreview.start, {
+        silent = true,
+        desc = "Preview Markdown in browser",
+    })
 end
 
 if oil then
