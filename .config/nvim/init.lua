@@ -28,13 +28,19 @@ if markview then
     })
 end
 
-local fzf = require_plugin("fzf-lua")
+local fzf = require_plugin("config.fzf")
 if fzf then
-    fzf.setup({
-        "fzf-vim",
-        global = { pickers = { { "files" }, { "buffers", prefix = "$" }, { "oldfiles", prefix = "#" } } },
-    })
-    vim.keymap.set("n", "<C-p>", fzf.global, { silent = true, desc = "Find files / mru" })
+    fzf.setup()
+end
+
+local git_worktree = require_plugin("config.git_worktree")
+if git_worktree then
+    git_worktree.setup()
+end
+
+local diffview = require_plugin("config.diffview")
+if diffview then
+    diffview.setup()
 end
 
 local conform = require_plugin("conform")
@@ -55,12 +61,9 @@ if conform then
     })
 end
 
-local oil = require_plugin("oil")
+local oil = require_plugin("config.oil")
 if oil then
-    oil.setup({
-        columns = { "icon", "permissions", "size", "mtime" },
-        view_options = { show_hidden = true },
-    })
+    oil.setup()
 end
 
 local aerial = require_plugin("aerial")
@@ -75,6 +78,7 @@ if livepreview then
 end
 
 -- Keymaps
+
 if conform then
     vim.keymap.set("n", "<leader>F", function()
         conform.format({ async = true, lsp_format = "fallback" })
@@ -86,31 +90,6 @@ if livepreview and livepreview.enabled then
         silent = true,
         desc = "Preview Markdown in browser",
     })
-end
-
-if oil then
-    -- Toggle oil in a vertical split: close any visible oil window, or open one
-    local function toggle_oil()
-        local oil_wins = {}
-        for _, win in ipairs(vim.api.nvim_list_wins()) do
-            if vim.bo[vim.api.nvim_win_get_buf(win)].filetype == "oil" then
-                table.insert(oil_wins, win)
-            end
-        end
-        if #oil_wins > 0 then
-            for _, win in ipairs(oil_wins) do
-                pcall(vim.api.nvim_win_close, win, true)
-            end
-        else
-            vim.cmd("vertical Oil")
-        end
-    end
-    vim.keymap.set("n", "<F1>", toggle_oil, { silent = true, desc = "Toggle file explorer (vsplit)" })
-    vim.keymap.set("i", "<F1>", function()
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
-        vim.defer_fn(toggle_oil, 0)
-    end, { silent = true, desc = "Toggle file explorer (vsplit)" })
-    vim.keymap.set("n", "<leader>f", "<Cmd>Oil<CR>", { silent = true, desc = "Open file explorer" })
 end
 
 if aerial then

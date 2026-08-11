@@ -158,6 +158,11 @@ if has('nvim')
 	Plug 'stevearc/oil.nvim'
 	" Debian Trixie ships a restricted Neovim version; use the compatible Aerial branch.
 	Plug 'stevearc/aerial.nvim', { 'branch': 'nvim-0.9' }
+	" Worktree picker and minimal Git status. Git operations stay on the CLI.
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'nvim-telescope/telescope.nvim'
+	Plug 'polarmutex/git-worktree.nvim'
+	Plug 'tpope/vim-fugitive'
 endif
 
 call plug#end()
