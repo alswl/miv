@@ -7,13 +7,30 @@ serves both Vim and NeoVim, with plugins managed by
 ## Features
 
 - **One config, two editors** — Vim reads `.vimrc`; NeoVim goes through
-  `init.lua` → `legacy.vim` → `.vimrc` to reuse the same setup.
+  `init.lua` → `legacy.vim` → `.vimrc` to reuse the same setup, then layers
+  Lua plugins on top (NeoVim-only keymaps override the Vim defaults below).
 - Syntax highlighting, indentation, and folding for many languages.
-- File tree (NERDTree), outline (Tagbar), fuzzy finding (CtrlP + fzf).
-- Markdown / PlantUML authoring and preview, table alignment, multiple
-  cursors, and Emacs-style insert-mode keys.
-- NeoVim additionally enables
-  [markview.nvim](https://github.com/OXY2DEV/markview.nvim) and treesitter.
+- Markdown / PlantUML authoring, table alignment, multiple cursors, and
+  Emacs-style insert-mode keys.
+- NeoVim additionally enables:
+  - [markview.nvim](https://github.com/OXY2DEV/markview.nvim) and treesitter
+    for in-buffer Markdown rendering.
+  - [oil.nvim](https://github.com/stevearc/oil.nvim) as the file explorer
+    (replaces NERDTree) and [aerial.nvim](https://github.com/stevearc/aerial.nvim)
+    as the symbol outline (replaces Tagbar).
+  - [fzf-lua](https://github.com/ibhagwan/fzf-lua) as the fuzzy finder
+    (replaces CtrlP).
+  - [git-worktree.nvim](https://github.com/polarmutex/git-worktree.nvim) +
+    [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) for
+    switching/creating worktrees, plus [vim-fugitive](https://github.com/tpope/vim-fugitive)
+    and a branch/worktree indicator in the statusline.
+  - [diffview.nvim](https://github.com/sindrets/diffview.nvim) for Git diffs
+    and file history.
+  - [conform.nvim](https://github.com/stevearc/conform.nvim) for
+    format-on-demand across common languages.
+  - [live-preview.nvim](https://github.com/brianhuster/live-preview.nvim) for
+    live Markdown preview in the browser, with local PlantUML and D2 diagram
+    rendering.
 
 ## Requirements
 
@@ -46,8 +63,13 @@ nvim +PlugInstall +qa
 |------|-------------|
 | `.vimrc` | Main config: plugin list, key maps, general and filetype settings |
 | `.vim/` | UltiSnips snippets, autoload, ftplugin, syntax, etc. |
-| `.config/nvim/init.lua` | NeoVim entry point; loads legacy config and sets up markview |
+| `.config/nvim/init.lua` | NeoVim entry point; loads legacy config, then Lua plugins and keymaps |
 | `.config/nvim/legacy.vim` | Sets `runtimepath` and sources `~/.vimrc` |
+| `.config/nvim/lua/config/oil.lua` | File explorer (`F1`) |
+| `.config/nvim/lua/config/fzf.lua` | Fuzzy finder (`Ctrl+P`) |
+| `.config/nvim/lua/config/git_worktree.lua` | Worktree switching/creation, statusline branch indicator |
+| `.config/nvim/lua/config/diffview.lua` | Git diff and file-history keymaps |
+| `.config/nvim/lua/config/live_preview.lua` | Markdown live preview with PlantUML/D2 rendering |
 
 ## Key Bindings
 
@@ -57,8 +79,8 @@ nvim +PlugInstall +qa
 
 | Key | Action |
 |-----|--------|
-| `F1` / `<leader>f` | Toggle NERDTree file tree |
-| `F2` | Toggle Tagbar outline |
+| `F1` / `<leader>f` | Toggle file explorer — oil.nvim in NeoVim, NERDTree in Vim |
+| `F2` | Toggle symbol outline — aerial.nvim in NeoVim, Tagbar in Vim |
 | `F3` / `F4` | Open all folds `zR` / close all folds `zM` |
 | `Space` | Toggle fold on the current line |
 | `Ctrl+J/K` | Move to window below / above |
@@ -66,8 +88,8 @@ nvim +PlugInstall +qa
 | `F8` / `Ctrl+L` | Next tab |
 | `Ctrl+Tab` / `Ctrl+Shift+Tab` | Next / previous tab |
 | `←` / `→` | Previous / next buffer |
-| `Ctrl+P` | CtrlP file search (current dir; disabled under `$HOME`) |
-| `<leader>b` | CtrlP most-recently-used files |
+| `Ctrl+P` | Fuzzy find files/buffers/MRU — fzf-lua in NeoVim, CtrlP in Vim (current dir; disabled under `$HOME`) |
+| `<leader>b` | CtrlP most-recently-used files (Vim) |
 | `<leader>t` | Open current file in a new tab |
 | `<leader>w` / `<leader>q` | Save / quit |
 | `Q` | Quit |
@@ -94,6 +116,24 @@ nvim +PlugInstall +qa
 | `Tab` | Expand UltiSnips snippet |
 | `Ctrl+A/E/B/F`, etc. | Emacs-style motion / deletion in insert & command mode |
 
+### Git (NeoVim)
+
+| Key | Action |
+|-----|--------|
+| `<leader>tw` | Switch Git worktree |
+| `<leader>tc` | Create Git worktree |
+| `<leader>gs` | Fuzzy find changed Git files |
+| `<leader>dd` | Open Git diff |
+| `<leader>du` | Compare with `origin/main` or `origin/master` |
+| `<leader>dq` | Close Git diff |
+| `<leader>dh` / `<leader>dH` | Current file / repository Git history |
+
+### Formatting (NeoVim)
+
+| Key | Action |
+|-----|--------|
+| `<leader>F` | Format buffer (conform.nvim) |
+
 ### Markdown / PlantUML (macOS)
 
 | Key | Action |
@@ -102,6 +142,7 @@ nvim +PlugInstall +qa
 | `<leader>M` | Render HTML via pandoc and open |
 | `<leader>u` / `<leader>U` | Render PlantUML to PNG / SVG and open |
 | `<leader>p` / `<leader>P` | Save clipboard / path image into assets and insert a Markdown link |
+| `<leader>mp` | Live-preview Markdown in the browser, with local PlantUML/D2 rendering (NeoVim) |
 
 ### Custom Commands
 
