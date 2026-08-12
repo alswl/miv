@@ -93,7 +93,7 @@ function M.setup()
 
     config.set({
         browser = "default",
-        dynamic_root = true,
+        dynamic_root = false,
         sync_scroll = true,
         picker = "fzf-lua",
     })
@@ -147,7 +147,19 @@ function M.setup()
     })
 
     function M.start()
+        -- `autochdir` keeps cwd pinned to the current file's directory, which
+        -- breaks livepreview's dynamic_root=false (webroot = cwd at server
+        -- start). Root at the vault/repo boundary just for the start call.
+        local filepath = vim.api.nvim_buf_get_name(0)
+        local root = vim.fs.root(filepath, { ".obsidian", ".git" })
+        local prev_cwd = root and vim.fn.chdir(root) or nil
+
         vim.cmd("LivePreview start")
+
+        if prev_cwd and prev_cwd ~= "" then
+            vim.fn.chdir(prev_cwd)
+        end
+
         -- Render after preview connects.
         vim.defer_fn(render_current_buffer, 1000)
     end
