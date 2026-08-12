@@ -18,6 +18,13 @@ local function compare_with_default_branch()
 end
 
 function M.setup()
+    vim.api.nvim_create_autocmd("User", {
+        pattern = "DiffviewDiffBufWinEnter",
+        callback = function()
+            vim.wo.wrap = true
+        end,
+    })
+
     vim.keymap.set("n", "<leader>dd", "<Cmd>DiffviewOpen<CR>", {
         silent = true,
         desc = "Open Git diff",
