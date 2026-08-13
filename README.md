@@ -13,8 +13,9 @@ serves both Vim and NeoVim, with plugins managed by
 - Markdown / PlantUML authoring, table alignment, multiple cursors, and
   Emacs-style insert-mode keys.
 - NeoVim additionally enables:
-  - [markview.nvim](https://github.com/OXY2DEV/markview.nvim) and treesitter
-    for in-buffer Markdown rendering.
+  - [markview.nvim](https://github.com/OXY2DEV/markview.nvim) and the
+    prose-oriented [Pencil theme](https://github.com/preservim/vim-colors-pencil)
+    for in-buffer Markdown authoring and reading.
   - [oil.nvim](https://github.com/stevearc/oil.nvim) as the file explorer
     (replaces NERDTree) and [aerial.nvim](https://github.com/stevearc/aerial.nvim)
     as the symbol outline (replaces Tagbar).

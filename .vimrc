@@ -99,7 +99,10 @@ Plug 'cespare/vim-toml'
 Plug 'nvim-tree/nvim-web-devicons'
 
 
-" Theme
+" Prose / Markdown writing
+Plug 'preservim/vim-colors-pencil'
+
+" Keep Nightfox available for code-focused themes.
 if has('nvim')
 	Plug 'EdenEast/nightfox.nvim'
 endif
@@ -281,9 +284,6 @@ if has('termguicolors')
 	endif
 endif
 
-" Nordfox provides a restrained blue-gray palette for long reading and diff review.
-set background=dark
-
 "gfn=consolas:h10
 "set gui options
 " Gonvim please setting in ~/.config/goneovim/settings.toml
@@ -316,12 +316,10 @@ if (has("gui_running") && ! exists("g:gui_vimr"))
 
 endif
 
-if has('nvim') && $TERM !~# '^screen'
-	colorscheme nordfox
-elseif has('nvim')
-	" Use Vim's classic 256-color fallback for GNU screen.
-	colorscheme desert
+if isdirectory(expand('~/.vim/plugged/vim-colors-pencil'))
+	colorscheme pencil
 else
+	" Allow :PlugInstall to run before Pencil is present.
 	colorscheme desert
 endif
 
@@ -920,19 +918,12 @@ function! s:RefreshThemeIntegrations()
 endfunction
 
 function! s:ToggleTheme()
-	if has('nvim') && $TERM !~# '^screen' && get(g:, 'colors_name', '') ==# 'nordfox'
+	if &background ==# 'dark'
 		set background=light
-		colorscheme dayfox
-	elseif has('nvim') && $TERM !~# '^screen'
-		set background=dark
-		colorscheme nordfox
-	elseif has('nvim')
-		set background=dark
-		colorscheme desert
 	else
 		set background=dark
-		colorscheme desert
 	endif
+	colorscheme pencil
 	call s:RefreshThemeIntegrations()
 endfunction
 
