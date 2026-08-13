@@ -144,7 +144,10 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/vim-easy-align'
 Plug 'hotoo/pangu.vim'
 Plug 'vim-jp/autofmt'
-Plug 'sirver/ultisnips'
+" Snippet expansion relies on Python.
+if has('python3') && executable('python3')
+	Plug 'sirver/ultisnips'
+endif
 Plug 'honza/vim-snippets'
 " for weirongxu/plantuml-previewer.vim
 Plug 'tyru/open-browser.vim'
@@ -316,11 +319,12 @@ if (has("gui_running") && ! exists("g:gui_vimr"))
 
 endif
 
-if isdirectory(expand('~/.vim/plugged/vim-colors-pencil'))
+if !has('nvim')
+	colorscheme desert
+elseif &background ==# 'light'
 	colorscheme pencil
 else
-	" Allow :PlugInstall to run before Pencil is present.
-	colorscheme desert
+	colorscheme nordfox
 endif
 
 "set ambiwidth=double " 设定某些标点符号为宽字符
@@ -616,7 +620,7 @@ map <leader>f :NERDTreeToggle<CR>
 " diff
 map <leader>d /^[=<>]\{7\}<CR>
 
-" Toggle between Nordfox (dark) and Dayfox (light).
+" Favor a light, low-distraction palette for prose and a dark palette for code.
 nnoremap <silent> <leader>ct :ToggleTheme<CR>
 
 if !has('nvim')
@@ -918,12 +922,15 @@ function! s:RefreshThemeIntegrations()
 endfunction
 
 function! s:ToggleTheme()
-	if &background ==# 'dark'
+	if !has('nvim')
+		colorscheme desert
+	elseif &background ==# 'dark'
 		set background=light
+		colorscheme pencil
 	else
 		set background=dark
+		colorscheme nordfox
 	endif
-	colorscheme pencil
 	call s:RefreshThemeIntegrations()
 endfunction
 

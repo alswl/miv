@@ -92,6 +92,7 @@ nvim +PlugInstall +qa
 | `Ctrl+P` | Fuzzy find files/buffers/MRU — fzf-lua in NeoVim, CtrlP in Vim (current dir; disabled under `$HOME`) |
 | `<leader>b` | CtrlP most-recently-used files (Vim) |
 | `<leader>t` | Open current file in a new tab |
+| `<leader>ct` | Switch between Pencil (prose) and Nordfox (code) themes (NeoVim) |
 | `<leader>w` / `<leader>q` | Save / quit |
 | `Q` | Quit |
 | `gx` | Open URL under cursor (macOS) |
