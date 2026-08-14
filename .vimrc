@@ -155,7 +155,9 @@ Plug 'weirongxu/plantuml-previewer.vim'
 
 if has('nvim')
 	" Browser Markdown preview: pure Lua backend with live updates and scroll sync.
-	Plug 'brianhuster/live-preview.nvim'
+	" Fork pending upstream review: upstream leaks a socket per HTTP request
+	" until Neovim hits EMFILE. Back to brianhuster/main once merged.
+	Plug 'alswl/live-preview.nvim', { 'branch': 'fix/socket-fd-leak' }
 	Plug 'OXY2DEV/markview.nvim'
 	Plug 'nvim-treesitter/nvim-treesitter'
 	Plug 'sindrets/diffview.nvim'
