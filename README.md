@@ -37,6 +37,7 @@ serves both Vim and NeoVim, with plugins managed by
 
 - [Vim](https://www.vim.org/) or [NeoVim](https://neovim.io/)
 - Git
+- For NeoVim clipboard-image pasting on macOS: [`pngpaste`](https://github.com/jcsalterego/pngpaste) (`brew install pngpaste`)
 
 [vim-plug](https://github.com/junegunn/vim-plug) is vendored in
 `.vim/autoload/plug.vim`, so there is nothing extra to install.
@@ -143,7 +144,8 @@ nvim +PlugInstall +qa
 | `<leader>N` | Open preview in MacDown |
 | `<leader>M` | Render HTML via pandoc and open |
 | `<leader>u` / `<leader>U` | Render PlantUML to PNG / SVG and open |
-| `<leader>p` / `<leader>P` | Save clipboard / path image into assets and insert a Markdown link |
+| `<leader>p` | In a NeoVim Markdown buffer, paste an image with img-clip.nvim: it is saved to the relative path in front matter's `typora-copy-images-to`, or to `document.assets/` when unset, then linked at the cursor. Vim retains its legacy clipboard helper. |
+| `<leader>P` | Save a clipboard path image into assets with the legacy helper |
 | `<leader>mp` | Live-preview Markdown in the browser, with local PlantUML/D2 rendering (NeoVim) |
 
 ### Custom Commands
@@ -154,6 +156,7 @@ nvim +PlugInstall +qa
 | `:RemoveBlankLines` | Collapse extra blank lines |
 | `:DiffOrig` | Diff against the file on disk |
 | `:DrawIt` | Enter ASCII drawing mode |
+| `:PasteImage` | Paste a system clipboard image using img-clip.nvim (NeoVim) |
 
 ### ctags
 

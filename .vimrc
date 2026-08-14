@@ -163,6 +163,7 @@ if has('nvim')
 	Plug 'sindrets/diffview.nvim'
 	Plug 'ibhagwan/fzf-lua'
 	Plug 'stevearc/conform.nvim'
+	Plug 'HakonHarnes/img-clip.nvim'
 	Plug 'stevearc/oil.nvim'
 	" Debian Trixie ships a restricted Neovim version; use the compatible Aerial branch.
 	Plug 'stevearc/aerial.nvim', { 'branch': 'nvim-0.9' }
@@ -433,7 +434,7 @@ autocmd FileType python setlocal expandtab colorcolumn=80 textwidth=0 diffopt=ve
 autocmd FileType python nnoremap <buffer> <F9> :!python %<CR>
 autocmd FileType asciidoc setlocal colorcolumn=120
 autocmd FileType markdown,markdown.pandoc,markdown.github,markdown.gfm
-						\ setlocal colorcolumn=120 expandtab shiftwidth=2 nowrap
+						\ setlocal colorcolumn=120 expandtab shiftwidth=2
 						\ tabstop=4 textwidth=0
 						\ formatexpr=autofmt#uax14#formatexpr()
 						\ noshowmatch

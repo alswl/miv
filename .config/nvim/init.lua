@@ -61,6 +61,11 @@ if conform then
     })
 end
 
+local img_clip = require_plugin("config.img_clip")
+if img_clip and require_plugin("img-clip") then
+    img_clip.setup()
+end
+
 local oil = require_plugin("config.oil")
 if oil then
     oil.setup()
