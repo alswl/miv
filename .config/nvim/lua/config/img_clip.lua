@@ -34,6 +34,10 @@ function M.setup()
             use_absolute_path = false,
             file_name = "paste-%Y%m%d-%H%M%S",
             prompt_for_file_name = false,
+            -- pngpaste can mark otherwise sRGB clipboard PNGs as gAMA=2.2.
+            -- Browsers honour that chunk and render them much too dark.
+            process_cmd = "python3 "
+                .. vim.fn.shellescape(vim.fn.stdpath("config") .. "/bin/normalize-png-gamma.py"),
         },
         filetypes = {
             markdown = {
