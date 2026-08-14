@@ -14,7 +14,7 @@ serves both Vim and NeoVim, with plugins managed by
   Emacs-style insert-mode keys.
 - NeoVim additionally enables:
   - [markview.nvim](https://github.com/OXY2DEV/markview.nvim) and the
-    prose-oriented [Pencil theme](https://github.com/preservim/vim-colors-pencil)
+    prose-oriented [Everforest theme](https://github.com/sainnhe/everforest)
     for in-buffer Markdown authoring and reading.
   - [oil.nvim](https://github.com/stevearc/oil.nvim) as the file explorer
     (replaces NERDTree) and [aerial.nvim](https://github.com/stevearc/aerial.nvim)
@@ -93,7 +93,7 @@ nvim +PlugInstall +qa
 | `Ctrl+P` | Fuzzy find files/buffers/MRU — fzf-lua in NeoVim, CtrlP in Vim (current dir; disabled under `$HOME`) |
 | `<leader>b` | CtrlP most-recently-used files (Vim) |
 | `<leader>t` | Open current file in a new tab |
-| `<leader>ct` | Switch between Pencil (prose) and Nordfox (code) themes (NeoVim) |
+| `<leader>ct` | Switch between Everforest (prose) and Nordfox (code) themes (NeoVim) |
 | `<leader>w` / `<leader>q` | Save / quit |
 | `Q` | Quit |
 | `gx` | Open URL under cursor (macOS) |

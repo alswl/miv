@@ -100,7 +100,7 @@ Plug 'nvim-tree/nvim-web-devicons'
 
 
 " Prose / Markdown writing
-Plug 'preservim/vim-colors-pencil'
+Plug 'sainnhe/everforest'
 
 " Keep Nightfox available for code-focused themes.
 if has('nvim')
@@ -322,10 +322,15 @@ if (has("gui_running") && ! exists("g:gui_vimr"))
 
 endif
 
+if exists('g:neovide')
+	set guifont=Fira\ Code\ Retina,Sarasa\ Mono\ SC:h14
+	set guifontwide=Sarasa\ Mono\ SC:h14
+endif
+
 if !has('nvim')
 	colorscheme desert
 elseif &background ==# 'light'
-	colorscheme pencil
+	colorscheme everforest
 else
 	colorscheme nordfox
 endif
@@ -929,7 +934,7 @@ function! s:ToggleTheme()
 		colorscheme desert
 	elseif &background ==# 'dark'
 		set background=light
-		colorscheme pencil
+		colorscheme everforest
 	else
 		set background=dark
 		colorscheme nordfox
