@@ -90,7 +90,7 @@ nvim +PlugInstall +qa
 | `F8` / `Ctrl+L` | Next tab |
 | `Ctrl+Tab` / `Ctrl+Shift+Tab` | Next / previous tab |
 | `←` / `→` | Previous / next buffer |
-| `Ctrl+P` | Fuzzy find files/buffers/MRU — fzf-lua in NeoVim, CtrlP in Vim (current dir; disabled under `$HOME`) |
+| `Ctrl+P` | Fuzzy find files/buffers/MRU — fzf-lua in NeoVim, CtrlP in Vim (Git repositories only; searches from the repository root) |
 | `<leader>b` | CtrlP most-recently-used files (Vim) |
 | `<leader>t` | Open current file in a new tab |
 | `<leader>ct` | Switch between Everforest (prose) and Nordfox (code) themes (NeoVim) |

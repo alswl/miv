@@ -11,8 +11,11 @@ function M.setup()
         global = { pickers = { { "files" }, { "buffers", prefix = "$" }, { "oldfiles", prefix = "#" } } },
     })
 
-    local function project_root()
-        return vim.fs.root(0, ".git") or vim.fn.getcwd()
+    local function git_root()
+        local start = vim.api.nvim_buf_get_name(0)
+        start = start ~= "" and vim.fn.fnamemodify(start, ":p:h") or vim.fn.getcwd()
+        local output = vim.fn.systemlist({ "git", "-C", start, "rev-parse", "--show-toplevel" })
+        return vim.v.shell_error == 0 and output[1] or nil
     end
 
     local function buffer_dir()
@@ -21,14 +24,19 @@ function M.setup()
     end
 
     vim.keymap.set("n", "<C-p>", function()
-        fzf.global({ cwd = buffer_dir() })
+        local root = git_root()
+        if not root then
+            vim.notify("<C-p> is only available inside a Git repository", vim.log.levels.WARN)
+            return
+        end
+        fzf.global({ cwd = root })
     end, {
         silent = true,
         desc = "Find files / mru",
     })
 
     vim.keymap.set("n", "<leader>ff", function()
-        fzf.files({ cwd = project_root() })
+        fzf.files({ cwd = git_root() or vim.fn.getcwd() })
     end, {
         silent = true,
         desc = "Find files (project)",

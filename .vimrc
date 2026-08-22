@@ -953,11 +953,16 @@ function! s:OpenURLUnderCursor()
 endfunction
 
 function! s:RunCtrlP()
-	lcd %:p:h
-	if getcwd() ==# $HOME
-		echo "Can't run in \$HOME"
+	let l:start = expand('%:p:h')
+	if empty(l:start)
+		let l:start = getcwd()
+	endif
+	let l:root = systemlist('git -C ' . shellescape(l:start) . ' rev-parse --show-toplevel')
+	if v:shell_error != 0 || empty(l:root)
+		echo "<C-p> is only available inside a Git repository"
 		return
 	endif
+	execute 'lcd ' . fnameescape(l:root[0])
 	CtrlP
 endfunction
 
