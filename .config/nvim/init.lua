@@ -1,3 +1,6 @@
+-- Convert theme italics to bold before the legacy colorscheme loads.
+require("config.theme").setup()
+
 -- Legacy Vim configuration
 vim.cmd.source(vim.fn.stdpath("config") .. "/legacy.vim")
 
@@ -101,3 +104,6 @@ if aerial then
     vim.keymap.set("n", "<F2>", "<Cmd>AerialToggle<CR>", { silent = true, desc = "Toggle symbols" })
     vim.keymap.set("i", "<F2>", "<Esc><Cmd>AerialToggle<CR>", { silent = true, desc = "Toggle symbols" })
 end
+
+-- Re-apply italic→bold after plugins configured their highlights.
+require("config.theme").italic_to_bold()
