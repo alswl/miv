@@ -105,6 +105,8 @@ Plug 'sainnhe/everforest'
 " Keep Nightfox available for code-focused themes.
 if has('nvim')
 	Plug 'EdenEast/nightfox.nvim'
+	" JetBrains-style theme with dark/light variants.
+	Plug 'nickkadutskyi/jb.nvim'
 endif
 
 " Indent
@@ -329,10 +331,8 @@ endif
 
 if !has('nvim')
 	colorscheme desert
-elseif &background ==# 'light'
-	colorscheme everforest
 else
-	colorscheme nordfox
+	colorscheme jb
 endif
 
 "set ambiwidth=double " 设定某些标点符号为宽字符
@@ -932,12 +932,13 @@ endfunction
 function! s:ToggleTheme()
 	if !has('nvim')
 		colorscheme desert
-	elseif &background ==# 'dark'
-		set background=light
-		colorscheme everforest
 	else
-		set background=dark
-		colorscheme nordfox
+		if &background ==# 'dark'
+			set background=light
+		else
+			set background=dark
+		endif
+		colorscheme jb
 	endif
 	call s:RefreshThemeIntegrations()
 endfunction

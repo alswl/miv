@@ -16,6 +16,9 @@ serves both Vim and NeoVim, with plugins managed by
   - [markview.nvim](https://github.com/OXY2DEV/markview.nvim) and the
     prose-oriented [Everforest theme](https://github.com/sainnhe/everforest)
     for in-buffer Markdown authoring and reading.
+  - [jb.nvim](https://github.com/nickkadutskyi/jb.nvim) as the default
+    JetBrains-style theme, with dark/light variants toggled by `ToggleTheme`.
+    Everforest (light) and Nordfox (dark) stay installed as alternates.
   - [oil.nvim](https://github.com/stevearc/oil.nvim) as the file explorer
     (replaces NERDTree) and [aerial.nvim](https://github.com/stevearc/aerial.nvim)
     as the symbol outline (replaces Tagbar).
@@ -93,7 +96,7 @@ nvim +PlugInstall +qa
 | `Ctrl+P` | Fuzzy find files/buffers/MRU — fzf-lua in NeoVim, CtrlP in Vim (Git repositories only; searches from the repository root) |
 | `<leader>b` | CtrlP most-recently-used files (Vim) |
 | `<leader>t` | Open current file in a new tab |
-| `<leader>ct` | Switch between Everforest (prose) and Nordfox (code) themes (NeoVim) |
+| `<leader>ct` | Toggle jb.nvim dark/light theme (NeoVim; Vim keeps `desert`) |
 | `<leader>w` / `<leader>q` | Save / quit |
 | `Q` | Quit |
 | `gx` | Open URL under cursor (macOS) |
