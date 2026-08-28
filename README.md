@@ -70,8 +70,8 @@ nvim +PlugInstall +qa
 | `.vim/` | UltiSnips snippets, autoload, ftplugin, syntax, etc. |
 | `.config/nvim/init.lua` | NeoVim entry point; loads legacy config, then Lua plugins and keymaps |
 | `.config/nvim/legacy.vim` | Sets `runtimepath` and sources `~/.vimrc` |
-| `.config/nvim/lua/config/neo_tree.lua` | File explorer (`F1`) |
-| `.config/nvim/lua/config/fzf.lua` | Fuzzy finder (`Ctrl+P`) |
+| `.config/nvim/lua/config/neo_tree.lua` | File explorer (`F1`), with `O` / `gO` to hand an entry to the system opener |
+| `.config/nvim/lua/config/fzf.lua` | Fuzzy finder (`Ctrl+P`) and Git file pickers (`<leader>gc` / `<leader>gs`) |
 | `.config/nvim/lua/config/git_worktree.lua` | Worktree switching/creation, statusline branch indicator |
 | `.config/nvim/lua/config/diffview.lua` | Git diff and file-history keymaps |
 | `.config/nvim/lua/config/live_preview.lua` | Markdown live preview with PlantUML/D2 rendering |
@@ -85,6 +85,7 @@ nvim +PlugInstall +qa
 | Key | Action |
 |-----|--------|
 | `F1` / `<leader>f` | Toggle file explorer — neo-tree.nvim in NeoVim, NERDTree in Vim |
+| `O` / `gO` (in the file explorer) | Open the entry with the system default application / reveal it in the system file manager — Finder on macOS (neo-tree.nvim) |
 | `F2` | Toggle symbol outline — aerial.nvim in NeoVim, Tagbar in Vim |
 | `F3` / `F4` | Open all folds `zR` / close all folds `zM` |
 | `Space` | Toggle fold on the current line |
@@ -128,7 +129,8 @@ nvim +PlugInstall +qa
 |-----|--------|
 | `<leader>tw` | Switch Git worktree |
 | `<leader>tc` | Create Git worktree |
-| `<leader>gs` | Fuzzy find changed Git files |
+| `<leader>gc` | Fuzzy find files changed on this branch — working tree against the merge base with the default branch (`origin/HEAD`, falling back to `origin/master`, `origin/main`, `master`, `main`) |
+| `<leader>gs` | Fuzzy find uncommitted Git changes (`git status`, staged and untracked included) |
 | `<leader>dd` | Open Git diff |
 | `<leader>du` | Compare with `origin/main` or `origin/master` |
 | `<leader>dq` | Close Git diff |

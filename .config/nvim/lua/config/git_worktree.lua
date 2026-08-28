@@ -62,14 +62,6 @@ function M.setup()
         end)
     end
 
-    local fzf_ok, fzf = pcall(require, "fzf-lua")
-    if fzf_ok then
-        vim.keymap.set("n", "<leader>gs", fzf.git_status, {
-            silent = true,
-            desc = "Fuzzy find changed Git files",
-        })
-    end
-
     if not vim.o.statusline:find(statusline_item, 1, true) then
         vim.o.statusline = vim.o.statusline .. "%=" .. statusline_item
     end
