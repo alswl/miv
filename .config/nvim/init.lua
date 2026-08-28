@@ -69,9 +69,9 @@ if img_clip and require_plugin("img-clip") then
     img_clip.setup()
 end
 
-local oil = require_plugin("config.oil")
-if oil then
-    oil.setup()
+local neo_tree = require_plugin("config.neo_tree")
+if neo_tree then
+    neo_tree.setup()
 end
 
 local aerial = require_plugin("aerial")

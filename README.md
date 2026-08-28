@@ -19,7 +19,7 @@ serves both Vim and NeoVim, with plugins managed by
   - [jb.nvim](https://github.com/nickkadutskyi/jb.nvim) as the default
     JetBrains-style theme, with dark/light variants toggled by `ToggleTheme`.
     Everforest (light) and Nordfox (dark) stay installed as alternates.
-  - [oil.nvim](https://github.com/stevearc/oil.nvim) as the file explorer
+  - [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) as the file explorer
     (replaces NERDTree) and [aerial.nvim](https://github.com/stevearc/aerial.nvim)
     as the symbol outline (replaces Tagbar).
   - [fzf-lua](https://github.com/ibhagwan/fzf-lua) as the fuzzy finder
@@ -70,7 +70,7 @@ nvim +PlugInstall +qa
 | `.vim/` | UltiSnips snippets, autoload, ftplugin, syntax, etc. |
 | `.config/nvim/init.lua` | NeoVim entry point; loads legacy config, then Lua plugins and keymaps |
 | `.config/nvim/legacy.vim` | Sets `runtimepath` and sources `~/.vimrc` |
-| `.config/nvim/lua/config/oil.lua` | File explorer (`F1`) |
+| `.config/nvim/lua/config/neo_tree.lua` | File explorer (`F1`) |
 | `.config/nvim/lua/config/fzf.lua` | Fuzzy finder (`Ctrl+P`) |
 | `.config/nvim/lua/config/git_worktree.lua` | Worktree switching/creation, statusline branch indicator |
 | `.config/nvim/lua/config/diffview.lua` | Git diff and file-history keymaps |
@@ -84,7 +84,7 @@ nvim +PlugInstall +qa
 
 | Key | Action |
 |-----|--------|
-| `F1` / `<leader>f` | Toggle file explorer — oil.nvim in NeoVim, NERDTree in Vim |
+| `F1` / `<leader>f` | Toggle file explorer — neo-tree.nvim in NeoVim, NERDTree in Vim |
 | `F2` | Toggle symbol outline — aerial.nvim in NeoVim, Tagbar in Vim |
 | `F3` / `F4` | Open all folds `zR` / close all folds `zM` |
 | `Space` | Toggle fold on the current line |

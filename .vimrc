@@ -166,7 +166,8 @@ if has('nvim')
 	Plug 'ibhagwan/fzf-lua'
 	Plug 'stevearc/conform.nvim'
 	Plug 'HakonHarnes/img-clip.nvim'
-	Plug 'stevearc/oil.nvim'
+	Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v3.x' }
+	Plug 'MunifTanjim/nui.nvim'
 	" Debian Trixie ships a restricted Neovim version; use the compatible Aerial branch.
 	Plug 'stevearc/aerial.nvim', { 'branch': 'nvim-0.9' }
 	" Worktree picker and minimal Git status. Git operations stay on the CLI.
