@@ -305,12 +305,12 @@ if (has("gui_running") && ! exists("g:gui_vimr"))
 	" set macligatures
 	" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h13
 	if s:System() == "mac"
-		set guifont=Fira\ Code\ Light,PingFang\ SC\ Light:h14
-		set guifontwide=Fira\ Code\ Light,PingFang\ SC\ Light:h14
+		set guifont=Fira\ Code\ Light,PingFang\ SC\ ExtraLight:h13
+		set guifont=Fira\ Code\ Light,PingFang\ SC\ ExtraLight:h13
 		" set printfont=Fira\ Code:h12
 	else
 		if s:System() == "linux"
-			set guifont=Fira\ Code\ 16
+		    set guifont=Fira\ Code\ Light,PingFang\ SC\ ExtraLight:h13
 			" set printfont=Fira\ Code\ 12
 		endif
 	endif
