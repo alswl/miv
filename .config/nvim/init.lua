@@ -17,6 +17,18 @@ end
 local markview = require_plugin("markview")
 if markview then
     markview.setup({
+        preview = {
+            -- Obsidian-like trial: whole file used to revert in insert because
+            -- ModeChanged clears the buffer whenever the current mode is not in
+            -- `preview.modes`. Include insert in `modes` and route it through hybrid so
+            -- only the node under the cursor (a list item / quote / heading / table) falls
+            -- back to source while the rest stays rendered — Obsidian's block-level feel.
+            enable = true,
+            enable_hybrid_mode = true,
+            modes = { "n", "no", "c", "i", "ic" },
+            hybrid_modes = { "i", "ic" },
+            linewise_hybrid_mode = false, -- false = node-based; true = single line
+        },
         markdown = {
             headings = {
                 heading_1 = { sign = "" },
@@ -29,6 +41,13 @@ if markview then
             code_blocks = { sign = false },
         },
     })
+
+    vim.keymap.set("n", "<leader>mv", "<Cmd>Markview<CR>", { silent = true, desc = "Toggle Markview render" })
+end
+
+local markdown_plus = require_plugin("markdown-plus")
+if markdown_plus then
+    markdown_plus.setup({}) -- lists continue on <CR>; quotes go via formatoptions+=ro in vimrc; markdown only
 end
 
 local fzf = require_plugin("config.fzf")

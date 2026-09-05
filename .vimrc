@@ -161,6 +161,8 @@ if has('nvim')
 	" until Neovim hits EMFILE. Back to brianhuster/main once merged.
 	Plug 'brianhuster/live-preview.nvim'
 	Plug 'OXY2DEV/markview.nvim'
+	" Auto-continue Markdown lists/blockquotes on <CR> in list context.
+	Plug 'yousefhadder/markdown-plus.nvim'
 	Plug 'nvim-treesitter/nvim-treesitter'
 	Plug 'sindrets/diffview.nvim'
 	Plug 'ibhagwan/fzf-lua'
@@ -444,6 +446,7 @@ autocmd FileType markdown,markdown.pandoc,markdown.github,markdown.gfm
 						\ tabstop=4 textwidth=0
 						\ formatexpr=autofmt#uax14#formatexpr()
 						\ noshowmatch
+						\ formatoptions+=ro " continue '>' quotes on <CR> (lists handled by markdown-plus)
 " mardown set shfitwidth for obsidian
 autocmd BufRead,BufNewFile */*kms/**.md set shiftwidth=4 tabstop=4
 autocmd BufRead,BufNewFile */*kms/*/**.md set shiftwidth=4 tabstop=4
