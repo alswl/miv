@@ -638,6 +638,9 @@ nnoremap <silent> <leader>ct :ToggleTheme<CR>
 if !has('nvim')
 	" Neovim uses Conform; Vim falls back to its built-in formatter.
 	nnoremap <silent> <leader>F :normal! gggqG<CR>
+	" Neovim gets the Telescope picker from git-worktree.nvim below.
+	nnoremap <silent> <leader>gw :GitWorktree<CR>
+	nnoremap <silent> <leader>tw :GitWorktree<CR>
 endif
 
 noremap <silent> <leader>b :CtrlPMRUFiles<CR>
@@ -970,6 +973,95 @@ function! s:RunCtrlP()
 	execute 'lcd ' . fnameescape(l:root[0])
 	CtrlP
 endfunction
+
+" Pick one of the repository's linked worktrees and make it this tab's
+" working directory. Keep this in the legacy config so regular Vim gets
+" the same workflow as Neovim without requiring a Vim-specific plugin.
+function! s:SwitchGitWorktree(selected) abort
+	let l:path = matchstr(a:selected, '^[^\t]*')
+	if empty(l:path) || !isdirectory(l:path)
+		echohl ErrorMsg
+		echo 'Git worktree directory is no longer available'
+		echohl None
+		return
+	endif
+
+	let l:force_edit = 0
+	if &modified
+		if confirm('Discard changes in the current buffer?', "&Yes\n&No", 2) != 1
+			return
+		endif
+		let l:force_edit = 1
+	endif
+
+	execute 'tcd ' . fnameescape(l:path)
+	" Match git-worktree.nvim's behavior: show the selected worktree
+	" immediately while keeping other tabs on their own roots.
+	if l:force_edit
+		edit! .
+	else
+		edit .
+	endif
+endfunction
+
+function! s:GitWorktreePicker() abort
+	if !executable('git')
+		echoerr 'Git is required to switch worktrees'
+		return
+	endif
+
+	let l:start = expand('%:p:h')
+	if empty(l:start)
+		let l:start = getcwd()
+	endif
+	let l:root = systemlist('git -C ' . shellescape(l:start) . ' rev-parse --show-toplevel')
+	if v:shell_error != 0 || empty(l:root)
+		echo 'Not inside a Git repository'
+		return
+	endif
+
+	let l:worktree_data = systemlist('git -C ' . shellescape(l:root[0]) . ' worktree list --porcelain')
+	if v:shell_error != 0 || empty(l:worktree_data)
+		echoerr 'Unable to list Git worktrees'
+		return
+	endif
+
+	let l:entries = []
+	let l:path = ''
+	let l:branch = 'detached'
+	for l:line in l:worktree_data + ['']
+		if l:line =~# '^worktree '
+			let l:path = strpart(l:line, 9)
+		elseif l:line =~# '^branch '
+			let l:branch = substitute(strpart(l:line, 7), '^refs/heads/', '', '')
+		elseif empty(l:line) && !empty(l:path)
+			call add(l:entries, l:path . "\t" . l:branch)
+			let l:path = ''
+			let l:branch = 'detached'
+		endif
+	endfor
+
+	if empty(l:entries)
+		echo 'No Git worktrees found'
+		return
+	endif
+
+	if exists('*fzf#run') && exists('*fzf#wrap')
+		call fzf#run(fzf#wrap({
+			\ 'source': l:entries,
+			\ 'sink': function('<SID>SwitchGitWorktree'),
+			\ 'options': '--prompt="Git worktree> "'
+			\ }))
+	else
+		" fzf.vim is optional at runtime; retain a usable fallback.
+		let l:index = inputlist(['Git worktrees:'] + map(copy(l:entries), 'v:key + 1 . ": " . v:val'))
+		if l:index > 0 && l:index <= len(l:entries)
+			call <SID>SwitchGitWorktree(l:entries[l:index - 1])
+		endif
+	endif
+endfunction
+
+command! GitWorktree call <SID>GitWorktreePicker()
 
 function! AbortIfNotFileType()
 	let g:auto_save_abort = index(['markdown', 'markdown.gfm', 'markdown.pandoc', 'plantuml', 'yaml'], &filetype) < 0

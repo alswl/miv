@@ -127,7 +127,7 @@ nvim +PlugInstall +qa
 
 | Key | Action |
 |-----|--------|
-| `<leader>tw` | Switch Git worktree |
+| `<leader>gw` | Switch Git worktree |
 | `<leader>tc` | Create Git worktree |
 | `<leader>gc` | Fuzzy find files changed on this branch — working tree against the merge base with the default branch (`origin/HEAD`, falling back to `origin/master`, `origin/main`, `master`, `main`) |
 | `<leader>gs` | Fuzzy find uncommitted Git changes (`git status`, staged and untracked included) |
@@ -135,6 +135,14 @@ nvim +PlugInstall +qa
 | `<leader>du` | Compare with `origin/main` or `origin/master` |
 | `<leader>dq` | Close Git diff |
 | `<leader>dh` / `<leader>dH` | Current file / repository Git history |
+
+### Git (Vim)
+
+| Key | Action |
+|-----|--------|
+| `<leader>gw` / `:GitWorktree` | Pick and switch to a linked Git worktree in the current tab |
+
+`<leader>tw` remains available as a legacy alias for switching worktrees.
 
 ### Formatting (NeoVim)
 

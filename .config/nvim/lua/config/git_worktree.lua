@@ -44,9 +44,13 @@ function M.setup()
     local telescope_ok, telescope = pcall(require, "telescope")
     if telescope_ok and pcall(telescope.load_extension, "git_worktree") then
         local picker = telescope.extensions.git_worktree
-        vim.keymap.set("n", "<leader>tw", picker.git_worktree, {
+        vim.keymap.set("n", "<leader>gw", picker.git_worktree, {
             silent = true,
             desc = "Switch Git worktree",
+        })
+        vim.keymap.set("n", "<leader>tw", picker.git_worktree, {
+            silent = true,
+            desc = "Switch Git worktree (legacy mapping)",
         })
         vim.keymap.set("n", "<leader>tc", picker.create_git_worktree, {
             silent = true,
