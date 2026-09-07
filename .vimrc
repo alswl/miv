@@ -630,7 +630,7 @@ inoremap <M-d> <C-o>de
 map <leader>f :NERDTreeToggle<CR>
 
 " diff
-map <leader>d /^[=<>]\{7\}<CR>
+map <leader>dc /^[=<>]\{7\}<CR>
 
 " Favor a light, low-distraction palette for prose and a dark palette for code.
 nnoremap <silent> <leader>ct :ToggleTheme<CR>
@@ -640,7 +640,6 @@ if !has('nvim')
 	nnoremap <silent> <leader>F :normal! gggqG<CR>
 	" Neovim gets the Telescope picker from git-worktree.nvim below.
 	nnoremap <silent> <leader>gw :GitWorktree<CR>
-	nnoremap <silent> <leader>tw :GitWorktree<CR>
 endif
 
 noremap <silent> <leader>b :CtrlPMRUFiles<CR>

@@ -48,11 +48,7 @@ function M.setup()
             silent = true,
             desc = "Switch Git worktree",
         })
-        vim.keymap.set("n", "<leader>tw", picker.git_worktree, {
-            silent = true,
-            desc = "Switch Git worktree (legacy mapping)",
-        })
-        vim.keymap.set("n", "<leader>tc", picker.create_git_worktree, {
+        vim.keymap.set("n", "<leader>gW", picker.create_git_worktree, {
             silent = true,
             desc = "Create Git worktree",
         })
