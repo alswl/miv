@@ -47,7 +47,7 @@ end
 
 local markdown_plus = require_plugin("markdown-plus")
 if markdown_plus then
-    markdown_plus.setup({}) -- lists continue on <CR>; quotes go via formatoptions+=ro in vimrc; markdown only
+    markdown_plus.setup({ features = { links = false } }) -- lists continue on <CR>; quotes go via formatoptions+=ro in vimrc; markdown only
 end
 
 local fzf = require_plugin("config.fzf")

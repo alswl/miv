@@ -104,11 +104,21 @@ nvim +PlugInstall +qa
 
 ### Marks & Search
 
+[vim-mark](https://github.com/inkarkat/vim-mark) highlights several words in
+different colors simultaneously, like a multi-term `*`. Marks are persisted and
+restored across sessions (`g:mwAutoLoadMarks`).
+
 | Key | Action |
 |-----|--------|
-| `<leader>m` | vim-mark highlight mark |
-| `<leader>n` | Clear highlight marks |
-| `<leader>r` | Regex mark |
+| `<leader>m` | Highlight the word under the cursor (toggle off if already marked) |
+| `{Visual}<leader>m` | Highlight the visual selection |
+| `{N}<leader>m` | Highlight with color group `{N}` — group terms by color (6 groups by default) |
+| `<leader>n` | Clear the mark under the cursor; elsewhere, disable all marks (like `:nohlsearch`) |
+| `<leader>r` | Highlight a manually entered regular expression |
+| `<leader>*` / `<leader>#` | Jump to the next / previous occurrence of the current mark |
+| `<leader>/` / `<leader>?` | Jump to the next / previous occurrence of any mark |
+| `:Marks` | List all mark groups and their patterns |
+| `:Mark` / `:MarkClear` | Disable all marks / clear all marks (irreversible) |
 | `<leader>d` | Jump to diff separator line |
 | Visual `*` / `#` | Search forward / backward for the selection |
 
@@ -159,7 +169,12 @@ nvim +PlugInstall +qa
 | `<leader>u` / `<leader>U` | Render PlantUML to PNG / SVG and open |
 | `<leader>p` | In a NeoVim Markdown buffer, paste an image with img-clip.nvim: it is saved to the relative path in front matter's `typora-copy-images-to`, or to `document.assets/` when unset, then linked at the cursor. Vim retains its legacy clipboard helper. |
 | `<leader>P` | Save a clipboard path image into assets with the legacy helper |
+| `<leader>mv` | Toggle in-buffer Markdown rendering (markview.nvim, Obsidian-like block-level view) — NeoVim |
 | `<leader>mp` | Live-preview Markdown in the browser, with local PlantUML/D2 rendering (NeoVim) |
+
+In NeoVim, `<CR>` auto-continues Markdown lists and `>` blockquotes
+(markdown-plus.nvim + `formatoptions+=ro`), and the current line's list
+item / quote / heading / table stays rendered in insert mode.
 
 ### Custom Commands
 
