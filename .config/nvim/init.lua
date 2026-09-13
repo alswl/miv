@@ -23,7 +23,7 @@ if markview then
             -- `preview.modes`. Include insert in `modes` and route it through hybrid so
             -- only the node under the cursor (a list item / quote / heading / table) falls
             -- back to source while the rest stays rendered — Obsidian's block-level feel.
-            enable = true,
+            enable = false,
             enable_hybrid_mode = true,
             modes = { "n", "no", "c", "i", "ic" },
             hybrid_modes = { "i", "ic" },
