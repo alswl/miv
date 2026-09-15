@@ -875,15 +875,6 @@ let g:autofmt_allow_over_tw = 0
 	"return call(s:orig_prop_line_break, [a:char], self)
 "endfunction
 
-" plasticboy/vim-markdown
-" let g:vim_markdown_folding_disabled = 1
-" let g:vim_markdown_new_list_item_indent = 4
-" let g:vim_markdown_math = 1
-" let g:vim_markdown_conceal = 0
-" let g:vim_markdown_conceal = 0
-" let g:vim_markdown_conceal_code_blocks = 0
-" let g:vim_markdown_new_list_item_indent = 2
-
 " matchparen
 let g:matchparen_timeout = 2
 let g:matchparen_insert_timeout = 2
@@ -899,12 +890,6 @@ let g:UltiSnipsEnableSnipMate = 0
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-" markdown latex
-" let g:tex_flavor='latex'
-" let g:vimtex_view_method='zathura'
-" let g:vimtex_quickfix_mode=0
-" let g:tex_conceal='abdmg'
-
 " Use Python from PATH so the provider works on macOS and Linux.
 let s:python3_host = exepath('python3')
 if !empty(s:python3_host)
@@ -912,7 +897,6 @@ if !empty(s:python3_host)
 endif
 " disable neovim ruby
 let g:loaded_ruby_provider = 0
-" let g:ruby_host_prog='~/.rvm/gems/ruby-2.4.0/bin/neovim-ruby-host'
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1
