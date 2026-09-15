@@ -71,7 +71,7 @@ nvim +PlugInstall +qa
 | `.config/nvim/init.lua` | NeoVim entry point; loads legacy config, then Lua plugins and keymaps |
 | `.config/nvim/legacy.vim` | Sets `runtimepath` and sources `~/.vimrc` |
 | `.config/nvim/lua/config/neo_tree.lua` | File explorer (`F1`), with `O` / `gO` to hand an entry to the system opener |
-| `.config/nvim/lua/config/fzf.lua` | Fuzzy finder (`Ctrl+P`) and Git file pickers (`<leader>gc` / `<leader>gs`) |
+| `.config/nvim/lua/config/fzf.lua` | Fuzzy finder (`Ctrl+P`, `:MRU`) and Git file pickers (`<leader>gc` / `<leader>gs`) |
 | `.config/nvim/lua/config/git_worktree.lua` | Worktree switching/creation, statusline branch indicator |
 | `.config/nvim/lua/config/diffview.lua` | Git diff and file-history keymaps |
 | `.config/nvim/lua/config/live_preview.lua` | Markdown live preview with PlantUML/D2 rendering |
@@ -94,8 +94,8 @@ nvim +PlugInstall +qa
 | `F8` / `Ctrl+L` | Next tab |
 | `Ctrl+Tab` / `Ctrl+Shift+Tab` | Next / previous tab |
 | `←` / `→` | Previous / next buffer |
-| `Ctrl+P` | Fuzzy find files/buffers/MRU — fzf-lua in NeoVim, CtrlP in Vim (Git repositories only; searches from the repository root) |
-| `<leader>b` | CtrlP most-recently-used files (Vim) |
+| `Ctrl+P` | Fuzzy find files — fzf-lua "global" picker in NeoVim: searches from the Git root (falls back to the buffer's directory outside a repo); type `$` for buffers, `#` for recent files, or `space` + text to grep line contents. CtrlP in Vim (Git repositories only) |
+| `<leader>b` | CtrlP most-recently-used files (works in both Vim and NeoVim; NeoVim also exposes `:MRU` via fzf-lua) |
 | `<leader>t` | Open current file in a new tab |
 | `<leader>ct` | Toggle jb.nvim dark/light theme (NeoVim; Vim keeps `desert`) |
 | `<leader>w` / `<leader>q` | Save / quit |
@@ -180,6 +180,7 @@ item / quote / heading / table stays rendered in insert mode.
 
 | Command | Action |
 |---------|--------|
+| `:MRU` | Fuzzy find recently opened files across all projects (NeoVim, fzf-lua) |
 | `:TrimR` | Strip trailing whitespace |
 | `:RemoveBlankLines` | Collapse extra blank lines |
 | `:DiffOrig` | Diff against the file on disk |

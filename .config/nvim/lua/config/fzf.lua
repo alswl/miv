@@ -8,19 +8,22 @@ function M.setup()
 
     fzf.setup({
         "fzf-vim",
-        global = { pickers = { { "files" }, { "buffers", prefix = "$" }, { "oldfiles", prefix = "#" } } },
     })
 
-    local function git_root()
-        local start = vim.api.nvim_buf_get_name(0)
-        start = start ~= "" and vim.fn.fnamemodify(start, ":p:h") or vim.fn.getcwd()
-        local output = vim.fn.systemlist({ "git", "-C", start, "rev-parse", "--show-toplevel" })
-        return vim.v.shell_error == 0 and output[1] or nil
-    end
+    -- No cwd here on purpose: fzf-lua turns any `cwd` into `cwd_only`,
+    -- which would clip MRU to the current project.
+    vim.api.nvim_create_user_command("MRU", function()
+        fzf.oldfiles()
+    end, { desc = "Most recently used files" })
 
     local function buffer_dir()
         local bufname = vim.api.nvim_buf_get_name(0)
         return bufname ~= "" and vim.fn.fnamemodify(bufname, ":p:h") or vim.fn.getcwd()
+    end
+
+    -- 2nd arg = noerr: stay silent outside a Git repo.
+    local function git_root()
+        return fzf.path.git_root({ cwd = buffer_dir() }, true)
     end
 
     -- Default branch of the repository, preferring what the remote points at.
@@ -62,15 +65,18 @@ function M.setup()
     end
 
     vim.keymap.set("n", "<C-p>", function()
-        local root = git_root()
-        if not root then
-            vim.notify("<C-p> is only available inside a Git repository", vim.log.levels.WARN)
-            return
-        end
-        fzf.global({ cwd = root })
+        fzf.global({
+            cwd = git_root() or buffer_dir(),
+            pickers = {
+                { "files", desc = "Files" },
+                { "buffers", desc = "Bufs", prefix = "$" },
+                -- `cwd` makes oldfiles filter to `cwd_only`; undo so MRU spans all projects.
+                { "oldfiles", desc = "Old", prefix = "#", opts = { cwd_only = false } },
+            },
+        })
     end, {
         silent = true,
-        desc = "Find files / mru",
+        desc = "Find files / buffers / mru",
     })
 
     vim.keymap.set("n", "<leader>ff", function()
