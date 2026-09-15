@@ -1,80 +1,92 @@
 # miv
 
-Personal Vim / NeoVim configuration (**m**y v**i**m). A single configuration
-serves both Vim and NeoVim, with plugins managed by
-[vim-plug](https://github.com/junegunn/vim-plug).
+**miv** — a personal Vim / NeoVim configuration.
 
-## Features
+[English](README.md) | [简体中文](README.zh-CN.md)
 
-- **One config, two editors** — Vim reads `.vimrc`; NeoVim goes through
-  `init.lua` → `legacy.vim` → `.vimrc` to reuse the same setup, then layers
-  Lua plugins on top (NeoVim-only keymaps override the Vim defaults below).
-- Syntax highlighting, indentation, and folding for many languages.
-- Markdown / PlantUML authoring, table alignment, multiple cursors, and
+One config, two editors: Vim reads `.vimrc`; NeoVim boots through `init.lua`
+→ `legacy.vim` → `.vimrc` to reuse the same setup, then layers Lua plugins on
+top. Plugins are managed by [vim-plug](https://github.com/junegunn/vim-plug),
+which is vendored in the repo — nothing extra to install.
+
+![Vim](https://img.shields.io/badge/editor-Vim-green) ![NeoVim](https://img.shields.io/badge/editor-NeoVim-57a143) ![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux-blue)
+
+## Highlights
+
+- **Batteries-included editing** — syntax, indentation and folding for many
+  languages, multiple cursors, UltiSnips, table editing & alignment, and
   Emacs-style insert-mode keys.
-- NeoVim additionally enables:
-  - [markview.nvim](https://github.com/OXY2DEV/markview.nvim) and the
-    prose-oriented [Everforest theme](https://github.com/sainnhe/everforest)
-    for in-buffer Markdown authoring and reading.
-  - [jb.nvim](https://github.com/nickkadutskyi/jb.nvim) as the default
-    JetBrains-style theme, with dark/light variants toggled by `ToggleTheme`.
-    Everforest (light) and Nordfox (dark) stay installed as alternates.
-  - [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) as the file explorer
-    (replaces NERDTree) and [aerial.nvim](https://github.com/stevearc/aerial.nvim)
-    as the symbol outline (replaces Tagbar).
-  - [fzf-lua](https://github.com/ibhagwan/fzf-lua) as the fuzzy finder
-    (replaces CtrlP).
-  - [git-worktree.nvim](https://github.com/polarmutex/git-worktree.nvim) +
-    [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) for
-    switching/creating worktrees, plus [vim-fugitive](https://github.com/tpope/vim-fugitive)
-    and a branch/worktree indicator in the statusline.
-  - [diffview.nvim](https://github.com/sindrets/diffview.nvim) for Git diffs
-    and file history.
-  - [conform.nvim](https://github.com/stevearc/conform.nvim) for
-    format-on-demand across common languages.
-  - [live-preview.nvim](https://github.com/brianhuster/live-preview.nvim) for
-    live Markdown preview in the browser, with local PlantUML and D2 diagram
-    rendering.
+- **NeoVim modern layer**:
+  - [fzf-lua](https://github.com/ibhagwan/fzf-lua) fuzzy finding with
+    Git-aware pickers (branch changes, uncommitted status, MRU).
+  - [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) file
+    explorer and [aerial.nvim](https://github.com/stevearc/aerial.nvim)
+    symbol outline.
+  - Git toolkit: [fugitive](https://github.com/tpope/vim-fugitive),
+    [diffview.nvim](https://github.com/sindrets/diffview.nvim), and
+    [git-worktree.nvim](https://github.com/polarmutex/git-worktree.nvim) with
+    a branch/worktree statusline indicator.
+  - [conform.nvim](https://github.com/stevearc/conform.nvim) format-on-demand
+    (prettier, stylua, ruff, shfmt…).
+  - Markdown authoring kit: in-buffer rendering
+    ([markview.nvim](https://github.com/OXY2DEV/markview.nvim), Obsidian-like),
+    list continuation ([markdown-plus.nvim](https://github.com/YousefHadder/markdown-plus.nvim)),
+    clipboard image pasting ([img-clip.nvim](https://github.com/HakonHarnes/img-clip.nvim)),
+    and [live-preview.nvim](https://github.com/brianhuster/live-preview.nvim)
+    with local PlantUML/D2 diagram rendering.
+  - Themes: [jb.nvim](https://github.com/nickkadutskyi/jb.nvim) by default
+    (dark/light via `ToggleTheme`), with
+    [Everforest](https://github.com/sainnhe/everforest) and
+    [Nordfox](https://github.com/EdenEast/nightfox.nvim) as alternates.
 
-## Requirements
-
-- [Vim](https://www.vim.org/) or [NeoVim](https://neovim.io/)
-- Git
-- For NeoVim clipboard-image pasting on macOS: [`pngpaste`](https://github.com/jcsalterego/pngpaste) (`brew install pngpaste`)
-
-[vim-plug](https://github.com/junegunn/vim-plug) is vendored in
-`.vim/autoload/plug.vim`, so there is nothing extra to install.
+> [!TIP]
+> NeoVim-only keymaps override the shared Vim defaults, so the tables below
+> note which editor each binding belongs to.
 
 ## Installation
+
+One command does everything — symlink the dotfiles, back up anything in the
+way, and install plugins:
 
 ```bash
 git clone https://github.com/alswl/miv.git
 cd miv
+./install.sh
+```
 
-# Create symlinks (-n replaces existing dir links instead of nesting into them)
+> [!NOTE]
+> The script is idempotent and never overwrites: an existing `~/.vimrc`,
+> `~/.vim`, or `~/.config/nvim` is moved aside to
+> `<name>.backup-<timestamp>` before linking.
+
+Prefer to do it manually?
+
+```bash
+# Symlink (-n replaces an existing dir link instead of nesting into it)
 ln -sfn "$(pwd)/.vim"   "$HOME/.vim"
 ln -sf  "$(pwd)/.vimrc" "$HOME/.vimrc"
 mkdir -p "$HOME/.config"
 ln -sfn "$(pwd)/.config/nvim" "$HOME/.config/nvim"
 
-# Install plugins (run either one; plug.vim is already bundled)
+# Install plugins (either editor; plug.vim is already bundled)
 vim  +PlugInstall +qa
 nvim +PlugInstall +qa
 ```
+
+Requirements: [Vim](https://www.vim.org/) or
+[NeoVim](https://neovim.io/), and Git. Optional on macOS:
+[`pngpaste`](https://github.com/jcsalterego/pngpaste) for clipboard images
+(`brew install pngpaste`).
 
 ## Layout
 
 | Path | Description |
 |------|-------------|
 | `.vimrc` | Main config: plugin list, key maps, general and filetype settings |
-| `.vim/` | UltiSnips snippets, autoload, ftplugin, syntax, etc. |
-| `.config/nvim/init.lua` | NeoVim entry point; loads legacy config, then Lua plugins and keymaps |
+| `.vim/` | UltiSnips snippets, autoload, ftplugin, syntax, templates |
+| `.config/nvim/init.lua` | NeoVim entry point: legacy config, then Lua plugins and keymaps |
 | `.config/nvim/legacy.vim` | Sets `runtimepath` and sources `~/.vimrc` |
-| `.config/nvim/lua/config/neo_tree.lua` | File explorer (`F1`), with `O` / `gO` to hand an entry to the system opener |
-| `.config/nvim/lua/config/fzf.lua` | Fuzzy finder (`Ctrl+P`, `:MRU`) and Git file pickers (`<leader>gc` / `<leader>gs`) |
-| `.config/nvim/lua/config/git_worktree.lua` | Worktree switching/creation, statusline branch indicator |
-| `.config/nvim/lua/config/diffview.lua` | Git diff and file-history keymaps |
-| `.config/nvim/lua/config/live_preview.lua` | Markdown live preview with PlantUML/D2 rendering |
+| `.config/nvim/lua/config/` | Per-plugin Lua config: `neo_tree`, `fzf`, `git_worktree`, `diffview`, `img_clip`, `live_preview`, `theme` |
 
 ## Key Bindings
 
@@ -84,108 +96,92 @@ nvim +PlugInstall +qa
 
 | Key | Action |
 |-----|--------|
-| `F1` / `<leader>f` | Toggle file explorer — neo-tree.nvim in NeoVim, NERDTree in Vim |
-| `O` / `gO` (in the file explorer) | Open the entry with the system default application / reveal it in the system file manager — Finder on macOS (neo-tree.nvim) |
-| `F2` | Toggle symbol outline — aerial.nvim in NeoVim, Tagbar in Vim |
-| `F3` / `F4` | Open all folds `zR` / close all folds `zM` |
+| `F1` / `<leader>f` | Toggle file explorer — neo-tree.nvim (NeoVim) / NERDTree (Vim) |
+| `O` / `gO` *(in explorer)* | Open entry with the system opener / reveal in file manager (neo-tree) |
+| `F2` | Toggle symbol outline — aerial.nvim (NeoVim) / Tagbar (Vim) |
+| `F3` / `F4` | Open all folds (`zR`) / close all folds (`zM`) |
 | `Space` | Toggle fold on the current line |
-| `Ctrl+J/K` | Move to window below / above |
-| `F7` / `Ctrl+H` | Previous tab |
-| `F8` / `Ctrl+L` | Next tab |
+| `Ctrl+J` / `Ctrl+K` | Move to window below / above |
+| `F7` / `F8`, `Ctrl+H` / `Ctrl+L` | Previous / next tab |
 | `Ctrl+Tab` / `Ctrl+Shift+Tab` | Next / previous tab |
 | `←` / `→` | Previous / next buffer |
-| `Ctrl+P` | Fuzzy find files — fzf-lua "global" picker in NeoVim: searches from the Git root (falls back to the buffer's directory outside a repo); type `$` for buffers, `#` for recent files, or `space` + text to grep line contents. CtrlP in Vim (Git repositories only) |
-| `<leader>b` | CtrlP most-recently-used files (works in both Vim and NeoVim; NeoVim also exposes `:MRU` via fzf-lua) |
+| `Ctrl+P` | Find files from the Git root (NeoVim): type `$` for buffers, `#` for recent files, `space` + text to grep. CtrlP in Vim (Git repos only) |
+| `<leader>ff` / `<leader>fF` | Find files in project / current directory (NeoVim, fzf-lua) |
+| `<leader>b` | Most-recently-used files (CtrlP in Vim; NeoVim also has `:MRU` via fzf-lua) |
 | `<leader>t` | Open current file in a new tab |
-| `<leader>ct` | Toggle jb.nvim dark/light theme (NeoVim; Vim keeps `desert`) |
-| `<leader>w` / `<leader>q` | Save / quit |
-| `Q` | Quit |
+| `<leader>w` / `<leader>q` / `Q` | Save / quit / quit |
+| `<leader>ct` | Toggle dark/light theme (NeoVim; Vim stays on `desert`) |
 | `gx` | Open URL under cursor (macOS) |
 
 ### Marks & Search
 
 [vim-mark](https://github.com/inkarkat/vim-mark) highlights several words in
-different colors simultaneously, like a multi-term `*`. Marks are persisted and
-restored across sessions (`g:mwAutoLoadMarks`).
+different colors simultaneously — like a multi-term `*`. Marks persist across
+sessions.
 
 | Key | Action |
 |-----|--------|
-| `<leader>m` | Highlight the word under the cursor (toggle off if already marked) |
+| `<leader>m` | Highlight word under cursor (toggle off if already marked) |
 | `{Visual}<leader>m` | Highlight the visual selection |
-| `{N}<leader>m` | Highlight with color group `{N}` — group terms by color (6 groups by default) |
-| `<leader>n` | Clear the mark under the cursor; elsewhere, disable all marks (like `:nohlsearch`) |
-| `<leader>r` | Highlight a manually entered regular expression |
-| `<leader>*` / `<leader>#` | Jump to the next / previous occurrence of the current mark |
-| `<leader>/` / `<leader>?` | Jump to the next / previous occurrence of any mark |
-| `:Marks` | List all mark groups and their patterns |
-| `:Mark` / `:MarkClear` | Disable all marks / clear all marks (irreversible) |
-| `<leader>d` | Jump to diff separator line |
+| `{N}<leader>m` | Highlight with color group `{N}` (6 groups) |
+| `<leader>n` | Clear mark under cursor; elsewhere disable all marks (like `:nohlsearch`) |
+| `<leader>r` | Highlight a regular expression |
+| `<leader>*` / `<leader>#` | Jump to next / previous occurrence of the current mark |
+| `<leader>/` / `<leader>?` | Jump to next / previous occurrence of any mark |
+| `:Marks` / `:Mark` / `:MarkClear` | List marks / disable all / clear all (irreversible) |
+| `<leader>dc` | Jump to diff separator line |
 | Visual `*` / `#` | Search forward / backward for the selection |
 
-### Editing & Alignment
+### Git
+
+| Key | Editor | Action |
+|-----|--------|--------|
+| `<leader>gw` / `<leader>gW` | NeoVim | Switch / create Git worktree |
+| `<leader>gw` | Vim | Pick and switch to a worktree in the current tab (`:GitWorktree`) |
+| `<leader>gc` | NeoVim | Files changed on this branch (working tree vs merge base with `origin/HEAD` → `origin/master` → `origin/main` → `master` → `main`) |
+| `<leader>gs` | NeoVim | Uncommitted changes (`git status`, staged & untracked included) |
+| `<leader>dd` / `<leader>dq` | NeoVim | Open / close Git diff (diffview.nvim) |
+| `<leader>du` | NeoVim | Diff against `origin/main` / `origin/master` |
+| `<leader>dh` / `<leader>dH` | NeoVim | File / repository history |
+
+### Editing & Formatting
 
 | Key | Action |
 |-----|--------|
+| `<leader>F` | Format buffer (conform.nvim, NeoVim) |
 | `<leader>tm` | Table Mode |
 | `<leader>nr` / `:NR` / `:NRV` / `:NW` | NrrwRgn narrowed-region editing |
 | `gaip=` / `vipga=` | EasyAlign on `=` |
 | `\sf` | FilePathConvert path-format conversion |
 | `Tab` | Expand UltiSnips snippet |
-| `Ctrl+A/E/B/F`, etc. | Emacs-style motion / deletion in insert & command mode |
+| `Ctrl+A/E/B/F` … | Emacs-style motion / deletion in insert & command mode |
 
-### Git (NeoVim)
-
-| Key | Action |
-|-----|--------|
-| `<leader>gw` | Switch Git worktree |
-| `<leader>tc` | Create Git worktree |
-| `<leader>gc` | Fuzzy find files changed on this branch — working tree against the merge base with the default branch (`origin/HEAD`, falling back to `origin/master`, `origin/main`, `master`, `main`) |
-| `<leader>gs` | Fuzzy find uncommitted Git changes (`git status`, staged and untracked included) |
-| `<leader>dd` | Open Git diff |
-| `<leader>du` | Compare with `origin/main` or `origin/master` |
-| `<leader>dq` | Close Git diff |
-| `<leader>dh` / `<leader>dH` | Current file / repository Git history |
-
-### Git (Vim)
+### Markdown / Diagrams
 
 | Key | Action |
 |-----|--------|
-| `<leader>gw` / `:GitWorktree` | Pick and switch to a linked Git worktree in the current tab |
-
-`<leader>tw` remains available as a legacy alias for switching worktrees.
-
-### Formatting (NeoVim)
-
-| Key | Action |
-|-----|--------|
-| `<leader>F` | Format buffer (conform.nvim) |
-
-### Markdown / PlantUML (macOS)
-
-| Key | Action |
-|-----|--------|
-| `<leader>N` | Open preview in MacDown |
+| `<leader>mv` | Toggle in-buffer Markdown rendering (markview.nvim, Obsidian-like — NeoVim) |
+| `<leader>mp` | Live-preview Markdown in the browser, with local PlantUML/D2 rendering (NeoVim) |
+| `<leader>p` | Paste clipboard image (NeoVim, img-clip.nvim): saved to the front-matter `typora-copy-images-to` path or `document.assets/`, then linked at the cursor. Vim uses its legacy helper |
+| `<leader>P` | Save an image from a clipboard path into assets (legacy helper) |
+| `<leader>N` | Open preview in MacDown (macOS) |
 | `<leader>M` | Render HTML via pandoc and open |
 | `<leader>u` / `<leader>U` | Render PlantUML to PNG / SVG and open |
-| `<leader>p` | In a NeoVim Markdown buffer, paste an image with img-clip.nvim: it is saved to the relative path in front matter's `typora-copy-images-to`, or to `document.assets/` when unset, then linked at the cursor. Vim retains its legacy clipboard helper. |
-| `<leader>P` | Save a clipboard path image into assets with the legacy helper |
-| `<leader>mv` | Toggle in-buffer Markdown rendering (markview.nvim, Obsidian-like block-level view) — NeoVim |
-| `<leader>mp` | Live-preview Markdown in the browser, with local PlantUML/D2 rendering (NeoVim) |
 
-In NeoVim, `<CR>` auto-continues Markdown lists and `>` blockquotes
-(markdown-plus.nvim + `formatoptions+=ro`), and the current line's list
-item / quote / heading / table stays rendered in insert mode.
+In NeoVim Markdown buffers, `<CR>` auto-continues lists and `>` blockquotes,
+and the current list item / quote / heading / table stays rendered in insert
+mode.
 
 ### Custom Commands
 
 | Command | Action |
 |---------|--------|
-| `:MRU` | Fuzzy find recently opened files across all projects (NeoVim, fzf-lua) |
+| `:MRU` | Fuzzy find recently opened files across all projects (NeoVim) |
 | `:TrimR` | Strip trailing whitespace |
 | `:RemoveBlankLines` | Collapse extra blank lines |
-| `:DiffOrig` | Diff against the file on disk |
-| `:DrawIt` | Enter ASCII drawing mode |
-| `:PasteImage` | Paste a system clipboard image using img-clip.nvim (NeoVim) |
+| `:DiffOrig` | Diff buffer against the file on disk |
+| `:DrawIt` | ASCII drawing mode |
+| `:PasteImage` | Paste a clipboard image (NeoVim, img-clip.nvim) |
 
 ### ctags
 
@@ -196,10 +192,9 @@ ctags -R --python-kinds=-i
 
 ## Migrating from Vim to NeoVim
 
-This repo ships NeoVim config (`init.lua` + `legacy.vim`). Symlink
-`~/.config/nvim` as shown in [Installation](#installation) — no need to write
-`init.vim` by hand. See `:help nvim-from-vim`.
+Symlink `~/.config/nvim` as shown in [Installation](#installation) — no need
+to hand-write `init.vim`. See `:help nvim-from-vim`.
 
 ## Related
 
-- [alswl/.oOo.](https://github.com/alswl/.oOo.) — other dotfiles repo
+- [alswl/.oOo.](https://github.com/alswl/.oOo.) — other dotfiles
