@@ -43,6 +43,9 @@ function M.setup()
             mappings = {
                 ["O"] = "system_open",
                 ["gO"] = "system_reveal",
+                -- Let z fall through so zz/zt/zb keep their native meaning.
+                ["z"] = "none",
+                ["Z"] = "close_all_nodes",
             },
         },
         filesystem = {
