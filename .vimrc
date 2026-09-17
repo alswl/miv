@@ -42,17 +42,18 @@ set autoread
 augroup user_general
 	autocmd!
 	autocmd BufWritePost .vimrc source ~/.vimrc
-	autocmd BufEnter * silent! lcd %:p:h
 	autocmd BufWinLeave *.* silent! mkview 1
 	autocmd BufWinEnter *.* silent! loadview 1
 augroup END
+
+" Restoring a view must not restore a stale working directory.
+set viewoptions-=curdir
 
 set noscrollbind
 set nocursorbind
 
 if exists('+autochdir')
-	" 文件路径设置为当前路径
-	set autochdir
+	set noautochdir
 endif
 
 set viminfo+=!
@@ -415,7 +416,6 @@ augroup user_filetypes
 autocmd BufRead,BufNewFile */tmp/edit-server-prometheus**.txt set filetype=prometheus
 autocmd BufRead,BufNewFile */tmp/edit-server-*.txt set filetype=markdown.gfm
 autocmd BufRead,BufNewFile /private/tmp/zsh* set filetype=sh
-autocmd BufRead,BufNewFile *.diff set paste
 autocmd BufRead,BufNewFile *.pmd set filetype=markdown.pandoc
 autocmd BufRead,BufNewFile *.scala set filetype=scala
 autocmd BufRead,BufNewFile *.sc set filetype=scala
@@ -530,7 +530,7 @@ map <F2> :TagbarToggle<cr>
 imap <F2> <Esc>:TagbarToggle<cr>
 "代码折叠快捷方式
 map <F3> zR
-imap <F3><Esc> zR
+inoremap <F3> <Esc>zR
 map <F4> zM
 imap <F4> <Esc>zM
 
@@ -653,10 +653,10 @@ nmap <silent> <leader>\ :split<CR>:set nocursorbind noscrollbind<CR>:diffoff<CR>
 inoremap <silent> <leader>p "*p<CR>
 noremap <silent> <leader>p "*p<CR>
 
-inoremap <silent> <leader>q :q<CR>
+inoremap <silent> <leader>q <Esc>:q<CR>
 noremap <silent> <leader>q :q<CR>
 
-inoremap <silent> <leader>w :w<CR>
+inoremap <silent> <leader>w <C-o>:w<CR>
 noremap <silent> <leader>w :w<CR>
 
 
@@ -710,13 +710,13 @@ endif
 set tags=tags;
 
 let g:NERDTreeIgnore = ['\.pyc$', '\.class$', '\.jpeg$', '\.jpg$', '\.png$', '\.git$', '^target$', '\.slide\.html$', '\.generated\.html$', '\.md\.assets$']
-let g:NERDTreeChDirMode = 2
+let g:NERDTreeChDirMode = 0
 let g:NERDTreeShowBookmarks=1
 
 " ctrlp
 nnoremap <C-p> :call <SID>RunCtrlP()<CR>
 let g:ctrlp_map = ''
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode = ''
 let g:ctrlp_root_markers = ['.ctrlp', 'README.md', 'build.sbt', '.git']
 let g:ctrlp_custom_ignore = {
         \ 'dir':  '\v[\/](\.(git|hg|svn)$)|target|node_modules',
@@ -881,8 +881,9 @@ let g:matchparen_insert_timeout = 2
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger="<C-F11>"
-let g:UltiSnipsJumpBackwardTrigger="<C-F12>"
+let g:UltiSnipsJumpOrExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsSnippetsDir = $HOME."/.config/UltiSnips"
 let g:UltiSnipsSnippetDirectories = ['UltiSnips', $HOME.'/.config/UltiSnips']
 let g:UltiSnipsEnableSnipMate = 0
@@ -953,7 +954,7 @@ function! s:RunCtrlP()
 		echo "<C-p> is only available inside a Git repository"
 		return
 	endif
-	execute 'lcd ' . fnameescape(l:root[0])
+	execute 'tcd ' . fnameescape(l:root[0])
 	CtrlP
 endfunction
 

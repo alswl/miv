@@ -10,7 +10,15 @@ vim.g.neovide_input_ime = true
 -- Plugin loader
 local function require_plugin(name)
     local ok, module = pcall(require, name)
-    return ok and module or nil
+    if ok then
+        return module
+    end
+    local missing = "module '" .. name .. "' not found:"
+    if tostring(module):sub(1, #missing) ~= missing then
+        vim.schedule(function()
+            vim.notify("Failed to load " .. name .. ": " .. tostring(module), vim.log.levels.ERROR)
+        end)
+    end
 end
 
 -- Plugin configuration
