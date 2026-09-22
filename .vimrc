@@ -329,8 +329,10 @@ if (has("gui_running") && ! exists("g:gui_vimr"))
 endif
 
 if exists('g:neovide')
-	set guifont=Fira\ Code\ Retina,Sarasa\ Mono\ SC:h14
-	set guifontwide=Sarasa\ Mono\ SC:h14
+	" Keep Apple's color emoji font before Sarasa's monochrome emoji glyphs.
+	" Neovide uses the first fallback font that contains a glyph.
+	set guifont=Fira\ Code\ Retina,Apple\ Color\ Emoji,Sarasa\ Mono\ SC:h14
+	set guifontwide=Apple\ Color\ Emoji,Sarasa\ Mono\ SC:h14
 endif
 
 if !has('nvim')

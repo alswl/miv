@@ -55,8 +55,13 @@ end
 
 local markdown_plus = require_plugin("markdown-plus")
 if markdown_plus then
-    markdown_plus.setup({ features = { links = false } }) -- lists continue on <CR>; quotes go via formatoptions+=ro in vimrc; markdown only
+    markdown_plus.setup({ features = { links = true } }) -- lists continue on <CR>; quotes go via formatoptions+=ro in vimrc; markdown only
 end
+
+-- Use one opener for both rendered and source Markdown links.  The legacy `gx`
+-- mapping only extracts a URL from the current line, so it does not reliably
+-- work when the cursor is on a Markdown link's label.
+require("config.markdown_links").setup()
 
 local fzf = require_plugin("config.fzf")
 if fzf then

@@ -107,7 +107,7 @@ nvim +PlugInstall +qa
 | `<leader>t` | 在新标签页打开当前文件 |
 | `<leader>w` / `<leader>q` / `Q` | 保存 / 退出 / 退出 |
 | `<leader>ct` | 切换深浅色主题（NeoVim；Vim 固定 `desert`） |
-| `gx` | 打开光标下的 URL（macOS） |
+| `gx` | 打开光标下的 URL 或 Markdown 链接；Markdown 中也可 Ctrl 点击或 Command 点击链接打开（macOS） |
 
 ### 标记与搜索
 

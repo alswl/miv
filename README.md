@@ -111,7 +111,7 @@ Requirements: [Vim](https://www.vim.org/) or
 | `<leader>t` | Open current file in a new tab |
 | `<leader>w` / `<leader>q` / `Q` | Save / quit / quit |
 | `<leader>ct` | Toggle dark/light theme (NeoVim; Vim stays on `desert`) |
-| `gx` | Open URL under cursor (macOS) |
+| `gx` | Open URL or Markdown link under cursor; in Markdown, Ctrl-click or Command-click opens the link under the pointer (macOS) |
 
 ### Marks & Search
 
