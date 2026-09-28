@@ -161,7 +161,7 @@ sessions.
 | Key | Action |
 |-----|--------|
 | `<leader>mv` | Toggle in-buffer Markdown rendering (markview.nvim, Obsidian-like — NeoVim) |
-| `<leader>mp` | Live-preview Markdown in the browser, with local PlantUML/D2 rendering (NeoVim) |
+| `<leader>lp` | Live-preview Markdown in the browser, with local PlantUML/D2 rendering (NeoVim) |
 | `<leader>p` | Paste clipboard image (NeoVim, img-clip.nvim): saved to the front-matter `typora-copy-images-to` path or `document.assets/`, then linked at the cursor. Vim uses its legacy helper |
 | `<leader>P` | Save an image from a clipboard path into assets (legacy helper) |
 | `<leader>N` | Open preview in MacDown (macOS) |

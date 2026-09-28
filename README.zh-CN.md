@@ -156,7 +156,7 @@ nvim +PlugInstall +qa
 | 按键 | 功能 |
 |------|------|
 | `<leader>mv` | 缓冲区内渲染 Markdown（markview.nvim，Obsidian 风格 —— NeoVim） |
-| `<leader>mp` | 浏览器实时预览 Markdown，支持本地渲染 PlantUML/D2（NeoVim） |
+| `<leader>lp` | 浏览器实时预览 Markdown，支持本地渲染 PlantUML/D2（NeoVim） |
 | `<leader>p` | 粘贴剪贴板图片（NeoVim，img-clip.nvim）：按 front matter 中 `typora-copy-images-to` 指定的相对路径保存，未设置则存到 `document.assets/`，并在光标处插入链接。Vim 使用旧版辅助脚本 |
 | `<leader>P` | 将剪贴板中的图片路径存入 assets（旧版辅助脚本） |
 | `<leader>N` | 用 MacDown 打开预览（macOS） |

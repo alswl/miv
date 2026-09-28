@@ -126,7 +126,7 @@ if conform then
 end
 
 if livepreview and livepreview.enabled then
-    vim.keymap.set("n", "<leader>mp", livepreview.start, {
+    vim.keymap.set("n", "<leader>lp", livepreview.start, {
         silent = true,
         desc = "Preview Markdown in browser",
     })
