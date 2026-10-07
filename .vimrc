@@ -169,6 +169,8 @@ if has('nvim')
 	Plug 'ibhagwan/fzf-lua'
 	Plug 'stevearc/conform.nvim'
 	Plug 'saghen/blink.cmp', { 'tag': '*' }
+	" Local review of working-tree changes with an agent (:FudeReviewLocal); no GitHub needed.
+	Plug 'flexphere/fude.nvim'
 	Plug 'HakonHarnes/img-clip.nvim'
 	Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v3.x' }
 	Plug 'MunifTanjim/nui.nvim'

@@ -101,6 +101,13 @@ if blink then
     blink.setup()
 end
 
+local fude = require_plugin("fude")
+if fude then
+    -- Local mode: run :FudeReviewLocal [base]; comments stay in .fude/ and never reach GitHub.
+    -- auto_reload picks up agent replies appended to .fude/reviews/*.jsonl.
+    fude.setup({ auto_reload = { enabled = true, interval = 15 } })
+end
+
 local img_clip = require_plugin("config.img_clip")
 if img_clip and require_plugin("img-clip") then
     img_clip.setup()
@@ -135,6 +142,35 @@ if livepreview and livepreview.enabled then
         silent = true,
         desc = "Preview Markdown in browser",
     })
+end
+
+if fude then
+    local function review(lhs, rhs, desc, mode)
+        vim.keymap.set(mode or "n", lhs, rhs, { silent = true, desc = "Review: " .. desc })
+    end
+    -- Same suffixes as the upstream <leader>e* keymaps, under <leader>r.
+    review("<leader>rt", "<Cmd>FudeReviewLocalToggle<CR>", "Toggle local review")
+    review("<leader>rq", "<Cmd>FudeReviewStop<CR>", "Stop review")
+    review("<leader>rc", "<Cmd>FudeReviewComment<CR>", "Comment")
+    review("<leader>rc", ":FudeReviewComment<CR>", "Comment (selection)", "v")
+    review("<leader>rS", "<Cmd>FudeReviewSuggest<CR>", "Suggest change")
+    review("<leader>rS", ":FudeReviewSuggest<CR>", "Suggest change (selection)", "v")
+    review("<leader>rv", "<Cmd>FudeReviewViewComment<CR>", "View comments")
+    review("<leader>rr", function()
+        require("fude.comments").reply_to_comment()
+    end, "Reply")
+    review("<leader>rf", "<Cmd>FudeReviewFiles<CR>", "Changed files")
+    review("]f", "<Cmd>FudeReviewNextFile<CR>", "Next file")
+    review("[f", "<Cmd>FudeReviewPrevFile<CR>", "Previous file")
+    review("<leader>rd", "<Cmd>FudeReviewDiff<CR>", "Toggle diff")
+    review("<leader>rp", "<Cmd>FudeReviewPanel<CR>", "Toggle side panel")
+    review("<leader>rC", "<Cmd>FudeReviewScope<CR>", "Select scope")
+    review("<leader>r]", "<Cmd>FudeReviewScopeNext<CR>", "Next scope")
+    review("<leader>r[", "<Cmd>FudeReviewScopePrev<CR>", "Previous scope")
+    review("<leader>rl", "<Cmd>FudeReviewListComments<CR>", "List comments")
+    review("<leader>rR", "<Cmd>FudeReviewReload<CR>", "Reload data")
+    review("<leader>rm", "<Cmd>FudeReviewViewed<CR>", "Mark viewed")
+    review("<leader>rM", "<Cmd>FudeReviewUnviewed<CR>", "Unmark viewed")
 end
 
 if aerial then

@@ -8,3 +8,4 @@
 *.swp
 .vim/plugged
 .vim/spell
+.fude

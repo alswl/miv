@@ -24,6 +24,11 @@
     [diffview.nvim](https://github.com/sindrets/diffview.nvim)、
     [git-worktree.nvim](https://github.com/polarmutex/git-worktree.nvim)
     （状态栏显示分支 / worktree）。
+  - [blink.cmp](https://github.com/saghen/blink.cmp) 自动补全（buffer、路径、
+    LSP 来源）；`<Tab>` 仍归 UltiSnips，用 `<C-y>` 确认补全。
+  - 通过 [fude.nvim](https://github.com/flexphere/fude.nvim) 与 agent 本地评审：
+    在工作区 diff 上用 `<leader>r` 系列键评论，评论以 JSONL 存在 `.fude/`，
+    agent 可读取并回复，无需 GitHub。
   - [conform.nvim](https://github.com/stevearc/conform.nvim) 按需格式化
     （prettier、stylua、ruff、shfmt…）。
   - Markdown 写作套件：缓冲区内渲染
@@ -157,6 +162,7 @@ nvim +PlugInstall +qa
 |------|------|
 | `<leader>mv` | 缓冲区内渲染 Markdown（markview.nvim，Obsidian 风格 —— NeoVim） |
 | `<leader>lp` | 浏览器实时预览 Markdown，支持本地渲染 PlantUML/D2（NeoVim） |
+| `<leader>r…` | 与 agent 本地评审（fude.nvim，NeoVim），后缀与官方 `<leader>e*` 一致：`rt`/`rq` 开关/停止、`rc` 评论、`rS` 建议、`rv` 查看、`rr` 回复、`rf` 文件、`rd` 对比、`rp` 侧边栏、`rC`/`r]`/`r[` 范围、`rl` 评论列表、`rm`/`rM` 已看/未看、`rR` 刷新；`]f`/`[f` 上/下一个文件 |
 | `<leader>p` | 粘贴剪贴板图片（NeoVim，img-clip.nvim）：按 front matter 中 `typora-copy-images-to` 指定的相对路径保存，未设置则存到 `document.assets/`，并在光标处插入链接。Vim 使用旧版辅助脚本 |
 | `<leader>P` | 将剪贴板中的图片路径存入 assets（旧版辅助脚本） |
 | `<leader>N` | 用 MacDown 打开预览（macOS） |

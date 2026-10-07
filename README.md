@@ -26,6 +26,12 @@ which is vendored in the repo — nothing extra to install.
     [diffview.nvim](https://github.com/sindrets/diffview.nvim), and
     [git-worktree.nvim](https://github.com/polarmutex/git-worktree.nvim) with
     a branch/worktree statusline indicator.
+  - [blink.cmp](https://github.com/saghen/blink.cmp) completion (buffer, path,
+    LSP sources); `<Tab>` stays with UltiSnips, accept with `<C-y>`.
+  - Local review with an agent via
+    [fude.nvim](https://github.com/flexphere/fude.nvim): comment on the
+    working-tree diff under `<leader>r`; comments live in `.fude/` as JSONL that
+    an agent can read and reply to. No GitHub needed.
   - [conform.nvim](https://github.com/stevearc/conform.nvim) format-on-demand
     (prettier, stylua, ruff, shfmt…).
   - Markdown authoring kit: in-buffer rendering
@@ -162,6 +168,7 @@ sessions.
 |-----|--------|
 | `<leader>mv` | Toggle in-buffer Markdown rendering (markview.nvim, Obsidian-like — NeoVim) |
 | `<leader>lp` | Live-preview Markdown in the browser, with local PlantUML/D2 rendering (NeoVim) |
+| `<leader>r…` | Local review with an agent (fude.nvim, NeoVim), same suffixes as upstream `<leader>e*`: `rt`/`rq` toggle/stop, `rc` comment, `rS` suggest, `rv` view, `rr` reply, `rf` files, `rd` diff, `rp` side panel, `rC`/`r]`/`r[` scope, `rl` list comments, `rm`/`rM` viewed, `rR` reload; `]f`/`[f` next/prev file |
 | `<leader>p` | Paste clipboard image (NeoVim, img-clip.nvim): saved to the front-matter `typora-copy-images-to` path or `document.assets/`, then linked at the cursor. Vim uses its legacy helper |
 | `<leader>P` | Save an image from a clipboard path into assets (legacy helper) |
 | `<leader>N` | Open preview in MacDown (macOS) |
