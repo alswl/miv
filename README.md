@@ -14,7 +14,7 @@ which is vendored in the repo — nothing extra to install.
 ## Highlights
 
 - **Batteries-included editing** — syntax, indentation and folding for many
-  languages, multiple cursors, UltiSnips, table editing & alignment, and
+  languages, multiple cursors, snippets, table editing & alignment, and
   Emacs-style insert-mode keys.
 - **NeoVim modern layer**:
   - [fzf-lua](https://github.com/ibhagwan/fzf-lua) fuzzy finding with
@@ -27,7 +27,11 @@ which is vendored in the repo — nothing extra to install.
     [git-worktree.nvim](https://github.com/polarmutex/git-worktree.nvim) with
     a branch/worktree statusline indicator.
   - [blink.cmp](https://github.com/saghen/blink.cmp) completion (buffer, path,
-    LSP sources); `<Tab>` stays with UltiSnips, accept with `<C-y>`.
+    LSP, snippets via [mini.snippets](https://github.com/echasnovski/mini.nvim):
+    hand-maintained Lua files in `.config/nvim/snippets/` +
+    [friendly-snippets](https://github.com/rafamadriz/friendly-snippets));
+    `super-tab` keymap: `<Tab>` accepts the selection or jumps snippet
+    placeholders, and keeps its normal behavior otherwise.
   - Local review with an agent via
     [fude.nvim](https://github.com/flexphere/fude.nvim): comment on the
     working-tree diff under `<leader>r`; comments live in `.fude/` as JSONL that
@@ -89,10 +93,11 @@ Requirements: [Vim](https://www.vim.org/) or
 | Path | Description |
 |------|-------------|
 | `.vimrc` | Main config: plugin list, key maps, general and filetype settings |
-| `.vim/` | UltiSnips snippets, autoload, ftplugin, syntax, templates |
+| `.vim/` | autoload, ftplugin, syntax, templates |
 | `.config/nvim/init.lua` | NeoVim entry point: legacy config, then Lua plugins and keymaps |
 | `.config/nvim/legacy.vim` | Sets `runtimepath` and sources `~/.vimrc` |
-| `.config/nvim/lua/config/` | Per-plugin Lua config: `neo_tree`, `fzf`, `git_worktree`, `diffview`, `img_clip`, `live_preview`, `blink`, `theme` |
+| `.config/nvim/snippets/` | Custom snippets in mini.snippets Lua format, one `<filetype>.lua` per filetype |
+| `.config/nvim/lua/config/` | Per-plugin Lua config: `neo_tree`, `fzf`, `git_worktree`, `diffview`, `img_clip`, `live_preview`, `blink`, `mini_snippets`, `theme` |
 
 ## Key Bindings
 
@@ -159,7 +164,7 @@ sessions.
 | `<leader>nr` / `:NR` / `:NRV` / `:NW` | NrrwRgn narrowed-region editing |
 | `gaip=` / `vipga=` | EasyAlign on `=` |
 | `\sf` | FilePathConvert path-format conversion |
-| `Tab` | Expand UltiSnips snippet |
+| `Tab` | Accept completion / expand snippet (blink.cmp, NeoVim) |
 | `Ctrl+A/E/B/F` … | Emacs-style motion / deletion in insert & command mode |
 
 ### Markdown / Diagrams

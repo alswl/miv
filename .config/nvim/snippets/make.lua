@@ -1,4 +1,9 @@
-snippet go "go"
+-- Custom make snippets (mini.snippets format).
+-- Placeholders: ${N:default}, ${0}, $TM_SELECTED_TEXT (visual selection).
+return {
+	{
+		prefix = "go",
+		body = [=[
 # The old school Makefile, following are required targets. The Makefile is written
 # to allow building multiple binaries. You are free to add more targets or change
 # existing implementations, as long as the semantics are preserved.
@@ -158,11 +163,13 @@ integration-test: ## Run integration tests
 
 .PHONY clean
 clean: ## Clean temp files
-	@rm -vrf ${OUTPUT_DIR}/*
-endsnippet
-	
+	@rm -vrf ${OUTPUT_DIR}/*]=],
+		desc = "go",
+	},
 
-snippet simple "simple"
+	{
+		prefix = "simple",
+		body = [=[
 # The old school Makefile, following are required targets. The Makefile is written
 # to allow building multiple binaries. You are free to add more targets or change
 # existing implementations, as long as the semantics are preserved.
@@ -228,10 +235,13 @@ dry-run: lint ## Do nothing
 
 .PHONY clean
 clean: ## Clean temp files
-	@echo clean
-endsnippet
+	@echo clean]=],
+		desc = "simple",
+	},
 
-snippet ifuname "ifuname"
+	{
+		prefix = "ifuname",
+		body = [=[
 ifeq ($(OS),Windows_NT)
     CCFLAGS += -D WIN32
     ifeq ($(PROCESSOR_ARCHITEW6432),AMD64)
@@ -262,5 +272,7 @@ else
     ifneq ($(filter arm%,$(UNAME_P)),)
         CCFLAGS += -D ARM
     endif
-endif
-endsnippet
+endif]=],
+		desc = "ifuname",
+	},
+}

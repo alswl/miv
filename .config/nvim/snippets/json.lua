@@ -1,4 +1,9 @@
-snippet docker "docker"
+-- Custom json snippets (mini.snippets format).
+-- Placeholders: ${N:default}, ${0}, $TM_SELECTED_TEXT (visual selection).
+return {
+	{
+		prefix = "docker",
+		body = [=[
 {
   "registry-mirrors": [
     "https://1nj0zren.mirror.aliyuncs.com",
@@ -7,5 +12,7 @@ snippet docker "docker"
     "https://dockerhub.azk8s.cn"
   ],
   "live-restore": true
+}]=],
+		desc = "docker",
+	},
 }
-endsnippet

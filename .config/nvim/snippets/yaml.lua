@@ -1,4 +1,9 @@
-snippet owners "owners"
+-- Custom yaml snippets (mini.snippets format).
+-- Placeholders: ${N:default}, ${0}, $TM_SELECTED_TEXT (visual selection).
+return {
+	{
+		prefix = "owners",
+		body = [=[
 # 评审人必须为合法的邮箱前缀
 reviewers:
 - ""
@@ -6,11 +11,13 @@ reviewers:
 watchers: []
 # 阈值，配置的评审人中间，至少有多少人通过
 threshold: 2
+]=],
+		desc = "owners",
+	},
 
-endsnippet
-
-
-snippet deployment "deployment"
+	{
+		prefix = "deployment",
+		body = [=[
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -57,10 +64,13 @@ spec:
       volumes:
       - name: localtime
         hostPath:
-          path: /usr/share/zoneinfo/Asia/Shanghai
-endsnippet
+          path: /usr/share/zoneinfo/Asia/Shanghai]=],
+		desc = "deployment",
+	},
 
-snippet service "service"
+	{
+		prefix = "service",
+		body = [=[
 apiVersion: v1
 kind: Service
 metadata:
@@ -75,7 +85,7 @@ spec:
     - name: http
 	  protocol: TCP
       port: 80
-      targetPort: 9376
-endsnippet
-	
-
+      targetPort: 9376]=],
+		desc = "service",
+	},
+}

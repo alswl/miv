@@ -147,11 +147,6 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/vim-easy-align'
 Plug 'hotoo/pangu.vim'
 Plug 'vim-jp/autofmt'
-" Snippet expansion relies on Python.
-if has('python3') && executable('python3')
-	Plug 'sirver/ultisnips'
-endif
-Plug 'honza/vim-snippets'
 " for weirongxu/plantuml-previewer.vim
 Plug 'tyru/open-browser.vim'
 Plug 'weirongxu/plantuml-previewer.vim'
@@ -169,6 +164,10 @@ if has('nvim')
 	Plug 'ibhagwan/fzf-lua'
 	Plug 'stevearc/conform.nvim'
 	Plug 'saghen/blink.cmp', { 'tag': '*' }
+	" Snippet engine: custom snippets in .config/nvim/snippets/<ft>.lua,
+	" friendly-snippets JSON picked up from runtimepath (see config/mini_snippets.lua).
+	Plug 'echasnovski/mini.nvim'
+	Plug 'rafamadriz/friendly-snippets'
 	" Local review of working-tree changes with an agent (:FudeReviewLocal); no GitHub needed.
 	Plug 'flexphere/fude.nvim'
 	Plug 'HakonHarnes/img-clip.nvim'
@@ -883,18 +882,6 @@ let g:autofmt_allow_over_tw = 0
 " matchparen
 let g:matchparen_timeout = 2
 let g:matchparen_insert_timeout = 2
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpOrExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsSnippetsDir = $HOME."/.config/UltiSnips"
-let g:UltiSnipsSnippetDirectories = ['UltiSnips', $HOME.'/.config/UltiSnips']
-let g:UltiSnipsEnableSnipMate = 0
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
 
 " Use Python from PATH so the provider works on macOS and Linux.
 let s:python3_host = exepath('python3')

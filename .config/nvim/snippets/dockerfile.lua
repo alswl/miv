@@ -1,4 +1,9 @@
-snippet alpine "alpine"
+-- Custom dockerfile snippets (mini.snippets format).
+-- Placeholders: ${N:default}, ${0}, $TM_SELECTED_TEXT (visual selection).
+return {
+	{
+		prefix = "alpine",
+		body = [=[
 FROM alpine:3.14
 
 ARG CHINA_MIRROR=false
@@ -10,19 +15,25 @@ RUN if [[ "$CHINA_MIRROR" = "true" ]] ; then \
     fi
 
 RUN apk update && apk add --no-cache bash make curl git util-linux util-linux-doc binutils findutils readline
+]=],
+		desc = "alpine",
+	},
 
-endsnippet
-
-snippet debian "debian"
+	{
+		prefix = "debian",
+		body = [=[
 FROM debian:10.8-slim
 RUN sed -i "s@http://.*.debian.org@https://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list
 RUN apt update && apt install -y bash make curl git binutils findutils libreadline7 && apt clean && rm -rf /var/apt/cache/*
 
 RUN apt update && apt install -y bash make curl git binutils findutils net-tools lsof zip libreadline7 && apt clean
+]=],
+		desc = "debian",
+	},
 
-endsnippet
-
-snippet centos "centos"
+	{
+		prefix = "centos",
+		body = [=[
 FROM centos:centos7.6.1810
 
 ENV LANG en_US.UTF-8
@@ -41,10 +52,13 @@ RUN yum install -y sysstat lsof net-tools
 RUN yum install -y nc curl
 RUN yum clean all
 RUN rm -rf /var/cache/yum
+]=],
+		desc = "centos",
+	},
 
-endsnippet
-
-snippet go "go"
+	{
+		prefix = "go",
+		body = [=[
 FROM golang:1.16.5-buster as builder
 RUN sed -i "s@http://.*.debian.org@https://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list
 RUN apt update && apt install -y bash make curl git binutils findutils libreadline7 && apt clean && rm -rf /var/apt/cache/*
@@ -75,10 +89,13 @@ WORKDIR /
 COPY --from=builder /app/bin/app /app
 
 ENTRYPOINT ["/app"]
+]=],
+		desc = "go",
+	},
 
-endsnippet
-
-snippet goenv "goenv"
+	{
+		prefix = "goenv",
+		body = [=[
 FROM golang:1.16.5-buster
 RUN sed -i "s@http://.*.debian.org@https://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list
 RUN apt update && apt install -y bash make curl git binutils findutils libreadline7 && apt clean && rm -rf /var/apt/cache/*
@@ -109,10 +126,13 @@ RUN                                                                             
 COPY go.mod .
 RUN --mount=type=ssh go mod download
 
+]=],
+		desc = "goenv",
+	},
 
-endsnippet
-
-snippet node "node"
+	{
+		prefix = "node",
+		body = [=[
 FROM node:13.4.0-stretch-slim
 
 ARG CHINA_MIRROR=false
@@ -125,11 +145,13 @@ RUN if [[ "$CHINA_MIRROR" = "true" ]] ; then \
     npm install -g cnpm --registry=https://registry.npmmirror.com; \
     npm config set registry https://registry.npmmirror.com; \
     fi
+]=],
+		desc = "node",
+	},
 
-endsnippet
-
-
-snippet centossrcpython "centos python from source"
+	{
+		prefix = "centossrcpython",
+		body = [=[
 RUN yum install -y gcc make
 RUN yum install -y epel-release.noarch
 RUN yum install -y jq
@@ -153,11 +175,13 @@ USER admin
 # pip env
 RUN mkdir $HOME/.pip;\
 	echo -e '[global]\nindex-url=https://mirrors.aliyun.com/pypi/simple/\n[install]\ntrusted-host=mirrors.aliyuncs.com\n'> $HOME/.pip/pip.conf;\
-	echo -e '[easy_install]\nindex-url = https://mirrors.aliyun.com/pypi/simple/\n' > $HOME/.pydistutils.cfg;
-endsnippet
+	echo -e '[easy_install]\nindex-url = https://mirrors.aliyun.com/pypi/simple/\n' > $HOME/.pydistutils.cfg;]=],
+		desc = "centos python from source",
+	},
 
-
-snippet gitbook "gitbook"
+	{
+		prefix = "gitbook",
+		body = [=[
 FROM node:13.4.0-stretch-slim
 
 # basic
@@ -177,5 +201,7 @@ RUN npm config set registry https://registry.npm.taobao.org
 RUN tnpm install -g gitbook-cli
 RUN tnpm install -g markdownlint-cli
 
-RUN gitbook fetch 3.2.3
-endsnippet
+RUN gitbook fetch 3.2.3]=],
+		desc = "gitbook",
+	},
+}

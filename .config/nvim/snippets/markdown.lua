@@ -1,92 +1,115 @@
-# snippet `` "code"
-# `${0:${VISUAL}}`
-# endsnippet
+-- Custom markdown snippets (mini.snippets format).
+-- Placeholders: ${N:default}, ${0}, $TM_SELECTED_TEXT (visual selection).
+return {
+	{
+		prefix = "more",
+		body = "<!-- more -->",
+		desc = "more",
+	},
 
-# Style >>>
+	{
+		prefix = "h1",
+		body = "# ${0}",
+		desc = "h1",
+	},
 
-snippet more "more"
-<!-- more -->
-endsnippet
+	{
+		prefix = "h2",
+		body = "## ${0}",
+		desc = "h2",
+	},
 
+	{
+		prefix = "h3",
+		body = "### ${0}",
+		desc = "h3",
+	},
 
-snippet h1 "h1"
-# ${0}
-endsnippet
+	{
+		prefix = "h4",
+		body = "#### ${0}",
+		desc = "h4",
+	},
 
+	{
+		prefix = "h5",
+		body = "##### ${0}",
+		desc = "h5",
+	},
 
-snippet h2 "h2"
-## ${0}
-endsnippet
+	{
+		prefix = "del",
+		body = "<del>${0:$TM_SELECTED_TEXT}</del>",
+		desc = "del",
+	},
 
+	{
+		prefix = "**",
+		body = "**${0:$TM_SELECTED_TEXT}**",
+		desc = "**",
+	},
 
-snippet h3 "h3"
-### ${0}
-endsnippet
+	{
+		prefix = "~~",
+		body = "~~${0:$TM_SELECTED_TEXT}~~",
+		desc = "~~",
+	},
 
+	{
+		prefix = "m",
+		body = "<mark>${0:$TM_SELECTED_TEXT}</mark>",
+		desc = "m",
+	},
 
-snippet h4 "h4"
-#### ${0}
-endsnippet
+	{
+		prefix = "mb",
+		body = "<mark><b>${0:$TM_SELECTED_TEXT}</b></mark>",
+		desc = "mb",
+	},
 
+	{
+		prefix = "mcb",
+		body = "<center><mark><b>${0:$TM_SELECTED_TEXT}</b></mark></center>",
+		desc = "cmb",
+	},
 
-snippet h5 "h5"
-##### ${0}
-endsnippet
+	{
+		prefix = "small",
+		body = "<small>${0:$TM_SELECTED_TEXT}</small>",
+		desc = "small",
+	},
 
+	{
+		prefix = "s",
+		body = "<small>${0:$TM_SELECTED_TEXT}</small>",
+		desc = "small",
+	},
 
-snippet del "del" i
-<del>${0:${VISUAL}}</del>
-endsnippet
+	{
+		prefix = "linku",
+		body = "[${1:link}](${3:${Text:$TM_SELECTED_TEXT}})$0",
+		desc = "Link to something with url",
+	},
 
-snippet ** "**" i
-**${0:${VISUAL}}**
-endsnippet
-
-snippet ~~ "~~"
-~~${0:${VISUAL}}~~
-endsnippet
-
-snippet m "m" i
-<mark>${0:${VISUAL}}</mark>
-endsnippet
-
-snippet mb "mb" i
-<mark><b>${0:${VISUAL}}</b></mark>
-endsnippet
-
-snippet mcb "cmb" i
-<center><mark><b>${0:${VISUAL}}</b></mark></center>
-endsnippet
-
-snippet small "small" i
-<small>${0:${VISUAL}}</small>
-endsnippet
-
-snippet s "small" i
-<small>${0:${VISUAL}}</small>
-endsnippet
-
-snippet linku "Link to something with url"
-[${1:link}](${3:${VISUAL:Text}})$0
-endsnippet
-
-
-# Style <<<
-
-
-# Snips >>>
-
-snippet today "Today"
+	{
+		prefix = "today",
+		body = [=[
 `#!/bin/bash
-date '+%Y-%m-%d'`
-endsnippet
+date '+%Y-%m-%d'`]=],
+		desc = "Today",
+	},
 
-snippet now "Now"
+	{
+		prefix = "now",
+		body = [=[
 `#!/bin/bash
-date '+%Y-%m-%d %H:%M:%S'`
-endsnippet
+date '+%Y-%m-%d %H:%M:%S'`]=],
+		desc = "Now",
+	},
 
-snippet 30l "30 Empty Lines"
+	{
+		prefix = "30l",
+		body = [=[
 ${0}
 
 
@@ -116,28 +139,36 @@ ${0}
 
 
 
+]=],
+		desc = "30 Empty Lines",
+	},
 
-endsnippet
-
-
-snippet ib "Inbox"
+	{
+		prefix = "ib",
+		body = [=[
 
 ## Inbox - `#!/bin/bash
 date '+%Y-%m-%d'`
+]=],
+		desc = "Inbox",
+	},
 
-endsnippet
-
-snippet table "Table"
+	{
+		prefix = "table",
+		body = [=[
 | A             | B             | C             | D             |
 | ---           | ---           | ---           | ---           |
 |               |               |               |               |
 |               |               |               |               |
 |               |               |               |               |
 |               |               |               |               |
+]=],
+		desc = "Table",
+	},
 
-endsnippet
-
-snippet 10l "10 Empty Lines"
+	{
+		prefix = "10l",
+		body = [=[
 ${0}
 
 
@@ -147,15 +178,13 @@ ${0}
 
 
 
+]=],
+		desc = "10 Empty Lines",
+	},
 
-endsnippet
-
-# Snips >>>
-
-
-# Templates >>>
-
-snippet meeting "会议记录"
+	{
+		prefix = "meeting",
+		body = [=[
 
 
 ## ${0}会议记录 - `#!/bin/bash
@@ -181,10 +210,13 @@ date '+%Y-%m-%d'`
 **遗留问题**
 
 
+]=],
+		desc = "会议记录",
+	},
 
-endsnippet
-
-snippet meetingamz "会议记录 Amazon"
+	{
+		prefix = "meetingamz",
+		body = [=[
 
 
 ## ${0}会议准备 - `#!/bin/bash
@@ -208,11 +240,13 @@ date '+%Y-%m-%d'`
 ## 6. Summary（总结）
 
 
+]=],
+		desc = "会议记录 Amazon",
+	},
 
-endsnippet
-
-
-snippet card "卡片"
+	{
+		prefix = "card",
+		body = [=[
 
 ## 术语卡
 
@@ -234,10 +268,13 @@ snippet card "卡片"
 
 ## 任意卡
 
+]=],
+		desc = "卡片",
+	},
 
-endsnippet
-
-snippet issuedoc "Issue"
+	{
+		prefix = "issuedoc",
+		body = [=[
 
 # ${0} `#!/bin/bash
 date '+%Y-%m-%d'`
@@ -261,10 +298,13 @@ date '+%Y-%m-%d'`
 ## 待办项
 
 
+]=],
+		desc = "Issue",
+	},
 
-endsnippet
-
-snippet issue "问题"
+	{
+		prefix = "issue",
+		body = [=[
 
 ## Issue - ${0} `#!/bin/bash
 date '+%Y-%m-%d'`
@@ -292,10 +332,13 @@ date '+%Y-%m-%d'`
 **待办项**
 
 
+]=],
+		desc = "问题",
+	},
 
-endsnippet
-
-snippet planning "计划"
+	{
+		prefix = "planning",
+		body = [=[
 ## 计划 `#!/bin/bash
 date '+%Y-%m-%d'`
 
@@ -323,10 +366,13 @@ date '+%Y-%m-%d'`
 **会议记录**
 
 
+]=],
+		desc = "计划",
+	},
 
-endsnippet
-
-snippet review "Review"
+	{
+		prefix = "review",
+		body = [=[
 
 ## Review - `#!/bin/bash
 date '+%Y-%m-%d'`
@@ -358,11 +404,13 @@ date '+%Y-%m-%d'`
 **记录**：
 
 
+]=],
+		desc = "Review",
+	},
 
-endsnippet
-
-
-snippet interview "Interview"
+	{
+		prefix = "interview",
+		body = [=[
 
 ## Interview - ${1}
 
@@ -380,19 +428,25 @@ snippet interview "Interview"
 - 最近几年从事的技术领域是什么
   - ${0}
 
+]=],
+		desc = "Interview",
+	},
 
-endsnippet
-
-snippet api "API Document"
+	{
+		prefix = "api",
+		body = [=[
 - Name：${1}
 - Path
 - Method:
 - Params
 - Request Payload
-- Response
-endsnippet
+- Response]=],
+		desc = "API Document",
+	},
 
-snippet readingdoc "Reading Note"
+	{
+		prefix = "readingdoc",
+		body = [=[
 
 ## 感想
 
@@ -435,22 +489,26 @@ ${0}
 
 > 给自己 Hint 的那种文字
 
+]=],
+		desc = "Reading Note",
+	},
 
-endsnippet
-
-
-snippet docvoting "文档标记"
+	{
+		prefix = "docvoting",
+		body = [=[
 
 - 类型 指南 / 产品手册 / 产品开发 / 专项 / 记录 / 管理 / 其他
 - 紧急度 低 / 中 / 高
 - 重要度 低 / 中 / 高
 - 难度 低 / 中 / 高
 - 文档质量 低 / 中 / 高
+]=],
+		desc = "文档标记",
+	},
 
-endsnippet
-
-
-snippet failure "故障事件"
+	{
+		prefix = "failure",
+		body = [=[
 
 ## 故障 - `#!/bin/bash
 date '+%Y-%m-%d'`
@@ -486,11 +544,13 @@ date '+%Y-%m-%d'`
 
 Hint：
 
+]=],
+		desc = "故障事件",
+	},
 
-endsnippet
-
-
-snippet designdoc "Design Document"
+	{
+		prefix = "designdoc",
+		body = [=[
 
 > Status: Draft (Draft -> In Review -> Approved/Abandon）
 >
@@ -559,11 +619,13 @@ snippet designdoc "Design Document"
 
 > 必选，文档中引用的关联内容
 
+]=],
+		desc = "Design Document",
+	},
 
-endsnippet
-
-
-snippet oncall "On-call 处理"
+	{
+		prefix = "oncall",
+		body = [=[
 
 ## On-call - `#!/bin/bash
 date '+%Y-%m-%d'`
@@ -599,11 +661,13 @@ date '+%Y-%m-%d'`
 **Hint**：
 
 
+]=],
+		desc = "On-call 处理",
+	},
 
-endsnippet
-
-
-snippet playbookdoc "Playbook"
+	{
+		prefix = "playbookdoc",
+		body = [=[
 
 ## 告警影响面
 
@@ -632,11 +696,13 @@ snippet playbookdoc "Playbook"
 
 ## 告警数据源（Optional）
 
+]=],
+		desc = "Playbook",
+	},
 
-endsnippet
-
-
-snippet guidedoc "Guide"
+	{
+		prefix = "guidedoc",
+		body = [=[
 
 ## Overview
 
@@ -648,11 +714,13 @@ snippet guidedoc "Guide"
 
 ## Next Steps
 
+]=],
+		desc = "Guide",
+	},
 
-endsnippet
-
-
-snippet gsdoc "Getting Start Doc"
+	{
+		prefix = "gsdoc",
+		body = [=[
 
 ## Overview
 
@@ -676,11 +744,13 @@ snippet gsdoc "Getting Start Doc"
 
 ## Next Steps
 
+]=],
+		desc = "Getting Start Doc",
+	},
 
-endsnippet
-
-
-snippet doc "General Doc"
+	{
+		prefix = "doc",
+		body = [=[
 
 ## Overview
 
@@ -700,10 +770,13 @@ snippet doc "General Doc"
 
 ## References
 
+]=],
+		desc = "General Doc",
+	},
 
-endsnippet
-
-snippet okr "okr values"
+	{
+		prefix = "okr",
+		body = [=[
 
 某事项
 
@@ -715,23 +788,28 @@ snippet okr "okr values"
 - 技术实现和结果
   - 技术实现
   - 技术结果
-- 未来思考
-endsnippet
+- 未来思考]=],
+		desc = "okr values",
+	},
 
-
-snippet okr2 "okr values 2"
+	{
+		prefix = "okr2",
+		body = [=[
 
 关键产出 - ?：
 
 **我的角色和价值产出**
 
 **我是如何达成的**
+]=],
+		desc = "okr values 2",
+	},
 
-endsnippet
-
-snippet mfpf "mind-forge private feedback"
+	{
+		prefix = "mfpf",
+		body = [=[
 > [!mf-private] Feedback
-> 
-endsnippet
-
-# Templates >>>
+> ]=],
+		desc = "mind-forge private feedback",
+	},
+}

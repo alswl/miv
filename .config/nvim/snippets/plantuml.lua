@@ -1,4 +1,9 @@
-snippet gantt "Gantt"
+-- Custom plantuml snippets (mini.snippets format).
+-- Placeholders: ${N:default}, ${0}, $TM_SELECTED_TEXT (visual selection).
+return {
+	{
+		prefix = "gantt",
+		body = [=[
 /' :EasyAlign */\(starts\)\|\(ends\)\|\(lasts\)\|\(happens\)/ '/
 /' :EasyAlign */\(is\)\|\(are\)/ '/
 
@@ -62,11 +67,13 @@ then [系分评审] as [design$]    lasts 1 day
 [部署] as [deploy$]            starts at [test$]'s end
 [deploy$]                       lasts 1 days
 
-@endgantt
-endsnippet
+@endgantt]=],
+		desc = "Gantt",
+	},
 
-
-snippet ganttext "Gantt Ext"
+	{
+		prefix = "ganttext",
+		body = [=[
 /' :EasyAlign */\(starts\)\|\(ends\)\|\(lasts\)\|\(happens\)/ '/
 /' :EasyAlign */\(is\)\|\(are\)/ '/
 
@@ -137,11 +144,13 @@ then [系分评审] as [dsr]                                   lasts 1 day and  
 [封版] as [deploy$]                                       starts at [test$]'s end
 [deploy$]                                                  lasts 1 days
 
-@endgantt
-endsnippet
+@endgantt]=],
+		desc = "Gantt Ext",
+	},
 
-
-snippet usecase "Use Case"
+	{
+		prefix = "usecase",
+		body = [=[
 @startuml
 
 left to right direction
@@ -185,10 +194,13 @@ rectangle "Topic B" {
     user -- ( C )
 }
 
-@enduml
-endsnippet
+@enduml]=],
+		desc = "Use Case",
+	},
 
-snippet sequence "Sequence"
+	{
+		prefix = "sequence",
+		body = [=[
 @startuml
 
 skinparam ParticipantPadding 20
@@ -236,10 +248,13 @@ b -> b ++
 return done
 return success
 
-@enduml
-endsnippet
+@enduml]=],
+		desc = "Sequence",
+	},
 
-snippet er "ER Diagram"
+	{
+		prefix = "er",
+		body = [=[
 @startuml
 
 !define table(x) class x << (T,#ffebf3) >>
@@ -283,76 +298,103 @@ package Common << Rectangle >> {
         {field} name: varchar(200)
     }
 
-@enduml
-endsnippet
+@enduml]=],
+		desc = "ER Diagram",
+	},
 
-snippet ac "Activate"
-activate ${0:element}
-endsnippet
+	{
+		prefix = "ac",
+		body = "activate ${0:element}",
+		desc = "Activate",
+	},
 
-snippet de "Deactivate"
-deactivate ${0:element}
-endsnippet
+	{
+		prefix = "de",
+		body = "deactivate ${0:element}",
+		desc = "Deactivate",
+	},
 
-snippet ad "Activate and Deactivate"
-activate ${0:${VISUAL}}
+	{
+		prefix = "ad",
+		body = [=[
+activate ${0:$TM_SELECTED_TEXT}
     ${1}
-deactivate ${0:${VISUAL}}
-endsnippet
+deactivate ${0:$TM_SELECTED_TEXT}]=],
+		desc = "Activate and Deactivate",
+	},
 
-snippet note "Note Over"
-note over ${1:element} : ${0}
-endsnippet
+	{
+		prefix = "note",
+		body = "note over ${1:element} : ${0}",
+		desc = "Note Over",
+	},
 
-snippet noteo "Note Over Block"
+	{
+		prefix = "noteo",
+		body = [=[
 note over ${1:element}
-    ${0:${VISUAL}}
-end note
-endsnippet
+    ${0:$TM_SELECTED_TEXT}
+end note]=],
+		desc = "Note Over Block",
+	},
 
-snippet noteb "Note Over Block"
+	{
+		prefix = "noteb",
+		body = [=[
 note bottom of ${1:element}
-    ${0:${VISUAL}}
-end note
-endsnippet
+    ${0:$TM_SELECTED_TEXT}
+end note]=],
+		desc = "Note Over Block",
+	},
 
-
-# snips >>>
-
-snippet alt "Alt Block"
+	{
+		prefix = "alt",
+		body = [=[
 alt ${1:element}
-    ${0:${VISUAL}}
-end alt
-endsnippet
+    ${0:$TM_SELECTED_TEXT}
+end alt]=],
+		desc = "Alt Block",
+	},
 
-snippet opt "Opt Block"
+	{
+		prefix = "opt",
+		body = [=[
 opt ${1:element}
-    ${0:${VISUAL}}
-end opt
-endsnippet
+    ${0:$TM_SELECTED_TEXT}
+end opt]=],
+		desc = "Opt Block",
+	},
 
-snippet loop "Loop Block"
+	{
+		prefix = "loop",
+		body = [=[
 loop ${1:element}
-    ${0:${VISUAL}}
-end loop
-endsnippet
+    ${0:$TM_SELECTED_TEXT}
+end loop]=],
+		desc = "Loop Block",
+	},
 
-
-snippet table "Table in ER"
+	{
+		prefix = "table",
+		body = [=[
 table(classroom) {
     {field} +id: int(11)
     {field} name: varchar(200)
     {field} description: ?varchar(2000)
 }
+]=],
+		desc = "Table in ER",
+	},
 
-endsnippet
+	{
+		prefix = "ref",
+		body = "${1:table} --> ${2:table} : on ${3:}_id = ${4:id}",
+		desc = "Table Reference in ER",
+	},
 
-snippet ref "Table Reference in ER"
-${1:table} --> ${2:table} : on ${3:}_id = ${4:id}
-endsnippet
-
-
-snippet states "States"
+	{
+		prefix = "states",
+		body = [=[
 @startuml
 
 !theme cloudscape-design
@@ -392,21 +434,22 @@ pay_success -down-> delivery_done
 delivery_done -down-> [*]
 
 
-@enduml
-endsnippet
+@enduml]=],
+		desc = "States",
+	},
 
-
-# snips <<<
-
-
-snippet pa "package"
+	{
+		prefix = "pa",
+		body = [=[
 package "${1:element}" {
-    ${0:${VISUAL}}
-}
-endsnippet
+    ${0:$TM_SELECTED_TEXT}
+}]=],
+		desc = "package",
+	},
 
-
-snippet mindmap "mindmap"
+	{
+		prefix = "mindmap",
+		body = [=[
 @startmindmap
 <style>
 mindmapDiagram {
@@ -439,5 +482,7 @@ mindmapDiagram {
 		* second level node
 		* another second level node
 	* another first level node
-@endmindmap
-endsnippet
+@endmindmap]=],
+		desc = "mindmap",
+	},
+}

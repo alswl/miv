@@ -13,7 +13,7 @@
 
 ## 亮点
 
-- **开箱即用** —— 多语言语法高亮、缩进与折叠，多光标、UltiSnips 代码片段、
+- **开箱即用** —— 多语言语法高亮、缩进与折叠，多光标、代码片段、
   表格编辑与对齐，以及 insert/command 模式下的 Emacs 风格按键。
 - **NeoVim 现代化层**：
   - [fzf-lua](https://github.com/ibhagwan/fzf-lua) 模糊查找，附带
@@ -25,7 +25,10 @@
     [git-worktree.nvim](https://github.com/polarmutex/git-worktree.nvim)
     （状态栏显示分支 / worktree）。
   - [blink.cmp](https://github.com/saghen/blink.cmp) 自动补全（buffer、路径、
-    LSP 来源）；`<Tab>` 仍归 UltiSnips，用 `<C-y>` 确认补全。
+    LSP、代码片段——基于 [mini.snippets](https://github.com/echasnovski/mini.nvim)：
+    `.config/nvim/snippets/` 下的手写 Lua 片段 +
+    [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)）；
+    `super-tab` 键位：`<Tab>` 接受选中项或跳转占位符，无菜单时保持原 Tab 行为。
   - 通过 [fude.nvim](https://github.com/flexphere/fude.nvim) 与 agent 本地评审：
     在工作区 diff 上用 `<leader>r` 系列键评论，评论以 JSONL 存在 `.fude/`，
     agent 可读取并回复，无需 GitHub。
@@ -84,10 +87,11 @@ nvim +PlugInstall +qa
 | 路径 | 说明 |
 |------|------|
 | `.vimrc` | 主配置：插件列表、键位映射、常规与文件类型设置 |
-| `.vim/` | UltiSnips 代码片段、autoload、ftplugin、syntax、templates |
+| `.vim/` | autoload、ftplugin、syntax、templates |
 | `.config/nvim/init.lua` | NeoVim 入口：加载旧版配置，再加载 Lua 插件与键位 |
 | `.config/nvim/legacy.vim` | 设置 `runtimepath` 并 source `~/.vimrc` |
-| `.config/nvim/lua/config/` | 各插件的 Lua 配置：`neo_tree`、`fzf`、`git_worktree`、`diffview`、`img_clip`、`live_preview`、`blink`、`theme` |
+| `.config/nvim/snippets/` | 自定义代码片段（mini.snippets Lua 格式，每种文件类型一个 `<filetype>.lua`） |
+| `.config/nvim/lua/config/` | 各插件的 Lua 配置：`neo_tree`、`fzf`、`git_worktree`、`diffview`、`img_clip`、`live_preview`、`blink`、`mini_snippets`、`theme` |
 
 ## 键位
 
@@ -153,7 +157,7 @@ nvim +PlugInstall +qa
 | `<leader>nr` / `:NR` / `:NRV` / `:NW` | NrrwRgn 局部区域编辑 |
 | `gaip=` / `vipga=` | EasyAlign 按 `=` 对齐 |
 | `\sf` | FilePathConvert 路径格式转换 |
-| `Tab` | 展开 UltiSnips 代码片段 |
+| `Tab` | 接受补全 / 展开代码片段（blink.cmp，NeoVim） |
 | `Ctrl+A/E/B/F` 等 | insert/command 模式下的 Emacs 风格移动 / 删除 |
 
 ### Markdown / 图表

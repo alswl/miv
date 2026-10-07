@@ -1,4 +1,9 @@
-snippet cliff "cliff"
+-- Custom toml snippets (mini.snippets format).
+-- Placeholders: ${N:default}, ${0}, $TM_SELECTED_TEXT (visual selection).
+return {
+	{
+		prefix = "cliff",
+		body = [=[
 # configuration file for git-cliff (0.1.0)
 # https://git-cliff.org/docs/configuration
 #
@@ -68,5 +73,7 @@ ignore_tags = ""
 date_order = false
 # sort the commits inside sections by oldest/newest order
 sort_commits = "oldest"
-
-endsnippet
+]=],
+		desc = "cliff",
+	},
+}

@@ -9,53 +9,53 @@ vim.g.neovide_input_ime = true
 
 -- Plugin loader
 local function require_plugin(name)
-    local ok, module = pcall(require, name)
-    if ok then
-        return module
-    end
-    local missing = "module '" .. name .. "' not found:"
-    if tostring(module):sub(1, #missing) ~= missing then
-        vim.schedule(function()
-            vim.notify("Failed to load " .. name .. ": " .. tostring(module), vim.log.levels.ERROR)
-        end)
-    end
+	local ok, module = pcall(require, name)
+	if ok then
+		return module
+	end
+	local missing = "module '" .. name .. "' not found:"
+	if tostring(module):sub(1, #missing) ~= missing then
+		vim.schedule(function()
+			vim.notify("Failed to load " .. name .. ": " .. tostring(module), vim.log.levels.ERROR)
+		end)
+	end
 end
 
 -- Plugin configuration
 local markview = require_plugin("markview")
 if markview then
-    markview.setup({
-        preview = {
-            -- Obsidian-like trial: whole file used to revert in insert because
-            -- ModeChanged clears the buffer whenever the current mode is not in
-            -- `preview.modes`. Include insert in `modes` and route it through hybrid so
-            -- only the node under the cursor (a list item / quote / heading / table) falls
-            -- back to source while the rest stays rendered — Obsidian's block-level feel.
-            enable = false,
-            enable_hybrid_mode = true,
-            modes = { "n", "no", "c", "i", "ic" },
-            hybrid_modes = { "i", "ic" },
-            linewise_hybrid_mode = false, -- false = node-based; true = single line
-        },
-        markdown = {
-            headings = {
-                heading_1 = { sign = "" },
-                heading_2 = { sign = "" },
-                heading_3 = { sign = "" },
-                heading_4 = { sign = "" },
-                heading_5 = { sign = "" },
-                heading_6 = { sign = "" },
-            },
-            code_blocks = { sign = false },
-        },
-    })
+	markview.setup({
+		preview = {
+			-- Obsidian-like trial: whole file used to revert in insert because
+			-- ModeChanged clears the buffer whenever the current mode is not in
+			-- `preview.modes`. Include insert in `modes` and route it through hybrid so
+			-- only the node under the cursor (a list item / quote / heading / table) falls
+			-- back to source while the rest stays rendered — Obsidian's block-level feel.
+			enable = false,
+			enable_hybrid_mode = true,
+			modes = { "n", "no", "c", "i", "ic" },
+			hybrid_modes = { "i", "ic" },
+			linewise_hybrid_mode = false, -- false = node-based; true = single line
+		},
+		markdown = {
+			headings = {
+				heading_1 = { sign = "" },
+				heading_2 = { sign = "" },
+				heading_3 = { sign = "" },
+				heading_4 = { sign = "" },
+				heading_5 = { sign = "" },
+				heading_6 = { sign = "" },
+			},
+			code_blocks = { sign = false },
+		},
+	})
 
-    vim.keymap.set("n", "<leader>mv", "<Cmd>Markview<CR>", { silent = true, desc = "Toggle Markview render" })
+	vim.keymap.set("n", "<leader>mv", "<Cmd>Markview<CR>", { silent = true, desc = "Toggle Markview render" })
 end
 
 local markdown_plus = require_plugin("markdown-plus")
 if markdown_plus then
-    markdown_plus.setup({ features = { links = true } }) -- lists continue on <CR>; quotes go via formatoptions+=ro in vimrc; markdown only
+	markdown_plus.setup({ features = { links = true } }) -- lists continue on <CR>; quotes go via formatoptions+=ro in vimrc; markdown only
 end
 
 -- Use one opener for both rendered and source Markdown links.  The legacy `gx`
@@ -65,117 +65,122 @@ require("config.markdown_links").setup()
 
 local fzf = require_plugin("config.fzf")
 if fzf then
-    fzf.setup()
+	fzf.setup()
 end
 
 local git_worktree = require_plugin("config.git_worktree")
 if git_worktree then
-    git_worktree.setup()
+	git_worktree.setup()
 end
 
 local diffview = require_plugin("config.diffview")
 if diffview then
-    diffview.setup()
+	diffview.setup()
 end
 
 local conform = require_plugin("conform")
 if conform then
-    conform.setup({
-        formatters_by_ft = {
-            css = { "prettier" },
-            html = { "prettier" },
-            javascript = { "prettier" },
-            json = { "prettier" },
-            lua = { "stylua" },
-            markdown = { "prettier" },
-            python = { "ruff_format", "ruff_organize_imports" },
-            sh = { "shfmt" },
-            typescript = { "prettier" },
-            yaml = { "prettier" },
-        },
-    })
+	conform.setup({
+		formatters_by_ft = {
+			css = { "prettier" },
+			html = { "prettier" },
+			javascript = { "prettier" },
+			json = { "prettier" },
+			lua = { "stylua" },
+			markdown = { "prettier" },
+			python = { "ruff_format", "ruff_organize_imports" },
+			sh = { "shfmt" },
+			typescript = { "prettier" },
+			yaml = { "prettier" },
+		},
+	})
+end
+
+local mini_snippets = require_plugin("config.mini_snippets")
+if mini_snippets then
+	mini_snippets.setup()
 end
 
 local blink = require_plugin("config.blink")
 if blink then
-    blink.setup()
+	blink.setup()
 end
 
 local fude = require_plugin("fude")
 if fude then
-    -- Local mode: run :FudeReviewLocal [base]; comments stay in .fude/ and never reach GitHub.
-    -- auto_reload picks up agent replies appended to .fude/reviews/*.jsonl.
-    fude.setup({ auto_reload = { enabled = true, interval = 15 } })
+	-- Local mode: run :FudeReviewLocal [base]; comments stay in .fude/ and never reach GitHub.
+	-- auto_reload picks up agent replies appended to .fude/reviews/*.jsonl.
+	fude.setup({ auto_reload = { enabled = true, interval = 15 } })
 end
 
 local img_clip = require_plugin("config.img_clip")
 if img_clip and require_plugin("img-clip") then
-    img_clip.setup()
+	img_clip.setup()
 end
 
 local neo_tree = require_plugin("config.neo_tree")
 if neo_tree then
-    neo_tree.setup()
+	neo_tree.setup()
 end
 
 local aerial = require_plugin("aerial")
 if aerial then
-    aerial.setup({})
+	aerial.setup({})
 end
 
 -- Markdown preview
 local livepreview = require_plugin("config.live_preview")
 if livepreview then
-    livepreview.setup()
+	livepreview.setup()
 end
 
 -- Keymaps
 
 if conform then
-    vim.keymap.set("n", "<leader>F", function()
-        conform.format({ async = true, lsp_format = "fallback" })
-    end, { silent = true, desc = "Format buffer" })
+	vim.keymap.set("n", "<leader>F", function()
+		conform.format({ async = true, lsp_format = "fallback" })
+	end, { silent = true, desc = "Format buffer" })
 end
 
 if livepreview and livepreview.enabled then
-    vim.keymap.set("n", "<leader>lp", livepreview.start, {
-        silent = true,
-        desc = "Preview Markdown in browser",
-    })
+	vim.keymap.set("n", "<leader>lp", livepreview.start, {
+		silent = true,
+		desc = "Preview Markdown in browser",
+	})
 end
 
 if fude then
-    local function review(lhs, rhs, desc, mode)
-        vim.keymap.set(mode or "n", lhs, rhs, { silent = true, desc = "Review: " .. desc })
-    end
-    -- Same suffixes as the upstream <leader>e* keymaps, under <leader>r.
-    review("<leader>rt", "<Cmd>FudeReviewLocalToggle<CR>", "Toggle local review")
-    review("<leader>rq", "<Cmd>FudeReviewStop<CR>", "Stop review")
-    review("<leader>rc", "<Cmd>FudeReviewComment<CR>", "Comment")
-    review("<leader>rc", ":FudeReviewComment<CR>", "Comment (selection)", "v")
-    review("<leader>rS", "<Cmd>FudeReviewSuggest<CR>", "Suggest change")
-    review("<leader>rS", ":FudeReviewSuggest<CR>", "Suggest change (selection)", "v")
-    review("<leader>rv", "<Cmd>FudeReviewViewComment<CR>", "View comments")
-    review("<leader>rr", function()
-        require("fude.comments").reply_to_comment()
-    end, "Reply")
-    review("<leader>rf", "<Cmd>FudeReviewFiles<CR>", "Changed files")
-    review("]f", "<Cmd>FudeReviewNextFile<CR>", "Next file")
-    review("[f", "<Cmd>FudeReviewPrevFile<CR>", "Previous file")
-    review("<leader>rd", "<Cmd>FudeReviewDiff<CR>", "Toggle diff")
-    review("<leader>rp", "<Cmd>FudeReviewPanel<CR>", "Toggle side panel")
-    review("<leader>rC", "<Cmd>FudeReviewScope<CR>", "Select scope")
-    review("<leader>r]", "<Cmd>FudeReviewScopeNext<CR>", "Next scope")
-    review("<leader>r[", "<Cmd>FudeReviewScopePrev<CR>", "Previous scope")
-    review("<leader>rl", "<Cmd>FudeReviewListComments<CR>", "List comments")
-    review("<leader>rR", "<Cmd>FudeReviewReload<CR>", "Reload data")
-    review("<leader>rm", "<Cmd>FudeReviewViewed<CR>", "Mark viewed")
-    review("<leader>rM", "<Cmd>FudeReviewUnviewed<CR>", "Unmark viewed")
+	local function review(lhs, rhs, desc, mode)
+		vim.keymap.set(mode or "n", lhs, rhs, { silent = true, desc = "Review: " .. desc })
+	end
+	-- Same suffixes as the upstream <leader>e* keymaps, under <leader>r.
+	review("<leader>rt", "<Cmd>FudeReviewLocalToggle<CR>", "Toggle local review")
+	review("<leader>rq", "<Cmd>FudeReviewStop<CR>", "Stop review")
+	review("<leader>rc", "<Cmd>FudeReviewComment<CR>", "Comment")
+	review("<leader>rc", ":FudeReviewComment<CR>", "Comment (selection)", "v")
+	review("<leader>rS", "<Cmd>FudeReviewSuggest<CR>", "Suggest change")
+	review("<leader>rS", ":FudeReviewSuggest<CR>", "Suggest change (selection)", "v")
+	review("<leader>rv", "<Cmd>FudeReviewViewComment<CR>", "View comments")
+	review("<leader>rr", function()
+		require("fude.comments").reply_to_comment()
+	end, "Reply")
+	review("<leader>rf", "<Cmd>FudeReviewFiles<CR>", "Changed files")
+	review("]f", "<Cmd>FudeReviewNextFile<CR>", "Next file")
+	review("[f", "<Cmd>FudeReviewPrevFile<CR>", "Previous file")
+	review("<leader>rd", "<Cmd>FudeReviewDiff<CR>", "Toggle diff")
+	review("<leader>rp", "<Cmd>FudeReviewPanel<CR>", "Toggle side panel")
+	review("<leader>rC", "<Cmd>FudeReviewScope<CR>", "Select scope")
+	review("<leader>r]", "<Cmd>FudeReviewScopeNext<CR>", "Next scope")
+	review("<leader>r[", "<Cmd>FudeReviewScopePrev<CR>", "Previous scope")
+	review("<leader>rl", "<Cmd>FudeReviewListComments<CR>", "List comments")
+	review("<leader>rR", "<Cmd>FudeReviewReload<CR>", "Reload data")
+	review("<leader>rm", "<Cmd>FudeReviewViewed<CR>", "Mark viewed")
+	review("<leader>rM", "<Cmd>FudeReviewUnviewed<CR>", "Unmark viewed")
 end
 
 if aerial then
-    vim.keymap.set("n", "<F2>", "<Cmd>AerialToggle<CR>", { silent = true, desc = "Toggle symbols" })
-    vim.keymap.set("i", "<F2>", "<Esc><Cmd>AerialToggle<CR>", { silent = true, desc = "Toggle symbols" })
+	vim.keymap.set("n", "<F2>", "<Cmd>AerialToggle<CR>", { silent = true, desc = "Toggle symbols" })
+	vim.keymap.set("i", "<F2>", "<Esc><Cmd>AerialToggle<CR>", { silent = true, desc = "Toggle symbols" })
 end
 
 -- Re-apply italic→bold after plugins configured their highlights.

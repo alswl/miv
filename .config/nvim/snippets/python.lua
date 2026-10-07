@@ -1,4 +1,9 @@
-snippet pandas "pandas"
+-- Custom python snippets (mini.snippets format).
+-- Placeholders: ${N:default}, ${0}, $TM_SELECTED_TEXT (visual selection).
+return {
+	{
+		prefix = "pandas",
+		body = [=[
 import numpy as np
 import pandas as pd
 import matplotlib as mpl
@@ -23,5 +28,7 @@ set_matplotlib_formats('svg')
 # view fonts
 # fm = FontManager()
 # mat_fonts = set(f.name for f in fm.ttflist)
-# print(mat_fonts)
-endsnippet
+# print(mat_fonts)]=],
+		desc = "pandas",
+	},
+}

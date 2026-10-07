@@ -1,4 +1,9 @@
-snippet version "version"
+-- Custom go snippets (mini.snippets format).
+-- Placeholders: ${N:default}, ${0}, $TM_SELECTED_TEXT (visual selection).
+return {
+	{
+		prefix = "version",
+		body = [=[
 package version
 
 import (
@@ -21,5 +26,7 @@ build date: %s
 go version: %s
 `
 	return fmt.Sprintf(format, Version, Commit, Package, BuildDate, GoVersion)
+}]=],
+		desc = "version",
+	},
 }
-endsnippet
