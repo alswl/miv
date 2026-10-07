@@ -168,6 +168,7 @@ if has('nvim')
 	Plug 'sindrets/diffview.nvim'
 	Plug 'ibhagwan/fzf-lua'
 	Plug 'stevearc/conform.nvim'
+	Plug 'saghen/blink.cmp', { 'tag': '*' }
 	Plug 'HakonHarnes/img-clip.nvim'
 	Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v3.x' }
 	Plug 'MunifTanjim/nui.nvim'

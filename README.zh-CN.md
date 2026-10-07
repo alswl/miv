@@ -82,7 +82,7 @@ nvim +PlugInstall +qa
 | `.vim/` | UltiSnips 代码片段、autoload、ftplugin、syntax、templates |
 | `.config/nvim/init.lua` | NeoVim 入口：加载旧版配置，再加载 Lua 插件与键位 |
 | `.config/nvim/legacy.vim` | 设置 `runtimepath` 并 source `~/.vimrc` |
-| `.config/nvim/lua/config/` | 各插件的 Lua 配置：`neo_tree`、`fzf`、`git_worktree`、`diffview`、`img_clip`、`live_preview`、`theme` |
+| `.config/nvim/lua/config/` | 各插件的 Lua 配置：`neo_tree`、`fzf`、`git_worktree`、`diffview`、`img_clip`、`live_preview`、`blink`、`theme` |
 
 ## 键位
 

@@ -86,7 +86,7 @@ Requirements: [Vim](https://www.vim.org/) or
 | `.vim/` | UltiSnips snippets, autoload, ftplugin, syntax, templates |
 | `.config/nvim/init.lua` | NeoVim entry point: legacy config, then Lua plugins and keymaps |
 | `.config/nvim/legacy.vim` | Sets `runtimepath` and sources `~/.vimrc` |
-| `.config/nvim/lua/config/` | Per-plugin Lua config: `neo_tree`, `fzf`, `git_worktree`, `diffview`, `img_clip`, `live_preview`, `theme` |
+| `.config/nvim/lua/config/` | Per-plugin Lua config: `neo_tree`, `fzf`, `git_worktree`, `diffview`, `img_clip`, `live_preview`, `blink`, `theme` |
 
 ## Key Bindings
 

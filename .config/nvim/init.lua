@@ -96,6 +96,11 @@ if conform then
     })
 end
 
+local blink = require_plugin("config.blink")
+if blink then
+    blink.setup()
+end
+
 local img_clip = require_plugin("config.img_clip")
 if img_clip and require_plugin("img-clip") then
     img_clip.setup()
