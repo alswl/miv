@@ -3,6 +3,12 @@
 """""""""""""""""""""""""""""""""""""""
 set nocompatible
 
+" Optional per-machine overrides (e.g. g:aerial_branch = 'nvim-0.9').
+let s:local_vimrc = expand('~/.vimrc.local')
+if filereadable(s:local_vimrc)
+	execute 'source' fnameescape(s:local_vimrc)
+endif
+
 function! s:System()
 	if has("win32")
 		return "windows"
@@ -173,8 +179,11 @@ if has('nvim')
 	Plug 'HakonHarnes/img-clip.nvim'
 	Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v3.x' }
 	Plug 'MunifTanjim/nui.nvim'
-	" Debian Trixie ships a restricted Neovim version; use the compatible Aerial branch.
-	Plug 'stevearc/aerial.nvim', { 'branch': 'nvim-0.9' }
+	if exists('g:aerial_branch')
+		Plug 'stevearc/aerial.nvim', { 'branch': g:aerial_branch }
+	else
+		Plug 'stevearc/aerial.nvim'
+	endif
 	" Worktree picker and minimal Git status. Git operations stay on the CLI.
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
