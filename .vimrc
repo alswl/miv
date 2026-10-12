@@ -938,11 +938,49 @@ endfunction
 command! ToggleTheme call <SID>ToggleTheme()
 
 function! s:OpenURLUnderCursor()
-	let l:uri = shellescape(matchstr(getline('.'), '[a-z]*:\/\/[^ >,;()]*'), 1)
-	if l:uri != ''
-		execute 'silent !open ' . l:uri
-		redraw!
+	let l:line = getline('.')
+	let l:col = col('.') - 1
+	let l:target = ''
+	let l:link_pattern = '\[[^]]*\](\S[^)]*)'
+	let l:start = 0
+	while 1
+		let l:match_start = match(l:line, l:link_pattern, l:start)
+		if l:match_start < 0
+			break
+		endif
+		let l:match_end = matchend(l:line, l:link_pattern, l:start)
+		if l:col >= l:match_start && l:col < l:match_end
+			let l:link = matchstr(strpart(l:line, l:match_start), '^\[[^]]*\](\S[^)]*)')
+			let l:target = matchstr(l:link, '](\zs[^)]*')
+			let l:target = matchstr(l:target, '^\S\+')
+			break
+		endif
+		let l:start = l:match_end
+	endwhile
+
+	if empty(l:target)
+		let l:target = matchstr(l:line, '[a-zA-Z][a-zA-Z0-9+.-]*:\/\/[^ >,;()]*')
 	endif
+	if empty(l:target)
+		return
+	endif
+
+	if l:target =~# '^[a-zA-Z][a-zA-Z0-9+.-]*://'
+		let l:command = 'open ' . shellescape(l:target)
+	else
+		let l:target = substitute(l:target, '#.*$', '', '')
+		let l:target = substitute(l:target, '?=.*$', '', '')
+		let l:path = fnamemodify(expand('%:p:h') . '/' . l:target, ':p')
+		if !filereadable(l:path) && !isdirectory(l:path)
+			echohl WarningMsg
+			echo 'Link target does not exist: ' . l:path
+			echohl None
+			return
+		endif
+		let l:command = 'open ' . shellescape(l:path)
+	endif
+	execute 'silent !' . l:command
+	redraw!
 endfunction
 
 function! s:RunCtrlP()
