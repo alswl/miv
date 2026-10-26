@@ -45,6 +45,10 @@ link "${DOTFILES_ROOT}/.vim"   "${HOME}/.vim"
 link "${DOTFILES_ROOT}/.config/nvim" "${HOME}/.config/nvim"
 
 info "Installing plugins with $(basename "$EDITOR_BIN") (first run may take a while)"
-"$EDITOR_BIN" -T dumb --not-a-term +PlugInstall +qa >/dev/null
+if [ "$(basename "$EDITOR_BIN")" = nvim ]; then
+    "$EDITOR_BIN" --headless '+PlugInstall --sync' +qa >/dev/null
+else
+    "$EDITOR_BIN" -T dumb --not-a-term '+PlugInstall --sync' +qa >/dev/null
+fi
 
 info "Done! Open $(basename "$EDITOR_BIN") and run :PlugStatus to verify."
