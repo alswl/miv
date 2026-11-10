@@ -1,5 +1,24 @@
 local M = { enabled = false }
 
+local preview_styles = [[
+<style id="livepreview-reading-style">
+  body { margin: 0; font-size: 15px; background: var(--bgColor-default); }
+  .markdown-body {
+    box-sizing: border-box;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 32px 80px;
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-wrap: break-word;
+  }
+  .markdown-body pre { overflow-wrap: normal; }
+  @media (max-width: 600px) {
+    .markdown-body { padding: 32px 16px 48px; }
+  }
+</style>
+]]
+
 local function render_plantuml_factory()
 	local cache = {}
 
@@ -219,7 +238,8 @@ function M.setup()
 		-- Keep initial preview responsive.
 		local content = vim.in_fast_event() and markdown or preprocess(markdown)
 		local sidebar = dirlist_sidebar_html(M.webroot, M.current_filepath)
-		return (original_md2html(content):gsub("</body>", sidebar .. d2_renderer .. "</body>", 1))
+		local html = original_md2html(content):gsub("</head>", preview_styles .. "</head>", 1)
+		return (html:gsub("</body>", sidebar .. d2_renderer .. "</body>", 1))
 	end
 
 	local function render_current_buffer()
